@@ -1,0 +1,558 @@
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+Filipino
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Naglo-load ...
+
+- luma_not_installed
+May nakitang hindi sinusuportahang na firmware.
+
+# displayed under above string
+- install_luma
+Hindi magagamit ang 3hs sa sistemang ito.
+
+# button, button on bottom of screen to enter queue
+- queue
+Pila
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Nabigong pagsimula sa aplikasyon
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Salamat sa paggamit ng 3hs, isang 3ds aplikasyon para sa hShop.
+Makukuha mo ang software na ito nang libre sa
+PAGE_3HS
+
+- press_to_install
+Pindutin ang UI_GLYPH_A upang i-install ang pamagat na ito.
+Pindutin ang UI_GLYPH_B upang bumalik.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Bersyon
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Kowd sa Produkto
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Laki
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Pangalan
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+ID sa Titulo
+
+# nowrap, used for content category, extmeta & main list
+- category
+Kategorya
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+ID pang hShop
+
+# nowrap, used for category description
+- description
+Deskripsyon
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Kabuuan ng titulo
+
+# nowrap, shown top screen category selection
+- select_cat
+Pumili ng kategorya
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Pumili ng Subkategorya
+
+# nowrap, shown top screen title selection
+- select_title
+Pumili ng titulo
+
+# the time format (15:00)
+- fmt_24h
+24 oras
+
+# time time format (3 PM)
+- fmt_12h
+12 oras
+
+# unknown setting value
+- unknown
+hindi alam
+
+# setting is set to ON
+- btrue
+totoo
+
+# setting is set to OFF
+- bfalse
+hindi totoo
+
+# top screen in progress bar location settings switcher
+- top
+itaas
+
+# bottom screen in progress bar location settings switcher
+- bottom
+ibaba
+
+# scroll, setting title
+- resume_dl
+Ipatuloy ang mga download
+
+# scroll, setting title
+- load_space
+Pang-indikasyon na mapakita ang naiwan espasyo
+
+# scroll, setting title
+- show_battery
+Pang-indikasyon sa naiwan antas ng baterya
+
+# scroll, setting title
+- time_format
+Pormat ng oras
+
+# scroll, setting title
+- progbar_screen
+Posisyon sa Progress bar
+Progress bar position
+
+# scroll, setting title
+- language
+Wika
+
+# value of setting
+- value_x
+Halaga: %1
+
+# back button
+- back
+Bumalik
+
+# invalid option
+- invalid
+hindi wasto 
+
+# %1 = title id
+- title_doesnt_exist
+Ang titulo ay hindi umiiral: %1
+
+# %1 = error code
+# %2 = seconds remaining
+- netcon_lost
+Nawala ang koneksyon sa network (%1).
+Sinusubukang muli sa %2 segundo...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+Tungkol sa aplikasyon
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Tulong/Manwal
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Maghanap ng nawawalang titulo
+
+# exit menu and sometimes application
+- press_a_exit
+Pindutin ang UI_GLYPH_A upang lumabas.
+
+# can also be translated as fatal error
+- fatal_panic
+Isang malubhang na mali ay naganap.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Nabigong buksan ang seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Gusto mo bang mag-upgrade sa %1?
+
+# nowrap, top screen while searching
+- search_content
+Maghanap ng titulo
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Maghanap ng titulo...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Kowd ng resulta: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Antas: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Buod: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Modyul: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Congrats! Nahanap mo ang hShop bunny!
+
+- already_installed_reinstall
+Naka-install na ang Titulo. I-install muli?
+
+- queue_empty
+Walang laman ang pila
+Pindutin ang UI_GLYPH_A upang makabalik.
+Tip: Pindutin ang UI_GLYPH_Y upang magdagdag ang titulo sa pila.
+
+# button, yes/no prompt "no" option
+- cancel
+Ikansela
+
+# button, yes/no prompt "yes" option
+- confirm
+Ikumpirma
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Di-wastong mga setting ng proxy
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+Higit pa tungkol sa titulong ito
+
+# scroll, setting title
+- lumalocalemode
+LumaLocale moda
+
+# selector, lumalocale mode setting
+- automatic
+awtomatiko
+
+# selector, lumalocale mode setting
+- manual
+manual
+
+# selector, lumalocale mode setting
+- disabled
+Hindi pinagana
+
+- patching_reboot
+Ang Luma3ds game patching ay pinagana na ngayon.
+Ang sistem ay dapat i-restart para magkabisa ang pagbabagong ito.
+
+- reboot_now
+I-restart ngayon?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+Ito ay 3hs na bersyon %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Nabigong Kahilingan. Subukan muli?
+
+- search_zero_results
+Ang iyong paghahanap ay walang naibalik na resulta.
+Pindutin ang UI_GLYPH_A upang bumalik.
+
+# Shown in the "About" burger option
+- credits
+Mga Karangalan
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Maghanap para sa dagdag titulo
+
+# request = request for the 3DS to do something, like a command
+- no_req
+Walang kahilingan ginawa pa
+
+# invalid search query
+- invalid_query
+Di-wastong usisa
+Pindutin ang UI_GLYPH_A upang bumalik.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Ang kasalukuyang 3hs na bersyon %1 ay mas mababa kaysa sa kinakailangang bersyon %2
+
+# scroll, setting title
+- proxy
+Proxy
+
+# used for "no proxy is set"
+- none
+(wala)
+
+# view proxy settings
+- press_a_to_view
+I-klik ang UI_GLYPH_A para makita.
+
+# proxy host
+- host
+Host
+
+# proxy port
+- port
+Port
+
+# proxy username
+- username
+Bansag
+
+# proxy password
+- password
+Hudyat
+
+# clear all proxy field
+- clear
+Alisin
+
+# setting description
+- progbar_screen_desc
+Piliin ang posisyon ng progress bar.
+
+# setting description
+- resume_dl_desc
+Ipatuloy ang mga downloads pagkatapos ng pagkagambala sa network
+
+# setting description
+- load_space_desc
+I-toggle ang indikasyon sa naiwan na espasyo.
+
+# setting description
+- show_battery_desc
+I-toggle ang indikasyon sa naiwan antas ng baterya
+
+# setting description
+- time_format_desc
+Piliin ang pormat ng oras.
+
+# setting description
+- language_desc
+Itakda ang wika ng 3hs.
+
+# setting description
+- lumalocalemode_desc
+Itakda ang moda sa LumaLocale autosetter. Awtomatic ay pumipili ng wika awtomatiko. Kung ito itinakda sa manual, 3hs ay mag-prompt ng rehiyon pagkatapos ng pag-install sa titulo.
+
+# setting description
+- check_extra_desc
+Paghahanap ng dagdag titulo pagkatapos ng pag-install.
+
+# setting description
+- proxy_desc
+Mag-configure ng proxy server sa loob ng 3hs. Ang setting na ito ay para sa mga advanced na user.
+
+# install all from queue
+- install_all
+I-install lahat	
+
+- install_no_base
+Ang orihinal na laro ay hindi naka-install. Magpatuloy pa rin?
+
+# setting title
+- warn_no_base
+Magbabala kung hindi naka-install ang orihinal na laro
+
+# setting description
+- warn_no_base_desc
+Nagpapakita ng mensaha bago pag-install ng bagong bersyon sa laro or DLC na titulo kung ang orihinal na laro ay hindi naka-install.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+Pag-replay ng mga error na naranasan habang pinoproseso ang pila.
+
+# may also be translated as "manage logs"
+- log
+Logs
+
+- upload_logs
+mag-upload ng mga logs
+
+- clear_logs
+Alisin ang mga logs
+
+# %1 = amount of titles found
+- found_missing
+Natagpuan ang %1 nawawalang titulo(s)
+Suriin ang pili upang mai-install ang mga ito.
+
+- found_0_missing
+Walang nawawalang na mga titulo nakita.
+
+# setting title
+- max_elogs
+Pinakamataas na mga lumang log file
+
+# setting description
+- max_elogs_desc
+Itakda ang bilang ng mga file na log na papanatilihin. Possibleng halaga ay 0 haggang 255, kung saan ang 0 ay hindi nagpapanatili ng karagdagang mga file ng log.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Halaga sa pagitan ng 0 at 255
+
+# %1 = id
+- log_id
+Gamitin ang ID na ito para makakuha ng suporta:
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 block)";
+else       return "%1 (%2 blocks)";
+
+# nowrap, search menu item
+- search_text
+paghanap sa pamamagitan ng text
+
+# nowrap, search menu item
+- search_id
+Maghanap sa pamamagitan ng hShop na ID
+
+# nowrap, search menu item
+- search_tid
+Maghanap sa pamamagitan ng Titulo na ID
+
+# invalid title id specified during legacy search
+- invalid_tid
+Di-wastong ID na Titulo na iD
+
+- theme_installer_tid_bad
+Mangyaring i-browse nang manu-mano ang kategorya ng Mga Tema upang maghanap ng mga tema
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Sumulat ng legacy na usisa sa paghahanap
+
+- no_other_params_tid
+Hindi matukoy ang anumang iba pang mga parameter kapag tumutukoy ng Title ID
+
+- both_sd_and_sb
+Dapat kang tumukoy ng paraan ng pag-uuri at direksyon ng pag-uuri kapag nag-uuri ng mga resulta ng paghahanap
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Di-wastong paraan ng pag-uuri
+
+# i.e. ascending/descending
+- invalid_sd
+Di-wastong direksyon ng pag-uuri
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Di-wasto ang pagsasama ng mga filter
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Di-wastong pagbubukod ng mga filter
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Nakakita ng overlap sa tinukoy na mga filter sa paghahanap
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Legacy na paghahanap
+
+- sure_reset
+Sigurado ka bang gusto mong i-reset ang iyong mga setting?
+
+# sort direction
+- ascending
+Pataas
+
+# sort direction
+- descending
+Paubos
+
+# sort method
+- alphabetical
+Alpabetiko
+
+# sort method
+- downloads
+Downloads
+
+# setting title
+- def_sort_meth
+orihinal na paraan ng pag-uuri
+
+# setting description
+- def_sort_meth_desc
+Tinutukoy ang orihinal na paraan ng pag-uuri na gagamitin kapag tumitingin ng listahan ng mga pamagat.
+
+# setting title
+- def_sort_dir
+Orihinal na direksyon ng pag-uuri
+
+# setting description
+- def_sort_dir_desc
+Tinutukoy ang orihinal na direksyon ng pag-uuri na gagamitin kapag tumitingin ng listahan ng mga pamagat.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Di-wastong uri ng titulo
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+May na-install na tema. Mangyaring tingnan PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+Isang file ang na-install. Ang mga ito ay hindi ipinapakita sa HOME menu
+
+# setting title
+- allow_led
+Paganahin ang mindikasyon ng lagay ng LED
+
+# setting description
+- allow_led_desc
+Ito ay magpapa-flash ng LED na ilaw upang ipaalam sa iyo ang iba't ibang pagbabago sa status, gaya ng kapag ang isang pamagat ay natapos nang mag-install.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Ayon sa ENVINFO ng console na ito, isa itong development unit.
+Hindi gagana nang tama ang 3hs sa system na ito.
+Kung sakaling mayroon kang retail na 3DS, tiyakin na ang "Enable developer UNITINFO" sa configuration ng Luma3DS ay hindi pinagana.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: umigit
+
+# %1 = theme author
+- made_by
+ni %1
+
+# nowrap, burger menu item
+- themes
+Tema
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Di-wastong preview ng tema na kinuha mula sa server!
+
+- hint_add_queue
+UI_GLYPH_Y: Idagdag sa pila
+
+- hint_preview_theme
+UI_GLYPH_X: preview sa tema

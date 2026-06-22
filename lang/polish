@@ -1,0 +1,688 @@
+- native_name
+Polski
+
+- loading
+Ładowanie...
+
+- luma_not_installed
+Wykryto nieobsługiwane oprogramowanie.
+
+- install_luma
+3hs nie może być używane w tym systemie.
+
+- queue
+Kolejka
+
+- fail_init_networking
+Nie udało się zainicjować sieci
+
+- credits_thanks
+Dziękujemy za skorzystanie z 3hs, klienta 3ds dla hShop.
+Możesz pobrać to oprogramowanie za darmo pod adresem
+PAGE_3HS
+
+- press_to_install
+Naciskać UI_GLYPH_A aby zainstalować tę zawartość.
+Naciskać UI_GLYPH_B aby wrócić.
+
+- version
+Wersja
+
+- prodcode
+Kod produktu
+
+- size
+Rozmiar pliku
+
+- name
+Nazwa
+
+- tid
+Identyfikator tytułu
+
+- category
+Kategoria
+
+- landing_id
+Identyfikator w hShop
+
+- description
+Opis
+
+- total_titles
+Wszystkie tytuły
+
+- select_cat
+Wybierz kategorię
+
+- select_subcat
+Wybierz podkategorię
+
+- select_title
+Wybierz tytuł
+
+- fmt_24h
+zegar 24-godzinny
+
+- fmt_12h
+zegar 12-godzinny
+
+- unknown
+nieznany
+
+- btrue
+prawda
+
+- bfalse
+fałszywy
+
+- top
+górny
+
+- bottom
+dolny
+
+- resume_dl
+Wznów pobieranie
+
+- load_space
+Pokaż wskaźnik wolnego miejsca
+
+- show_battery
+Pokaż wskaźnik poziomu baterii
+
+- time_format
+Format czasu
+
+- progbar_screen
+Pozycja paska progresu
+
+- language
+Język
+
+- value_x
+Wartość: %1
+
+- back
+powrótk
+
+- invalid
+nieprawidłowe
+
+- title_doesnt_exist
+Tytuł nie istnieje: %1
+
+- netcon_lost
+Utracono połączenie sieciowe (%1).
+Ponowna próba za %2 sekund...
+
+- about_app
+Dokumentacja
+
+- help_manual
+Pomoc/Podręcznik
+
+- find_missing_content
+Znajdź brakujące pliki
+
+- press_a_exit
+Naciśnij UI_GLYPH_A aby wyjść.
+
+- fatal_panic
+Wystąpił błąd krytyczny.
+
+- failed_open_seeddb
+Nie udało się otworzyć seeddb.bin.
+
+- update_to
+Czy chcesz zaktualizować do wersji %1?
+
+- search_content
+Szukaj treści
+
+- search_content_action
+Szukaj treści...
+
+- result_code
+Kod wyniku: %1
+
+- level
+Poziom: %1
+
+- summary
+Streszczenie: %1
+
+- module
+Moduł: %1
+
+- hs_bunny_found
+Gratulacje! Znalazłeś królika w hShop!
+
+- already_installed_reinstall
+Tytuł już zainstalowany. Zainstalować ponownie?
+
+- queue_empty
+Kolejka jest pusta
+Naciskać UI_GLYPH_A aby wrócić.
+Wskazówka: Naciskać UI_GLYPH_Y aby dodać tytuł do kolejki.
+
+- cancel
+Anuluj
+
+- confirm
+Potwierdzać
+
+- invalid_proxy
+Nieprawidłowe ustawienia proxy
+
+- more_about_content
+Więcej o tej treści
+
+- lumalocalemode
+Tryb LumaLocale
+
+- automatic
+automatyczny
+
+- manual
+podręcznik
+
+- disabled
+wyłączone
+
+- patching_reboot
+Poprawka gier Luma3DS jest teraz włączone.
+Aby zmiana zaczęła obowiązywać, należy ponownie uruchomić system.
+
+- reboot_now
+Restart now?
+
+- this_version
+To jest wersja 3hs %1
+
+- retry_req
+Żądanie nie powiodło się. Spróbować ponownie?
+
+- search_zero_results
+Twoje wyszukiwanie nie przyniosło żadnych rezultatów
+Press UI_GLYPH_A to go back.
+
+- credits
+Kredyty
+
+- check_extra
+Szukaj dodatkowych rzeczy
+
+- no_req
+Nie złożono jeszcze próśb
+
+- invalid_query
+Nieprawidłowe zapytanie
+Naciśnij UI_GLYPH_A aby wrócić.
+
+- min_constraint
+Ta wersja 3hs %1 jest niższa niż wymagana wersja %2
+
+- proxy
+Proxy
+
+- none
+(Nic)
+
+- press_a_to_view
+Naciśnij UI_GLYPH_A wyświetlić
+
+- host
+Gospodarz
+
+- port
+Port
+
+- username
+Nazwa użytkownika
+
+- password
+Hasło
+
+- clear
+Oczyść
+
+- progbar_screen_desc
+Wybierz pozycję paska progresu.
+
+- resume_dl_desc
+Wznów pobieranie po przerwie w sieci.
+
+- load_space_desc
+Zmień widok wskaźnika wolnego miejsca.
+
+- show_battery_desc
+Zmień widok wskaźnika poziomu naładowania baterii.
+
+- time_format_desc
+Wybierz format czasu.
+
+- language_desc
+Ustaw język na 3hs.
+
+- lumalocalemode_desc
+Ustaw tryb autosettera LumaLocale. Automatycznie wybiera język automatycznie. Jeśli jest to ustawione na ręczne, 3hs poprosi o region po zainstalowaniu zawartości.
+
+- check_extra_desc
+Wyszukaj dodatkowe pliki po instalacji.
+
+- proxy_desc
+Skonfiguruj serwer proxy na 3hs. To ustawienie jest przeznaczone dla zaawansowanych użytkowników.
+
+- install_all
+Zainstaluj wszystko
+
+- install_no_base
+Podstawowa gra nie jest zainstalowana. Kontynuować mimo wszystko?
+
+- warn_no_base
+Ostrzegaj, jeśli gra podstawowa nie jest zainstalowana
+
+- warn_no_base_desc
+Wyświetla komunikat przed zainstalowaniem aktualizacji lub zawartości DLC, jeśli gra podstawowa nie jest zainstalowana.
+
+- replaying_errors
+Powtarzanie błędów napotkanych podczas przetwarzania kolejki.
+
+- log
+dzienniki
+
+- upload_logs
+Prześlij dzienniki
+
+- clear_logs
+Wyczyść dzienniki
+
+- found_missing
+Znaleziono %1 brakujących tytułów
+Sprawdź kolejkę, aby je zainstalować.
+
+- found_0_missing
+Nie znaleziono brakujących tytułów.
+
+- max_elogs
+Maksymalna liczba starych plików dziennika
+
+- max_elogs_desc
+Ustaw liczbę plików dziennika do przechowywania. Możliwe wartości to od 0 do 255, gdzie 0 nie przechowuje żadnych dodatkowych plików dziennika.
+
+- elogs_hint
+Wartość od 0 do 255
+
+- log_id
+Użyj tego identyfikatora, aby uzyskać pomoc:
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 blok)";
+else       return "%1 (%2 bloki)";
+
+- search_text
+Szukaj według tekstu
+
+- search_id
+Szukaj według identyfikatora hShop
+
+- search_tid
+Szukaj według identyfikatora tytułu
+
+- invalid_tid
+Nieprawidłowy identyfikator tytułu
+
+- theme_installer_tid_bad
+Proszę ręcznie przeglądać kategorię Motywy, aby wyszukać motywy
+
+- enter_lgy_query
+Wpisz starsze zapytanie
+
+- no_other_params_tid
+Nie można określić żadnych innych parametrów podczas określania identyfikatora tytułu
+
+- both_sd_and_sb
+Podczas sortowania wyników wyszukiwania musisz określić metodę sortowania i kierunek sortowania
+
+- invalid_sb
+Nieprawidłowa metoda sortowania
+
+- invalid_sd
+Nieprawidłowy kierunek sortowania
+
+- invalid_includes
+Nieprawidłowe filtry uwzględniania
+
+- invalid_excludes
+Nieprawidłowe filtry wykluczania
+
+- filter_overlap
+Wykryto nakładanie się określonych filtrów wyszukiwania
+
+- lgy_search
+Wyszukiwanie starsze
+
+- sure_reset
+Czy na pewno chcesz zresetować konfigurację?
+
+- ascending
+Większa Kolejność
+
+- descending
+Kolejność malejąca
+
+- alphabetical
+Alfabetyczny
+
+- downloads
+Pobrane pliki
+
+- def_sort_meth
+Domyślna metoda sortowania
+
+- def_sort_meth_desc
+Określa domyślną metodę sortowania używaną podczas przeglądania listy tytułów.
+
+- def_sort_dir
+Domyślny kierunek sortowania
+
+- def_sort_dir_desc
+Określa domyślny kierunek sortowania używany podczas przeglądania listy tytułów.
+
+- invalid_content_type
+nieprawidłowy typ pliku
+
+- theme_installed
+Motyw został zainstalowany. Proszę zobaczyć PAGE_THEMES
+
+- file_installed
+Zainstalowano plik. Nie są one wyświetlane w menu głównym
+
+- allow_led
+Włącz wskaźniki stanu LED
+
+- allow_led_desc
+Spowoduje to miganie diody LED, aby poinformować Cię o różnych zmianach stanu, na przykład po zakończeniu instalacji tytułu
+
+- dev_unitinfo
+Według ENVINFO tej konsoli to jest jednostka programistyczna.
+3hs nie będzie działać poprawnie w tym systemie.
+Jeśli masz detaliczną wersję 3DS, upewnij się, że opcja „Włącz programistę UNITINFO” w konfiguracji Luma3DS jest wyłączona.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: nawigować
+
+- made_by
+przez %1
+
+- themes
+motyw
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Otrzymano niewłaściwy podgląd motywu od serwera!
+
+- hint_add_queue
+UI_GLYPH_Y: dodaj do kolejki
+
+- hint_preview_theme
+UI_GLYPH_X: podgląd motywu
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Alternatywna nazwa
+
+# setting title
+- show_alt
+Pokaż alternatywną nazwę
+
+# setting description
+- show_alt_desc
+Pokaż alternatywne nazwy, jeśli to możliwe.
+
+# setting title
+- default_reinst
+Domyślna ponowna instalacja
+
+# setting description
+- default_reinst_desc
+Domyślnie reinstaluj ponownie; nie pytaj o usunięcie już zainstalowanego tytułu.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Przetwarzanie kolejki: %2/%3
+%1
+
+- no_other_params_prod
+Nie można określić innych parametrów podczas szukania wg kodu produktu
+
+- invalid_prod
+Niewłaściwy kod produktu
+
+- search_prod
+Szukaj według kodu produktu
+
+  # ... #
+
+# label for content type selector for normal search
+- content_type
+Typ treści
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Wszystkie
+
+# label for checkbox list of categories to include  in quick search
+- include_content
+Uwzględnij treść
+
+# label for checkbox list of regions to include in quick search
+- regions
+Regiony
+
+# label for include filters of normal search
+- include_filters
+Uwzględnij filtry
+
+# label for exclude filters of normal search
+- exclude_filters
+Wyklucz filtry
+
+# button, adds a filter in normal search
+- add
+Dodaj
+
+# search menu option to open normal search
+- normal_search
+Normalne wyszukiwanie
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Playing %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪Grając piosenkę %1 przez %2 ♪
+
+- outdated_system
+Wykryto nieaktualne oprogramowanie systemu. Do korzystania z 3hs wymagane jest oprogramowanie systemowe w wersji co najmniej 9.6.0
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Typ Konsoli Wirtualnej
+
+- add_file_act
+[ dodaj plik ]
+
+- add_music
+Nie Dodałeś jeszcze żadnej muzyki!
+Umieść pliki z muzyką w /3ds/3hs/music na Twojej karcie SD.
+
+- add_playlist
+Nie Dodałeś jeszcze żadnych playlist!
+Spróbuj dodać je za pomocą opcji "Zarządzaj".
+
+- add_playlist_act
+[ dodaj playlistę ]
+
+- alt_name_n_of_n
+Alternatywna nazwa (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: switch)
+
+- audio
+Audio
+
+- automatically_detected
+3hs automatycznie wykrył %1 jako język systemu. Naciśnij UI_GLYPH_A, aby potwierdzić.
+
+- basic_options
+Opcje podstawowe
+
+- check_inet
+Łączenie z internetem...
+
+- check_net
+Uruchamianie WiFi...
+
+- default_playlist
+Domyślna playlista
+
+- disable_graph
+Wyłącz wykres opóźnienia
+
+- disable_graph_desc
+Wyłącza wykres opóźnienia pokazywany w trakcie instalacji.
+
+- do_donate
+Jeżeli hShop okazał się być dla Ciebie przydatnym, odwiedź PAGE_DONATE na innym urządzeniu!
+
+- empty
+(pusty)
+
+- enter_query
+Wprowadź zapytanie...
+
+- error_occurred
+Wystąpił błąd
+
+- everything
+Wszystko w tej kategorii
+
+- file
+plik
+
+- filters
+Filtry
+
+- goto_region
+Automatycznie wybierz subkategorię regionu zgodną z tą konsolą
+
+- goto_region_desc
+Automatycznie otwórz subkategorię zgodną z regionem oprogramowania systemowego, jeżeli taka istnieje.
+
+- invalid_hsid
+Niepoprawne ID hShop.
+
+- invalid_uniq
+Niepoprawne unikatowe ID
+
+- language_detected
+Detected language: Polski
+Wykryty język: polski
+Is this correct? Czy jest to prawidłowe?
+
+- legacy_search_tab
+Poprzednia wersja
+
+- manage_playlists
+Zarządzaj playlistami
+
+- new_invalid_prod
+Błąd: Wprowadzono niepoprawny kod produktu.
+Kody produktu występują w następującym formacie: XXX-X-XXXX
+np.: CTR-P-AMKE
+
+- new_invalid_tid
+Błąd: Wprowadzono niepoprawne ID tytułu.
+ID tytułu występują w następującym formacie: 0004XXXXXXXXXXXX
+np.: 00040000001C1900
+
+- new_playlist_name
+Nazwa nowej playlisty...
+
+- no_other_params_uniq
+Przy wytypowanym unikatowym ID nie można wprowadzić żadnych innych parametrów.
+
+- other
+Inne
+
+- outdated_app
+Ta wersja 3hs jest nieaktualna. Aby móc używać 3hs, musisz mieć zainstalowaną najnowszą wersję.
+
+- playlist
+playlista
+
+- please_update_manually
+Proszę Zaktualizuj 3hs ręcznie i spróbuj ponownie.
+
+- press_b_continue
+Naciśnij UI_GLYPH_B aby kontynuować.
+
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R: zmień tryb wyszukiwarki
+
+- query_too_short
+Zapytanie musi wynosić co najmniej 1 znak.
+
+- quick
+Szybkie
+
+- randomize
+Pomieszaj playlisty
+
+- repeat
+Powtórz playlisty i piosenki
+
+- save
+Zapisz
+
+- select
+Wybierz...
+
+- stereo
+Stereo
+
+- submit
+Wyszukaj
+
+- unique_id
+Unikatowe ID
+
+- update_check_failed
+Nie udało się sprawdzić aktualizacji 3hs.
+
+- update_install_failed
+Nie udało się zaktualizować 3hs.
+
+- update_try_again_or_update_manually
+Spróbuj ponownie lub Zaktualizuj 3hs ręcznie.
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Uwaga!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs jest programem darmowym. Jeśli zapłaciłeś za program 3hs lub dodatkowo za jego dołączenie do pakietu, natychmiast poproś o zwrot pieniędzy!\n
+3hs jest i zawsze będzie dostępny do pobrania za darmo pod adresem:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Kliknij dowolny przycisk, aby kontynuować.

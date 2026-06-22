@@ -1,0 +1,988 @@
+
+# This is the base 3hs translation file.
+# All other translations should derive from this file.
+# If you want to translate 3hs in your language please contact us in the hShop discord server.
+
+# Some strings have a comment which indicates a context, this may help while translating
+#  - If you require context for anything else feel free to ask
+#  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
+#  - The value of the variable will literally be substituted (replaced)
+#  - if this doesn't work in your language you may have to write a bit of code to work around it
+#    - please take a look at the example string in english "size_plus_block"
+#    - if you need help feel free to ask
+# UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
+#  - They should be kept exactly as-is, they should be encircled by spaces
+#    - Even if your language has no such things, not having a space causes ugly clamping
+# PAGE_ is a prefix for a URL to a hShop page
+#  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
+# Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
+# Although text wraps in most cases, it's for the best not make your translation too verbose
+#  - Text wrapping means the text continues on the next line if it's too large
+#  - Strings marked with "nowrap" don't wrap.
+#  - Strings marked with "button" use button wrap
+#    - This means they gradually expand in size as the string gets larger
+#    - This does not mean they wrap to the next line
+#  - Strings marked with "selector" have a maximum length (of 200 pixels)
+#  - Strings marked with "scroll" scroll sideways, for example all setting titles use this
+#    - Strings that scroll obviously can't wrap
+# If your language is officially supported by Nintendo, use their translations for their terms
+#   - For example, "blocks", "HOME menu", "theme"
+#
+#
+# Any questions and new translations can be posted in the hShop discord channel
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+Украïнська
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Завантаження...
+
+- luma_not_installed
+Виявлено непiдтримувану прошивку.
+
+# displayed under above string
+- install_luma
+3hs неможливо використовувати на цiй системi.
+
+# button, button on bottom of screen to enter queue
+- queue
+Черга
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Помилка iнiцiалiзацiï мережi
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Дякуεмо, що використовуεте 3hs — клiεнт hShop для 3DS.
+Ви можете отримати це ПЗ безкоштовно за адресою
+PAGE_3HS
+
+- press_to_install
+Натиснiть UI_GLYPH_A, щоб iнсталювати цей контент.
+Натиснiть UI_GLYPH_B, щоб повернутися назад.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Версiя
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Код продукту
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Розмiр
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Назва
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+ID тайтла
+
+# nowrap, used for content category, extmeta & main list
+- category
+Категорiя
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+hShop ID
+
+# nowrap, used for category description
+- description
+Опис
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Усього тайтлiв
+
+# nowrap, shown top screen category selection
+- select_cat
+Оберiть категорiю
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Оберiть пiдкатегорiю
+
+# nowrap, shown top screen title selection
+- select_title
+Оберiть тайтл
+
+# the time format (15:00)
+- fmt_24h
+24-годинний
+
+# time time format (3 PM)
+- fmt_12h
+12-годинний
+
+# unknown setting value
+- unknown
+Невiдомо
+
+# setting is set to ON
+- btrue
+Увiмк.
+
+# setting is set to OFF
+- bfalse
+Вимк.
+
+# top screen in progress bar location settings switcher
+- top
+Верхнiй
+
+# bottom screen in progress bar location settings switcher
+- bottom
+Нижнiй
+
+# scroll, setting title
+- resume_dl
+Вiдновлювати завантаження
+
+# scroll, setting title
+- load_space
+Показувати вiльне мiсце
+
+# scroll, setting title
+- show_battery
+Показувати рiвень заряду
+
+# scroll, setting title
+- time_format
+Формат часу
+
+# scroll, setting title
+- progbar_screen
+Розташування смуги прогресу
+
+# scroll, setting title
+- language
+Мова
+
+# value of setting
+- value_x
+Значення: %1
+
+# back button
+- back
+Назад
+
+# invalid option
+- invalid
+Недiйсно
+
+# %1 = title id
+- title_doesnt_exist
+Тайтл не iснуε: %1
+
+# %1 = error code
+# %2 = seconds remaining, range: 1-10 inclusive
+- netcon_lost +code(_, number)
+/* the string is:
+З'εднання розiрвано (%1).
+Повторна спроба через %2 сек...
+*/
+if(p2 < 2) return "З'εднання розiрвано (%1).\nПовторна спроба через %2 сек...";
+else       return "З'εднання розiрвано (%1).\nПовторна спроба через %2 сек...";
+
+# nowrap, burger (three lines) menu entry
+- about_app
+Про програму
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Довiдка/iнструкцiя
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Знайти вiдсутнiй контент
+
+# exit menu and sometimes application
+- press_a_exit
+Натиснiть UI_GLYPH_A, щоб вийти.
+
+# can also be translated as fatal error
+- fatal_panic
+Сталася критична помилка.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Не вдалося вiдкрити seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Оновити до версiï %1?
+
+# nowrap, top screen while searching
+- search_content
+Пошук контенту
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Пошук контенту....
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Код результату: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Рiвень: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Опис: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Модуль: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Вiтаεмо! Ви знайшли кролика hShop!
+
+- already_installed_reinstall
+Тайтл уже встановлено. Перевстановити?
+
+- queue_empty
+Черга порожня
+Натиснiть UI_GLYPH_A, щоб повернутися.
+Порада: натиснiть UI_GLYPH_Y, щоб додати тайтл до черги.
+
+# button, yes/no prompt "no" option
+- cancel
+Скасувати
+
+# button, yes/no prompt "yes" option
+- confirm
+ОК
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Неправильнi налаштування проксi
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+Докладнiше
+
+# scroll, setting title
+- lumalocalemode
+Режим LumaLocale
+
+# selector, lumalocale mode setting
+- automatic
+Автоматично
+
+# selector, lumalocale mode setting
+- manual
+Вручну
+
+# selector, lumalocale mode setting
+- disabled
+Вимкнено
+
+- patching_reboot
+Патчинг iгор Luma3DS увiмкнено.
+Перезавантажте систему, щоб змiни набрали чинностi.
+
+- reboot_now
+Перезавантажити зараз?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+Це 3hs версiï %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Помилка запиту. Повторити?
+
+- search_zero_results
+За вашим запитом нiчого не знайдено.
+Натиснiть UI_GLYPH_A, щоб повернутися.
+
+# Shown in the "About" burger option
+- credits
+Автори
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Шукати додатковий контент
+
+# request = request for the 3DS to do something, like a command
+- no_req
+Запитiв ще не було
+
+# invalid search query
+- invalid_query
+Некоректний запит
+Натиснiть UI_GLYPH_A, щоб повернутися.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Поточна версiя 3hs %1 нижча за необхiдну %2
+
+# scroll, setting title
+- proxy
+Проксi
+
+# used for "no proxy is set", "no default playlist is set"
+- none
+(немаε)
+
+# view proxy settings
+- press_a_to_view
+Натиснiть UI_GLYPH_A для перегляду.
+
+# proxy host
+- host
+Адреса
+
+# proxy port
+- port
+Порт
+
+# proxy username
+- username
+Iм'я користувача
+
+# proxy password
+- password
+Пароль
+
+# clear all proxy field
+- clear
+Очистити
+
+# setting description
+- progbar_screen_desc
+Оберiть екран для вiдображення iндикатора прогресу.
+
+# setting description
+- resume_dl_desc
+Вiдновлювати завантаження пiсля розриву з'εднання.
+
+# setting description
+- load_space_desc
+Показувати або приховати iндикатор вiльного мiсця.
+
+# setting description
+- show_battery_desc
+Показувати або приховати рiвень заряду акумулятора.
+
+# setting description
+#  you can append something like "in <your country> <your time format> is used most often", that is, if your language is predominantly spoken in one country and there exists a consensus there
+- time_format_desc
+Оберiть формат часу.
+
+# setting description
+- language_desc
+Встановiть мову iнтерфейсу 3hs.
+
+# setting description
+- lumalocalemode_desc
+Оберiть режим емуляцiï локалi. «Автоматично» налаштуε мову самостiйно. «Вручну» дозволить обрати мову пiсля встановлення контенту.
+
+# setting description
+- check_extra_desc
+Шукати додатковий контент пiсля завершення встановлення.
+
+# setting description
+- proxy_desc
+Налаштуйте проксi-сервер для 3hs. Цей параметр призначений для досвiдчених користувачiв.
+
+# install all from queue
+- install_all
+Встановити все
+
+- install_no_base
+Базовий тайтл не встановлено. Продовжити попри це?
+
+# setting title
+- warn_no_base
+Попереджати, якщо базовий тайтл не встановлено
+
+# setting description
+- warn_no_base_desc
+Показувати попередження перед встановленням оновлень чи DLC, якщо вiдповiдний базовий тайтл вiдсутнiй.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+Пiд час обробки черги виникли наступнi помилки.
+
+# may also be translated as "manage logs"
+- log
+Логи
+
+- upload_logs
+Завантажити логи
+
+- clear_logs
+Очистити логи
+
+# %1 = amount of titles found
+- found_missing
+Знайдено вiдсутнi тайтл(и) %1.
+Перевiрте чергу, щоб встановити ïх.
+
+- found_0_missing
+Вiдсутнiх тайтлiв не знайдено.
+
+# setting title
+- max_elogs
+Макс. кiлькiсть старих логiв
+
+# setting description
+- max_elogs_desc
+Встановлюε кiлькiсть збережених лог-файлiв (вiд 0 до 255). Якщо вказано 0, додатковi файли логiв не зберiгатимуться.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Значення вiд 0 до 255
+
+# %1 = id
+- log_id
+Використовуйте цей ID для пiдтримки:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+#  %1 = size in bytes/KiB/MiB/GiB/TiB
+#  %2 = amount of blocks
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 бл.)";
+else       return "%1 (%2 бл.)";
+
+# legacy; nowrap, search menu item
+- search_text
+Пошук за текстом
+
+# legacy; nowrap, search menu item
+- search_id
+Пошук за hShop ID
+
+# legacy; nowrap, search menu item
+- search_tid
+Пошук за Title ID
+
+# invalid title id specified during search
+- invalid_tid
+Некоректний title ID
+
+- theme_installer_tid_bad
+Будь ласка, знайдiть теми самостiйно в категорiï «Themes»
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Введiть запит для класичного пошуку
+
+- no_other_params_tid
+Неможливо вказати iншi параметри, якщо задано title ID.
+
+- both_sd_and_sb
+Для сортування необхiдно вказати метод та напрямок сортування.
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Некоректний метод сортування.
+
+# i.e. ascending/descending
+- invalid_sd
+Некоректний напрямок сортування.
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Некоректнi include-фiльтри.
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Некоректнi exclude-фiльтри.
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Виявлено взаεмовиключнi фiльтри пошуку.
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Класичний пошук
+
+- sure_reset
+Ви впевненi, що хочете скинути налаштування?
+
+# sort direction
+- ascending
+За зростанням
+
+# sort direction
+- descending
+За спаданням
+
+# sort method
+- alphabetical
+За алфавiтом
+
+# sort method
+- downloads
+Кiлькiсть завантажень
+
+# setting title
+- def_sort_meth
+Спосiб сортування за замовчуванням
+
+# setting description
+- def_sort_meth_desc
+Визначаε спосiб сортування за замовчуванням при переглядi списку тайтлiв.
+
+# setting title
+- def_sort_dir
+Напрямок сортування за замовчуванням
+
+# setting description
+- def_sort_dir_desc
+Визначаε напрямок сортування за замовчуванням при переглядi списку тайтлiв.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Недопустимий тип контенту.
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+Тему встановлено. Будь ласка, перегляньте PAGE_THEMES.
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+Файл було встановлено.
+
+# setting title
+- allow_led
+Свiтлодiодна iндикацiя стану
+
+# setting description
+- allow_led_desc
+Блимати свiтлодiодом для iнформування про рiзнi змiни стану.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Згiдно з ENVINFO, ця консоль ε пристроεм для розробникiв.
+3hs не буде працювати коректно на цiй системi.
+Якщо у вас звичайна 3DS, переконайтеся, що опцiю "Enable developer UNITINFO" вимкнено в налаштуваннях Luma3DS.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: навiгацiя
+
+# %1 = theme author
+- made_by
+вiд %1
+
+# nowrap, burger menu item
+- themes
+Теми
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Не вдалося завантажити попереднiй перегляд теми з сервера.
+
+# hinting the user to press Y to add to queue in extmeta
+- hint_add_queue
+UI_GLYPH_Y: додати до черги
+
+# hinting the user to press X to preview theme in extmeta if category is themes
+- hint_preview_theme
+UI_GLYPH_X: переглянути прев'ю теми
+
+# used in extmeta for the alternative name
+- alt_name
+Альтернативна назва
+
+# setting title
+- show_alt
+Показувати альтернативну назву
+
+# setting description
+- show_alt_desc
+Показувати альтернативнi назви, якщо вони доступнi.
+
+# setting title
+- default_reinst
+Завжди перевстановлювати iснуючi тайтли
+
+# setting description
+- default_reinst_desc
+Уже встановленi тайтли будуть перевстановлюватися автоматично без додаткового пiдтвердження.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Обробка черги: %2/%3
+%1
+
+- no_other_params_prod
+Неможливо вказати iншi параметри, якщо вказано код продукту.
+
+- invalid_prod
+Некоректний код продукту
+
+- search_prod
+Пошук за кодом продукту
+
+# scroll, setting title
+- disable_graph
+Вимкнути графiк затримки
+
+# setting description
+- disable_graph_desc
+Вимикаε графiк мережевоï затримки, який вiдображаεться пiд час iнсталяцiï.
+
+# scroll, setting title, may deprecate later due to usability concerns
+- goto_region
+Автоматичний перехiд до пiдкатегорiï регiону консолi
+
+# setting description, may deprecate later due to usability concerns
+- goto_region_desc
+Автоматично вiдкривати пiдкатегорiю, що вiдповiдаε регiону системи, якщо вона iснуε.
+
+- add_music
+Ви ще не додали жодноï музики!
+Спробуйте розмiстити музичнi файли в папцi /3ds/3hs/music на вашiй SD-картi.
+
+- add_playlist
+Ви ще не додали жодного плейлисту!
+Спробуйте додати ïх за допомогою опцiï «Керування».
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ додати файл ]
+
+# noscroll, same as above
+- add_playlist_act
+[ додати плейлист ]
+
+# keyboard hint
+- new_playlist_name
+Назва нового плейлисту...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Основнi параметри
+
+# noscroll, audio engine option
+- randomize
+Перемiшати плейлисти
+
+# noscroll, audio engine option
+- repeat
+Повторювати плейлисти та пiснi
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Стерео
+
+# noscroll, Default playlist audio option
+- default_playlist
+Плейлист за замовчуванням
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Додатково
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Вибрати...
+
+# button, keep lowercase, see comment on select
+- playlist
+Плейлист
+
+# button, keep lowercase, see comment on select
+- file
+Файл
+
+# button, save audio engine configuration
+- save
+Зберегти
+
+# button
+- manage_playlists
+Керування плейлистами
+
+# Button in more menu that leads to audio configuration.
+- audio
+Аудiо
+
+# button that adds everything in this category as a filter
+- everything
+Усе в цiй категорiï
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Швидкий
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Фiльтри
+
+# Invalid title id error in new search
+- new_invalid_tid
+Помилка: введено некоректний Title ID.
+Title ID мають такий формат: 0004XXXXXXXXXXXX
+Приклад: 00040000001C1900
+
+# Invalid product code error in new search
+- new_invalid_prod
+Помилка: введено некоректний код продукту.
+Коди продуктiв мають такий формат: XXX-X-XXXX
+Приклад: CTR-P-AMKE
+
+# Subtitle of the new search methods
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R: змiнити режим пошуку
+
+# Placeholder for empty search bar
+- empty
+(порожньо)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Введiть ваш запит...
+
+# Submit new search and display resulst
+- submit
+Надiслати
+
+# label for content type selector for normal search
+- content_type
+Тип контенту
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Усi
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Види контенту
+
+# label for checkbox list of regions to include in quick search
+- regions
+Регiони
+
+# label for include filters of normal search
+- include_filters
+Шукати серед
+
+# label for exclude filters of normal search
+- exclude_filters
+Виключити
+
+# button, adds a filter in normal search
+- add
+Додати
+
+# search menu option to open normal search
+- normal_search
+Звичайний пошук
+
+# -- v1.4.0 barrier -- #
+
+# -- v1.4.1 barrier -- #
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Граε %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ Граε %1 вiд %2 ♪
+
+- outdated_system
+Виявлено застарiлу версiю прошивки. Для роботи 3hs необхiдна прошивка версiï не менше 9.6.0.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Тип Virtual Console
+
+# -- v1.4.2 barrier -- #
+
+# -- v1.4.4 barrier -- #
+
+- do_donate
+Якщо hShop став вам у пригодi, будь ласка, зробiть пожертву, вiдвiдавши PAGE_DONATE з iншого пристрою!
+
+# -- v1.4.5 barrier -- #
+
+# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+#  %1 = your language name
+- automatically_detected
+3hs автоматично визначив %1 як системну мову. Натиснiть UI_GLYPH_A для пiдтвердження.
+
+# This is used to dismiss an error screen
+- press_b_continue
+Натиснiть UI_GLYPH_B, щоб продовжити.
+
+# This is displayed at the top of an error screen
+- error_occurred
+Сталася помилка
+
+# New search method, same as legacy search on the site
+- legacy_search_tab
+Класичний
+
+# Error message for search
+- query_too_short
+Пошуковий запит маε бути не менше нiж 1 символ.
+
+# This string is special as it's the only string that should contain
+# English text in your translation. The first line should be kept English,
+# but put the English name of the language instead of "English". The second line
+# should be translated but put your language name instead of "English". In the
+# third line only the second "Is this correct?" should be translated.
+- language_detected
+Detected language: Ukrainian
+Виявлено мову: Украïнська
+Is this correct? Чи це правильно?
+
+# -- v1.5.0 barrier -- #
+
+# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+- check_net
+Увiмкнення WiFi...
+
+# Shown while 3hs is launching, while attempting to connect to the internet
+- check_inet
+Пiдключення до iнтернету...
+
+# Shown in extmeta when there is more than one alternative name.
+- alt_name_n_of_n
+Альтернативна назва (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: змiнити)
+
+# Shown in search when an invalid hShop ID is entered
+- invalid_hsid
+Некоректний hShop ID.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- outdated_app
+Ця версiя 3hs застарiла. Для подальшого використання необхiдно встановити останню версiю.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- please_update_manually
+Будь ласка, оновiть 3hs вручну та спробуйте ще раз.
+
+# Shown when checking for 3hs updates has failed
+- update_check_failed
+Не вдалося перевiрити наявнiсть оновлень 3hs.
+
+# Shown when installing a 3hs update has failed
+- update_install_failed
+Не вдалося встановити оновлення 3hs.
+
+# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+- update_try_again_or_update_manually
+Будь ласка, спробуйте ще раз або оновiть 3hs вручну.
+
+# 1.5.6 barrier
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Неможливо використовувати iншi параметри, якщо вказано унiкальний ID.
+
+# invalid unique ID specified during search
+- invalid_uniq
+Некоректний унiкальний ID
+
+# shown as search tab header for unique ID search
+- unique_id
+Унiкальний ID
+
+# 1.5.7 barrier
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (утримувати): скасувати завантаження
+
+# Shown in 3 lines menu
+- dlc_fixer
+Виправлення DLC
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Перевiрка тайтлiв на SD card...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Складання списку встановлених тiкетiв...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Пошук пошкоджених тiкетiв DLC...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+Пошкоджених тайтлiв DLC не знайдено.\n
+Якщо якийсь DLC все одно працюε
+некоректно, будь ласка, перевстановiть його.\n
+Натиснiть UI_GLYPH_A, щоб вийти.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+/* the string is:
+Знайдено пошкодженi тiкети DLC %1.
+Виправити ïх зараз?
+*/
+if(p1 < 2) return "Знайдено пошкодженi тiкети DLC %1.\nВиправити ïх зараз?";
+else       return "Знайдено пошкодженi тiкети DLC %1.\nВиправити ïх зараз?";
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Вiдкриття бази даних тiкетiв...
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+Вилучення тiкетiв DLC...
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Встановлення виправлених тiкетiв DLC...
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Готово. Якщо якийсь DLC все одно працюε
+некоректно, будь ласка, перевстановiть його.\n
+Натиснiть UI_GLYPH_A, щоб вийти.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Увiмкнено: Використовувати власний проксi.
+Вимкнено: Використовувати проксi, вказаний\nу Системних налаштуваннях.
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Увiмкнено
+
+# 1.5.9 barrier
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Важливо!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs — вiльне ПЗ. Якщо ви заплатили за 3hs або доплатили за те, що вiн був у комплектi, негайно вимагайте повернення коштiв!\n
+3hs завжди був i буде безкоштовним тут:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Натиснiть будь-яку кнопку, щоб продовжити.

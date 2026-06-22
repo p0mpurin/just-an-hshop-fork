@@ -1,0 +1,824 @@
+- native_name
+Русский
+
+- loading
+Загрузка...
+
+- luma_not_installed
+Обнаружена не поддерживаемая прошивка.
+
+- install_luma
+3hs невозможно использовать в данной системе.
+
+- queue
+Очередь
+
+- fail_init_networking
+Ошибка инициализации сети
+
+- credits_thanks
+Спасибо, что используете 3hs, клиент hShop для 3DS.
+Это программное обеспечение доступно бесплатно по адресу
+PAGE_3HS
+
+- press_to_install
+Нажмите UI_GLYPH_A, чтобы установить этот контент.
+Нажмите UI_GLYPH_B, чтобы вернуться на предыдущий экран.
+
+- version
+Версия
+
+- prodcode
+Код продукта
+
+- size
+Размер
+
+- name
+Название
+
+- tid
+Title ID
+
+- category
+Категория
+
+- landing_id
+hShop ID
+
+- description
+Описание
+
+- total_titles
+Всего тайтлов
+
+- select_cat
+Выберите категорию
+
+- select_subcat
+Выберите подкатегорию
+
+- select_title
+Выберите тайтл
+
+- fmt_24h
+24-часовой
+
+- fmt_12h
+12-часовой
+
+- unknown
+Неизвестно
+
+- btrue
+да
+
+- bfalse
+нет
+
+- top
+Верхний
+
+- bottom
+Нижний
+
+- resume_dl
+Возобновлять загрузки
+
+- load_space
+Показывать индикатор свободного места
+
+- show_battery
+Показывать индикатор уровня заряда
+
+- time_format
+Формат времени
+
+- progbar_screen
+Расположение индикатора прогресса
+
+- language
+Язык
+
+- value_x
+Значение: %1
+
+- back
+Назад
+
+- invalid
+Недопустимо
+
+- title_doesnt_exist
+Тайтл не существует: %1
+
+- netcon_lost +code(_, number)
+bool tens = p2 / 10 % 10 == 1;
+bool few = p2 % 10 >= 2 && p2 % 10 <= 4;
+if (p2 % 10 == 1 && !tens) return "Соединение прервано (%1).\nПовтор через %2 секунду...";
+else if (few && !tens)     return "Соединение прервано (%1).\nПовтор через %2 секунды...";
+else                       return "Соединение прервано (%1).\nПовтор через %2 секунд...";
+
+- about_app
+О программе
+
+- help_manual
+Помощь/Инструкция
+
+- find_missing_content
+Найти недостающий контент
+
+- press_a_exit
+Нажмите UI_GLYPH_A, чтобы выйти.
+
+- fatal_panic
+Критическая ошибка.
+
+- failed_open_seeddb
+Не удалось открыть seeddb.bin.
+
+- update_to
+Обновить до версии %1?
+
+- search_content
+Поиск контента
+
+- search_content_action
+Поиск контента...
+
+- result_code
+Код результата: %1
+
+- level
+Уровень: %1
+
+- summary
+Описание: %1
+
+- module
+Модуль: %1
+
+- hs_bunny_found
+Поздравляем! Вы нашли кролика hShop!
+
+- already_installed_reinstall
+Тайтл уже установлен. Переустановить?
+
+- queue_empty
+Ничего нет
+Нажмите UI_GLYPH_A, чтобы вернуться.
+Совет: Нажмите UI_GLYPH_Y, чтобы добавить тайтл в очередь.
+
+- cancel
+Отмена
+
+- confirm
+OK
+
+- invalid_proxy
+Недопустимые настройки прокси
+
+- more_about_content
+Подробнее
+
+- lumalocalemode
+Режим LumaLocale
+
+- automatic
+Автоматически
+
+- manual
+Вручную
+
+- disabled
+Отключено
+
+- patching_reboot
+Модификация игр с помощью Luma3DS активирована.
+Изменения вступят в силу после перезагрузки.
+
+- reboot_now
+Перезагрузить сейчас?
+
+- this_version
+Это 3hs версии %1
+
+- retry_req
+Не удалось выполнить запрос. Повторить?
+
+- search_zero_results
+Поиск не дал результатов.
+Нажмите UI_GLYPH_A, чтобы вернуться.
+
+- credits
+Авторы
+
+- check_extra
+Искать дополнительный контент
+
+- no_req
+Запросов не было
+
+- invalid_query
+Ошибка запроса
+Нажмите UI_GLYPH_A, чтобы вернуться.
+
+- min_constraint
+Текущая версия 3hs %1 ниже требуемой версии %2
+
+- proxy
+Прокси
+
+- none
+(нет)
+
+- press_a_to_view
+Нажмите UI_GLYPH_A, чтобы просмотреть.
+
+- host
+Адрес
+
+- port
+Порт
+
+- username
+Имя пользователя
+
+- password
+Пароль
+
+- clear
+Очистить
+
+- progbar_screen_desc
+Выберите экран, на котором будет отображаться индикатор прогресса.
+
+- resume_dl_desc
+Возобновлять загрузку после разрыва соединения.
+
+- load_space_desc
+Показать или скрыть информацию о свободном месте.
+
+- show_battery_desc
+Показать или скрыть информацию о заряде батареи.
+
+- time_format_desc
+Выберите формат времени.
+
+- language_desc
+Выберите язык 3hs.
+
+- lumalocalemode_desc
+Выберите режим LumaLocale. Если выбрана опция "вручную", 3hs будет предлагать выбрать регион после установки контента.
+
+- check_extra_desc
+Искать дополнительный контент после установки.
+
+- proxy_desc
+Настроить прокси. Эта настройка для опытных пользователей.
+
+- install_all
+Установить всё
+
+- install_no_base
+Базовый тайтл не установлен. Всё равно продолжить?
+
+- warn_no_base
+Предупреждать, если базовый тайтл не установлен
+
+- warn_no_base_desc
+Показывать предупреждение перед установкой обновления или DLC, если соответствующий базовый тайтл не установлен.
+
+- replaying_errors
+При обработке очереди возникли следующие ошибки.
+
+- log
+Логи
+
+- upload_logs
+Загрузить логи
+
+- clear_logs
+Очистить логи
+
+- found_missing +code(number)
+bool tens = p1 / 10 % 10 == 1;
+bool few = p1 % 10 >= 2 && p1 % 10 <= 4;
+if (p1 == 1)                    return "Найден %1 недостающий тайтл\nПроверьте очередь для его установки.";
+else if (p1 % 10 == 1 && !tens) return "Найден %1 недостающий тайтл\nПроверьте очередь для их установки.";
+else if (few && !tens)          return "Найдено %1 недостающих тайтла\nПроверьте очередь для их установки.";
+else                            return "Найдено %1 недостающих тайтлов\nПроверьте очередь для их установки.";
+
+- found_0_missing
+Недостающих тайтлов не найдено
+
+- max_elogs
+Максимальное количество старых лог-файлов
+
+- max_elogs_desc
+Устанавливает количество сохраняемых лог-файлов. Допустимы значения от 0 до 255. При значении 0 дополнительные лог-файлы не сохраняются.
+
+- elogs_hint
+Значение от 0 до 255
+
+- log_id
+Используйте этот ID для получения поддержки:
+%1
+
+- size_plus_block +code(_, number)
+bool tens = p2 / 10 % 10 == 1;
+bool few = p2 % 10 >= 2 && p2 % 10 <= 4;
+if (p2 % 10 == 1 && !tens) return "%1 (%2 блок)";
+else if (few && !tens)     return "%1 (%2 блока)";
+else                       return "%1 (%2 блоков)";
+
+- search_text
+Поиск по тексту
+
+- search_id
+Поиск по hShop ID
+
+- search_tid
+Поиск по Title ID
+
+- invalid_tid
+Недопустимый Title ID
+
+- theme_installer_tid_bad
+Пожалуйста, поищите темы самостоятельно в разделе Themes
+
+- enter_lgy_query
+Введите запрос классического поиска
+
+- no_other_params_tid
+Невозможно задать другие параметры, когда указан Title ID
+
+- both_sd_and_sb
+Для сортировки результатов поиска необходимо задать способ и направление сортировки
+
+- invalid_sb
+Недопустимый способ сортировки
+
+- invalid_sd
+Недопустимое направление сортировки
+
+- invalid_includes
+Недопустимые include-фильтры
+
+- invalid_excludes
+Недопустимые exclude-фильтры
+
+- filter_overlap
+Заданы взаимоисключающие фильтры поиска
+
+- lgy_search
+Классический поиск
+
+- sure_reset
+Вы уверены, что хотите сбросить настройки?
+
+- ascending
+По возрастанию
+
+- descending
+По убыванию
+
+- alphabetical
+По алфавиту
+
+- downloads
+Количество загрузок
+
+- def_sort_meth
+Способ сортировки по умолчанию
+
+- def_sort_meth_desc
+Определяет способ сортировки по умолчанию при просмотре списка тайтлов.
+
+- def_sort_dir
+Направление сортировки по умолчанию
+
+- def_sort_dir_desc
+Определяет направление сортировки по умолчанию при просмотре списка тайтлов.
+
+- invalid_content_type
+Недопустимый тип содержимого
+
+- theme_installed
+Тема установлена. Пожалуйста, посмотрите PAGE_THEMES
+
+- file_installed
+Файл был установлен.
+
+- allow_led
+Индикация состояния светодиодом
+
+- allow_led_desc
+Информировать о различных изменениях состояния светодиодом.
+
+- dev_unitinfo
+Согласно значению ENVINFO, эта консоль — устройство для разработчиков.
+На этой системе 3hs не будет работать корректно.
+В случае, если это обычная 3DS, убедитесь, что опция "Enable developer UNITINFO" выключена в настройках Luma3DS.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: навигация
+
+# %1 = автор темы
+- made_by
+от %1
+
+# nowrap, burger menu item
+- themes
+Темы
+
+- invalid_theme_preview
+Не удалось загрузить превью темы с сервера.
+
+- hint_add_queue
+UI_GLYPH_Y: добавить в очередь
+
+- hint_preview_theme
+UI_GLYPH_X: посмотреть превью темы
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Альтернативное название
+
+# setting title
+- show_alt
+Показывать альтернативное название
+
+# setting description
+- show_alt_desc
+Показывать альтернативные названия, если доступны.
+
+# setting title
+- default_reinst
+Всегда переустанавливать уже установленные тайтлы
+
+# setting description
+- default_reinst_desc
+Уже существующие тайтлы будут переустановлены без дополнительного подтверждения.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Обработка очереди: %2 из %3
+%1
+
+- no_other_params_prod
+Невозможно указать другие параметры, если задан код продукта
+
+- invalid_prod
+Недопустимый код продукта
+
+- search_prod
+Поиск по коду продукта
+
+# scroll, setting title
+- disable_graph
+Отключить график сетевой задержки
+
+# setting description
+- disable_graph_desc
+Отключает график сетевой задержки, который отображается во время установки.
+
+# scroll, setting title
+- goto_region
+Автоматически переходить к подкатегории региона консоли
+
+# setting description
+- goto_region_desc
+Автоматически заходить в подкатегорию, соответствующую системному региону, если она присутствует.
+
+- add_music
+У вас пока нет никакой музыки!
+Попробуйте поместить музыку в директорию /3ds/3hs/music на вашей SD карте
+
+- add_playlist
+У вас пока нет никаких плейлистов!
+Попробуйте добавить плейлист в меню управления плейлистами
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ добавить файл ]
+
+# noscroll, same as above
+- add_playlist_act
+[ добавить плейлист ]
+
+# keyboard hint
+- new_playlist_name
+Название нового плейлиста...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Общие настройки
+
+# noscroll, audio engine option
+- randomize
+Перемешивать плейлисты
+
+# noscroll, audio engine option
+- repeat
+Повторять плейлисты и песни
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Стерео
+
+# noscroll, Default playlist audio option
+- default_playlist
+Плейлист по умолчанию
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Дополнительно
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Выбрать...
+
+# button, keep lowercase, see comment on select
+- playlist
+плейлист
+
+# button, keep lowercase, see comment on select
+- file
+файл
+
+# button, save audio engine configuration
+- save
+Сохранить
+
+# button
+- manage_playlists
+Управление плейлистами
+
+# Button in more menu that leads to audio configuration.
+- audio
+Аудио
+
+# button that adds everything in this category as a filter
+- everything
+Всё в этой категории
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Быстрый
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Фильтры
+
+# Invalid title id error in new search
+- new_invalid_tid
+Ошибка: Введён недопустимый Title ID.
+Title ID соответствуют формату: 0004XXXXXXXXXXXX
+Пример: 00040000001C1900
+
+# Invalid product code error in new search
+- new_invalid_prod
+Ошибка: Введён недопустимый код продукта.
+Коды продукта соответствуют формату: XXX-X-XXXX
+Пример: CTR-P-AMKE
+
+# Subtitle of the new search methods
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R: сменить режим поиска
+
+# Placeholder for empty search bar
+- empty
+(не задано)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Введите ваш запрос...
+
+# Submit new search and display resulst
+- submit
+Отправить
+
+# label for content type selector for normal search
+- content_type
+Тип контента
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Все
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Виды контента
+
+# label for checkbox list of regions to include in quick search
+- regions
+Регионы
+
+# label for include filters of normal search
+- include_filters
+Искать среди
+
+# label for exclude filters of normal search
+- exclude_filters
+Исключить
+
+# button, adds a filter in normal search
+- add
+Добавить
+
+# search menu option to open normal search
+- normal_search
+Обычный поиск
+
+# Placeholder for empty search bar
+- empty
+(пусто)
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Играет %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ Играет %1 исполнителя %2 ♪
+
+- outdated_system
+Обнаружена устаревшая прошивка. Для использования 3hs необходима прошивка версии не менее 9.6.0.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Тип Virtual Console
+
+# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+#  %1 = your language name
+- automatically_detected
+3hs автоматически определил язык системы: %1. Нажмите UI_GLYPH_A для подтверждения.
+
+# Error message for search
+- query_too_short
+Поисковый запрос должен быть не менее 1 символов.
+
+# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+- check_net
+Включение WiFi...
+
+# Shown while 3hs is launching, while attempting to connect to the internet
+- check_inet
+Подключение к интернету...
+
+# Shown in extmeta when there is more than one alternative name.
+- alt_name_n_of_n
+Альтернативное имя (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: переключение)
+
+# Shown in search when an invalid hShop ID is entered
+- invalid_hsid
+Недопустимый hShop ID.
+
+# Shown when checking for 3hs updates has failed
+- update_check_failed
+Не удалось проверить обновления 3hs.
+
+# Shown when installing a 3hs update has failed
+- update_install_failed
+Не удалось установить обновление 3hs.
+
+# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+- update_try_again_or_update_manually
+Пожалуйста, попробуйте ещё раз или обновите 3hs самостоятельно.
+
+- do_donate
+Если hShop оказался для вас полезным, пожалуйста, сделайте пожертвование, посетив PAGE_DONATE с другого устройства!
+
+# This is displayed at the top of an error screen
+- error_occurred
+Произошла ошибка
+
+# This string is special as it's the only string that should contain
+# English text in your translation. The first line should be kept English,
+# but put the English name of the language instead of "English". The second line
+# should be translated but put your language name instead of "English". In the
+# third line only the second "Is this correct?" should be translated.
+- language_detected
+Detected language Russian
+Определён язык: русский
+Is this correct? Это верно?
+
+# New search method, same as legacy search on the site
+- legacy_search_tab
+Классический
+
+# Shown when an update failed or an outdated 3dsx version is used
+- outdated_app
+Эта версия 3hs устарела. Чтобы использовать 3hs, необходимо установить актуальную версию.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- please_update_manually
+Пожалуйста, обновите 3hs самостоятельно и попробуйте снова.
+
+# This is used to dismiss an error screen
+- press_b_continue
+Нажмите UI_GLYPH_B, чтобы продолжить.
+
+# 1.5.6 barrier
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Невозможно использовать другие параметры, когда указан уникальный ID
+
+# invalid unique ID specified during search
+- invalid_uniq
+Недопустимый уникальный ID
+
+# shown as search tab header for unique ID search
+- unique_id
+Уникальный ID
+
+# 1.5.7 barrier
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (удерживать): отменить загрузку
+
+# Shown in 3 lines menu
+- dlc_fixer
+Исправление DLC
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Проверка тайтлов на SD-карте...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Составление списка установленных тикетов...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Поиск поломанных тикетов...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+Не найдено поломанных тикетов DLC.\n
+Если какой-то DLC всё ещё функционирует
+некорректно, пожалуйста, переустановите его.\n
+Нажмите UI_GLYPH_A, чтобы выйти.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+bool tens = p1 / 10 % 10 == 1;
+bool few = p1 % 10 >= 2 && p1 % 10 <= 4;
+if (p1 == 1)                    return "Найден %1 поломанный тикет DLC.\nИсправить его?";
+else if (p1 % 10 == 1 && !tens) return "Найден %1 поломанный тикет DLC.\nИсправить их?";
+else if (few && !tens)          return "Найдено %1 поломанных тикета DLC.\nИсправить их?";
+else                            return "Найдено %1 поломанных тикетов DLC.\nИсправить их?";
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Чтение базы данных тикетов...
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+Извлечение тикетов DLC...
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Установка исправленных тикетов DLC...
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Готово. Если какой-то DLC всё ещё функционирует
+некорректно, пожалуйста, переустановите его.\n
+Нажмите UI_GLYPH_A, чтобы выйти.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Включено: Использовать пользовательский прокси.
+Отключено: Использовать прокси, установленный\nв Системных настройках.
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Включено
+
+# 1.5.9 barrier
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Важно!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs - это свободное программное обеспечение. Если вы заплатили
+за 3hs или доплатили за то, что 3hs был предустановлен на консоль,
+незамедлительно потребуйте возврата денег!\n
+3hs всегда можно скачать бесплатно по ссылке:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Нажмите любую кнопку, чтобы продолжить

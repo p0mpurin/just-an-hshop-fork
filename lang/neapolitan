@@ -1,0 +1,436 @@
+- native_name
+Napuletan
+
+- loading
+Caricamento...
+
+- luma_not_installed
+Nu' firewall che non se può suopportà è stato rilevat.
+
+- install_luma
+3hs non gira n'goppa stò sistema.
+
+- queue
+Coda
+
+- fail_init_networking
+Impossibile inizializzare a' rete
+
+- credits_thanks
+Grazie ppe aver scelto 3hs, app hShop ppe 3DS.
+Puoi prendere gratis chistu software a
+PAGE_3HS
+
+- press_to_install
+Priem UI_GLYPH_A ppe installar stù file in più.
+Priem UI_GLYPH_B ppe annullare.
+
+- version
+Versione
+
+- prodcode
+O' codice ruo' produtt
+
+- size
+Dimensioni
+
+- name
+Nomm
+
+- tid
+ID titul'
+
+- category
+Categoria
+
+- landing_id
+hShop ID
+
+- description
+Descrizione
+
+- total_titles
+Totale Titoli
+
+- select_cat
+Seleziò na' categuria
+
+- select_subcat
+Seleziò na' sottocateguria
+
+- select_title
+Seleziò nu' titul
+
+- fmt_24h
+24 ore
+
+- fmt_12h
+12 ore
+
+- unknown
+sconosciut
+
+- btrue
+sì
+
+- bfalse
+no
+
+- top
+superiur
+
+- bottom
+inferiur
+
+- resume_dl
+Ripiglia i download
+
+- load_space
+Mostr o' indicatur do spazz liber
+
+- show_battery
+Mostr o' stato della batterì
+
+- time_format
+Formato dell'ora
+
+- progbar_screen
+Posizion ra barr e avanzamend
+
+- language
+A' leng
+
+- value_x
+O valur: %1
+
+- back
+Indietr
+
+- invalid
+nun va bon
+
+- title_doesnt_exist
+O'titul non esist: %1
+
+- netcon_lost
+Cunnessione a' rete pers (%1).
+Riprovo fra %2 sicondi...
+
+- about_app
+Aggia verè st'app
+
+- help_manual
+Aiut/Manuale
+
+- find_missing_content
+Aggai truvà i contenuti che non ce stà
+
+- press_a_exit
+Priem UI_GLYPH_A pè uscì.
+
+- fatal_panic
+Stong chin' e pruobliem e' panìc.
+
+- failed_open_seeddb
+Impussibbl aprì seeddb.bin.
+
+- update_to
+Vuò aggiornà a %1?
+
+- search_content
+Truov o' contenut
+
+- search_content_action
+Truov i contenut...
+
+- result_code
+O' cuodic truvat: %1
+
+- level
+Liviell: %1
+
+- summary
+Riepilug': %1
+
+- module
+Modul: %1
+
+- hs_bunny_found
+Brav cumpà, hai truvat o cunigl di hShop!
+
+- already_installed_reinstall
+O titul è stat già aggiurnat. Reinstallà?
+
+- queue_empty
+A cod è vagant
+Priem UI_GLYPH_A per turnà indietr.
+Priem UI_GLYPH_Y per metter indà cod nu titul.
+
+- cancel
+Annull
+
+- confirm
+Cunferm
+
+- invalid_proxy
+E impustazion ro' proxy nun song bon
+
+- more_about_content
+Re più n'goppa stu contenut
+
+- lumalocalemode
+A' mudeletà LumaLocale
+
+- automatic
+automatèk
+
+- manual
+manuale
+
+- disabled
+disabilitat
+
+- patching_reboot
+Luma3DS game patching mo' sta attiv.
+O' sistem per avè i cambiament dev esser riavviat.
+
+- reboot_now
+Vuò riavvià mo?
+
+- this_version
+Chist è a versiun o' 3hs %1
+
+- retry_req
+A richiest' è fallit. Ripruv?
+
+- search_zero_results
+A ricerc toia nun tien risultat.
+Priem UI_GLYPH_A per turnà indietr.
+
+- credits
+Criedt
+
+- check_extra
+Truov e contenut in più
+
+- no_req
+Nun ce son richiest
+
+- invalid_query
+A richiest nun va bon
+Priem UI_GLYPH_Aper per turnà aret
+
+- min_constraint
+Chest versiun ndo' 3hs %1 è truopp viecch ro' normal %2
+
+- proxy
+Proxy
+
+- none
+(song)
+
+- press_a_to_view
+Priem UI_GLYPH_A per verè.
+
+- host
+Host
+
+- port
+Puort
+
+- username
+Nomm ro' utent
+
+- password
+Password
+
+- clear
+Cancella
+
+- progbar_screen_desc
+Scegl a posiziun ra' barr e avanzamend
+
+- resume_dl_desc
+Riprien e download dop nu interruzion ra' conessiun a ret.
+
+- load_space_desc
+Sciegl se vuoò verè o lindicatur ro' spaz liber.
+
+- show_battery_desc
+Sciegl se vuoò verè o stat liber rà batterie.
+
+- time_format_desc
+Seleziun o fortmat rè' or.
+
+- language_desc
+Impuost a leng ro' 3hs.
+
+- lumalocalemode_desc
+Impuost a modalità ro' Lumalocale autosetter. "Va sul iss" seleziun a leng sul iss. Se vuò metter "manual",3hs vuò sapè a ru' vien'.
+
+- check_extra_desc
+Cierc contenut extra aropp l installaziun.
+
+- proxy_desc
+Configur nu' server proxy po' 3hs. Chist è na' impstaziun per utient eshpiert.
+
+- install_all
+Install tutt
+
+- install_no_base
+O giuc rè' bas nun c'è sta. Vuò' continuà comunqu?
+
+- warn_no_base
+Avvis se o' giuoc rè bas non c'è sta.
+
+- warn_no_base_desc
+muostr nù messagg prim rè' installà nu aggiurniament goppa nu DLC se o giuoc e bas non ce sta.
+
+- replaying_errors
+Errur rà riproduzin vist durant l'elaburaziun ra' cod.
+
+- log
+Contruoll e registr 
+
+- upload_logs
+Contruoll gli upload
+
+- clear_logs
+Canciell i registr
+
+- found_missing
+Truovat %1 Titul mancant
+Contruoll a cod per installà.
+
+- found_0_missing
+Non song stat truovat titul mancant.
+
+- max_elogs
+Massim file ro' registr
+
+- max_elogs_desc
+Impuost o numer e file ro' registr da mantenè. Da 0 a 255,dov 0 nun mantien nisciun regists in chiù.
+
+- elogs_hint
+Valur tra 0 e 255
+
+- log_id
+Usa stu id per ottenè suppuort
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 bluocc)";
+else       return "%1 (%2 e bluocc)";
+
+- search_text
+Cierch tramit u tiest
+
+- search_id
+Cierc tramit o' ID hShop
+
+- search_tid
+Cierc tramit ID Titul
+
+- invalid_tid
+ID titul nun valid
+
+- theme_installer_tid_bad
+Per favò vanig a categorie Tiem manualment per cercà i tiem
+
+- enter_lgy_query
+Scriv i tiermn pà' ricerc classic
+
+- no_other_params_tid
+Nun se può specificà altri parametr quand se  specific nu' ID titul
+
+- both_sd_and_sb
+Devi specificà o' mietd ro' ordinament e a direziun crescient o decrescient
+
+- invalid_sb
+Mietd ro' ordinamient nun valid
+
+- invalid_sd
+Direziun ro' ordinamient nun valid
+
+- invalid_includes
+Filtr ra' inclusiun nun valid 
+
+- invalid_excludes
+Filtr ra' esclusion nun valid
+
+- filter_overlap
+Rilevat na' cuntraddiziun inde filtr a ricerc specificat
+
+- lgy_search
+Ricierc classic 
+
+- sure_reset
+Si sicur che vuò ripristrinà e tue impustaziun?
+
+- ascending
+Criescient
+
+- descending
+Decrescient
+
+- alphabetical
+Alfabetic
+
+- downloads
+Chiù Installat
+
+- def_sort_meth
+Ordinamient prerefinit
+
+- def_sort_meth_desc
+Specific o' metod ro' ordinamient po' usà quand se può verè nu titul.
+
+- def_sort_dir
+A direziun prerefinit ro' ordinamient
+
+- def_sort_dir_desc
+Specific o' metod ro' ordinamient prerefinit po' usà quand se può verè nu titu.
+
+- invalid_content_type
+O contrnut nun va bon
+
+- theme_installed
+Nu tem è stat installat. Vai n'goppa a PAGE_THEMES
+
+- file_installed
+Nu file è stat installat mo'. Chist nun vengn mustrat indà HOME
+
+- allow_led
+Attiv e indicatur ro' stat con i LED
+
+- allow_led_desc
+Chist farà elluminà e luci LED per infurmà i cambiament ro' stat, come nu' titul che se sta per installà
+
+- dev_unitinfo
+A consol' ENVINFO sta dicenn' che chist' è na' unità re' svilupp'.
+Si tu tien' na' 3DS "retail-al dettaglio-re' diettagl'"
+statt' accort che "Attiv' sviluppator' UNITINFO" inda' configuraziun' Luma3DS sia spent'.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigà'
+
+- made_by
+fatt' dà 1%
+
+- themes
+Tiem'
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+O tiem' acchiapat' n'goppa o' server nun va buon'
+
+- hint_add_queue
+UI_GLYPH_Y: miett' all'attes
+
+- hint_preview_theme
+UI_GLYPH_X: guard' già o' tiem
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+O nomm alternativ
+

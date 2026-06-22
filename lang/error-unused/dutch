@@ -1,0 +1,23 @@
+- error_network_unavailable_summary
+Netwerk niet beschikbaar
+
+- error_network_unavailable_description +nobreak
+hShop kon niet bereikt worden of je bent niet verbonden met WiFi.
+Controleer je WiFi verbinding. Als je zeker bent dat je verbonden bent probeer dan een netwerk profiel te forceren
+met Rosalina Menu: open het met UI_GLYPH_L + UI_GLYPH_DPAD_DOWN + SELECT, selecteer dan ‘System configuration,’ vervolgens
+‘Control Wireless connection,’ en kies tot slot een profiel om te forceren.
+
+- error_out_of_storage_summary
+Geen opslag
+
+- error_out_of_storage_description +nobreak
+De SD kaart of TWLNAND is vol. De TWLNAND bevat DSi titels and heeft een begrensd opslagvermogen; je
+moet titels verwijderen om meer ruimte te maken. Om ruimte te maken op de SD kaart kun je spellen verwijderen
+of een grotere kaart kopen. Instructies om de nieuwe SD kaart in te stellen staan op de hShop website: PAGE_SWITCHING_SD_CARDS
+
+- error_unknown_summary
+Onbekend
+
+- error_unknown_description
+Deze foutmelding is niet bekend! Je kan nog steeds ondersteuning krijgen in de officiële Discord kanalen of via e-mail.
+

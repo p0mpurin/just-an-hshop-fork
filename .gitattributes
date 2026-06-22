@@ -1,0 +1,10 @@
+* text=auto
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bnr binary
+*.cwav binary
+*.bcfnt binary
+*.bin binary
+*.t3x binary
+

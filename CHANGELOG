@@ -1,0 +1,285 @@
+v1.5.10 "in aeternum memoratus":
+  - Fix crash when pressing SELECT on app start
+  - Update translations
+  - Add Ukrainian language
+
+v1.5.9 "in aeternum memoratus":
+  - Added free software notice on startup
+  - 3hs will create the SD title database (title.db) on startup if it doesn't already exist
+
+v1.5.8 "in aeternum memoratus":
+  - Fix crash when entering search menu recursively
+  - Update client certificate
+
+v1.5.7 "in aeternum memoratus":
+  - Add button hint for cancelling downloads and title installations
+  - Add ability to use the proxy configured in system settings, which is the default now
+  - Add DLC fixer option to attempt fixing broken DLC caused by eShop/eShop applet usage
+  - Minor fixes for "Find missing content"
+  - Fix HTTP certificate loading, improving performance of requests
+  - Fix TWL NAND free space indicator reporting more space than is actually available (to match what is reported in System Settings)
+  - Fix and improve the proxy menu, which now works
+
+v1.5.6 "in aeternum memoratus":
+  - Add ability to search by unique ID
+  - Pressing A in the search menu when the search bar is empty or its contents are invalid will now open the keyboard corresponding to the current search tab
+  - Improve app version / update check process by correctly parsing and comparing version numbers, displaying appropriate errors when the latest app version cannot be determined
+  - Improve search tab switching logic by correctly preserving the input for both numpad / text inputs
+  - Fix "Base title not installed" warning when the base title is present as an inserted cartridge
+  - Fix "Base title not installed" warning when the title in question is a base title itself
+  - Fix a potential bug where disconnecting from WiFi would cause 3hs to hang when exiting it
+  - Remove "Delete unused tickets" option
+  - Remove "The app must be restarted..." in the language setting description as that is no longer the case
+
+v1.5.5 "in aeternum memoratus":
+ - Fix quick search not accepting search queries with less than 3 characters
+ - Add ability to disable automatic sorting of title lists
+
+v1.5.4 "in aeternum memoratus":
+ - Fix not-installed base titles showing up in "Find missing content"
+ - Fix potential bug where disconnecting from WiFi would hang forever when exiting 3hs
+ - Remove minimum 3-character search query limitation (now 1 character)
+ - Make update check process show errors instead of just "this version of 3hs is out of date"
+ - Update German, French, and Russian translations
+
+v1.5.3 "in aeternum memoratus":
+ - Fix update mechanism (again)
+ - Fix a potential bug where 3hs would check for updates before connecting to WiFi
+ - Fix the network indicator being hidden when audio is played
+ - Fix the automatic DSP firmware dumper not working
+ - Fix DSiWare installation
+ - Fix log uploads not working
+
+v1.5.2 "in aeternum memoratus":
+ - Fix update mechanism
+
+v1.5.1 "in aeternum memoratus":
+ - Fix 3hs always asking whether or not the user speaks the currently set up language in some cases
+ - Fix 3hs audio subsystem initialization freezing / black screening on boot and in the app
+
+v1.5.0 "in aeternum memoratus":
+ - A 3DSX release is now available in addition to the CIA release
+ - The banner of the CIA release has been updated
+ - Add popup on first boot to select a language
+ - Add support for displaying multiple alternative names
+ - Fix "Jump to console region's subcateogory" not working
+ - Make 3hs automatically enable WiFi / connect to the internet on startup to prevent connection issues
+ - Make 3hs reconnect automatically upon WiFi connection loss
+ - Make 3hs be able to switch languages without needing to restart afterwards
+ - Improve DSP firmware dumping process to prevent black screen lockups on startup
+ - Improve the "Find missing content" feature, making it able to detect relations not just based on title ID
+
+v1.4.6 "fiat lux":
+ - Fix issue where 3hs would display a black screen at boot in some cases
+ - Fix issue where 3hs would crash the system if the HOME button was pressed during an installation
+ - Add a confirmation menu when a language is automatically detected that's not English
+ - Add new simplified error screen
+ - Unify all search modes into one menu
+
+v1.4.5 "fiat lux":
+ - Fix crash that would occur while installing with low battery, instead turning it into an error
+ - Make log files not saved to the SD card by default
+
+v1.4.4 "fiat lux":
+ - Fix issue where cursor position would not be preserved in various situations
+ - Fix issue where the incorrect subcategory contents would be loaded
+ - General system stability improvements to enhance the user's experience
+
+v1.4.3 "aequaora viridia":
+ - Add a minimum system version requirement (that is, version 9.6.0)
+ - Add information about the Virtual Console type in extended meta
+ - Fix alphabetical sort taking the Virtual Console tag into account
+ - Fix issue where changing the 3hs theme would sometimes instantly crash
+ - Fix issue where updating the base game would first delete itself
+ - Fix issue where theme images would be corrupted if music was first loaded
+ - Fix issue where 3hs would crash when multiple network requests were pending
+ - Fix an immediate 3hs crash when the audio configuration file was empty
+ - Improve performance by using binary api data
+ - Make quick search select only the console's region by default
+ - General system stability improvements to enhance the user's experience
+
+(v1.4.2 never happened)
+
+v1.4.1 "aequaora viridia":
+ - Fix issue where closing the lid while in the timeout screen would pause the download
+ - Fix issue where 3hs would load only the dark, light and selected theme
+ - Fix issue where 3hs would freeze or crash when sleep mode was triggered
+ - Make quitting the app during an install or api requests possible via the HOME menu
+ - Make the progress bar omit the ETA if it is not known
+ - Improve stability of the api network requests
+ - General system stability improvements to enhance the user's experience
+
+v1.4.0 "aequora viridia":
+ - Fix issue where an unlisted title would crash 3hs
+ - Fix issue where jumping a page in a list would skip an entry
+ - Fix issue where DSiWare that was already installed would not be detected
+ - Fix issue where it was possible to add duplicate titles to the queue
+ - Fix regional variants of VC console names being incorrect
+ - Fix battery indicator not turning red when only one bar is left
+ - Make 3hs not remove every queue item if there was a failure, but only those that succeeded
+ - Make 3hs always display the title currently being installed
+ - Make battery indicator show whether or not a charger is plugged in
+ - Add a progress bar instead of spinner for deleting unused tickets
+ - Add feature to place the cursor at the subcategory that matches the system region
+ - Add support for the Luma3DS v11.0 configuration format
+ - Add latency graph during installation
+ - Add music support
+
+v1.3.7 "libere dorme":
+ - Fix issue preventing usage on older system versions
+ - Support product code search
+
+v1.3.6 "libere dorme":
+ - Always delete unused tickets during installation
+ - Fix crash at boot on Korean/Chinese systems
+ - Fix some text not being visible
+ - Fix manual LumaLocale mode prompt while installing from queue
+
+v1.3.5 "libere dorme":
+ - Fix some missing characters in the font like ō
+ - Make 3hs reinstall without prompt by default
+ - Add message stating progress in queue while installing therefrom
+ - Add support for alternative titles
+ - Add support for Virtual Console type
+ - Add Catalan translation
+
+v1.3.4 "libere dorme":
+ - Fix "base game not installed" message for Mii Plaza DLC (again)
+ - Fix crash when trying to access an unlisted title
+ - Add ability to preview a theme
+
+v1.3.3 "libere dorme":
+ - Make title installation use seeds from the database instead of seeddb.bin
+ - Block startup for consoles with developer ENVINFO
+ - Add menu option to delete unused tickets
+ - Add Neapolitan translation
+ - Add Macedonian translation
+ - Add Tagalog translation
+ - Add Welsh translation
+ - Update Italian translation
+ - Update Greek translation
+
+v1.3.2 "libere dorme":
+ - Fix find missing content for some users
+ - Fix inability to input complex characters on CJK systems
+ - Add theming support
+ - Add Chinese (Traditional and Simplified) translation
+ - General system stability improvements to enhance the user's experience
+
+v1.3.1 "libere dorme":
+ - Make LED turn red/green after install if lid is closed depending on success of installation
+ - Fix error "0xD8A08012" when a download was cancelled
+ - Fix demo's being detected as missing content
+ - Fix queue "install all" button being easy to accidentally press when you want to access the queue
+ - Add Japanese (Osaka dialect) translation
+ - Add Moldovan translation
+ - General system stability improvements to enhance the user's experience
+
+v1.3.0 "libere dorme":
+ - Fix functionality of "find all missing"
+ - Fix issue where a large queue could not be installed
+ - Add ability to reset settings by pressing R on startup or R in settings
+ - Add text showing which game error belongs to in queue error replay
+ - Add ability to download & install while in sleep mode
+ - Add ability to directly install themes to the SD card
+ - Add ability to sort titles
+ - Add Hungarian translation
+ - Add Polish translation
+ - Add Japanese translation
+ - Add Russian translation
+ - Add Spearglish (Old English) translation
+ - Add Ryukyuan translation
+ - Add Latvian translation
+
+v1.2.0 "cotidie morimur":
+ - Make text wrapping not use hyphens
+ - Make long texts in lists scroll horizontally
+ - Fix issue where text search query data would get cut off
+ - Fix "base game missing" message for system title DLC & updates
+ - Fix some wrapping issues on Korean systems
+ - Fix Romanian not being detected
+ - Fix common occurence of the "server didn't return status 200" error
+ - Add French (Canada) translation
+ - Add (partial) Italian translation
+ - Add Portuguese translation
+ - Add Korean translation
+ - Add Greek translation
+ - Add searching using a title ID
+ - Add searching using a legacy search query
+ - Add toggles in settings menu to replace value true/false
+ - Add ability to add an item to the queue from extended meta
+
+v1.1.0 "aeraria":
+ - fix issue where NAND titles wouldn't be reinstallable
+ - add Romanian translation
+ - add French translation
+
+v1.0.1 "aeraria":
+ - additionally to initial release:
+ - hotfix arm11 after title installation
+
+v1.0.0 "aeraria":
+ - update for new hsite v3 api
+ - re-add light theme & make it the default
+ - add log spliting: logs get split into multiple files sorted on age
+ - add a download speed and ETA field while installing titles
+ - add random title button
+ - add log uploading
+ - improve utf8 handling
+ - remove find_missing prompt in favor of automatic adding
+ - fix issue where categories weren't sorted as on website
+ - fix issue where closing the app from home would freeze the system
+ - fix issue where spamming toggle on a "true"/"false" setting would crash the system
+ - fix issue where cursor wouldn't appear if second to last title was removed in queue
+ - fix issue where find_missing never did anything
+ - fix issue where seed was never installed
+ - fix issue where free space indicator wasn't being updated after installing a title
+
+v0.2.1:
+ - fixed net indicator going partly hidden when in a long list
+ - add clarification after clicking on find missing
+ - fix bug where clearing logs would crash 3hs
+ - fix bug where selecting games will prompt to install the base game
+
+v0.2.0:
+ - implemented resuming downloads
+ - fix easter egg not working
+ - fix bug where single line panic message wouldn't show
+ - add find missing dlc/updates feature
+ - add translations
+ - add proxy support
+ - add sprites for battery
+ - add a loading animation
+ - major speed improvements
+ - add luma locale emulator support
+ - extended meta is now lazily loaded
+ - 3hs will now ask for extra content after installing a game
+ - 3hs will now warn if you're trying to install a dlc/update for a game which you don't have installed
+ - add logs menu for clearing logs
+ - add network status indicator
+ - fix issue where 3hs would crash if WiFi was not available
+ - fix issue where 3hs wouldn't work if time & date was wrong
+ - fix issue where extended meta wasn't showing in search
+ - fix issue where 3hs was unable to load a title name if the name contained any complex characters
+
+v0.1.6:
+ - added extended meta screen
+ - fix cdn not working
+
+v0.1.5:
+ - fixed buttons being blank
+
+v0.1.4:
+ - fixed issue decoding utf16 and scrolling if text didn't overflow in texts and generally improved the look of it
+ - fixed crash that would occur if you attempted to add a title to the queue or when you try to install a title
+
+v0.1.3:
+ - fixed bug that crashed 3hs on launch
+
+v0.1.2:
+ - fixed spelling mistakes in help menu and settings menu
+ - fixed crash that would occur if initial index fetch failed, now it shows an error message
+ - fixed issue where the action description would not load when searching
+ - made the screen redraw less often while installing, hopefully increasing install speeds
+ - 3hs now imports seeds for titles after installation if a seed is available
+

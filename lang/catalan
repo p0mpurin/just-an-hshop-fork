@@ -1,0 +1,595 @@
+
+# This is the base 3hs translation file.
+# All other translations should derive from this file.
+# If you want to translate 3hs in your language please contact us in the hShop discord server.
+
+# Some strings have a comment which indicates a context, this may help while translating
+#  - If you require context for anything else feel free to ask
+#  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
+#  - The value of the variable will literally be substituted (replaced)
+#  - if this doesn't work in your language ask in the hShop discord channel so i can write a workaround for you
+# UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
+#  - They should be kept exactly as-is, they should be encircled by spaces
+#    - Even if your language has no such things, not having a space causes ugly clamping
+# PAGE_* are URLs to hShop pages
+#  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
+# Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
+# Although text wraps in most cases, it's for the best not make your translation too verbose
+#  - Text wrapping means the text continues on the next line if it's too large
+#  - Strings marked with "nowrap" don't wrap.
+#  - Strings marked with "button" use button wrap
+#    - This means they gradually expand in size as the string gets larger
+#    - This does not mean they wrap to the next line
+#  - Strings marked with "selector" have a maximum length (of 200 pixels)
+#  - Strings marked with "scroll" scroll sideways, for example all setting titles use this
+#    - Strings that scroll obviously can't wrap
+# If your language is officially supported by Nintendo, use their translations for their terms
+#   - For example, "blocks", "HOME menu", "theme"
+#
+# Any questions and new translations can be posted in the hShop discord channel
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+Català
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+S'està carregant...
+
+- luma_not_installed
+S'ha detectat un firmware no compatible.
+
+# displayed under above string
+- install_luma
+No es pot utilitzar 3hs en aquesta consola.
+
+# button, button on bottom of screen to enter queue
+- queue
+Cua
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+No s'ha pogut inicialitzar la xarxa
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Gràcies per utilitzar 3hs, un client de 3DS per a la hShop.
+Aquest programa es pot baixar gratuïtament a
+PAGE_3HS
+
+- press_to_install
+Prem UI_GLYPH_A per instal·lar aquest contingut.
+Prem UI_GLYPH_B per tornar.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Versió
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Codi del producte
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Mida
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Nom
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+ID del contingut
+
+# nowrap, used for content category, extmeta & main list
+- category
+Categoria
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+ID a la hShop
+
+# nowrap, used for category description
+- description
+Descripció
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Títols totals
+
+# nowrap, shown top screen category selection
+- select_cat
+Tria una categoria
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Tria una subcategoria
+
+# nowrap, shown top screen title selection
+- select_title
+Tria un títol
+
+# the time format (15:00)
+- fmt_24h
+24 hores
+
+# time time format (3 PM)
+- fmt_12h
+12 hores
+
+# unknown setting value
+- unknown
+desconegut
+
+# setting is set to ON
+- btrue
+sí
+
+# setting is set to OFF
+- bfalse
+no
+
+# top screen in progress bar location settings switcher
+- top
+amunt
+
+# bottom screen in progress bar location settings switcher
+- bottom
+avall
+
+# scroll, setting title
+- resume_dl
+Reprèn les baixades
+
+# scroll, setting title
+- load_space
+Mostra l'indicador d'espai lliure
+
+# scroll, setting title
+- show_battery
+Mostra l'indicador de nivell de bateria
+
+# scroll, setting title
+- time_format
+Format horari
+
+# scroll, setting title
+- progbar_screen
+Posició de la barra de progrés
+
+# scroll, setting title
+- language
+Llengua
+
+# value of setting
+- value_x
+Valor: %1
+
+# back button
+- back
+Torna
+
+# invalid option
+- invalid
+invàlid
+
+# %1 = title id
+- title_doesnt_exist
+El títol no existeix: %1
+
+# %1 = error code
+# %2 = seconds remaining
+- netcon_lost
+S'ha perdut la connexió a la xarxa (%1).
+Es tornarà a provar en %2 segons...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+Informació
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Ajuda/Manual
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Cerca contingut no instal·lat
+
+# exit menu and sometimes application
+- press_a_exit
+Prem UI_GLYPH_A per sortir.
+
+# can also be translated as fatal error
+- fatal_panic
+S'ha produït un error.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+No s'ha pogut obrir seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Vols actualitzar a la versió %1?
+
+# nowrap, top screen while searching
+- search_content
+Cerca contingut
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Cerca contingut...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Codi de resultat: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Nivell: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Resum: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Mòdul: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Felicitats! Has trobat el conill de la hShop!
+
+- already_installed_reinstall
+El títol ja està instal·lat. El tornes a instal·lar?
+
+- queue_empty
+La cua està buida
+Prem UI_GLYPH_A per tornar.
+Consell: Prem UI_GLYPH_Y per afegir un títol a la cua.
+
+# button, yes/no prompt "no" option
+- cancel
+Cancel·la
+
+# button, yes/no prompt "yes" option
+- confirm
+Confirma
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Paràmetres de proxy invàlids
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+Més sobre aquest contingut
+
+# scroll, setting title
+- lumalocalemode
+Mode LumaLocale
+
+# selector, lumalocale mode setting
+- automatic
+automàtic
+
+# selector, lumalocale mode setting
+- manual
+manual
+
+# selector, lumalocale mode setting
+- disabled
+desactivat
+
+- patching_reboot
+S'ha habilitat l'aplicació de patches de jocs de Luma3DS.
+La consola s'ha de reiniciar perquè aquest canvi tingui efecte.
+
+- reboot_now
+Reinicies ara?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+Aquesta és la versió %1 de 3hs
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+La sol·licitud ha fallat. Ho tornes a provar?
+
+- search_zero_results
+La teva cerca no ha donat cap resultat.
+Prem UI_GLYPH_A per tornar.
+
+# Shown in the "About" burger option
+- credits
+Crèdits
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Cerca contingut addicional
+
+# request = request for the 3DS to do something, like a command
+- no_req
+Encara no s'ha fet cap sol·licitud
+
+# invalid search query
+- invalid_query
+La consulta no és vàlida
+Prem UI_GLYPH_A per tornar.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+La versió actual de 3hs %1 és inferior a la versió %2 necessària
+
+# scroll, setting title
+- proxy
+Proxy
+
+# used for "no proxy is set"
+- none
+(cap)
+
+# view proxy settings
+- press_a_to_view
+Prem UI_GLYPH_A per veure.
+
+# proxy host
+- host
+Amfitrió
+
+# proxy port
+- port
+Port
+
+# proxy username
+- username
+Nom d'usuari
+
+# proxy password
+- password
+Clau
+
+# clear all proxy field
+- clear
+Esborra
+
+# setting description
+- progbar_screen_desc
+Tria la posició de la barra de progrés.
+
+# setting description
+- resume_dl_desc
+Reprèn les baixades després d'interrupcions de la xarxa.
+
+# setting description
+- load_space_desc
+Activa o desactiva l'indicador d'espai lliure.
+
+# setting description
+- show_battery_desc
+Activa o desactiva l'indicador de nivell de bateria.
+
+# setting description
+- time_format_desc
+Tria el format horari.
+
+# setting description
+- language_desc
+Estableix l'idioma de 3hs.
+
+# setting description
+- lumalocalemode_desc
+Estableix el mode de l'autoconfigurador de LumaLocale. Automàtic selecciona una llengua automàticament. Si s'estableix com a manual, 3hs demanarà que es triï una regió després de la instal·lació del contingut.
+
+# setting description
+- check_extra_desc
+Cerca contingut addicional després de la instal·lació.
+
+# setting description
+- proxy_desc
+Configura un servidor proxy per a 3hs. Aquesta configuració és per a usuaris avançats.
+
+# install all from queue
+- install_all
+Instal·la tot
+
+- install_no_base
+El joc base no està instal·lat. Continues igualment?
+
+# setting title
+- warn_no_base
+Avisa si un joc base no està instal·lat
+
+# setting description
+- warn_no_base_desc
+Mostra un missatge abans d'instal·lar actualitzacions o contingut DLC si el joc base no està instal·lat.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+S'han trobat errors en processar la cua.
+
+# may also be translated as "manage logs"
+- log
+Gestiona els registres
+
+- upload_logs
+Penja els registres
+
+- clear_logs
+Esborra els registres
+
+# %1 = amount of titles found
+- found_missing
+Títols no instal·lats trobats: %1
+Consulta la cua per instal·lar-los.
+
+- found_0_missing
+No s'han trobat títols no instal·lats.
+
+# setting title
+- max_elogs
+Nombre màxim de registres antics
+
+# setting description
+- max_elogs_desc
+Estableix el nombre de registres que es conservaran. Els valors possibles són de 0 a 255, on 0 no conserva cap registre addicional.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Valor entre 0 i 255
+
+# %1 = id
+- log_id
+Fes servir aquesta ID per obtenir ajuda:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 bloc)";
+else       return "%1 (%2 blocs)";
+
+# nowrap, search menu item
+- search_text
+Cerca per text
+
+# nowrap, search menu item
+- search_id
+Cerca per ID de la hShop
+
+# nowrap, search menu item
+- search_tid
+Cerca per ID del títol
+
+# invalid title id specified during legacy search
+- invalid_tid
+ID del títol no vàlida
+
+- theme_installer_tid_bad
+Cerca a la categoria de temes manualment per trobar temes
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Introdueix una consulta de cerca clàssica
+
+- no_other_params_tid
+No es pot especificar cap altre paràmetre quan s'especifica una ID de títol
+
+- both_sd_and_sb
+S'ha d'especificar un mètode i una direcció d'ordenació en ordenar els resultats de la cerca
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Mètode d'ordenació no vàlid
+
+# i.e. ascending/descending
+- invalid_sd
+Direcció d'ordenació no vàlida
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Filtres d'inclusió no vàlids
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Filtres d'exclosió no vàlids
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+S'ha detectat una superposició en els filtres de cerca especificats
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Cerca clàssica
+
+- sure_reset
+Confirmes que vols restablir els teus paràmetres?
+
+# sort direction
+- ascending
+Ascendent
+
+# sort direction
+- descending
+Descendent
+
+# sort method
+- alphabetical
+Alfabèticament
+
+# sort method
+- downloads
+Baixades
+
+# setting title
+- def_sort_meth
+Mètode d'ordenació predeterminat
+
+# setting description
+- def_sort_meth_desc
+Especifica el mètode d'ordenació predeterminat que s'utilitzarà quan es visualitzi una llista de títols.
+
+# setting title
+- def_sort_dir
+Direcció d'ordenació predeterminada
+
+# setting description
+- def_sort_dir_desc
+Especifica la direcció d'ordenació predeterminada que s'utilitzarà quan es visualitzi una llista de títols.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Tipus de contingut no vàlid
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+S'ha instal·lat un tema. Mira PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+S'ha instal·lat un fitxer. Els fitxers no apareixen al menú HOME
+
+# setting title
+- allow_led
+Activa els indicadors d'estat LED
+
+# setting description
+- allow_led_desc
+Això farà parpellejar la llum LED per informar de diversos canvis d'estat, com ara quan s'hagi acabat d'instal·lar un títol.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Segons la configuració d'aquesta consola, és una consola per a desenvolupadors.
+3hs no funcionarà correctament en aquesta consola.
+Si es tracta d'un 3DS normal, assegura't que "Enable developer UNITINFO" als paràmetres del Luma3DS estigui desactivat.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navega
+
+# %1 = theme author
+- made_by
+de: %1
+
+# nowrap, burger menu item
+- themes
+Temes
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+No s'ha pogut mostrar la vista prèvia del tema baixada del servidor!
+
+# hinting the user to press Y to add to queue in extmeta
+- hint_add_queue
+UI_GLYPH_Y: Afegeix a la cua
+
+# hinting the user to press X to preview theme in extmeta if category is themes
+- hint_preview_theme
+UI_GLYPH_X: Veges una vista prèvia del tema
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Nom alternatiu
+

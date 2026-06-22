@@ -1,0 +1,730 @@
+- native_name
+Deutsch
+
+- loading
+Laden ...
+
+- luma_not_installed
+Dieses Gerät verwendet eine nicht unterstützte Firmware
+
+- install_luma
+3hs kann auf diesem Gerät nicht verwendet werden
+
+- queue
+Warteschlange
+
+- fail_init_networking
+Netzwerkverbindung fehlgeschlagen
+
+- credits_thanks
+Danke, dass du 3hs nutzt. 3hs ist ein 3DS-Client für hShop.
+Du kannst diese Software auf
+PAGE_3HS kostenlos herunterladen.
+
+- press_to_install
+Drücke UI_GLYPH_A falls du diesen Inhalt zu installieren möchtest.
+Drücke UI_GLYPH_B falls nicht.
+
+- version
+Version
+
+- prodcode
+Produkt-Code
+
+- size
+Größe
+
+- name
+Name
+
+- tid
+Title-ID
+
+- category
+Kategorie
+
+- landing_id
+hShop-ID
+
+- description
+Beschreibung
+
+- total_titles
+Gesamte Anzahl der Inhalte
+
+- select_cat
+Wähle eine Kategorie aus
+
+- select_subcat
+Wähle eine Unterkategorie aus
+
+- select_title
+Wähle einen Inhalt
+
+- fmt_24h
+24-Stunden-Zeit
+
+- fmt_12h
+12-Stunden-Zeit
+
+- unknown
+unbekannt
+
+- btrue
+Ja
+
+- bfalse
+Nein
+
+- top
+Oben
+
+- bottom
+Unten
+
+- resume_dl
+Downloads fortsetzen
+
+- load_space
+Freier-Speicherplatz-Indikator anzeigen
+
+- show_battery
+Batterie anzeigen
+
+- time_format
+Zeitformat
+
+- progbar_screen
+Ladebalken-Bildschirm
+
+- language
+Sprache
+
+- value_x
+Wert: %1
+
+- back
+Zurück
+
+- invalid
+ungültig
+
+- title_doesnt_exist
+Inhalt existiert nicht: %1
+
+- netcon_lost +code(_, number)
+if (p2 == 1) return "Netzwerkverbindung verloren (%1).\nNeuer Versuch in einer Sekunde...";
+else         return "Netzwerkverbindung verloren (%1).\nNeuer Versuch in %2 Sekunden...";
+
+- about_app
+Über
+
+- help_manual
+Hilfe/Anleitung
+
+- find_missing_content
+Suche nach fehlenden Inhalten
+
+- press_a_exit
+Drücke UI_GLYPH_A zum Schließen
+
+- fatal_panic
+Schwerwiegender Fehler aufgetreten
+
+- failed_open_seeddb
+Konnte seeddb.bin nicht öffnen
+
+- update_to
+Möchtest du auf Version %1 aktualisieren?
+
+- search_content
+Suche nach Inhalten
+
+- search_content_action
+Suche nach Inhalten...
+
+- result_code
+Fehler-Code: %1
+
+- level
+Level: %1
+
+- summary
+Kurzbeschreibung: %1
+
+- module
+Modul: %1
+
+- hs_bunny_found
+Glückwunsch! Du hast has hShop-Häschen gefunden
+
+- already_installed_reinstall
+Inhalt ist bereits installiert. Neuinstallieren?
+
+- queue_empty
+Warteschlange ist leer
+Drücke UI_GLYPH_A um zurückzukehren
+Tipp: Drücke UI_GLYPH_Y um einen Inhalt zur Warteschlange hinzuzufügen
+
+- cancel
+Abbrechen
+
+- confirm
+Bestätigen
+
+- invalid_proxy
+Ungültige Proxy-Einstellungen
+
+- more_about_content
+Mehr über diesen Inhalt
+
+- lumalocalemode
+LumaLocale-Modus
+
+- automatic
+Automatisch
+
+- manual
+Manuell
+
+- disabled
+Deaktiviert
+
+- patching_reboot
+Luma3DS-Game-Patching wurde aktiviert.
+Damit die Änderungen übernommen werden können, musst du deinen 3DS neustarten.
+
+- reboot_now
+Jetzt neustarten?
+
+- this_version
+Dies ist 3hs Version %1
+
+- retry_req
+Erneut versuchen?
+
+- search_zero_results
+Suche ergab keine Ergebnisse
+Drücke UI_GLYPH_A um zurückzukehren
+
+- credits
+Mitwirkende
+
+- check_extra
+Nach zusätzlichen Inhalten suchen
+
+- no_req
+keine anfragen gestellt
+
+- invalid_query
+Ungültige Anfrage
+Drücke UI_GLYPH_A um zurückzukehren
+
+- min_constraint
+Jetztige 3hs-Version %1 ist älter als die benötigte Version %2
+
+- proxy
+Proxy
+
+- none
+(keine)
+
+- press_a_to_view
+Drücke UI_GLYPH_A um anzusehen
+
+- host
+Adresse
+
+- port
+Port
+
+- username
+Benutzername
+
+- password
+Passwort
+
+- clear
+Löschen
+
+- progbar_screen_desc
+Der Bildschirm auf dem die Fortschrittsbalken gezeichnet werden sollen
+
+- resume_dl_desc
+Downloads nach Netzwerkunterbrechungen fortsetzen.
+
+- load_space_desc
+Die freier-Speicherplatz Anzeige anzeigen
+
+- show_battery_desc
+Batterieanzeige in der Ecke oben links anzeigen
+
+- time_format_desc
+Dein bevorzugtes Zeitformat, entweder 24-Stunden or 12-Stunden.
+
+- language_desc
+Die Sprache, die 3hs verwenden soll.
+
+- lumalocalemode_desc
+Der Modus der LumaLocale autosetter verwdendet. Automatisch wird eine Sprache automatisch auswählen. Falls du Manuell auswählst, wird 3hs dich um die Region fragen nach der Installation eines Inhalts
+
+- check_extra_desc
+Nach zusätzlichen Inhalten suchen nach einer Installation
+
+- proxy_desc
+Konfiguriere eine Proxy. Nicht berühren, falls du nicht weißt, was du tust
+
+- install_all
+Alles installieren
+
+- install_no_base
+Kein Grundspiel für dieses DLC/Update installiert. Trotzdem fortfahren?
+
+- warn_no_base
+Warnen, wenn ein Grundspiel nicht installiert ist
+
+- warn_no_base_desc
+Eine Warnung anzeigen, wenn du versuchst, DLC/Update Daten zu installieren, wenn das zusammenpassende Grundspiel nicht installiert ist.
+
+- replaying_errors
+Zeige Fehler die während der Verarbeitung der Warteschlange aufgetreten sind.
+
+- log
+Protokolle
+
+- upload_logs
+Protokolle hochladen
+
+- clear_logs
+Protokolle löschen
+
+- found_missing +code(number)
+if (p1 == 1) return "%1 fehlender Inhalt gefunden.\nDu kannst diesen in der Warteschlange installieren.";
+else return "%1 fehlende Inhalte gefunden.\nDu kannst diese in der Warteschlange installieren.";
+
+- found_0_missing
+Keine fehlenden Inhalte gefunden
+
+- max_elogs
+Maximale Anzahl von alten Protokolldateien
+
+- max_elogs_desc
+Anzahl von alten Protokolldateien die behalten werden sollen, zwischen 0-255 inklusive, 0 = keine zusätzlichen Protokolldateien werden behalten.
+
+- elogs_hint
+Nummer zwischen 0-255 inklusive
+
+- log_id
+Benutze diese ID, um Hilfe zu bekommen
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 Block)";
+else       return "%1 (%2 Blöcke)";
+
+- search_text
+Mithilfe von Text suchen
+
+- search_id
+Mithilfe einer hShop-ID suchen
+
+- search_tid
+Mithilfe einer Title-ID suchen
+
+- invalid_tid
+Ungültige Title-ID
+
+- theme_installer_tid_bad
+Bitte durchsuche die Themes Kategorie manuell, um nach Themes zu suchen
+
+- enter_lgy_query
+Gebe hier einen klassischen
+Suchtext ein
+
+- no_other_params_tid
+Wenn du eine Title-ID eingibst, kannst du keine andere Suchparameter eingeben
+
+- both_sd_and_sb
+Du musst eine Sortiermethode und eine Sortierrichtung eingeben, wenn du möchtest, dass die Suchergebnisse sortiert werden sollen
+
+- invalid_sb
+Ungültige Sortiermethode
+
+- invalid_sd
+Ungültige Sortierrichtung
+
+- invalid_includes
+Ungültige Einschließungsfilter
+
+- invalid_excludes
+Ungültige Ausschließungsfilter
+
+- filter_overlap
+Erkannte überschneidende Suchfilter
+
+- lgy_search
+Klassische Suche
+
+- sure_reset
+Bist du sicher, dass du die Einstellungen zurücksetzen möchtest?
+
+- ascending
+Aufsteigend
+
+- descending
+Absteigend
+
+- alphabetical
+Alphabetisch
+
+- downloads
+Downloads
+
+- def_sort_meth
+Standard-Sortiermethode
+
+- def_sort_meth_desc
+Gibt an, welche Sortiermethode standardmäßig bei einer Titellistenansicht verwendet werden soll.
+
+- def_sort_dir
+Standard-Sortierrichtung
+
+- def_sort_dir_desc
+Gibt an, welche Sortierrichtung standardmäßig bei einer Titellistenansicht verwendet werden soll.
+
+- invalid_content_type
+Ungültige Inhaltsart
+
+- theme_installed
+Ein Design wurde installiert. Siehe PAGE_THEMES
+
+- file_installed
+Eine Datei wurde installiert. Dateien werden nicht auf dem HOME-Menü erscheinen
+
+- allow_led
+LED-Statusleuchte aktivieren
+
+- allow_led_desc
+Dies wird die LED-Statusleuchte einschalten, um verschiedene Statusänderungen anzuzeigen, wie z.B. wenn ein Inhalt installiert wurde.
+
+- dev_unitinfo
+Gemäß der ENVINFO dieses Geräts wurde festgestellt, dass dies ein Entwicklermodell ist.
+3hs wird auf diesem Gerät nicht korrekt funktionieren.
+Falls dieses Gerät kein Entwicklermodell ist, stelle sicher, dass "Enable developer UNITINFO" in der Luma3DS-Konfiguration ausgeschaltet ist.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigieren
+
+- made_by
+Von %1
+
+- themes
+Designs
+
+- invalid_theme_preview
+Ungültige Designvorschau vom Server erhalten!
+
+- hint_add_queue
+UI_GLYPH_Y: zur Warteschlange hinzufügen
+
+- hint_preview_theme
+UI_GLYPH_X: Designvorschau
+
+- alt_name
+Alternativer Name
+
+- show_alt
+Alternative Namen anzeigen
+
+- show_alt_desc
+Alternative Namen anzeigen, wenn verfügbar
+
+- default_reinst
+Standardmäßig neuinstallieren
+
+- default_reinst_desc
+Standardmäßig Inhalte neuinstallieren; nicht fragen, ob ein bereits installierter Inhalt gelöscht werden soll.
+
+- installing_game_x_of_y
+Verarbeite Warteschlange: %2/%3
+%1
+
+- no_other_params_prod
+Wenn du einen Produkt-Code eingibst, kannst du keine andere Suchparameter eingeben
+
+- invalid_prod
+Ungültiger Produkt-Code
+
+- search_prod
+Mithilfe eines Produkt-Codes suchen
+
+- disable_graph
+Latenzgraf deaktivieren
+
+- disable_graph_desc
+Deaktiviert das Latenzgraf, dass beim installieren eines Inhalts angezeigt wird.
+
+- goto_region
+Zur Unterregion springen
+
+- goto_region_desc
+In der Unterkategorie-Auswahl zur richtigen Region sprigen, falls diese existiert.
+
+- add_music
+Du hast bisher keine Musik hinzugefügt!
+Versuch, Musikdateien in /3ds/3hs/music auf deiner SD-Karte zu legen.
+
+- add_playlist
+Du hast bisher keine Wiedergabelisten hinzugefügt!
+Versuch, Wiedergabelisten mit der "Verwalten"-Option hinzuzufügen.
+
+- add_file_act
+[ Datei hinzufügen ]
+
+- add_playlist_act
+[ Wiedergabeliste hinzufügen ]
+
+- new_playlist_name
+Name der neuen Wiedergabeliste...
+
+- basic_options
+Grundoptionen
+
+- randomize
+Wiedergabelisten mischen
+
+- repeat
+Wiedergabelisten und Songs wiederholen
+
+- stereo
+Stereo
+
+- default_playlist
+Standard-Wiedergabeliste
+
+- other
+Andere
+
+- select
+Auswählen...
+
+- playlist
+wiedergabeliste
+
+- file
+datei
+
+- save
+Speichern
+
+- manage_playlists
+Wiedergabelisten verwalten
+
+- audio
+Audio
+
+- everything
+Alles in dieser Kategorie
+
+- quick
+Schnellsuche
+
+- filters
+Filter
+
+- new_invalid_tid
+Fehler: ungültige Title-ID
+Title-IDs sind normalerweise so strukturiert: 000400000008B500
+
+- new_invalid_prod
+Fehler: ungültiger Produkt-Code
+Produkt-Codes sind normalerweise so strukturiert: CTR-P-ABCD
+
+- press_to_switch
+Drücke UI_GLYPH_L/UI_GLYPH_R um Modi umzuschalten
+
+- empty
+(leer)
+
+- enter_query
+Suchtext eingeben...
+
+- submit
+Absenden
+
+- content_type
+Inhaltstyp
+
+- all
+Alle
+
+- include_content
+Inhalt einbeziehen
+
+- regions
+Regionen
+
+- include_filters
+Inklusionsfilter
+
+- exclude_filters
+Exklusionsfilter
+
+- add
+Hinzufüfen
+
+- normal_search
+Normale Suche
+
+- playing_x
+♪ Spielt: %1 ♪
+
+- playing_x_by_y
+♪ Spielt %1 von %2 ♪
+
+- outdated_system
+Eine veraltete Systemfirmware wurde gefunden. Eine Systemfirmware von mindestens 9.6.0 ist benötigt um 3hs zu verwenden.
+
+- virtual_console_type
+Virtual Console-Typ
+
+- alt_name_n_of_n
+Alternativer Name (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: wechseln)
+
+- automatically_detected
+3hs hat automatisch %1 als die Systemsprache ausgewählt. Drücke UI_GLYPH_A um dies zu bestätigen.
+
+- check_inet
+Stelle Internetverbindung her...
+
+- check_net
+Schalte WLAN ein...
+
+- do_donate
+Wenn du hShop nützlich findest, bitte Spende uns indem du PAGE_DONATE auf einem anderen Gerät besuchst!
+
+- error_occurred
+Ein Fehler ist aufgetreten
+
+- invalid_hsid
+Ungültige hShop-ID.
+
+- language_detected
+Detected language: German
+Erkannte Sprache: Deutsch
+Is this correct? Ist dies richtig?
+
+- legacy_search_tab
+Klassisch
+
+- outdated_app
+Diese Version von 3hs ist veraltet. Um 3hs weiterhin zu verwenden, musst du die neueste Version installieren.
+
+- please_update_manually
+Bitte aktualisiere 3hs manuell und versuche es erneut.
+
+- press_b_continue
+Drücke UI_GLYPH_B um fortzufahren.
+
+- query_too_short
+Die Suchbegriffe müssen mindestens 1 Zeichen enthalten.
+
+- update_check_failed
+Die Suche nach 3hs-Aktualisierungen ist fehlgeschlagen.
+
+- update_install_failed
+Die Installation der 3hs-Aktualisierung ist fehlgeschlagen.
+
+- update_try_again_or_update_manually
+Bitte versuche es erneut oder aktualisiere 3hs manuellerweise.
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Wenn du eine Unique-ID eingibst, kannst du keine andere Suchparameter eingeben
+
+# invalid unique ID specified during search
+- invalid_uniq
+Ungültige Unique-ID
+
+# shown as search tab header for unique ID search
+- unique_id
+Unique-ID
+
+# 1.5.7 barrier
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (halten): Download abbrechen
+
+# Shown in 3 lines menu
+- dlc_fixer
+DLC-Reparatur
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Überprüfe Titel auf der SD-Karte...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Liste installierte tickets auf...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Überprüfe DLC tickets...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+Keine DLCs zum reparieren.
+Falls einige DLCs trotzdem nicht ordnungsmäßig funktionieren, bitte installiere diese neu.
+Drücke UI_GLYPH_A um zurückzukehren.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+/* the string is:
+Found %1 broken ticket(s).
+Fix it/them now?
+*/
+if(p1 < 2) return "%1 DLC zum reparieren gefunden.\nDieses jetzt reparieren?";
+else       return "%1 DLCs zum reparieren gefunden.\nDiese jetzt reparieren?";
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Öffne Ticket-Datenbank...
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+Extrahiere DLC-Tickets..
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Installiere reparierte DLC-Tickets...
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Fertig. Falls einige DLCs trotzdem nicht ordnungsgemäß funktionieren, bitte installiere diese neu.
+Drücke UI_GLYPH_A um zurückzukehren.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Aktiviert: Benutzerdefinierte Proxy verwenden.
+Deaktiviert: Die in den Systemeinstellungen konfigurierte Proxy verwenden.
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Aktiviert
+
+# 1.5.9 barrier
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Wichtig!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs ist kostenfreie Software. Falls du für 3hs selbst oder mehr für 3hs als Teil eines Bundles gezahlt hast, beantrage sofort eine Rückerstattung!\n
+3hs ist und wird auch immer kostenfrei bleiben, erhältlich unter:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Drücke eine beliebige Taste um fortzufahren.

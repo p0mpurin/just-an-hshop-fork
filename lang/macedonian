@@ -1,0 +1,769 @@
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+Македонски
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Се вчитува...
+
+- luma_not_installed
+Откриен е неподдржан фирмвер.
+
+# displayed under above string
+- install_luma
+3hs не може да се користи на овоj уред.
+
+# button, button on bottom of screen to enter queue
+- queue
+Ред
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Не може да се инициjализира врската
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Thank you for using 3hs, a 3DS client for hShop.
+Ви благодариме што го користите 3hs, клиентот 3DS за hShop.
+Овоj софтвер можете да го добиете бесплатно на
+PAGE_3HS
+
+- press_to_install
+Притиснете UI_GLYPH_A за да го инсталирате ова.
+Притиснете UI_GLYPH_B за да се вратите.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Верзиjа
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Код на произв.
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Големина
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Име
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+ID на играта
+
+# nowrap, used for content category, extmeta & main list
+- category
+Категориjа
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+ID hShop
+
+# nowrap, used for category description
+- description
+Опис
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Вкупно игри
+
+# nowrap, shown top screen category selection
+- select_cat
+Изб. категориjа
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Изб. подкатегориjа
+
+# nowrap, shown top screen title selection
+- select_title
+Изб. игра
+
+# the time format (15:00)
+- fmt_24h
+24 часа
+
+# time time format (3 PM)
+- fmt_12h
+12 часа
+
+# unknown setting value
+- unknown
+непознат
+
+# setting is set to ON
+- btrue
+вкл.
+
+# setting is set to OFF
+- bfalse
+искл.
+
+# top screen in progress bar location settings switcher
+- top
+горниот
+
+# bottom screen in progress bar location settings switcher
+- bottom
+долниот
+
+# scroll, setting title
+- resume_dl
+Продолжете со преземаньа
+
+# scroll, setting title
+- load_space
+Прикажи индикатор за слободен простор
+
+# scroll, setting title
+- show_battery
+Прикажи индикатор за нивото на батериjата
+
+# scroll, setting title
+- time_format
+Формат на време
+
+# scroll, setting title
+- progbar_screen
+Позициjа на лентата за напредок
+
+# scroll, setting title
+- language
+Jазик
+
+# value of setting
+- value_x
+Вредност: %1
+
+# back button
+- back
+Врати се
+
+# invalid option
+- invalid
+неважечки
+
+# %1 = title id
+- title_doesnt_exist
+Играта не постои: %1
+
+# %1 = error code
+# %2 = seconds remaining
+- netcon_lost
+Изгубена мрежна врска (%1).
+Се обидува повторно за %2 секунди...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+За
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Помош/Упатство
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Наjдете содрж. што недост.
+
+# exit menu and sometimes application
+- press_a_exit
+Притиснете UI_GLYPH_A за да излезете.
+
+# can also be translated as fatal error
+- fatal_panic
+Настана фатална грешка.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Не успеа да се отвори seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Ажурираjте до %1?
+
+# nowrap, top screen while searching
+- search_content
+Пребараjте содржина
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Пребараjте содржина...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Код за резултат: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Ниво: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Резиме: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Модул: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Секоjа чест! Го наjдовте заjачето на hShop!
+
+- already_installed_reinstall
+Насловот е веке инсталиран. Да се ​​преинсталира?
+
+- queue_empty
+Редот празен
+Притиснете UI_GLYPH_A за да се вратите.
+Совет: Притиснете UI_GLYPH_Y за да додадете игра во редот.
+
+# button, yes/no prompt "no" option
+- cancel
+Откажи
+
+# button, yes/no prompt "yes" option
+- confirm
+Потврди
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Неважечки поставки за прокси
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+Повеке за оваа содржина
+
+# scroll, setting title
+- lumalocalemode
+Режим LumaLocale
+
+# selector, lumalocale mode setting
+- automatic
+автоматски
+
+# selector, lumalocale mode setting
+- manual
+рачен
+
+# selector, lumalocale mode setting
+- disabled
+исклучено
+
+- patching_reboot
+Luma3DS game patching е вклучено.
+Системот мора да се рестартира за да стапи на сила оваа промена.
+
+- reboot_now
+Рестартираjте?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+Ова е 3hs верзиjа %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Не може да се пристапи до API. Да се ​​повтори?
+
+- search_zero_results
+Вашето пребаруванье не даде резултати.
+Притиснете UI_GLYPH_A за да се вратите.
+
+# Shown in the "About" burger option
+- credits
+Автори
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Пребараjте дополнителна содржина
+
+# request = request for the 3DS to do something, like a command
+- no_req
+Се уште нема бараньа за команди
+
+# invalid search query
+- invalid_query
+Неважечко баранье
+Притиснете UI_GLYPH_A за да се вратите.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Тековната 3hs верзиjа %1 е помала од потребната %2
+
+# scroll, setting title
+- proxy
+Прокси
+
+# used for "no proxy is set"
+- none
+(празен)
+
+# view proxy settings
+- press_a_to_view
+Притиснете UI_GLYPH_A за да видите.
+
+# proxy host
+- host
+Домакин
+
+# proxy port
+- port
+Порта
+
+# proxy username
+- username
+Корисничко име
+
+# proxy password
+- password
+Лозинка
+
+# clear all proxy field
+- clear
+Избриши
+
+# setting description
+- progbar_screen_desc
+Изберете jа позициjата на лентата за напредок.
+
+# setting description
+- resume_dl_desc
+Продолжете со преземаньа по прекин на мрежата.
+
+# setting description
+- load_space_desc
+Вклучете го индикаторот за слободен простор.
+
+# setting description
+- show_battery_desc
+Вклучете го индикаторот за нивото на батериjата.
+
+# setting description
+- time_format_desc
+Изберете го форматот на времето.
+
+# setting description
+- language_desc
+Поставете го jазикот 3hs.
+
+# setting description
+- lumalocalemode_desc
+Поставете го режимот на LumaLocale. Автоматски избира јазик автоматски. Ако е поставено на рачен, 3hs ке побара регионот по инсталираньето.
+
+# setting description
+- check_extra_desc
+Пребараjте дополнителна содржина по инсталираньето.
+
+# setting description
+- proxy_desc
+Конфигурираjте прокси-сервер за 3hs. Оваа поставка е наменета за напредни корисници.
+
+# install all from queue
+- install_all
+Инсталираjте ги сите
+
+- install_no_base
+Основната игра не е инсталирана. Продолжи?
+
+# setting title
+- warn_no_base
+Предупредете ако не е инсталирана основна игра
+
+# setting description
+- warn_no_base_desc
+Прикажува порака пред да инсталира ажуриранье или содржина DLC ако основната игра не е инсталирана.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+Наидени грешки при обработката на редот.
+
+# may also be translated as "manage logs"
+- log
+Дневници
+
+- upload_logs
+Поставете дневници
+
+- clear_logs
+Исчистете ги дневниците
+
+# %1 = amount of titles found
+- found_missing
+Пронаjдени се %1 исчезнати/o игри/а
+Проверете го редот за да ги инсталирате.
+
+- found_0_missing
+Не се пронаjдени исчезнати игри.
+
+# setting title
+- max_elogs
+Максимални стари дневници
+
+# setting description
+- max_elogs_desc
+Поставете го броjот на дневници за чуванье. Можните вредности се 0-255, каде 0 не води дополнителни дневници.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Број помегу 0 и 255
+
+# %1 = id
+- log_id
+Користете го овоj ID за да добиете поддршка:
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 блок)";
+else       return "%1 (%2 блокови)";
+
+# nowrap, search menu item
+- search_text
+Пребаруваjте по текст
+
+# nowrap, search menu item
+- search_id
+Пребарувајте по ID на hShop
+
+# nowrap, search menu item
+- search_tid
+Пребарувајте по ID на играта
+
+# invalid title id specified during legacy search
+- invalid_tid
+Неважечки ID на играта
+
+- theme_installer_tid_bad
+Рачно прелистуваjте jа категориjата Теми за да барате теми
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Внесете старо баранье за пребаруванье
+
+- no_other_params_tid
+Не може да наведете други параметри при одредуванье ID на играта
+
+- both_sd_and_sb
+Мора да наведете метод и насока при сортиранье на резултатите од пребаруваньето
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Неважечки метод за сортиранье
+
+# i.e. ascending/descending
+- invalid_sd
+Неважечка насока за сортиранье
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Неважечки филтер за вклучуванье
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Неважечки филтер за исклучуванье
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Откриено преклопуванье во филтрите за пребаруванье
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Старо пребаруванье
+
+- sure_reset
+Дали сте сигурни дека сакате да ги ресетирате вашите поставки?
+
+# sort direction
+- ascending
+Растечки
+
+# sort direction
+- descending
+Опагачки
+
+# sort method
+- alphabetical
+Азбучно
+
+# sort method
+- downloads
+Преземаньа
+
+# setting title
+- def_sort_meth
+Стандарден метод за сортиранье
+
+# setting description
+- def_sort_meth_desc
+Го одредува стандардниот метод за сортиранье што ке се користи кога се гледа список на игри.
+
+# setting title
+- def_sort_dir
+Стандардна насока на сортиранье
+
+# setting description
+- def_sort_dir_desc
+Го одредува стандардниот насока за сортиранье што ке се користи кога се гледа список на игри.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Неважечки тип на содржина
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+Беше инсталирана тема. Ве молиме погледнете PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+Инсталирана е датотека. Овие не се прикажани во менито HOME
+
+# setting title
+- allow_led
+Вклучете LED индикатори за статус
+
+# setting description
+- allow_led_desc
+Ова ке LED за да ве информира за различни промени на статусот, како на пример кога играта ке заврши со инсталираньето.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Според ENVINFO на оваа конзола, ова е развоjна единица.
+3hs нема да функционира правилно на овоj систем.
+Во случаj да имате нормален 3DS, проверете дали "Enable developer UNITINFO" во конфигурациjата на Luma3DS е исклучено.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: навигираjте
+
+# %1 = theme author
+- made_by
+од %1
+
+# nowrap, burger menu item
+- themes
+Теми
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Неважечки преглед на темата е примен од серверот!
+
+- hint_add_queue
+UI_GLYPH_Y: додадете во редот
+
+- hint_preview_theme
+UI_GLYPH_X: преглед на тема
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Алтернативно име
+
+# setting title
+- show_alt
+Прикажи алтернативно име
+
+# setting description
+- show_alt_desc
+Прикажи алтернативни иминьа, доколку е достапно.
+
+# banana rotate setting title
+- default_reinst
+Стандардно повторно инсталираjте
+
+# setting description
+- default_reinst_desc
+Стандардно повторно инсталираjте; не бараjте да избришете веке инсталиран наслов.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Се обработува редица: %2/%3
+%1
+
+- no_other_params_prod
+Не може да наведете други параметри при пребаруванье на код на производ
+
+- invalid_prod
+Неважечки код на производот
+
+- search_prod
+Пребаруванье по код на производот
+
+# scroll, setting title
+- disable_graph
+Исклучете го графикот на латентност
+
+# setting description
+- disable_graph_desc
+Го исклучува графикот на латентност, што се прикажува при инсталиранье на игра.
+
+# scroll, setting title
+- goto_region
+Изберете подрегион
+
+# setting description
+- goto_region_desc
+Изберете го точниот подрегион во изборот на поткатегориjата, доколку постои.
+
+- add_music
+Немате музика!
+Обидете се да ставите музика во /3ds/3hs/music на вашата SD.
+
+- add_playlist
+Немате плеjлисти!
+Обидете се да ги додадете со опциjата за управуванье.
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ дод. датотека ]
+
+# noscroll, same as above
+- add_playlist_act
+[ дод. плеjлиста ]
+
+# keyboard hint
+- new_playlist_name
+Ново име за плеjлиста...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Основни опции
+
+# noscroll, audio engine option
+- randomize
+Измешаj плеjлисти
+
+# noscroll, audio engine option
+- repeat
+Повторете плеjлисти и музика
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Стерео
+
+# noscroll, Default playlist audio option
+- default_playlist
+Стандардна плеjлиста
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Други
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Изберете...
+
+# button, keep lowercase, see comment on select
+- playlist
+плеjлиста
+
+# button, keep lowercase, see comment on select
+- file
+датотека
+
+# button, save audio engine configuration
+- save
+Зачуваj
+
+# button
+- manage_playlists
+Управуванье со плеjлисти
+
+# Button in more menu that leads to audio configuration.
+- audio
+Аудио
+
+# button that adds everything in this category as a filter
+- everything
+Се во оваа категорија
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Брзо
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Филтри
+
+# Invalid title id error in new search
+- new_invalid_tid
+Грешка: неважечки ID на играта
+ID на играта обично се структурирани вака: 000400000008B500
+
+# Invalid product code error in new search
+- new_invalid_prod
+Грешка: неважечки код на производот
+Кодовите на производите обично се структурирани вака: CTR-P-ABCD
+
+# Subtitle of the new search methods
+- press_to_switch
+Притиснете UI_GLYPH_L/UI_GLYPH_R за да ги префрлите режимите
+
+# Placeholder for empty search bar
+- empty
+(празен)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Внесете го вашето баранье...
+
+# Submit new search and display resulst
+- submit
+Поднесете
+
+# label for content type selector for normal search
+- content_type
+Тип на содржина
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Сите
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Вклучете содржина
+
+# label for checkbox list of regions to include in quick search
+- regions
+Региони
+
+# label for include filters of normal search
+- include_filters
+Вклучете филтри
+
+# label for exclude filters of normal search
+- exclude_filters
+Исклучете филтри
+
+# button, adds a filter in normal search
+- add
+Додадете
+
+# search menu option to open normal search
+- normal_search
+Нормално пребарување
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Играње %1 ♪
+
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ Играње %1 за %2 ♪
+
+
+- outdated_system
+Откриен е застарен системски фирмвер. Потребен е системски фирмвер од најмалку 9.6.0 за употреба на 3hs.
+
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Тип на виртуелна конзола

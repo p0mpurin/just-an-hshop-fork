@@ -1,0 +1,29 @@
+# Build output
+.build-stage/
+.vs/
+3hs.elf
+3hs.3dsx
+3hs.cia
+*.o
+*.d
+
+# Local/test release artifacts
+3hs-nocturne-*.cia
+
+# Generated theme data
+data/*.hstx
+
+# Local tooling downloads
+tools/bannertool-bin/
+tools/bannertool.zip
+
+# API credentials generated for local builds
+source/hsapi_auth.c
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+*.VC.db
+

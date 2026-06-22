@@ -1,0 +1,32 @@
+
+ = HWAV-FORMAT.TXT =
+
+The HWAV format is an extended version of CWAV, see the 3dbrew documentation: https://3dbrew.org/wiki/BCWAV.
+As you can see on that 3dbrew page CWAV files start with a 0x40-long CWAV header.
+The HWAV header is placed directly after this CWAV header, this is possible due to the rest of the structure offsets in the file
+ are defined in the CWAV header with pointers and thus you can place any data in between the header and the INFO/DATA blocks.
+Here follows the structure of the HWAV header:
+
+ struct hwav_header {
+   char[4]    magic
+   u16        eblocks;
+   reference  eblockrefs[eblocks];
+ }
+
+Where `reference` is a CWAV sized reference (u16: typeid, u16: padding, u32: offset, u32: size), `eblocks` is the amount of
+ extended blocks and `eblockrefs` references to the extended block data.
+Extended type IDs are in the range [0x8000,0x9000) and currently all legal type IDs are:
+
+ TYPEID_VORBIS_COMMENT   0x8000
+
+Applications are required to ignore any extended block that they do not recognise.
+Here follows the documentation for the extended block types:
+
+ TYPEID_VORBIS_COMMENT:
+  encoded is simply a Vorbis Comment without the framing bit, see https://xiph.org/vorbis/doc/v-comment.html.
+
+A reference encoder can be found in the 3hs source tree in /3hstool/hwav.c,
+ it uses FFmpeg and always encodes samples as PCM 8-bit or PCM 16-bit; no compression is supported.
+A reference decoder can be found in the 3hs source tree in /source/audio/cwav_reader.c,
+ it implements IMA ADPCM but not DSP ADPCM as it is already implemented in the DSP service.
+

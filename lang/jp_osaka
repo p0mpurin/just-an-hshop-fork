@@ -1,0 +1,672 @@
+- native_name
+大阪弁
+
+- loading
+ロード中...
+
+- luma_not_installed
+サポートされてへんファームウェアが検出された。
+
+- install_luma
+このシステムでは3hsは使用できまへん。
+
+- queue
+キュー
+
+- fail_init_networking
+ネットワークの初期化に失敗した
+
+- credits_thanks
+hShop用の3dsクライアントである3hsをご利用いただきおおきに！
+このソフトウェアは、
+PAGE_3HS
+
+- press_to_install
+UI_GLYPH_A を押して このコンテンツをインストール
+UI_GLYPH_B を押して前の画面に戻る
+
+- version
+バージョン
+
+- prodcode
+プロダクトコード
+
+- size
+サイズ
+
+- name
+ゲーム名
+
+- tid
+タイトルID
+
+- category
+カテゴリー
+
+- landing_id
+hShop ID
+
+- description
+説明
+
+- total_titles
+総タイトル数
+
+- select_cat
+カテゴリーを選択
+
+- select_subcat
+サブカテゴリを選択
+
+- select_title
+タイトルを選択
+
+- fmt_24h
+24時間表記
+
+- fmt_12h
+12時間表記
+
+- unknown
+不明
+
+- btrue
+はい
+
+- bfalse
+いいや
+
+- top
+上
+
+- bottom
+下
+
+- resume_dl
+ダウンロードを再開する
+
+- load_space
+空き領域インジケーターを表示する
+
+- show_battery
+バッテリーレベルインジケーターを表示する
+
+- time_format
+時間形式
+
+- progbar_screen
+プログレスバーの位置
+
+- language
+言語を変更
+
+- value_x
+値: %1
+
+- back
+戻る
+
+- invalid
+無効
+
+- title_doesnt_exist
+タイトルが存在しまへん: %1
+
+- netcon_lost
+ネットワーク接続が失われた(%1)。
+%2秒で再試行する。..
+
+- about_app
+3hsの詳細
+
+- help_manual
+ヘルプ/マニュアル
+
+- find_missing_content
+不足してるコンテンツを探す
+
+- press_a_exit
+UI_GLYPH_Aを押して終了する。
+
+- fatal_panic
+致命的なパニックが発生した。
+
+- failed_open_seeddb
+seeddb.binを開くこと出来まへんでした。
+
+- update_to
+%1に更新するか？
+
+- search_content
+コンテンツを検索する
+
+- search_content_action
+コンテンツを検索中...
+
+- result_code
+結果コード: %1
+
+- level
+レベル: %1
+
+- summary
+要約: %1
+
+- module
+モジュール: %1
+
+- hs_bunny_found
+おめでとうございます！ hShopバニーを見つけた！
+
+- already_installed_reinstall
+タイトルはすでにインストールされてます。 再インストールするか？
+
+- queue_empty
+キューが空です
+UI_GLYPH_Aを押して元の画面に戻ります。
+ヒント: UI_GLYPH_Y を押して、キューにタイトルを追加する。
+
+- cancel
+キャンセル
+
+- confirm
+確認
+
+- invalid_proxy
+プロキシ設定が無効です
+
+- more_about_content
+このコンテンツの詳細
+
+- lumalocalemode
+LumaLocaleモード
+
+- automatic
+自動
+
+- manual
+マニュアル
+
+- disabled
+無効
+
+- patching_reboot
+Luma3DSゲームパッチが有効になった。
+この変更を有効にするには、システムを再起動する必要があるんや。
+
+- reboot_now
+今すぐ再起動するか？
+
+- this_version
+こら3hsバージョン%1です
+
+- retry_req
+要求が失敗した。 リトライするか？
+
+- search_zero_results
+検索結果が返されまへんでした。
+UI_GLYPH_A を押して戻る。
+
+- credits
+クレジット
+
+- check_extra
+追加コンテンツを検索する
+
+- no_req
+まだリクエストはおまへん
+
+- invalid_query
+無効なクエリ
+戻るにはUI_GLYPH_Aを押してくれへん。
+
+- min_constraint
+現在の3hsバージョン%1は、必要なバージョン%2よりも低なってます
+
+- proxy
+プロキシー
+
+- none
+(なし)
+
+- press_a_to_view
+UI_GLYPH_A をクリックして表示する。
+
+- host
+ホスト
+
+- port
+ポート
+
+- username
+ユーザー名
+
+- password
+パスワード
+
+- clear
+クリア
+
+- progbar_screen_desc
+プログレスバーの位置を選択する。
+
+- resume_dl_desc
+ネットワークが中断した後、ダウンロードを再開する。
+
+- load_space_desc
+空き領域インジケーターを切り替える。
+
+- show_battery_desc
+バッテリーレベルインジケーターを切り替える。
+
+- time_format_desc
+時間形式を選択する。
+
+- language_desc
+3hsの言語を変更する。
+
+- lumalocalemode_desc
+LumaLocaleオートセッターのモードを設定する。 自動は言語を自動的に選択する。 これが手動に設定されてる場合、コンテンツのインストール後、3hsでリージョンの入力を求められる。
+
+- check_extra_desc
+インストール後に追加のコンテンツを検索する。
+
+- proxy_desc
+3hsのプロキシサーバーを構成する。 この設定は上級ユーザー向けです。
+
+- install_all
+全てインストール
+
+- install_no_base
+元となるゲームがインストールされてまへん。 続けるか？
+
+- warn_no_base
+元となるゲームがインストールされてへん場合に警告する
+
+- warn_no_base_desc
+元となるゲームがインストールされてへん場合、アップデートまたはDLCコンテンツをインストールする前にメッセージを表示する。
+
+- replaying_errors
+キューの処理中に発生した再生エラー。
+
+- log
+ログ
+
+- upload_logs
+ログをアップロードする
+
+- clear_logs
+ログをクリアする
+
+- found_missing
+ %1個の不足してるタイトルが見つかった
+キューをチェックしてインストールしてくれへん。
+
+- found_0_missing
+不足してるタイトルは見つかりまへんでした。
+
+- max_elogs
+古いログファイルの最大数
+
+- max_elogs_desc
+保持するログファイルの数を設定する。 可能な値は0~255で、0は追加のログファイルを保持しまへん。
+
+- elogs_hint
+0から255までの値
+
+- log_id
+このIDを使用してサポートを取得する：
+%1
+
+- size_plus_block
+%1 (%2 ブロック)
+
+- search_text
+テキストで検索
+
+- search_id
+hShop IDで検索
+
+- search_tid
+タイトルIDで検索
+
+- invalid_tid
+タイトルIDが無効です
+
+- theme_installer_tid_bad
+テーマを探すには、テーマカテゴリを参照してくれへん
+
+- enter_lgy_query
+従来の検索クエリを入力する
+
+- no_other_params_tid
+タイトルIDを指定するときに他のパラメーターを指定することはできまへん
+
+- both_sd_and_sb
+検索結果を並べ替えるときは、並べ替え方法と並べ替え方向を指定する必要があるんや
+
+- invalid_sb
+無効なソート方法
+
+- invalid_sd
+ソート方向が無効です
+
+- invalid_includes
+ソート方向が無効です
+
+- invalid_excludes
+無効な除外フィルター
+
+- filter_overlap
+指定された検索フィルターで重複が検出された
+
+- lgy_search
+レガシー検索
+
+- sure_reset
+構成をリセットしてもよろしいですか？
+
+- ascending
+昇順
+
+- descending
+降順
+
+- alphabetical
+アルファベット順
+
+- downloads
+ダウンロード
+
+- def_sort_meth
+デフォルトのソート方法
+
+- def_sort_meth_desc
+タイトルのリストを表示するときに使用するデフォルトの並べ替え方法を指定する。
+
+- def_sort_dir
+デフォルトのソート方向
+
+- def_sort_dir_desc
+タイトルのリストを表示するときに使用するデフォルトのソート方向を指定する。
+
+- invalid_content_type
+無効なコンテンツタイプ
+
+- theme_installed
+テーマがインストールされた。 参照してくれへん
+
+- file_installed
+ファイルがインストールされた。 これらはホームメニューには表示されまへん
+
+- allow_led
+LEDステータスインジケータを有効にする
+
+- allow_led_desc
+これにより、LEDライトが点滅し、タイトルのインストールが完了したときやら、さまざまなステータスの変更を通知する。
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: ナビゲート
+
+- made_by
+%1
+
+- themes
+テーマ
+
+- dev_unitinfo
+このコンソールのENVINFOによると、こら開発ユニットです。
+このシステムでは3hsは正しゅう機能しまへん。
+リテール3DSを使用してる場合は、Luma3DS構成の「Enable developer UNITINFO」が無効になってること確認してくれへん。
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+サーバーから取得したテーマのプレビューがチャラやねん！
+
+- hint_add_queue
+UI_GLYPH_Y: キューに追加
+
+- hint_preview_theme
+UI_GLYPH_X: テーマのプレビュー
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+代替名
+
+# setting title
+- show_alt
+別名を表示
+
+# setting description
+- show_alt_desc
+利用可能な場合は、代替名を表示する。
+
+# setting title
+- default_reinst
+デフォルトで再インストール
+
+# setting description
+- default_reinst_desc
+デフォルトで再インストールする。 既にインストールされてるタイトルの削除を明示的に要求せえへんでください。
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+処理キュー: %2/%3
+%1
+
+- no_other_params_prod
+商品コード指定時に他のパラメータは指定できまへん
+
+- invalid_prod
+製品コードが無効です
+
+- search_prod
+商品コードから探す
+
+﻿# scroll, setting title
+- disable_graph
+レイテンシグラフをチャラにする
+
+
+# setting description
+- disable_graph_desc
+タイトルのインストール中に表示されるレイテンシグラフをチャラにします。
+
+
+# scroll, setting title
+- goto_region
+サブリージョンにジャンプ
+
+
+# setting description
+- goto_region_desc
+存在する場合、サブカテゴリーの選択で正しいサブリージョンにジャンプします。
+
+
+- add_music
+まだ楽曲を追加していまへん！
+SDカードの /3ds/3hs/music に音楽を入れてみてください
+
+
+- add_playlist
+まだプレイリストを追加していまへん！
+管理オプションでそれらを追加してみてください
+
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ ファイルを追加 ]
+
+
+# noscroll, same as above
+- add_playlist_act
+[ プレイリストを追加 ]
+
+
+# keyboard hint
+- new_playlist_name
+新しいプレイリストの名前...
+
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+ベーシックオプション
+
+
+# noscroll, audio engine option
+- randomize
+プレイリストをランダム化する
+
+
+# noscroll, audio engine option
+- repeat
+プレイリストと楽曲を繰り返す
+
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+ステレオ
+
+
+# noscroll, Default playlist audio option
+- default_playlist
+デフォルトのプレイリスト
+
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+その他
+
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+選択する...
+
+
+# button, keep lowercase, see comment on select
+- playlist
+プレイリスト
+
+
+# button, keep lowercase, see comment on select
+- file
+ファイル
+
+
+# button, save audio engine configuration
+- save
+保存
+
+
+# button
+- manage_playlists
+プレイリストを管理
+
+
+# Button in more menu that leads to audio configuration.
+- audio
+オーディオ
+
+
+# button that adds everything in this category as a filter
+- everything
+このカテゴリーのみな
+
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+素早い
+
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+フィルター
+
+
+# Invalid title id error in new search
+- new_invalid_tid
+エラー: チャラなタイトルIDが入力されよった
+タイトルIDは通常、次のような構造になっとります: 000400000008B500
+
+
+# Invalid product code error in new search
+- new_invalid_prod
+エラー: チャラな製品コードが入力されよった
+製品コードは通常、次のような構造になっとります: CTR-P-ABCD
+
+
+# Subtitle of the new search methods
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R を押してモードを切り替えます
+
+
+# Placeholder for empty search bar
+- empty
+(空)
+
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+クエリを入力したってや...
+
+
+# Submit new search and display resulst
+- submit
+送信# label for content type selector for normal search
+- content_type
+コンテンツのタイプ
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+みな
+
+# label for checkbox list of categories to include in quick search
+- include_content
+コンテンツを含める
+
+# label for checkbox list of regions to include in quick search
+- regions
+地域
+
+# label for include filters of normal search
+- include_filters
+フィルターを含める
+
+# label for exclude filters of normal search
+- exclude_filters
+フィルターの除外
+
+# button, adds a filter in normal search
+- add
+追加
+
+# search menu option to open normal search
+- normal_search
+通常の検索
+﻿# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ ％1を再生しとります ♪
+
+
+
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ ％1の％2を再生しとります ♪
+
+
+
+
+- outdated_system
+時代遅れのシステムファームウェアが検出されよった。 3hsを使用するには、少なくとも9.6.0のシステムファームウェアが必要やねん。
+
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+バーチャルコンソールのタイプ

@@ -1,0 +1,792 @@
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+Cymraeg
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Llwytho...
+
+- luma_not_installed
+Canfuwyd cadarnwedd anghydnaws.
+
+# displayed under above string
+- install_luma
+Does dim modd defnyddio 3hs ar y sustem hon.
+
+# button, button on bottom of screen to enter queue
+- queue
+Ciw
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Wedi methu cychwyn cysylltiad rhwydwaith
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Diolch am ddefnyddio 3hs, cleient hShop ar gyfer 3DS.
+Mae'r meddalwedd hwn ar gael yn rhad ac am ddim yn
+PAGE_3HS
+
+- press_to_install
+Gwasgwch UI_GLYPH_A i osod y cynnwys hwn.
+Gwasgwch UI_GLYPH_B i fynd yn ôl.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Fersiwn
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Cod Cynnyrch
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Maint
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Enw
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+ID Teitl
+
+# nowrap, used for content category, extmeta & main list
+- category
+Categori
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+ID hShop
+
+# nowrap, used for category description
+- description
+Disgrifiad
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Cyfanswm Teitlau
+
+# nowrap, shown top screen category selection
+- select_cat
+Dewiswch gategori
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Dewiswch is-gategori
+
+# nowrap, shown top screen title selection
+- select_title
+Dewiswch deitl
+
+# the time format (15:00)
+- fmt_24h
+24 awr
+
+# time time format (3 PM)
+- fmt_12h
+12 awr
+
+# unknown setting value
+- unknown
+anhysbys
+
+# setting is set to ON
+- btrue
+gwir
+
+# setting is set to OFF
+- bfalse
+ffug
+
+# top screen in progress bar location settings switcher
+- top
+uchaf
+
+# bottom screen in progress bar location settings switcher
+- bottom
+is
+
+# scroll, setting title
+- resume_dl
+Ailddechrau lawrlwythiadau
+
+# scroll, setting title
+- load_space
+Dangos dangosydd gwagle
+
+# scroll, setting title
+- show_battery
+Dangos dangosydd lefel y batri
+
+# scroll, setting title
+- time_format
+Fformat amser
+
+# scroll, setting title
+- progbar_screen
+Lleoliad bar cynydd
+
+# scroll, setting title
+- language
+Iaith
+
+# value of setting
+- value_x
+Gwerth: %1
+
+# back button
+- back
+Yn ôl
+
+# invalid option
+- invalid
+annilys
+
+# %1 = title id
+- title_doesnt_exist
+Dydy'r teitl ddim yn bodoli: %1
+
+# %1 = error code
+# $t = seconds remaining
+- netcon_lost
+Cysylltiad rhwydwaith wedi methu (%1).
+Ail-geisio mewn $t eiliad...
+
+# nowrap, burger (three lines) menu entry
+- about_app
+Ynghylch
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Help/Llawlyfr
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Chwilio am gynnwys coll
+
+# exit menu and sometimes application
+- press_a_exit
+Gwasgwch UI_GLYPH_A i adael.
+
+# can also be translated as fatal error
+- fatal_panic
+Mae gwall angheuol wedi digwydd.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Wedi methu agor seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Ydych chi am ddiweddaru i %1?
+
+# nowrap, top screen while searching
+- search_content
+Chwiliwch am gynnwys
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Chwiliwch am gynnwys...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Cod canlyniad: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Lefel: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Crynodeb: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Modiwl: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Llongyfs! Dych chi wedi ffeindio'r gwningen hShop!
+
+- already_installed_reinstall
+Teitl eisoes wedi'i osod. Ydych chi am ei ailosod?
+
+- queue_empty
+Mae'r ciw yn wag.
+Gwasgwch UI_GLYPH_A i fynd yn ôl.
+Awgrym: Gwasgwch UI_GLYPH_Y i ychwanegu teitl at y ciw.
+
+# button, yes/no prompt "no" option
+- cancel
+Nac ydw
+
+# button, yes/no prompt "yes" option
+- confirm
+Ydw
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Gosodiadau dirprwy annilys
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+Mwy am y cynnwys hwn
+
+# scroll, setting title
+- lumalocalemode
+Modd LumaLocale
+
+# selector, lumalocale mode setting
+- automatic
+awtomatig
+
+# selector, lumalocale mode setting
+- manual
+â llaw
+
+# selector, lumalocale mode setting
+- disabled
+analluog
+
+- patching_reboot
+Mae Luma3DS Game Patching yn alluog bellach.
+Mae rhaid i chi ailgychwyn y sustem er mwyn i'r newid hwn ddod i rym.
+
+- reboot_now
+Ydych chi am ailgychwyn nawr?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+Dyma 3hs fersiwn %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Cais wedi methu. Ydych chi am ailgeisio?
+
+- search_zero_results
+Doedd dim canlyniadau chwilio.
+Gwasgwch UI_GLYPH_A i fynd yn ôl.
+
+# Shown in the "About" burger option
+- credits
+Clodrestr
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Chwilio am gynnwys ychwanegol
+
+# request = request for the 3DS to do something, like a command
+- no_req
+Does dim ceisiadau eto
+
+# invalid search query
+- invalid_query
+Ymholiad annilys
+Gwasgwch UI_GLYPH_A i fynd yn ôl.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Mae'r fersiwn 3hs cyfredol (%1) yn is na'r fersiwn gofynnol (%2)
+
+# scroll, setting title
+- proxy
+Dirprwy
+
+# used for "no proxy is set"
+- none
+(dim)
+
+# view proxy settings
+- press_a_to_view
+Gwasgwch UI_GLYPH_A i'w gweld.
+
+# proxy host
+- host
+Gwesteiwr
+
+# proxy port
+- port
+Porth
+
+# proxy username
+- username
+Enw defnyddiwr
+
+# proxy password
+- password
+Cyfrinair
+
+# clear all proxy field
+- clear
+Clirio
+
+# setting description
+- progbar_screen_desc
+Dewis lleoliad y bar cynydd.
+
+# setting description
+- resume_dl_desc
+Ailddechrau lawrlwythiadau ar ôl ymyriadau'r cysylltiad rhwydwaith.
+
+# setting description
+- load_space_desc
+Toglo'r dangosydd gwagle
+
+# setting description
+- show_battery_desc
+Toglo'r dangosydd lefel y batri
+
+# setting description
+- time_format_desc
+Dewis y fformat amser.
+
+# setting description
+- language_desc
+Dewis yr iaith ar gyfer 3hs.
+
+# setting description
+- lumalocalemode_desc
+Dewis modd yr autoddewisydd LumaLocale. Mae "awtomatig" yn dewis iaith yn awtomatig. Os ydy hwn wedi'i osod i "â llaw", bydd 3hs yn gofyn i chi am ranbarth ar ôl gosod cynnwys.
+
+# setting description
+- check_extra_desc
+Chwilio am gynnwys ychwanegol ar ôl gosod.
+
+# setting description
+- proxy_desc
+Ffurfweddu gweinydd dirprwyol ar gyfer 3hs. Mae'r gosodiad hwn ar gyfer defnyddwyr uwch.
+
+# install all from queue
+- install_all
+Gosod popeth
+
+- install_no_base
+Mae'r gêm sylfaenol heb ei gosod. Ydych chi am fwrw ymlaen?
+
+# setting title
+- warn_no_base
+Rhybuddio os ydy gêm sylfaenol heb ei gosod
+
+# setting description
+- warn_no_base_desc
+Dangos rhybudd cyn gosod cynnwys DLC neu ddiweddariad os ydy'r gêm sylfaenol heb ei gosod.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+Ailchwarae gwallau a ddigwyddodd wrth brosesu'r ciw.
+
+# may also be translated as "manage logs"
+- log
+Cofnodion
+
+- upload_logs
+Llwytho cofnodion i fyny
+
+- clear_logs
+Clirio cofnodion
+
+# %1 = amount of titles found
+- found_missing +code(number)
+if (p1 < 10) {
+    switch (p1) {
+        case 1:
+            return "Wedi ffeindio %1 teitl coll\nGwelwch y ciw i'w osod.";
+        
+        case 2:
+            return "Wedi ffeindio %1 deitl coll\nGwelwch y ciw i'w gosod.";
+        
+        case 3: case 6:
+            return "Wedi ffeindio %1 theitl coll\nGwelwch y ciw i'w gosod.";
+        
+        default:
+            return "Wedi ffeindio %1 teitl coll\nGwelwch y ciw i'w gosod.";
+    }
+} else {
+    return "Wedi ffeindio %1 o deitlau coll\nGwelwch y ciw i'w gosod.";
+}
+
+- found_0_missing
+Heb ffeindio teitlau coll.
+
+# setting title
+- max_elogs
+Uchafswm hen ffeiliau cofnodi
+
+# setting description
+- max_elogs_desc
+Dewis y nifer o ffeiliau cofnodi i'w cadw. Mae rhaid iddo fod rhwng 0 a 255; rhoddwch 0 i beidio â chadw ffeiliau cofnodi ychwanegol.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Gwerth rhwng 0 a 255.
+
+# %1 = id
+- log_id
+Defnyddiwch yr ID hwn i gael cefnogaeth:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+#  %1 = size in bytes/KiB/MiB/GiB/TiB                            
+#  %2 = amount of blocks                                         
+- size_plus_block +code(_, number)
+if (p2 < 10) {
+    switch (p2) {
+        case 2: return "%1 (%2 floc)";
+        
+        default: return "%1 (%2 bloc)";
+    }
+} else {
+    return "%1 (%2 o flociau)";
+}
+
+# nowrap, search menu item
+- search_text
+Chwiliad yn ôl testun
+
+# nowrap, search menu item
+- search_id
+Chwiliad yn ôl ID hShop
+
+# nowrap, search menu item
+- search_tid
+Chwiliad yn ôl ID Teitl
+
+# invalid title id specified during legacy search
+- invalid_tid
+ID Teitl annilys
+
+- theme_installer_tid_bad
+Porwch y categori Themâu â llaw i chwilio am themâu.
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Rhoddwch ymholiad o'r gorffennol
+
+- no_other_params_tid
+Does dim modd rhoi unrhyw ffiniau eraill wrth roi ID Teitl
+
+- both_sd_and_sb
+Mae rhaid i chi roi dull a chyfeiriad trefnu wrth drefnu canlyniadau chwilio
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Dull trefnu annilys
+
+# i.e. ascending/descending
+- invalid_sd
+Cyfeiriad trefnu annilys
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Hidlyddion cynnwys annilys
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Hidlyddion allgau annilys
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Mae'r hidlyddion chwilio a roddoch chi'n gorgyffwrdd â'i gilydd
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Chwiliad o'r Gorffennol
+
+- sure_reset
+Ydych chi'n siŵr eich bod chi am ailosod eich gosodiadau?
+
+# sort direction
+- ascending
+Esgynnol
+
+# sort direction
+- descending
+Disgynnol
+
+# sort method
+- alphabetical
+Yn nhrefn yr wyddor
+
+# sort method
+- downloads
+Lawrlwythiadau
+
+# setting title
+- def_sort_meth
+Dull trefnu rhagosodedig
+
+# setting description
+- def_sort_meth_desc
+Rhoi'r dull trefnu rhagosodedig i'w ddefnyddio wrth weld rhestr o deitlau.
+
+# setting title
+- def_sort_dir
+Cyfeiriad trefnu rhagosodedig
+
+# setting description
+- def_sort_dir_desc
+Rhoi'r cyfeiriad trefnu rhagosodedig i'w ddefnyddio wrth weld rhestr o deitlau.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Math o gynnwys annilys
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+Gosodwyd thema. Gwelwch PAGE_THEMES
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+Gosodwyd ffeil. Dydy'r rhain ddim yn cael eu harddangos ar y ddewislen HOME
+
+# setting title
+- allow_led
+Galluogi dangosyddion statws LED
+
+# setting description
+- allow_led_desc
+Fflachio'r goleuad LED i roi gwybod i chi am wahanol newidiadau statws, megis pan fydd teitl yn gorffen gosod.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+Yn ôl ENVINFO y consol hwn, mae hon yn uned ddatblygiadol.
+Fydd 3hs ddim yn gweithio'n iawn ar y sustem hon.
+Os oes 3DS normal gyda chi, sicrhewch bod "Enable developer UNITINFO" yn y ffurfweddiad Luma3DS yn analluog.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: llywio
+
+# %1 = theme author
+- made_by
+gan %1
+
+# nowrap, burger menu item
+- themes
+Themâu
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Rhagolwg thema annilys wedi cael ei nôl o'r gweinydd!
+
+- hint_add_queue
+UI_GLYPH_Y: ychwanegu at y ciw
+
+- hint_preview_theme
+UI_GLYPH_X: rhagolygu'r thema
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Enw arall
+
+# setting title
+- show_alt
+Dangos enw arall
+
+# setting description
+- show_alt_desc
+Dangos enwau eraill, os ydyn nhw ar gael.
+
+# setting title
+- default_reinst
+Ailosod heb ofyn
+
+# setting description
+- default_reinst_desc
+Ailosod heb ofyn; peidio â gofyn am ddileu teitl sydd eisoes wedi'i osod cyn ei ailosod ef.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Prosesu'r ciw: %2/%3
+%1
+
+- no_other_params_prod
+Does dim modd rhoi unrhyw ffiniau eraill wrth roi cod cynnyrch
+
+- invalid_prod
+Cod cynnyrch annilys
+
+- search_prod
+Chwiliad yn ôl cod cynnyrch
+
+# scroll, setting title
+- disable_graph
+Analluogi graff amser prosesu
+
+# setting description
+- disable_graph_desc
+Analluogi'r graff amser prosesu sy'n cael ei ddangos wrth osod teitl.
+
+# scroll, setting title
+- goto_region
+Neidio i isranbarth
+
+# setting description
+- goto_region_desc
+Neidio i'r isranbarth cywir yn y detholiad is-gategori os ydy ef yn bodoli.
+
+- add_music
+Rydych chi heb ychwanegu cerddoriaeth!
+Gallwch chi roi cerddoriaeth yn y ffolder /3ds/3hs/music ar eich cerdyn SD.
+
+- add_playlist
+Rydych chi heb greu rhestri chwarae!
+Gallwch chi eu gwneud trwy ddefnyddio'r dewis rheoli.
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ ychwanegu ffeil ]
+
+# noscroll, same as above
+- add_playlist_act
+[ ychwanegu rhestr chwarae ]
+
+# keyboard hint
+- new_playlist_name
+Enw'r rhestr chwarae newydd...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Dewisiadau sylfaenol
+
+# noscroll, audio engine option
+- randomize
+Hapdrefnu'r rhestri chwarae
+
+# noscroll, audio engine option
+- repeat
+Ailchwarae rhestri chwarae a chaneuon
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Stereo
+
+# noscroll, Default playlist audio option
+- default_playlist
+Rhestr chwarae ragosodedig
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Eraill
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Dewis...
+
+# button, keep lowercase, see comment on select
+- playlist
+rhestr chwarae
+
+# button, keep lowercase, see comment on select
+- file
+ffeil
+
+# button, save audio engine configuration
+- save
+Cadw
+
+# button
+- manage_playlists
+Rheoli rhestri chwarae
+
+# Button in more menu that leads to audio configuration.
+- audio
+Sain
+
+# button that adds everything in this category as a filter
+- everything
+Popeth yn y categori hwn
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Cyflym
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Hidlyddion
+
+# Invalid title id error in new search
+- new_invalid_tid
+Gwall: Cafodd ID Teitl annilys ei roi
+Mae IDau Teitl yn edrych fel hyn fel arfer: 000400000008B500
+
+# Invalid product code error in new search
+- new_invalid_prod
+Gwall: Cafodd cod cynnyrch annilys ei roi
+Mae codau cynnyrch yn edrych fel hyn fel arfer: CTR-P-ABCD
+
+# Subtitle of the new search methods
+- press_to_switch
+Gwasgwch UI_GLYPH_L/UI_GLYPH_R i newid y modd
+
+# Placeholder for empty search bar
+- empty
+(gwag)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Rhowch eich ymholiad...
+
+# Submit new search and display resulst
+- submit
+Rhoi
+
+# label for content type selector for normal search
+- content_type
+Math o gynnwys
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Popeth
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Cynnwys cynnwys
+
+# label for checkbox list of regions to include in quick search
+- regions
+Rhanbarthau
+
+# label for include filters of normal search
+- include_filters
+Hidlyddion cynnwys
+
+# label for exclude filters of normal search
+- exclude_filters
+Hidlyddion eithrio
+
+# button, adds a filter in normal search
+- add
+Ychwanegu
+
+# search menu option to open normal search
+- normal_search
+Chwiliad normal
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Chwarae %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ Chwarae %1 gan %2 ♪
+
+- outdated_system
+Canfuwyd hen gadarnwedd sustem. Mae angen cadarnwedd sustem fersiwn 9.6.0 o leiaf i ddefnyddio 3hs.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Math o Virtual Console

@@ -1,0 +1,79 @@
+{
+  "fileType": "cfnt",
+  "fontInfo": {
+    "alterCharIdx": 0,
+    "ascent": 25,
+    "defaultWidth": {
+      "charWidth": 24,
+      "glyphWidth": 24,
+      "left": 0
+    },
+    "encoding": 1,
+    "fontType": 1,
+    "height": 30,
+    "lineFeed": 30,
+    "width": 25
+  },
+  "glyphMap": {
+    "ō": 0,
+		"\u0304": 1,
+		"～": 2,
+		"ŵ": 3,
+		"Ŵ": 4,
+		"ș": 5,
+		"Ș": 6
+  },
+  "glyphWidths": {
+    "0": {
+      "char": 16,
+      "glyph": 14,
+      "left": 1
+    },
+    "1": {
+      "char": 0,
+      "glyph": 10,
+      "left": 1
+    },
+    "2": {
+      "char": 20,
+      "glyph": 18,
+      "left": 1
+    },
+		"3": {
+			"char": 19,
+			"glyph": 19,
+			"left": 0
+		},
+		"4": {
+			"char": 23,
+			"glyph": 22,
+			"left": 0
+		},
+		"5": {
+			"char": 13,
+			"glyph": 12,
+			"left": 0
+		},
+		"6": {
+			"char": 17,
+			"glyph": 14,
+			"left": 1
+		}
+	},
+  "textureInfo": {
+    "glyph": {
+      "baseline": 25,
+      "height": 30,
+      "width": 24
+    },
+    "sheetCount": 2,
+    "sheetInfo": {
+      "colorFormat": "A4",
+      "cols": 5,
+      "height": 32,
+      "rows": 1,
+      "width": 128
+    }
+  },
+  "version": 50331648
+}

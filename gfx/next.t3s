@@ -1,0 +1,9 @@
+--atlas -f rgba8888 -z auto
+img/bun.png
+img/logo.png
+img/net_discon.png
+img/net_0.png
+img/net_1.png
+img/net_2.png
+img/net_3.png
+img/gplv3.png

@@ -1,0 +1,1008 @@
+
+# This is the base 3hs translation file.
+# All other translations should derive from this file.
+# If you want to translate 3hs in your language please contact us in the hShop discord server.
+
+# Some strings have a comment which indicates a context, this may help while translating
+#  - If you require context for anything else feel free to ask
+#  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
+#  - The value of the variable will literally be substituted (replaced)
+#  - if this doesn't work in your language you may have to write a bit of code to work around it
+#    - please take a look at the example string in english "size_plus_block"
+#    - if you need help feel free to ask
+# UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
+#  - They should be kept exactly as-is, they should be encircled by spaces
+#    - Even if your language has no such things, not having a space causes ugly clamping
+# PAGE_ is a prefix for a URL to a hShop page
+#  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
+# Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
+# Although text wraps in most cases, it's for the best not make your translation too verbose
+#  - Text wrapping means the text continues on the next line if it's too large
+#  - Strings marked with "nowrap" don't wrap.
+#  - Strings marked with "button" use button wrap
+#    - This means they gradually expand in size as the string gets larger
+#    - This does not mean they wrap to the next line
+#  - Strings marked with "selector" have a maximum length (of 200 pixels)
+#  - Strings marked with "scroll" scroll sideways, for example all setting titles use this
+#    - Strings that scroll obviously can't wrap
+# If your language is officially supported by Nintendo, use their translations for their terms
+#   - For example, "blocks", "HOME menu", "theme"
+#
+#
+# Any questions and new translations can be posted in the hShop discord channel
+
+# The name of the language this file is for in that language (i.e. Español for Spanish)
+- native_name
+English
+
+# shown at the top of the screen during loading (the spinner)
+- loading
+Loading...
+
+- luma_not_installed
+An unsupported firmware was detected.
+
+# displayed under above string
+- install_luma
+3hs cannot be used on this system.
+
+# button, button on bottom of screen to enter queue
+- queue
+Queue
+
+# networking means network libraries, may be translated as "failed to start application" if there exists no good translation for networking
+- fail_init_networking
+Failed to initialize networking
+
+# PAGE_3HS expands to the 3hs page on hShop
+- credits_thanks
+Thank you for using 3hs, a 3DS client for hShop.
+You can get this software for free at
+PAGE_3HS
+
+- press_to_install
+Press UI_GLYPH_A to install this content.
+Press UI_GLYPH_B to return to the previous screen.
+
+# nowrap, used for title version, bottom screen metadata when you press A on a list item
+- version
+Version
+
+# nowrap, used for title product code, same location as above string
+- prodcode
+Product Code
+
+# nowrap, used for title size, (sub)category size, displayed on bottom screen in the main list, sort method in switcher in settings
+- size
+Size
+
+# nowrap, used for title name, (sub)category name, see above for location
+- name
+Name
+
+# nowrap, used for title id, extmeta & main list, sort method in switcher in settings
+- tid
+Title ID
+
+# nowrap, used for content category, extmeta & main list
+- category
+Category
+
+# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+- landing_id
+hShop ID
+
+# nowrap, used for category description
+- description
+Description
+
+# nowrap, shown on bottom screen category selection
+- total_titles
+Total Titles
+
+# nowrap, shown top screen category selection
+- select_cat
+Select a category
+
+# nowrap, shown top screen subcategory selection
+- select_subcat
+Select a subcategory
+
+# nowrap, shown top screen title selection
+- select_title
+Select a title
+
+# the time format (15:00)
+- fmt_24h
+24 hour
+
+# time time format (3 PM)
+- fmt_12h
+12 hour
+
+# unknown setting value
+- unknown
+unknown
+
+# setting is set to ON
+- btrue
+true
+
+# setting is set to OFF
+- bfalse
+false
+
+# top screen in progress bar location settings switcher
+- top
+Top
+
+# bottom screen in progress bar location settings switcher
+- bottom
+Bottom
+
+# scroll, setting title
+- resume_dl
+Resume downloads
+
+# scroll, setting title
+- load_space
+Show free space indicator
+
+# scroll, setting title
+- show_battery
+Show battery level indicator
+
+# scroll, setting title
+- time_format
+Time format
+
+# scroll, setting title
+- progbar_screen
+Progress bar position
+
+# scroll, setting title
+- language
+Language
+
+# value of setting
+- value_x
+Value: %1
+
+# back button
+- back
+Back
+
+# invalid option
+- invalid
+invalid
+
+# %1 = title id
+- title_doesnt_exist
+Title doesn't exist: %1
+
+# %1 = error code
+# %2 = seconds remaining, range: 1-10 inclusive
+- netcon_lost +code(_, number)
+/* the string is:
+Network connection lost (%1).
+Retrying in %2 second(s)...
+*/
+if(p2 < 2) return "Network connection lost (%1).\nRetrying in %2 second...";
+else       return "Network connection lost (%1).\nRetrying in %2 seconds...";
+
+# nowrap, burger (three lines) menu entry
+- about_app
+About
+
+# nowrap, burger (three lines) menu entry
+- help_manual
+Help/Manual
+
+# nowrap, burger (three lines) menu entry
+- find_missing_content
+Find missing content
+
+# exit menu and sometimes application
+- press_a_exit
+Press UI_GLYPH_A to exit.
+
+# can also be translated as fatal error
+- fatal_panic
+A fatal panic has occurred.
+
+# failed to open romfs file, may be translated as "failed to start application"
+- failed_open_seeddb
+Failed to open seeddb.bin.
+
+# %1 = new version, i.e. 1.0.2
+- update_to
+Do you want to update to %1?
+
+# nowrap, top screen while searching
+- search_content
+Search for content
+
+# keyboard hint while searching, apparently this has a maximum length
+- search_content_action
+Search for content...
+
+# used for displaying error codes
+# %1 = result code (0x...)
+- result_code
+Result code: %1
+
+# used for displaying error codes
+# %1 = level name
+- level
+Level: %1
+
+# used for displaying error codes
+# %1 = summary name
+- summary
+Summary: %1
+
+# used for displaying error codes
+# %1 = module name
+- module
+Module: %1
+
+# easter egg, see also: gfx/img/bun.png
+- hs_bunny_found
+Congrats! You found the hShop bunny!
+
+- already_installed_reinstall
+Title already installed. Reinstall?
+
+- queue_empty
+Queue is empty
+Press UI_GLYPH_A to go back.
+Tip: Press UI_GLYPH_Y to add a title to the queue.
+
+# button, yes/no prompt "no" option
+- cancel
+Cancel
+
+# button, yes/no prompt "yes" option
+- confirm
+Confirm
+
+# proxy settings are checked at startup for obvious errors (user tampering), if bad, it errors with this message
+- invalid_proxy
+Invalid proxy settings
+
+# nowrap, shown in top when clicking on extended meta
+- more_about_content
+More about this content
+
+# scroll, setting title
+- lumalocalemode
+LumaLocale mode
+
+# selector, lumalocale mode setting
+- automatic
+Automatic
+
+# selector, lumalocale mode setting
+- manual
+Manual
+
+# selector, lumalocale mode setting
+- disabled
+Disabled
+
+- patching_reboot
+Luma3DS game patching is now enabled.
+The system must be restarted for this change to take effect.
+
+- reboot_now
+Restart now?
+
+# %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
+- this_version
+This is 3hs version %1
+
+# request = API HTTP request, may be translated as "failed to access API"
+- retry_req
+Request failed. Retry?
+
+- search_zero_results
+Your search returned no results.
+Press UI_GLYPH_A to go back.
+
+# Shown in the "About" burger option
+- credits
+Credits
+
+# scroll, setting title, i.e. DLC/Updates
+- check_extra
+Search for extra content
+
+# request = request for the 3DS to do something, like a command
+- no_req
+No requests made yet
+
+# invalid search query
+- invalid_query
+Invalid query
+Press UI_GLYPH_A to go back.
+
+# %1 = current version
+# %2 = minimum required version
+- min_constraint
+Current 3hs version %1 is lower than the required version %2
+
+# scroll, setting title
+- proxy
+Proxy
+
+# used for "no proxy is set", "no default playlist is set"
+- none
+(none)
+
+# view proxy settings
+- press_a_to_view
+Press UI_GLYPH_A to view.
+
+# proxy host
+- host
+Host
+
+# proxy port
+- port
+Port
+
+# proxy username
+- username
+Username
+
+# proxy password
+- password
+Password
+
+# clear all proxy field
+- clear
+Clear
+
+# setting description
+- progbar_screen_desc
+Select the position of the progress bar.
+
+# setting description
+- resume_dl_desc
+Resume downloads after a network interruption.
+
+# setting description
+- load_space_desc
+Toggle the free space indicator.
+
+# setting description
+- show_battery_desc
+Toggle the battery level indicator.
+
+# setting description
+#  you can append something like "in <your country> <your time format> is used most often", that is, if your language is predominantly spoken in one country and there exists a consensus there
+- time_format_desc
+Select the time format.
+
+# setting description
+- language_desc
+Set the language for 3hs.
+
+# setting description
+- lumalocalemode_desc
+Set the operating mode for locale emulation setup. "Automatic" will automatically configure the language. "Manual" will make 3hs ask you to choose the language after content installation.
+
+# setting description
+- check_extra_desc
+Search for extra content after installation.
+
+# setting description
+- proxy_desc
+Configure a proxy server for 3hs. This setting is for advanced users.
+
+# install all from queue
+- install_all
+Install all
+
+- install_no_base
+Base title is not installed. Continue anyway?
+
+# setting title
+- warn_no_base
+Warn if a base title is not installed
+
+# setting description
+- warn_no_base_desc
+Shows a warning before installing update or DLC content if the corresponding base title is not installed.
+
+# if an error occurs while installing all titles from the queue, this message is displayed before showing each one
+- replaying_errors
+The following errors occurred while processing the queue.
+
+# may also be translated as "manage logs"
+- log
+Logs
+
+- upload_logs
+Upload logs
+
+- clear_logs
+Clear logs
+
+# %1 = amount of titles found
+- found_missing
+Found %1 missing title(s).
+Check the queue to install them.
+
+- found_0_missing
+No missing titles were found.
+
+# setting title
+- max_elogs
+Maximum old log files
+
+# setting description
+- max_elogs_desc
+Set the number of log files to keep. Possible values are 0 to 255. When set to 0, no additional log files are kept.
+
+# keyboard hint for max old log files, apparently has a maximum amount of characters
+- elogs_hint
+Value between 0 and 255
+
+# %1 = id
+- log_id
+Use this ID for support:
+%1
+
+# Nintendo blocks, use official Nintendo translation if available
+#  %1 = size in bytes/KiB/MiB/GiB/TiB
+#  %2 = amount of blocks
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 block)";
+else       return "%1 (%2 blocks)";
+
+# legacy; nowrap, search menu item
+- search_text
+Search by text
+
+# legacy; nowrap, search menu item
+- search_id
+Search by hShop ID
+
+# legacy; nowrap, search menu item
+- search_tid
+Search by Title ID
+
+# invalid title id specified during search
+- invalid_tid
+Invalid title ID
+
+- theme_installer_tid_bad
+Please browse the Themes category manually to install themes.
+
+# this is displayed in transparent letters on the keyboard
+- enter_lgy_query
+Enter a legacy search query
+
+- no_other_params_tid
+Cannot specify any other parameters when specifying a title ID.
+
+- both_sd_and_sb
+You must specify a sort method and a sort direction when sorting search results.
+
+# i.e. sort by title_id, size, category, subcategory, etc
+- invalid_sb
+Invalid sort method.
+
+# i.e. ascending/descending
+- invalid_sd
+Invalid sort direction.
+
+# include legacy filter, includes a (sub)category, like a coffee filter
+- invalid_includes
+Invalid include filters.
+
+# exclude legacy filter, excludes a (sub)category, like a coffee filter
+- invalid_excludes
+Invalid exclude filters.
+
+# overlapping filters in legacy search, i.e. include:games exclude:games
+- filter_overlap
+Detected an overlap in the specified search filters.
+
+# nowrap, search menu item, "legacy" may be translated as "traditional", "old-school", "classic", you name it
+- lgy_search
+Legacy Search
+
+- sure_reset
+Are you sure you want to reset the settings?
+
+# sort direction
+- ascending
+Ascending
+
+# sort direction
+- descending
+Descending
+
+# sort method
+- alphabetical
+Name
+
+# sort method
+- downloads
+Downloads
+
+# setting title
+- def_sort_meth
+Default sort method
+
+# setting description
+- def_sort_meth_desc
+Specifies the default sort method to use when viewing a list of titles.
+
+# setting title
+- def_sort_dir
+Default sort direction
+
+# setting description
+- def_sort_dir_desc
+Specifies the default sort direction to use when viewing a list of titles.
+
+# legacy search content type (see p: documentation on site)
+- invalid_content_type
+Invalid content type.
+
+# shown after installation of anything in the themes category, PAGE_THEMES links to the theme installer wiki page
+- theme_installed
+A theme was installed. Please see PAGE_THEMES.
+
+# shown after a file forwarder is installed that's not a theme, just here for future proofing
+- file_installed
+A file was installed.
+
+# setting title
+- allow_led
+Enable LED status indicators
+
+# setting description
+- allow_led_desc
+Flash the LED light to inform you of various status changes.
+
+# don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
+- dev_unitinfo
+According to this console's ENVINFO, this is a development unit.
+3hs will not function correctly on this system.
+In case you have a retail 3DS, ensure "Enable developer UNITINFO" in the Luma3DS configuration is disabled.
+
+# nowrap, used in for examples language select
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigate
+
+# %1 = theme author
+- made_by
+by %1
+
+# nowrap, burger menu item
+- themes
+Themes
+
+# custom background selector in settings
+- background_image
+Background image
+
+- background_image_desc
+Choose a PNG or JPEG from /3ds/3hs/backgrounds. Images are cover-cropped for both screens.
+
+- wallpaper_dimming
+Wallpaper dimming
+
+- wallpaper_dimming_desc
+Adjust the dark overlay above your wallpaper. Brighter settings show more of the image; darker settings improve text contrast.
+
+- performance_mode
+Performance mode
+
+- performance_mode_desc
+Shows the New 3DS optimizations active in this build.
+
+- background_first_launch
+Custom wallpapers are supported.\n\nPlace PNG or JPEG images in:\n/3ds/3hs/backgrounds/\n\nThen open Settings → Background image. Use Wallpaper dimming to balance image brightness and text readability.
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Could not load theme preview from server.
+
+# hinting the user to press Y to add to queue in extmeta
+- hint_add_queue
+UI_GLYPH_Y: add to queue
+
+# hinting the user to press X to preview theme in extmeta if category is themes
+- hint_preview_theme
+UI_GLYPH_X: preview theme
+
+# used in extmeta for the alternative name
+- alt_name
+Alternative name
+
+# setting title
+- show_alt
+Show alternative name
+
+# setting description
+- show_alt_desc
+Show alternative names, if available.
+
+# setting title
+- default_reinst
+Always reinstall already installed titles
+
+# setting description
+- default_reinst_desc
+Always reinstalls titles that are already present on the system, without asking beforehand.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Processing queue: %2/%3
+%1
+
+- no_other_params_prod
+Cannot use any other parameters when specifying a product code.
+
+- invalid_prod
+Invalid product code
+
+- search_prod
+Search using a product code
+
+# scroll, setting title
+- disable_graph
+Disable latency graph
+
+# setting description
+- disable_graph_desc
+Disables the latency graph that is shown while installing a title.
+
+# scroll, setting title, may deprecate later due to usability concerns
+- goto_region
+Automatically jump into console region's subcategory
+
+# setting description, may deprecate later due to usability concerns
+- goto_region_desc
+Automatically enter the subcategory corresponding to the system region, if it exists.
+
+- add_music
+You have not yet added any music!
+Try placing music files in /3ds/3hs/music on your SD card.
+
+- add_playlist
+You have yet to add any playlists!
+Try adding them with the "Manage" option.
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ add file ]
+
+# noscroll, same as above
+- add_playlist_act
+[ add playlist ]
+
+# keyboard hint
+- new_playlist_name
+New playlist name...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Basic options
+
+# noscroll, audio engine option
+- randomize
+Randomize playlists
+
+# noscroll, audio engine option
+- repeat
+Repeat playlists and songs
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Stereo
+
+# noscroll, Default playlist audio option
+- default_playlist
+Default playlist
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Other
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Select...
+
+# button, keep lowercase, see comment on select
+- playlist
+playlist
+
+# button, keep lowercase, see comment on select
+- file
+file
+
+# button, save audio engine configuration
+- save
+Save
+
+# button
+- manage_playlists
+Manage playlists
+
+# Button in more menu that leads to audio configuration.
+- audio
+Audio
+
+# button that adds everything in this category as a filter
+- everything
+Everything in this category
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Quick
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Filters
+
+# Invalid title id error in new search
+- new_invalid_tid
+Error: Invalid title ID entered.
+Title IDs have this format: 0004XXXXXXXXXXXX
+Example: 00040000001C1900
+
+# Invalid product code error in new search
+- new_invalid_prod
+Error: Invalid product code entered.
+Product codes have this format: XXX-X-XXXX
+Example: CTR-P-AMKE
+
+# Subtitle of the new search methods
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R: change search mode
+
+# Placeholder for empty search bar
+- empty
+(empty)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Enter your query...
+
+# Submit new search and display resulst
+- submit
+Submit
+
+# label for content type selector for normal search
+- content_type
+Content type
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+All
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Include content
+
+# label for checkbox list of regions to include in quick search
+- regions
+Regions
+
+# label for include filters of normal search
+- include_filters
+Include filters
+
+# label for exclude filters of normal search
+- exclude_filters
+Exclude filters
+
+# button, adds a filter in normal search
+- add
+Add
+
+# search menu option to open normal search
+- normal_search
+Normal search
+
+# -- v1.4.0 barrier -- #
+
+# -- v1.4.1 barrier -- #
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ Playing %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ Playing %1 by %2 ♪
+
+- outdated_system
+An outdated system firmware was detected. A system firmware of at least 9.6.0 is required to use 3hs.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Virtual Console type
+
+# -- v1.4.2 barrier -- #
+
+# -- v1.4.4 barrier -- #
+
+- do_donate
+If you found hShop useful, please make a donation by visiting PAGE_DONATE on another device!
+
+# -- v1.4.5 barrier -- #
+
+# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+#  %1 = your language name
+- automatically_detected
+3hs has automatically detected %1 as the system language. Press UI_GLYPH_A to confirm.
+
+# This is used to dismiss an error screen
+- press_b_continue
+Press UI_GLYPH_B to continue.
+
+# This is displayed at the top of an error screen
+- error_occurred
+An error occurred
+
+# New search method, same as legacy search on the site
+- legacy_search_tab
+Legacy
+
+# Error message for search
+- query_too_short
+The search query must contain at least 1 character.
+
+# This string is special as it's the only string that should contain
+# English text in your translation. The first line should be kept English,
+# but put the English name of the language instead of "English". The second line
+# should be translated but put your language name instead of "English". In the
+# third line only the second "Is this correct?" should be translated.
+- language_detected
+Detected language: English
+Detected language: English
+Is this correct? Is this correct?
+
+# -- v1.5.0 barrier -- #
+
+# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+- check_net
+Enabling WiFi...
+
+# Shown while 3hs is launching, while attempting to connect to the internet
+- check_inet
+Connecting to the internet...
+
+# Shown in extmeta when there is more than one alternative name.
+- alt_name_n_of_n
+Alternative name (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: switch)
+
+# Shown in search when an invalid hShop ID is entered
+- invalid_hsid
+Invalid hShop ID.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- outdated_app
+This version of 3hs is outdated. To use 3hs, you must have the latest version installed.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- please_update_manually
+Please update 3hs manually and try again.
+
+# Shown when checking for 3hs updates has failed
+- update_check_failed
+Could not check for 3hs updates.
+
+# Shown when installing a 3hs update has failed
+- update_install_failed
+Could not install the 3hs update.
+
+# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+- update_try_again_or_update_manually
+Please try again or update 3hs manually.
+
+# 1.5.6 barrier
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Cannot use any other parameters when specifying a unique ID.
+
+# invalid unique ID specified during search
+- invalid_uniq
+Invalid unique ID
+
+# shown as search tab header for unique ID search
+- unique_id
+Unique ID
+
+# 1.5.7 barrier
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (hold): Cancel Download
+
+# Shown in 3 lines menu
+- dlc_fixer
+DLC Fixer
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Checking titles on SD card...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Listing installed tickets...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Checking for broken DLC tickets...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+No broken DLC titles were found.
+If some DLC still does not function correctly, please reinstall it.
+Press UI_GLYPH_A to exit.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+/* the string is:
+Found %1 broken ticket(s).
+Fix it/them now?
+*/
+if(p1 < 2) return "Found %1 broken DLC ticket.\nFix it now?";
+else       return "Found %1 broken DLC tickets.\nFix them now?";
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Opening ticket database...
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+Extracting DLC tickets...
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Installing fixed DLC tickets...
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Done. If some DLC still does not function correctly, please reinstall it.
+Press UI_GLYPH_A to exit.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Enabled: Use a custom proxy.
+Disabled: Use the proxy configured in System Settings.
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Enabled
+
+# 1.5.9 barrier
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Important!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs is free software. If you paid for 3hs itself or paid extra for it as part of a bundle, please request a refund immediately!\n
+3hs is and will always be free to download from:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Press any button to continue.

@@ -1,0 +1,746 @@
+- native_name
+Nederlands
+
+- loading
+Aan het laden ...
+
+- luma_not_installed
+Je gebruikt een (C)FW die niet ondersteund is
+
+- install_luma
+Je kan 3hs niet op deze 3DS gebruiken
+
+- queue
+Wachtrij
+
+- fail_init_networking
+Kon netwerkdiensten niet opstarten
+
+- credits_thanks
+Bedankt voor het gebruiken van 3hs, een 3DS hShop applicatie
+Je kan deze software gratis verkrijgen op
+PAGE_3HS
+
+- press_to_install
+Klik op UI_GLYPH_A als je deze titel wilt installeren.
+Klik op UI_GLYPH_B als je dat niet wilt.
+
+- version
+Versie
+
+- prodcode
+Product code
+
+- size
+Grootte
+
+- name
+Naam
+
+- tid
+Titel ID
+
+- category
+Categorie
+
+- landing_id
+hShop ID
+
+- description
+Beschrijving
+
+- total_titles
+Aantal titels
+
+- select_cat
+Selecteer een categorie
+
+- select_subcat
+Selecteer een subcategorie
+
+- select_title
+Selecteer een titel
+
+- fmt_24h
+24 uur
+
+- fmt_12h
+12 uur
+
+- unknown
+onbekend
+
+- btrue
+waar
+
+- bfalse
+niet waar
+
+- top
+boven
+
+- bottom
+onder
+
+- resume_dl
+Downloads voortzetten
+
+- load_space
+Toon bruikbare opslag indicator
+
+- show_battery
+Toon batterij indicator
+
+- time_format
+Tijdsformaat
+
+- progbar_screen
+Laadbalk scherm
+
+- language
+Taal
+
+- value_x
+Waarde: %1
+
+- back
+Terug
+
+- invalid
+ongeldig
+
+- title_doesnt_exist
+Titel bestaat niet: %1
+
+- netcon_lost +code(_, number)
+##define S(zn) "Netwerk verbinding verloren (%1).\nWe proberen het in %2 " zn " weer..."
+if(p2 < 2) return S("seconde");
+else       return S("secondes");
+##undef S
+
+- about_app
+Informatie over applicatie
+
+- help_manual
+Hulp/Gebruikshandleiding
+
+- find_missing_content
+Vind missende titels
+
+- press_a_exit
+Klik op UI_GLYPH_A om af te sluiten
+
+- fatal_panic
+Fatale fout
+
+- failed_open_seeddb
+Kon seeddb.bin niet openen
+
+- update_to
+Wil je bijwerken naar versie %1?
+
+- search_content
+Zoek naar titels
+
+- search_content_action
+Zoek naar titels...
+
+- result_code
+Resultaatcode: %1
+
+- level
+Niveau: %1
+
+- summary
+Samenvatting: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Je hebt het hShop konijn gevonden!
+
+- already_installed_reinstall
+Titel is al geïnstalleerd. Herinstalleeren?
+
+- queue_empty
+De wachtrij is leeg
+Klik op UI_GLYPH_A om terug te gaan
+Tip: klik op UI_GLYPH_Y om een titel toe te voegen aan de wachtrij
+
+- cancel
+Weiger
+
+- confirm
+Accepteer
+
+- invalid_proxy
+Ongeldige proxy instellingen
+
+- more_about_content
+Meer over deze titel
+
+- lumalocalemode
+LumaLocale modus
+
+- automatic
+automatisch
+
+- manual
+handmatig
+
+- disabled
+uitgeschakeled
+
+- patching_reboot
+Luma3DS game patching is ingeschakeld
+Om de verandering te zien, moet je je 3DS herstarten
+
+- reboot_now
+Nu herstarten?
+
+- this_version
+Dit is 3hs versie %1
+
+- retry_req
+Opnieuw proberen gegevens te halen?
+
+- search_zero_results
+Zoekopdracht gaf 0 resultaten
+Klik op UI_GLYPH_A om terug te gaan
+
+- credits
+Met dank aan
+
+- check_extra
+Zoek naar extras
+
+- no_req
+Er is nog niets gebeurd
+
+- invalid_query
+Ongeldige zoekopdracht
+Klik op UI_GLYPH_A om terug te gaan
+
+- min_constraint
+Huidige 3hs versie %1 is lager dan het minimale wat %2 is
+
+- proxy
+Proxy
+
+- none
+(geen)
+
+- press_a_to_view
+Klik op UI_GLYPH_A om de waarde te bekijken
+
+- host
+Adres
+
+- port
+Poort
+
+- username
+Gebruikersnaam
+
+- password
+Wachtwoord
+
+- clear
+Maak leeg
+
+- progbar_screen_desc
+Het scherm om de laadbalk op te laten verschijnen
+
+- resume_dl_desc
+Hervat installaties wanneer zij onderbroken worden
+
+- load_space_desc
+Laad de vrije opslag balk
+
+- show_battery_desc
+Toon de status van de batterij
+
+- time_format_desc
+Jouw favoriete tijd formaat. 24h of 12h. In Nederland wordt 24h het vaakst gebruikt
+
+- language_desc
+De taal waarin alles wordt weergegeven.
+
+- lumalocalemode_desc
+De wijze waarom LumaLocale bestanden worden gegenereerd. Automatisch zal alles automatisch regelen. Als je handmatig kiest zal je worden gevraagt naar de taal en regio
+
+- check_extra_desc
+Zoek naar extras na het installeren van een spel
+
+- proxy_desc
+Configureer een proxy. Als je niet weet wat dat is raak deze optie dan niet aan
+
+- install_all
+Installeer alles
+
+- install_no_base
+Het spel waarbij deze extra hoort is niet geïnstalleerd. Toch doorgaan?
+
+- warn_no_base
+Waarschuw bij nutteloze extras
+
+- warn_no_base_desc
+Geef een waarschuwing als je een extra probeert te installeren waarvan het bijhorende spel niet is geïnstalleerd
+
+- replaying_errors
+Fouten aan het herspelen die zijn voorgekomen.
+
+- log
+Beheer logboek
+
+- upload_logs
+Logboek uploaden
+
+- clear_logs
+Logboek verwijderen
+
+- found_missing
+%1 missende titel(s) gevonden
+Ga naar de wachtrij om ze te installeren
+
+- found_0_missing
+Geen missende titles gevonden
+
+- max_elogs
+Maximum aantal extra log bestanden
+
+- max_elogs_desc
+Aantal oude log bestanden om te bewaren. Een nummer van 0 tot en met 255.
+
+- elogs_hint
+Nummer van 0 tot/met 255
+
+- log_id
+Gebruik deze ID om hulp te krijgen
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 blok)";
+else       return "%1 (%2 blokken)";
+
+- search_text
+Zoek op tekst
+
+- search_id
+Vind met hShop ID
+
+- search_tid
+Vind met titel ID
+
+- invalid_tid
+Ongeldig titel ID
+
+- theme_installer_tid_bad
+Bekijk de "Themes" categorie als je op zoek wilt naar thema's
+
+- enter_lgy_query
+Tik een klassieke zoekopdracht in
+
+- no_other_params_tid
+Je kan geen andere parameters gebruiken wanneer je op titel ID zoekt
+
+- both_sd_and_sb
+Je moet een sorteer methode en zoek richting aangeven als zelfs als je één van beide wilt gebruiken
+
+- invalid_sb
+Ongeldige sorteer methode
+
+- invalid_sd
+Ongeldige zoek richting
+
+- invalid_includes
+Ongeldige inclusie filters
+
+- invalid_excludes
+Ongelidge exclusie filters
+
+- filter_overlap
+Er is een overlap tussen de filters
+
+- lgy_search
+Klassieke zoekmethode
+
+- sure_reset
+Weet je zeker dat je je instellingen wilt terugzetten?
+
+- ascending
+Stijgend
+
+- descending
+Dalend
+
+- alphabetical
+Alfabetisch
+
+- downloads
+Populariteit
+
+- def_sort_meth
+Standaard sorteer methode
+
+- def_sort_meth_desc
+De standaard sorteer methode in gebruik tijdens het bekijken van titels.
+
+- def_sort_dir
+Standaard sorteer richting
+
+- def_sort_dir_desc
+De standaard sorteer richting in gebruik tijdens het bekijken van titels.
+
+- invalid_content_type
+Ongeldige titel type
+
+- theme_installed
+Een thema was geïnstalleerd. Bekijk PAGE_THEMES
+
+- file_installed
+Een bestand was geïnstalleerd. Deze zullen niet op je HOME-menu komen
+
+- allow_led
+Zet LED status licht aan
+
+- allow_led_desc
+Dit zorgt ervoor dat 3hs de kleur van de LED kan veranderen om status veranderingen aan te geven, zoals wanneer een titel klaar is met installeren.
+
+- dev_unitinfo
+Volgens ENVINFO is deze 3DS een ontwikkelaars variant.
+3hs zal niet correct werken op deze 3DS.
+Als je een normale 3DS hebt, controleer dan of "Enable developer UNITINFO" uit staat in de Luma3DS instellingen.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: navigeer
+
+- made_by
+door %1
+
+- themes
+Themas
+
+- invalid_theme_preview
+Ongeldige thema voorvertoning op de server!
+
+- hint_add_queue
+UI_GLYPH_Y: voeg toe aan wachtrij
+
+- hint_preview_theme
+UI_GLYPH_X: bekijk thema
+
+- alt_name
+Alternatieve naam
+
+- show_alt
+Gebruik alternatieve naam
+
+- show_alt_desc
+Toont de alternatieve naam van een titel in de lijst als hij bestaat
+
+- default_reinst
+Herinstalleer altijd
+
+- default_reinst_desc
+Vraag wanneer je een titel hebt geïnstalleerd niet of je heb wel echt opnieuw wilt installeren
+
+- installing_game_x_of_y
+Wachtrij aan het installeren: %2/%3
+%1
+
+- no_other_params_prod
+Je kan geen andere parameters gebruiken wanneer je op product code zoekt
+
+- invalid_prod
+Ongeldige product code
+
+- search_prod
+Vind met product code
+
+- disable_graph
+Schakel snelheidsgrafiek uit
+
+- disable_graph_desc
+Deze optie schakelt de senlheidsgrafiek uit die zich toont tijdens de installatie van een titel.
+
+- goto_region
+Spring naar een subregio
+
+- goto_region_desc
+Spring naar de in de subcategorie selectie naar de correcte subregio
+
+- add_music
+Je hebt nog geen muziek toegevoegt!
+Plaats de bestanden in /3ds/3hs/music op je SD kaart.
+
+- add_playlist
+Je hebt nog geen afspeellijsten toegevoegt!
+Voeg ze toe door op de "beheer"-knop te klikken
+
+- add_file_act
+[ voeg bestand toe ]
+
+- add_playlist_act
+[ voeg afspeellijst toe ]
+
+- new_playlist_name
+Nieuwe afspeellijst naam...
+
+- basic_options
+Algemene opties
+
+- randomize
+Speel afspeellijsten aselect af
+
+- repeat
+Herhaal afspeellijsten en liedjes
+
+- stereo
+Stereo
+
+- default_playlist
+Initiële afspeellijst
+
+- other
+Overig
+
+- select
+Selecteer...
+
+- playlist
+een afspeellijst
+
+- file
+een bestand
+
+- save
+Opslaan
+
+- manage_playlists
+Beheer afspeellijsten
+
+- audio
+Audio
+
+- everything
+Alles in deze categorie
+
+- quick
+Snel
+
+- filters
+Filters
+
+- new_invalid_tid
+Fout: ongeldige titel ID ingevoerd
+Titel IDs zien er gewoonlijk zo uit: 000400000008B500
+
+- new_invalid_prod
+Fout: ongeldige product code ingevoerd
+Product codes zien er gewoonlijk zo uit: CTR-P-ABCD
+
+- press_to_switch
+Klik op UI_GLYPH_L/UI_GLYPH_R om van modus te wisselen
+
+- empty
+(leeg)
+
+- enter_query
+Voer zoekopdracht in...
+
+- submit
+Zoek
+
+- content_type
+Titel type
+
+- all
+Alles
+
+- include_content
+Includeer
+
+- regions
+Regio's
+
+- include_filters
+Inclusies
+
+- exclude_filters
+Exclusies
+
+- add
+Voeg toe
+
+- normal_search
+Normale zoekmethode
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ %1 aan het spelen ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ %1 door %2 aan het spelen ♪
+
+- outdated_system
+Het system heeft een verouderde versie. Om 3hs te gebruiken heb je minstens versie 9.6.0 nodig.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Virtual Console type
+
+# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+#  %1 = your language name
+- automatically_detected
+3hs heeft automatisch gedetecteerd dat de systeemtaal %1 is. Klik op UI_GLYPH_A om te bevestigen.
+
+- press_b_continue
+Klik op UI_GLYPH_B om verder te gaan.
+
+- error_occurred
+Een fout is opgetreden
+
+- language_detected
+Detected language Nederlands
+Nederlandse taal gedetecteerd very long in this lang
+Is this correct? Klopt dit?
+
+# Shown in extmeta when there is more than one alternative name.
+- alt_name_n_of_n
+Alternatieve naam (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: wissel)
+
+# Shown while 3hs is launching, while attempting to connect to the internet
+- check_inet
+Aan het verbinden met het internet...
+
+# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+- check_net
+WiFi aan het inschakelen...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Controleren op kapotte DLC tickets...
+
+# Shown in 3 lines menu
+- dlc_fixer
+DLC repareren
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Klaar. Als sommige DLC nog steeds niet werkt, probeer het dan opnieuw te installeren.\n
+Klik op UI_GLYPH_A om terug te gaan.
+
+- do_donate
+Als je hShop nuttig vond, doneer dan alsjeblieft door PAGE_DONATE te bezoeken op een ander apparaat!
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Aan
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+DLC tickets aan het uitpakken...
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (houd vast): Annuleer download
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Gerepareerde DLC tickets aan het installeren...
+
+# Shown in search when an invalid hShop ID is entered
+- invalid_hsid
+Ongeldige hShop ID.
+
+# invalid unique ID specified during search
+- invalid_uniq
+Ongeldige unieke ID
+
+# New search method, same as legacy search on the site
+- legacy_search_tab
+Klassiek
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Titels op de SD kaart aan het controleren...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Geïnstalleerde tickets aan het zoeken...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+Er zijn geen kapotte DLC-titles gevonden.\n
+Als sommige DLC nog steeds niet werkt, probeer het dan opnieuw te installeren.\n
+Klik op UI_GLYPH_A om terug te gaan.
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Kan geen andere parameters opgeven wanneer er al een uniek ID is opgegeven.
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Ticketdatabase aan het openen...
+
+# Shown when an update failed or an outdated 3dsx version is used
+- outdated_app
+Deze versie van 3hs is verouderd. Om 3hs te gebruiken moet je de laatste versie hebben geïnstalleerd.
+
+# Shown when an update failed or an outdated 3dsx version is used
+- please_update_manually
+Werk 3hs handmatig bij en probeer het opnieuw.
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Belangrijk!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs is gratis software. Als je hebt betaald voor 3hs of extra hebt betaald as deel van een bundel, vraag meteen je geld terug!\n
+3hs is en zal altijd gratis beschikbaar zijn via:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Klik op een knop om verder te gaan.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Aan: gebruik een proxy specifiek aan 3hs.
+Uit: gebruik de proxy geconfigureerd in Systeeminstellingen.
+
+# Error message for search
+- query_too_short
+De zoekopdracht moet ten minste 1 karakter bevattten.
+
+# shown as search tab header for unique ID search
+- unique_id
+Uniek ID
+
+# Shown when checking for 3hs updates has failed
+- update_check_failed
+Kon niet controleren op updates voor 3hs.
+
+# Shown when installing a 3hs update has failed
+- update_install_failed
+Kon de 3hs update niet installeren.
+
+# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+- update_try_again_or_update_manually
+Probeer het opnieuw of werk 3hs handmatig bij.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+/* the string is:
+Found %1 broken ticket(s).
+Fix it/them now?
+*/
+if(p1 < 2) return "%1 kapotte DLC ticket gevonden.\nNu repareren?";
+else       return "%1 kapotte DLC tickets gevonden.\nNu repareren?";

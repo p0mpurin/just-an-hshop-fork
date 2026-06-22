@@ -1,0 +1,30 @@
+
+# This file exclusively contains error messages
+# Please take care in properly copying the +nobreak in your translations
+# It makes it so all linebreaks ("enter"s) are interpreted as a space instead
+
+# -- v1.4.5 barrier -- #
+
+- error_network_unavailable_summary
+Network unavailable
+
+- error_network_unavailable_description +nobreak
+Either hShop couldn't be reached or you're not connected to WiFi.
+Check your WiFi connection. If you're sure you're connected try forcing a network profile with Rosalina Menu:
+press UI_GLYPH_L + UI_GLYPH_DPAD_DOWN + SELECT to open it, then select ‘System configuration,’
+then ‘Control Wireless connection,’ and finally select a slot to force.
+
+- error_out_of_storage_summary
+Out of storage
+
+- error_out_of_storage_description +nobreak
+Your SD card or TWLNAND is full. The TWLNAND contains DSi titles and has limited capacity; you must
+delete titles to make more space. To clear up space on your SD card you can either delete games or buy a card with more
+capacity. You can find a guide on switching SD cards on the hShop website: PAGE_SWITCHING_SD_CARDS.
+
+- error_unknown_summary
+Unknown
+
+- error_unknown_description
+This error is not known! You can still get support in the official Discord channels or by sending an e-mail.
+

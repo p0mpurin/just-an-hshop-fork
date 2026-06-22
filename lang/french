@@ -1,0 +1,794 @@
+- native_name
+Français
+
+- loading
+Chargement...
+
+- luma_not_installed
+Un firmware non supporté a été détecté.
+
+- install_luma
+3hs ne peut pas être utilisé sur ce système.
+
+- queue
+Liste d'attente
+
+- fail_init_networking
+Impossible d'initialiser le réseau
+
+- credits_thanks
+Merci d'utiliser 3hs, un client 3DS pour hShop.
+Vous pouvez avoir ce logiciel gratuitement sur
+PAGE_3HS
+
+- press_to_install
+Appuyez sur UI_GLYPH_A pour installer ce contenu.
+Appuyez sur UI_GLYPH_B pour revenir à l'écran précédent.
+
+- version
+Version
+
+- prodcode
+Nom de Code
+
+- size
+Taille
+
+- name
+Nom
+
+- tid
+ID de titre
+
+- category
+Catégorie
+
+- landing_id
+ID hShop
+
+- description
+Description
+
+- total_titles
+Titres Total
+
+- select_cat
+Sélectionnez une catégorie
+
+- select_subcat
+Sélectionnez une sous-catégorie
+
+- select_title
+Sélectionnez un titre
+
+- fmt_24h
+24 heures
+
+- fmt_12h
+12 heures
+
+- unknown
+inconnu
+
+- btrue
+vrai
+
+- bfalse
+faux
+
+- top
+haut
+
+- bottom
+bas
+
+- resume_dl
+Continuer les téléchargements
+
+- load_space
+Montrer l'indicateur d'espace libre
+
+- show_battery
+Montrer l'indicateur de batterie
+
+- time_format
+Format horaire
+
+- progbar_screen
+Position de la barre de progression
+
+- language
+Langue
+
+- value_x
+Valeur: %1
+
+- back
+Retour
+
+- invalid
+invalide
+
+- title_doesnt_exist
+Ce titre n'existe pas: %1
+
+- netcon_lost
+La connexion internet a été perdue (%1).
+Nouvelle tentative dans %2 seconds...
+
+- about_app
+A propos
+
+- help_manual
+Aide/Manuel
+
+- find_missing_content
+Recherche de contenu manquant
+
+- press_a_exit
+Appuyez sur UI_GLYPH_A pour quitter.
+
+- fatal_panic
+Une erreur fatale est survenue.
+
+- failed_open_seeddb
+Impossible d'ouvrir le seeddb.bin.
+
+- update_to
+Voulez vous mettre à jour en %1?
+
+- search_content
+Rechercher
+
+- search_content_action
+Recherche en cours...
+
+- result_code
+Result code: %1
+
+- level
+Level: %1
+
+- summary
+Summary: %1
+
+- module
+Module: %1
+
+- hs_bunny_found
+Bravo! Tu as trouvé le lapin hShop!
+
+- already_installed_reinstall
+Le titre est déjà installé. Voulez-vous le réinstaller?
+
+- queue_empty
+La liste d'attente est vide.
+Appuyez sur UI_GLYPH_A pour revenir.
+Astuce: Appuyez sur UI_GLYPH_Y pour ajouter un titre à la liste d'attente.
+
+- cancel
+Annuler
+
+- confirm
+Confirmer
+
+- invalid_proxy
+Paramètre proxy invalide
+
+- more_about_content
+En savoir plus sur ce contenu
+
+- lumalocalemode
+LumaLocale mode
+
+- automatic
+automatique
+
+- manual
+manuel
+
+- disabled
+désactivé
+
+- patching_reboot
+Luma3DS game patching est maintenant activé.
+La console doit redémarrer pour que ce changement fasse effet.
+
+- reboot_now
+Redémarrer maintenant?
+
+- this_version
+Version de 3hs %1
+
+- retry_req
+Echec de la requête. Réessayer?
+
+- search_zero_results
+Aucun résultat pour votre recherche.
+Appuyez sur UI_GLYPH_A pour revenir.
+
+- credits
+Crédits
+
+- check_extra
+Recherche de contenu additionnel
+
+- no_req
+Aucune requête pour le moment
+
+- invalid_query
+Recherche invalide
+ appuyez sur UI_GLYPH_A pour revenir.
+
+- min_constraint
+La version actuelle de 3hs %1 est inférieure à celle requise %2
+
+- proxy
+Proxy
+
+- none
+(none)
+
+- press_a_to_view
+Appuyez sur UI_GLYPH_A pour afficher.
+
+- host
+Host
+
+- port
+Port
+
+- username
+Nom d'utilisateur
+
+- password
+Mot de passe
+
+- clear
+Supprimer
+
+- progbar_screen_desc
+Choisissez la position de la barre de progression.
+
+- resume_dl_desc
+Continuer les téléchargements après une interruption réseau.
+
+- load_space_desc
+Active/Désactive l'indicateur d'espace libre.
+
+- show_battery_desc
+Active/Désactive l'indicateur de batterie.
+
+- time_format_desc
+Choisissez le format de l'heure.
+
+- language_desc
+Change la langue de 3hs.
+
+- lumalocalemode_desc
+Choisit le mode de LumaLocale autosetter. "Automatique" séléctionne une langue automatiquement alors que "Manuel" affiche la région à choisir après l'installation.
+
+- check_extra_desc
+Cherche de contenu additionnel après l'installation.
+
+- proxy_desc
+Configure un serveur proxy pour 3hs. Ce paramètre est pour les utilisateurs avancés.
+
+- install_all
+Tout installer
+
+- install_no_base
+Le contenu de base n'est pas installé. Continuer quand même?
+
+- warn_no_base
+Avertir si le contenu de base n'est pas installé
+
+- warn_no_base_desc
+Montre un avertissement avant d'installer une mise à jour/DLC si le contenu de base correspondant n'est pas installé.
+
+- replaying_errors
+Les erreurs suivantes sont survenues lors du traitement de la liste d'attente.
+
+- log
+Logs
+
+- upload_logs
+Envoyer les logs
+
+- clear_logs
+Supprimer les logs
+
+- found_missing
+%1 titre(s) manquant a été trouvé
+Vérifiez la liste d'attente pour les installer.
+
+- found_0_missing
+Aucun titre manquant n'a été trouvé.
+
+- max_elogs
+Nombre maximum de fichiers log
+
+- max_elogs_desc
+Définit le nombre de fichiers logs à conserver. Les valeurs possibles sont comprises entre 0 et 255. Si la valeur est définie à 0, aucun log additionel sera conservé.
+
+- elogs_hint
+Valeur entre 0 et 255
+
+- log_id
+Utilisez cet ID pour le support:
+%1
+
+- size_plus_block +code(_, number)
+if(p2 < 2) return "%1 (%2 bloc)";
+else       return "%1 (%2 blocs)";
+
+- search_text
+Recherche par texte
+
+- search_id
+Recherche par l'ID hShop
+
+- search_tid
+Recherche par title ID
+
+- invalid_tid
+Title ID Invalide
+
+- theme_installer_tid_bad
+Veuillez aller dans la catégorie Themes pour installer des thèmes.
+
+- enter_lgy_query
+Entrez votre recherche
+
+- no_other_params_tid
+Impossible d'utiliser d'autres paramètres en utilisant un Title ID
+
+- both_sd_and_sb
+Vous devez spécifier une méthode de tri et sa direction lors du tri des résultats de la recherche
+
+- invalid_sb
+Méthode de tri invalide
+
+- invalid_sd
+Direction de tri invalide
+
+- invalid_includes
+Filtres inclus invalide
+
+- invalid_excludes
+Filtres exclus invalide
+
+- filter_overlap
+Chevauchement détecté dans les filtres de recherche spécifié
+
+- lgy_search
+Recherche simple
+
+- sure_reset
+Êtes vous sûr de réinitialiser cette configuration?
+
+- ascending
+Croissant
+
+- descending
+Décroissant
+
+- alphabetical
+Alphabétique
+
+- downloads
+Téléchargements
+
+- def_sort_meth
+Méthode de tri par défaut
+
+- def_sort_meth_desc
+Spécifie la méthode de tri par défaut en regardant une liste de titres.
+
+- def_sort_dir
+Direction de tri par défaut
+
+- def_sort_dir_desc
+Spécifie la direction de la méthode de tri par défaut en regardant une liste de titres.
+
+- invalid_content_type
+Type de contenu invalide
+
+- theme_installed
+Un thème a été installé. Merci de regarder PAGE_THEMES
+
+- file_installed
+Un fichier a été installé.
+
+- allow_led
+Activer l'indication LED
+
+- allow_led_desc
+Fait clignoter la LED pour informer des différents changements d'état.
+
+- dev_unitinfo
+Cette console a été détecté en tant qu'unité de développement.
+3hs risque de ne pas fonctionner correctement.
+Si vous avez une 3ds normale, soyez sûr d'avoir désactivé "Enable developer UNITINFO" dans le menu de configuration luma.
+
+- hint_navigate
+UI_GLYPH_DPAD_CLEAR/UI_GLYPH_CPAD: sélectionner
+
+- made_by
+par %1
+
+- themes
+Thèmes
+
+# informing user that the preview image (for themes) that was on the server was unable to be displayed
+- invalid_theme_preview
+Impossible de charger l'aperçu du thème depuis le serveur.
+
+- hint_add_queue
+UI_GLYPH_Y: ajouter à la file
+
+- hint_preview_theme
+UI_GLYPH_X: aperçu du thème
+
+# used in extmeta for the alternative name, only used in japanese titles for now
+- alt_name
+Autre nom
+
+# setting title
+- show_alt
+Montrer les noms alternatifs
+
+# setting description
+- show_alt_desc
+Montre les noms alternatif si disponible.
+
+# setting title
+- default_reinst
+Toujours réinstaller les logiciels déjà installés
+
+# setting description
+- default_reinst_desc
+Réinstalle toujours les logiciels déjà présents sur ce système sans demander.
+
+# shown while installing a queue on the other screen
+#  %1 = current game title
+#  %2 = total titles
+#  %3 = current position in the queue
+- installing_game_x_of_y
+Progression: %2/%3
+%1
+
+- no_other_params_prod
+Impossible de spécifier d'autres paramètres en spécifiant un code de produit
+
+- invalid_prod
+Code de produit invalide
+
+- search_prod
+Recherche par code de produit
+
+# scroll, setting title
+- disable_graph
+Désactiver le graphe de latence
+
+# setting description
+- disable_graph_desc
+Désactive le graphe de latence affiché lors de l'installation.
+
+# scroll, setting title
+- goto_region
+Entrer automatiquement dans la sous-catégorie de la région de la console
+
+# setting description
+- goto_region_desc
+Entre automatiquement dans la sous-catégorie correspondant à la région du système, si existant.
+
+- add_music
+Vous n'avez pas encore ajouté de musique!
+Essayez d'en mettre dans /3ds/3hs/music dans la carte SD.
+
+- add_playlist
+Vous n'avez pas encore ajouté de playlists!
+Essayez d'en ajouter dans l'option de gestion des playlists.
+
+# noscroll, Keep the [ ], it is used in a menu with other file names
+- add_file_act
+[ ajouter un fichier ]
+
+# noscroll, same as above
+- add_playlist_act
+[ ajouter une playlist ]
+
+# keyboard hint
+- new_playlist_name
+Nom de la playlist...
+
+# noscroll, Basic audio engine options (randomize, repeat, stereo)
+- basic_options
+Options de bases
+
+# noscroll, audio engine option
+- randomize
+Playlists aléatoires
+
+# noscroll, audio engine option
+- repeat
+Musique et playlists en boucle
+
+# noscroll, stereo ( = multichannel) audio option
+- stereo
+Stéreo
+
+# noscroll, Default playlist audio option
+- default_playlist
+Playlist par défaut
+
+# noscroll, other audio engine options (select current file/playlist, manage playlists), may be translated as miscelaneous
+- other
+Autres
+
+# button, this string is followed by two buttons, one with "file" and another with "playlist", selects a playlist/file to play
+- select
+Sélectionner...
+
+# button, keep lowercase, see comment on select
+- playlist
+playlist
+
+# button, keep lowercase, see comment on select
+- file
+fichier
+
+# button, save audio engine configuration
+- save
+Sauvegarder
+
+# button
+- manage_playlists
+Gestion des playlists
+
+# Button in more menu that leads to audio configuration.
+- audio
+Audio
+
+# button that adds everything in this category as a filter
+- everything
+Tout dans cette catégorie
+
+# new search method, has the option of quick filtering of official content categories and the regions europe, north-america and japan
+- quick
+Rapide
+
+# new search method, has the option of filtering based on advanced filters like on the website
+- filters
+Filtres
+
+# Invalid title id error in new search
+- new_invalid_tid
+Erreur: le title ID entré est incorrect.
+Les Title IDs ont ce format: 0004XXXXXXXXXXXX
+Exemple: 0004000000186300
+
+# Invalid product code error in new search
+- new_invalid_prod
+Erreur: Le code de produit entré est incorrect.
+Les codes de produit ont ce format: XXX-X-XXXX
+Exemple: CTR-N-KMJP
+
+# Subtitle of the new search methods
+- press_to_switch
+UI_GLYPH_L/UI_GLYPH_R: changer de mode de recherche
+
+# Placeholder for empty search bar
+- empty
+(vide)
+
+# keyboard hint while filling the search bar for new search
+- enter_query
+Entrez votre recherche...
+
+# Submit new search and display results
+- submit
+Rechercher
+
+# label for content type selector for normal search
+- content_type
+Type de contenu
+
+# label for content type selector, to indicate that all content types are to be included
+- all
+Tout
+
+# label for checkbox list of categories to include in quick search
+- include_content
+Contenu inclus
+
+# label for checkbox list of regions to include in quick search
+- regions
+Régions
+
+# label for include filters of normal search
+- include_filters
+Filtres d'inclusion
+
+# label for exclude filters of normal search
+- exclude_filters
+Filtres d'exclusion
+
+# button, adds a filter in normal search
+- add
+Ajouter
+
+# search menu option to open normal search
+- normal_search
+Recherche normale
+
+# Slides in screen when a new song is up
+#  %1 = song name
+- playing_x
+♪ En cours: %1 ♪
+
+# Slides in screen when a new song is up and it has artist metadata
+#  %1 = song name
+#  %2 = artist name
+- playing_x_by_y
+♪ En cours: %1 par %2 ♪
+
+- outdated_system
+Un ancien système a été détecté. Il faut au moins être en 9.6.0 pour utiliser 3hs.
+
+# used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
+- virtual_console_type
+Type de Console Virtuelle
+
+# Error message for search
+- query_too_short
+La recherche doit contenir au moins 1 caractère.
+
+# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels and helpers answering with "hold R while launching hShop"
+#  %1 = your language name
+- automatically_detected
+3hs a automatiquement détecté le %1 en tant que langue système. Appuyez sur UI_GLYPH_A pour confirmer.
+
+# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+- check_net
+Activation du WiFi...
+
+# Shown while 3hs is launching, while attempting to connect to the internet
+- check_inet
+Connection à internet...
+
+# Shown in extmeta when there is more than one alternative name.
+- alt_name_n_of_n
+Nom alternatif (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: changer)
+
+# Shown in search when an invalid hShop ID is entered
+- invalid_hsid
+hShop ID incorrect.
+
+# Shown when checking for 3hs updates has failed
+- update_check_failed
+Impossible d'obtenir les MAJs de 3hs
+
+# Shown when installing a 3hs update has failed
+- update_install_failed
+L'installation de la MAJ de 3hs a échoué
+
+# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+- update_try_again_or_update_manually
+Tentez de réessayer ou mettez à jour manuellement
+
+- do_donate
+Si vous trouvez hShop utile, vous pouvez faire un don sur PAGE_DONATE en utilisant un autre appareil!
+
+- error_occurred
+Une erreur est survenue
+
+- language_detected
+Langue Français détectée
+Detected language English
+Est-ce correct? Is this correct?
+
+# I'm not sure about this one since you can't translate "legacy" with this meaning to french
+- legacy_search_tab
+Ancienne méthode
+
+- outdated_app
+Cette version de 3hs est obsolète. Vous devez mettre à jour vers la dernière version.
+
+- please_update_manually
+Mettez à jour manuellement et réessayez.
+
+- press_b_continue
+Appuyez sur UI_GLYPH_B pour continuer
+
+# 1.5.6 barrier
+
+# Shown when other parameters have been entered in legacy search but a unique ID was specified as well
+- no_other_params_uniq
+Impossible d'utiliser d'autres paramètres en spécifiant un unique ID.
+
+# invalid unique ID specified during search
+- invalid_uniq
+Le unique ID est incorrect
+
+# shown as search tab header for unique ID search
+- unique_id
+Unique ID
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_title
+Important!
+
+# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+- startup_notice_text
+3hs est un logiciel GRATUIT. Si vous avez payé pour 3hs ou payé un supplément avec 3hs préinstallé, vous vous êtes fait arnaqué!
+Demandez un remboursement si possible!
+3hs est, et sera toujours gratuit et téléchargeable sur:
+
+# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+- press_any_button_continue
+Appuyez sur un bouton pour continuer 
+
+# 1.5.7 barrier
+
+# Shown during title installation
+- hold_b_cancel
+UI_GLYPH_B (hold): Annuler le téléchargement
+
+# Shown in 3 lines menu
+- dlc_fixer
+Corriger les DLC
+
+# Shown in the loading screen of the DLC fixer
+- listing_sd_titles
+Chargement des logiciels sur la carte SD...
+
+# Shown in the loading screen of the DLC fixer
+- listing_tickets
+Chargement des tickets installés...
+
+# Shown in the loading screen of the DLC fixer
+- checking_broken_dlctiks
+Recherche de tickets de DLC cassés...
+
+# Shown when no broken DLCs were found in DLC fixer menu
+- no_dlc_to_fix
+Aucun DLC cassé n'a été trouvé. Si certains DLC ne fonctionnent pas, réinstallez-les.\n
+Appuyez sur UI_GLYPH_A pour quitter.
+
+# Shown when user is asked whether or not to fix tickets
+- fix_n_dlc_tickets +code(number)
+/* the string is:
+Found %1 broken ticket(s).
+Fix it/them now?
+*/
+if(p1 < 2) return "%1 ticket de DLC cassé a été trouvé.\nVoulez-vous le corriger maintenant?";
+else       return "%1 tickets de DLC cassés ont été trouvés.\nVoulez-vous les corriger maintenant?";
+
+# Shown as ticket.db is opened during DLC fixer usage
+- opening_ticket_db
+Ouverture de la base de données des tickets...
+
+# Shown as ticket.db is read during DLC fixer usage
+- extracting_dlc_tickets
+Extraction des tickets des DLCs...
+
+# Shown in the final step of DLC fixer usage
+- installing_fixed_dlc_tickets
+Réparation des tickets des DLCs cassés...
+
+# Shown at the end of the DLC fixer usage
+- dlc_fixer_done
+Terminé. Si certains DLC ne fonctionnent toujours pas, réinstallez-les.\n
+Appuyez sur UI_GLYPH_A pour quitter.
+
+# Shown in proxy menu, on the top screen
+# Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
+- proxy_toggle_hint
+Activé: Utiliser un proxy customisé
+Désactivé: Utiliser le proxy configuré dans les paramètres de la console
+
+# General UI, used in places like the proxy toggle in settings
+- enabled
+Activé
