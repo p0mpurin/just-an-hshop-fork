@@ -56,7 +56,7 @@ When upstream publishes a new release, its source changes must be merged into No
 
 The project uses devkitARM, libctru, Citro2D/Citro3D, makerom, bannertool, Perl, and mbedTLS.
 
-Create `source/hsapi_auth.c` from the included template using credentials you are authorized to use. Never commit API credentials.
+`source/hsapi_auth.c` is not included in this repository. It contains the client-auth implementation distributed with the official public 3hs source archive. Builders should supply that upstream file locally; personal hShop credentials are not required. Do not commit the generated/local file.
 
 Configure the New 3DS release target:
 
@@ -78,4 +78,3 @@ The output is `3hs.cia`.
 Nocturne is maintained by **p0mpurin** and is based on 3hs by the hShop development team.
 
 The original project credits and build documentation remain available in [README](README). This fork is distributed under the GNU General Public License v3.0; see [LICENSE](LICENSE).
-

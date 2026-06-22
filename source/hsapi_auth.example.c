@@ -1,9 +1,12 @@
 /*
- * Local build template.
+ * Local build placeholder.
  *
- * Copy this file to source/hsapi_auth.c and replace the placeholders with
- * credentials you are authorized to use. source/hsapi_auth.c is ignored by
- * Git and must never be committed.
+ * Nocturne uses the client-auth implementation distributed in the official
+ * public 3hs source archive. Builders should provide that upstream
+ * source/hsapi_auth.c file locally; personal hShop credentials are not
+ * expected or required.
+ *
+ * source/hsapi_auth.c is ignored by Git and should not be committed here.
  */
 #include <string.h>
 
@@ -14,4 +17,3 @@ void hsapi_password(char *ret)
 {
 	memcpy(ret, "<api-password>", hsapi_password_length);
 }
-
