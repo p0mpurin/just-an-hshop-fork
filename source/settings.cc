@@ -35,6 +35,7 @@
 #include <string>
 
 #include "proxy.hh"
+#include "mng.hh"
 #include "log.hh"
 
 #define SETTINGS_LOCATION "/3ds/3hs/settings"
@@ -579,7 +580,9 @@ static std::string serialize_id_text(SettingsId ID)
 	case ID_WallpaperDim:
 		return std::to_string((g_nsettings.wallpaper_dim * 100 + 127) / 255) + "%";
 	case ID_Performance:
-		return "804 MHz + L2 + Core 2";
+		return ctr::mng::is_n3ds()
+			? "New 3DS · Enhanced"
+			: "Old 3DS · Compatible";
 	}
 
 	return STRING(unknown);
@@ -1031,7 +1034,10 @@ static void update_settings_ID(SettingsId ID)
 		break;
 	}
 	case ID_Performance:
-		ui::notice("New 3DS performance mode is active.\n\n804 MHz CPU  ·  L2 cache\nCore 2 CIA writer  ·  1 MiB pipeline\nDirect CDN connection");
+		if(ctr::mng::is_n3ds())
+			ui::notice("New 3DS enhanced mode is active.\n\n804 MHz CPU  ·  L2 cache\nCore 2 CIA writer  ·  1 MiB pipeline\nDirect CDN connection");
+		else
+			ui::notice("Old 3DS compatibility mode is active.\n\nDefault-core CIA writer\n1 MiB buffered pipeline\nDirect CDN connection\n\nDownload speed is limited by older hardware.");
 		break;
 	}
 }

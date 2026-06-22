@@ -1,6 +1,6 @@
 # Nocturne
 
-A modern New Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wallpapers, faster downloads, and quality-of-life improvements.
+A modern Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wallpapers, faster downloads, and quality-of-life improvements.
 
 > Nocturne is an unofficial community fork. It is not maintained or supported by the hShop team.
 
@@ -11,9 +11,10 @@ A modern New Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wal
 - Adjustable wallpaper dimming
 - Redesigned title details and download interface
 - Live download stage, speed, progress, and ETA
-- New 3DS performance mode:
+- Hardware-adaptive performance pipeline:
+  - safe Old 3DS/2DS compatibility mode
   - 804 MHz CPU and L2 cache
-  - dedicated Core 2 CIA writer
+  - dedicated Core 2 CIA writer on New 3DS
   - pipelined 1 MiB network/install buffers
   - direct CDN connection
 - Quiet user-initiated download cancellation
@@ -22,11 +23,11 @@ A modern New Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wal
 
 ## Requirements
 
-- New Nintendo 3DS, New Nintendo 3DS XL, or New Nintendo 2DS XL
+- Nintendo 3DS-family system
 - Luma3DS custom firmware
 - FBI or another CIA installer
 
-This build deliberately targets New 3DS hardware and is not intended for Old 3DS systems.
+New 3DS-family systems use the enhanced 804 MHz/L2/Core 2 path. Old 3DS and Old 2DS systems automatically use a safe compatibility path and should expect lower download speeds.
 
 ## Installation
 
@@ -58,7 +59,7 @@ The project uses devkitARM, libctru, Citro2D/Citro3D, makerom, bannertool, Perl,
 
 `source/hsapi_auth.c` is not included in this repository. It contains the client-auth implementation distributed with the official public 3hs source archive. Builders should supply that upstream file locally; personal hShop credentials are not required. Do not commit the generated/local file.
 
-Configure the New 3DS release target:
+Configure the release target:
 
 ```sh
 perl build.pl --target release --configure \

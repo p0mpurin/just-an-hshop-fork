@@ -1,5 +1,12 @@
 # Nocturne changelog
 
+## 1.0.1
+
+- Added automatic Old 3DS and Old 2DS compatibility
+- Kept the dedicated Core 2 writer on New 3DS systems
+- Added a safe default-core fallback instead of crashing when Core 2 is unavailable
+- Updated Performance mode to show the active hardware path
+
 ## 1.0.0
 
 - Introduced the OLED-black and light-pink Nocturne interface
@@ -13,4 +20,3 @@
 - Added custom HOME Menu banner and icon
 - Hardened NBAPI parsing, authentication, HTTP status handling, and token decoding
 - Added fork-safe official 3hs version tracking
-

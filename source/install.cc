@@ -209,10 +209,15 @@ public:
 
 		s32 priority = 0;
 		svcGetThreadPriority(&priority, CUR_THREAD_HANDLE);
-		/* Core 2 exists on New 3DS and is permitted by the exheader. Keep AM
-		 * writes and buffer copies off the application/network core. */
+		/* Core 2 exists only on New 3DS. Old 3DS/2DS keeps the same ordered,
+		 * buffered pipeline on the default application core. */
+		int writer_core = ctr::mng::is_n3ds() ? 2 : -2;
 		this->writer = threadCreate(&CiaWritePipeline::writer_entry, this,
-			64 * 1024, priority - 1, 2, false);
+			64 * 1024, priority - 1, writer_core, false);
+		/* Be defensive if Core 2 is unavailable despite hardware detection. */
+		if(!this->writer && writer_core == 2)
+			this->writer = threadCreate(&CiaWritePipeline::writer_entry, this,
+				64 * 1024, priority - 1, -2, false);
 		panic_assert(this->writer != nullptr, "failed to create CIA writer thread");
 	}
 
