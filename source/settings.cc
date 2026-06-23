@@ -1257,6 +1257,10 @@ void show_settings()
 	{
 		log_on_settings_changed();
 		write_settings();
+		/* Force an immediate flush instead of deferring to atexit.
+		 * The atexit handler may not run if the user presses HOME
+		 * after changing a setting and before fully exiting the app. */
+		settings_sync();
 	}
 }
 
