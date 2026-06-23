@@ -81,6 +81,7 @@ enum NewSettings_flags0 {
 	FLAG0_GOTO_REGION       = 0x80000,
 	FLAG0_PROXY_ENABLED     = 0x100000,
 	FLAG0_BACKGROUND_TIP_SEEN = 0x200000,
+	FLAG0_DIRECT_CDN_EXPERIMENTAL = 0x400000,
 };
 
 #define ISET_RESUME_DOWNLOADS (get_nsettings()->flags0 & FLAG0_RESUME_DOWNLOADS)
@@ -101,6 +102,7 @@ enum NewSettings_flags0 {
 #define ISET_GOTO_REGION (get_nsettings()->flags0 & FLAG0_GOTO_REGION)
 #define ISET_PROXY_ENABLED (get_nsettings()->flags0 & FLAG0_PROXY_ENABLED)
 #define ISET_BACKGROUND_TIP_SEEN (get_nsettings()->flags0 & FLAG0_BACKGROUND_TIP_SEEN)
+#define ISET_DIRECT_CDN_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_DIRECT_CDN_EXPERIMENTAL)
 
 enum SettingsId
 {

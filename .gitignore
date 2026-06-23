@@ -16,6 +16,9 @@ data/*.hstx
 # Local tooling downloads
 tools/bannertool-bin/
 tools/bannertool.zip
+tools/wifi_benchmark/build/
+tools/wifi_benchmark/*.cia
+tools/wifi_benchmark/*.elf
 
 # API credentials generated for local builds
 source/hsapi_auth.c
@@ -26,4 +29,3 @@ Thumbs.db
 *.user
 *.suo
 *.VC.db
-

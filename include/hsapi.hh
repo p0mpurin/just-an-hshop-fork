@@ -131,6 +131,7 @@ namespace hsapi
 	Result get_latest_version_string(std::string& ret);
 
 	/* dlapi ops */
+	Result get_download_link(std::string& ret, hid id);
 	Result get_download_link(std::string& ret, const Title& meta);
 
 	hsapi::Error& last_error();
@@ -207,4 +208,3 @@ namespace hsapi
 }
 
 #endif
-

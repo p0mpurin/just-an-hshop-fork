@@ -258,7 +258,11 @@ Result install::gui::hs_cia(const hsapi::Title& meta, bool interactive, bool def
 
 start_install:
 	res = install::hs_cia(meta, [&queue, &bar, stage](u64 now, u64 total) -> void {
-		stage->set_text(now ? "Downloading + installing" : "Preparing installation");
+		stage->set_text(now
+			? (install::is_direct_cdn_active()
+				? "Direct socket + installing"
+				: "Downloading + installing")
+			: "Preparing installation");
 		bar->update(now, total);
 		bar->activate();
 		queue.render_frame();
@@ -298,6 +302,47 @@ start_install:
 	else            ui::LED::SetTimeout(time(NULL) + 2);
 
 	ui::set_focus(focus);
+	return res;
+}
+
+Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
+{
+	bool focus = ui::set_focus(true);
+	ui::ProgressBar *bar;
+	ui::Text *stage;
+	ui::I18NEnabledRenderQueue queue;
+	make_render_queue(queue, &bar, &stage, label);
+	stage->set_text("hShop CDN network-only test");
+	queue.render_frame();
+
+	install::NetworkBenchmarkResult stats;
+	Result res = install::hs_network_benchmark(id, stats,
+		[&queue, &bar, stage](u64 now, u64 total) -> void {
+			stage->set_text(now
+				? (install::is_direct_cdn_active()
+					? "Direct socket to RAM · no SD writes"
+					: "Nintendo HTTP to RAM · no SD writes")
+				: "Requesting authenticated CDN link");
+			bar->update(now, std::min<u64>(total, 32ULL * 1024ULL * 1024ULL));
+			bar->activate();
+			queue.render_frame();
+		});
+
+	ui::set_focus(focus);
+	if(R_SUCCEEDED(res))
+	{
+		char message[256];
+		snprintf(message, sizeof(message),
+			"hShop CDN network-only result\n\nAverage  %.2f MiB/s\nPeak       %.2f MiB/s\nData       %.1f MiB\n\nNo CIA data was installed or written to SD.",
+			stats.average_mib_s, stats.peak_mib_s, stats.bytes / (1024.0f * 1024.0f));
+		ui::notice(message, 42.0f);
+	}
+	else if(res != APPERR_CANCELLED)
+	{
+		error_container err = get_error(res);
+		report_error(err, "User was running hShop CDN network benchmark for landing ID " + std::to_string(id));
+		handle_error(err);
+	}
 	return res;
 }
 

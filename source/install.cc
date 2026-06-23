@@ -26,6 +26,14 @@
 #include <3ds.h>
 #include <malloc.h>
 #include <string.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <poll.h>
+#include <algorithm>
+#include <cctype>
 
 namespace ui
 {
@@ -36,7 +44,11 @@ namespace ui
 
 using expandable_binary_data_type = std::basic_string<u8>;
 
-namespace install { Handle active_cia_handle = CIA_HANDLE_INVALID; }
+namespace install {
+	Handle active_cia_handle = CIA_HANDLE_INVALID;
+	static bool direct_cdn_active = false;
+	bool is_direct_cdn_active() { return direct_cdn_active; }
+}
 using install::active_cia_handle;
 
 /* defined in file_fwd.cc */
@@ -49,8 +61,257 @@ enum class ThreadState {
 	Finished,
 };
 
+class DirectCdnDownload
+{
+public:
+	DirectCdnDownload(bool, bool, bool)
+	{
+		this->buffer = (u8 *)memalign(0x1000, receive_size);
+	}
+	~DirectCdnDownload() { free(this->buffer); }
+
+	void set_notify_event(ctr::Event *event) { this->notify_event = event; }
+	void set_target(const std::string& target, HTTPC_RequestMethod) { this->url = target; }
+	void on_total_size_try_get(std::function<Result()> func) { this->on_total = func; }
+	void on_chunk(std::function<Result(size_t)> func) { this->on_chunk_cb = func; }
+	u32 downloaded() const { return this->downloaded_size; }
+	u32 maybe_total_size() const { return this->total_size; }
+	const u8 *data_buffer() const { return this->buffer; }
+
+	void abort()
+	{
+		this->cancelled = true;
+		int fd = this->socket_fd;
+		if(fd >= 0)
+			shutdown(fd, SHUT_RDWR);
+	}
+
+	Result execute_once()
+	{
+		return this->execute_url(this->url, 0);
+	}
+
+private:
+	Result execute_url(const std::string& target_url, unsigned redirect_depth)
+	{
+		std::string host, path;
+		if(redirect_depth > 5 || !this->parse_url(target_url, host, path))
+			return APPERR_DIRECT_SOCKET_SETUP;
+		if(!this->buffer)
+			return APPERR_OUT_OF_MEM;
+
+		struct addrinfo hints {};
+		hints.ai_family = AF_INET;
+		hints.ai_socktype = SOCK_STREAM;
+		struct addrinfo *addresses = nullptr;
+		if(getaddrinfo(host.c_str(), "80", &hints, &addresses) != 0)
+			return APPERR_DIRECT_SOCKET_SETUP;
+
+		Result result = APPERR_DIRECT_SOCKET_SETUP;
+		for(struct addrinfo *it = addresses; it && this->socket_fd < 0; it = it->ai_next)
+		{
+			int fd = socket(it->ai_family, it->ai_socktype, it->ai_protocol);
+			if(fd < 0)
+				continue;
+			int receive_buffer = 1024 * 1024;
+			setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &receive_buffer, sizeof(receive_buffer));
+			int original_flags = fcntl(fd, F_GETFL, 0);
+			fcntl(fd, F_SETFL, original_flags | O_NONBLOCK);
+			int connected = connect(fd, it->ai_addr, it->ai_addrlen);
+			if(connected != 0 && errno != EINPROGRESS)
+			{
+				close(fd);
+				continue;
+			}
+
+			bool ready = connected == 0;
+			for(unsigned waited_ms = 0; !ready && !this->cancelled && waited_ms < 10000; waited_ms += 100)
+			{
+				struct pollfd pfd { fd, POLLOUT, 0 };
+				int poll_result = poll(&pfd, 1, 100);
+				this->notify();
+				if(poll_result > 0)
+				{
+					int socket_error = 0;
+					socklen_t error_size = sizeof(socket_error);
+					if(getsockopt(fd, SOL_SOCKET, SO_ERROR, &socket_error, &error_size) == 0
+						&& socket_error == 0)
+						ready = true;
+					else
+						break;
+				}
+			}
+
+			if(ready && !this->cancelled)
+			{
+				fcntl(fd, F_SETFL, original_flags);
+				this->socket_fd = fd;
+			}
+			else
+				close(fd);
+		}
+		freeaddrinfo(addresses);
+		if(this->socket_fd < 0)
+			return result;
+
+		std::string request =
+			"GET " + path + " HTTP/1.1\r\n"
+			"Host: " + host + "\r\n"
+			"User-Agent: Nocturne-Direct/1.0\r\n"
+			"Accept: */*\r\n"
+			"Accept-Encoding: identity\r\n"
+			"Connection: close\r\n\r\n";
+		size_t sent = 0;
+		while(sent < request.size())
+		{
+			ssize_t count = send(this->socket_fd, request.data() + sent, request.size() - sent, 0);
+			if(count <= 0)
+				goto done;
+			sent += count;
+		}
+
+		{
+			std::string header;
+			bool header_complete = false;
+			result = APPERR_DIRECT_SOCKET_TRANSFER;
+
+			while(!this->cancelled)
+			{
+				ssize_t count = recv(this->socket_fd, this->buffer, receive_size, 0);
+				if(count <= 0)
+					break;
+
+				if(!header_complete)
+				{
+					header.append((const char *)this->buffer, count);
+					size_t separator = header.find("\r\n\r\n");
+					if(separator == std::string::npos)
+					{
+						if(header.size() > 16 * 1024)
+							break;
+						continue;
+					}
+
+					size_t header_size = separator + 4;
+					std::string lower = header.substr(0, header_size);
+					std::transform(lower.begin(), lower.end(), lower.begin(),
+						[](unsigned char c) { return std::tolower(c); });
+					bool redirect =
+						lower.find("http/1.1 301") == 0 || lower.find("http/1.0 301") == 0 ||
+						lower.find("http/1.1 302") == 0 || lower.find("http/1.0 302") == 0 ||
+						lower.find("http/1.1 303") == 0 || lower.find("http/1.0 303") == 0 ||
+						lower.find("http/1.1 307") == 0 || lower.find("http/1.0 307") == 0 ||
+						lower.find("http/1.1 308") == 0 || lower.find("http/1.0 308") == 0;
+					if(redirect)
+					{
+						size_t location_pos = lower.find("\r\nlocation:");
+						if(location_pos == std::string::npos)
+						{
+							result = APPERR_DIRECT_SOCKET_SETUP;
+							break;
+						}
+						location_pos += strlen("\r\nlocation:");
+						while(location_pos < header_size && (header[location_pos] == ' ' || header[location_pos] == '\t'))
+							++location_pos;
+						size_t location_end = header.find("\r\n", location_pos);
+						std::string redirect_url = header.substr(location_pos, location_end - location_pos);
+						if(redirect_url.compare(0, 2, "//") == 0)
+							redirect_url = "http:" + redirect_url;
+						else if(!redirect_url.empty() && redirect_url[0] == '/')
+							redirect_url = "http://" + host + redirect_url;
+
+						close(this->socket_fd);
+						this->socket_fd = -1;
+						result = this->execute_url(redirect_url, redirect_depth + 1);
+						return result;
+					}
+					if(lower.find("http/1.1 200") != 0 && lower.find("http/1.0 200") != 0)
+					{
+						result = APPERR_DIRECT_SOCKET_SETUP;
+						break;
+					}
+					size_t length_pos = lower.find("\r\ncontent-length:");
+					if(length_pos == std::string::npos)
+					{
+						result = APPERR_DIRECT_SOCKET_SETUP;
+						break;
+					}
+					length_pos += strlen("\r\ncontent-length:");
+					while(length_pos < lower.size() && lower[length_pos] == ' ')
+						++length_pos;
+					this->total_size = strtoul(lower.c_str() + length_pos, nullptr, 10);
+					if(!this->total_size || R_FAILED(result = this->on_total()))
+						break;
+					this->notify();
+					header_complete = true;
+
+					size_t body_in_header = header.size() - header_size;
+					if(body_in_header)
+					{
+						memcpy(this->buffer, header.data() + header_size, body_in_header);
+						count = body_in_header;
+					}
+					else
+						continue;
+				}
+
+				if(R_FAILED(result = this->on_chunk_cb((size_t)count)))
+					break;
+				this->downloaded_size += count;
+				this->notify();
+				if(this->downloaded_size >= this->total_size)
+				{
+					result = 0;
+					break;
+				}
+			}
+			if(this->cancelled)
+				result = APPERR_CANCELLED;
+			else if(header_complete && this->downloaded_size == this->total_size)
+				result = 0;
+			else if(this->downloaded_size == 0 && result == APPERR_DIRECT_SOCKET_TRANSFER)
+				result = APPERR_DIRECT_SOCKET_SETUP;
+		}
+
+done:
+		if(this->socket_fd >= 0)
+			close(this->socket_fd);
+		this->socket_fd = -1;
+		return result;
+	}
+
+	bool parse_url(const std::string& target_url, std::string& host, std::string& path)
+	{
+		static const std::string prefix = "http://";
+		if(target_url.compare(0, prefix.size(), prefix) != 0)
+			return false;
+		size_t slash = target_url.find('/', prefix.size());
+		host = target_url.substr(prefix.size(), slash - prefix.size());
+		path = slash == std::string::npos ? "/" : target_url.substr(slash);
+		return !host.empty();
+	}
+
+	void notify()
+	{
+		if(this->notify_event)
+			this->notify_event->signal();
+	}
+
+	std::string url;
+	static constexpr size_t receive_size = 256 * 1024;
+	u8 *buffer = nullptr;
+	std::function<Result()> on_total = []() -> Result { return 0; };
+	std::function<Result(size_t)> on_chunk_cb = [](size_t) -> Result { return 0; };
+	ctr::Event *notify_event = nullptr;
+	volatile bool cancelled = false;
+	volatile int socket_fd = -1;
+	u32 downloaded_size = 0;
+	u32 total_size = 0;
+};
+
+template <typename Downloader>
 struct thread_data {
-	http::ResumableDownload *downloader;
+	Downloader *downloader;
 	get_url_func *get_url;
 	ctr::Event thread_to_ui_event;
 	ctr::Event ui_to_thread_event;
@@ -63,7 +324,8 @@ struct thread_data {
 	{}
 };
 
-static void install_generic_thread(thread_data *data)
+template <typename Downloader>
+static void install_generic_thread(thread_data<Downloader> *data)
 {
 	std::string url;
 	Result res;
@@ -124,18 +386,21 @@ out:
 	return;
 }
 
-static Result install_generic(http::ResumableDownload *downloader, get_url_func *get_url, prog_func *on_progress)
+template <typename Downloader>
+static Result install_generic(Downloader *downloader, get_url_func *get_url, prog_func *on_progress)
 {
-	thread_data data;
+	thread_data<Downloader> data;
 	data.state = ThreadState::Installing;
 	data.downloader = downloader;
 	data.get_url = get_url;
 	data.last_result = 0;
 
-	ctr::thread<thread_data *> thread(install_generic_thread, 1, (thread_data *)&data);
+	ctr::thread<thread_data<Downloader> *> thread(install_generic_thread<Downloader>, 1, &data);
 	for(;;)
 	{
-		data.thread_to_ui_event.wait();
+		/* Never block the UI indefinitely on a network backend. This also
+		 * keeps B/START cancellation responsive while DNS/connect/recv waits. */
+		data.thread_to_ui_event.wait(100 * 1000 * 1000LL);
 		/* te installation process is finished; we can exit this loop */
 		if(data.state == ThreadState::Finished)
 			break;
@@ -334,7 +599,8 @@ private:
 	Thread writer = nullptr;
 };
 
-static Result install_generic_cia(get_url_func *get_url, prog_func *on_progress, bool reinstallable, const TitleInformation& info, bool hsapi_enabled, bool do_ver_check, bool dev_auth)
+template <typename Downloader>
+static Result install_generic_cia_impl(get_url_func *get_url, prog_func *on_progress, bool reinstallable, const TitleInformation& info, bool hsapi_enabled, bool do_ver_check, bool dev_auth)
 {
 	panic_assert(active_cia_handle == CIA_HANDLE_INVALID, "May only install one CIA at a time");
 
@@ -382,7 +648,7 @@ static Result install_generic_cia(get_url_func *get_url, prog_func *on_progress,
 	 * some checks requiring file size, which is gotten through
 	 * downloader.on_total_size_try_get() */
 
-	http::ResumableDownload downloader(hsapi_enabled, do_ver_check, dev_auth);
+	Downloader downloader(hsapi_enabled, do_ver_check, dev_auth);
 	Handle ciaHandle = CIA_HANDLE_INVALID;
 	CiaWritePipeline pipeline(ciaHandle);
 
@@ -430,6 +696,12 @@ static Result install_generic_cia(get_url_func *get_url, prog_func *on_progress,
 	return res;
 }
 
+static Result install_generic_cia(get_url_func *get_url, prog_func *on_progress, bool reinstallable, const TitleInformation& info, bool hsapi_enabled, bool do_ver_check, bool dev_auth)
+{
+	return install_generic_cia_impl<http::ResumableDownload>(
+		get_url, on_progress, reinstallable, info, hsapi_enabled, do_ver_check, dev_auth);
+}
+
 Result install::net_cia(get_url_func get_url, ctr::title_id tid, prog_func prog, bool reinstallable, bool hsapi_enabled, bool do_ver_check, bool dev_auth)
 {
 	/* net_cia: both hsapi and do_ver_check should be configurable, we may not be downloading from hs */
@@ -471,10 +743,108 @@ Result install::hs_cia(const hsapi::Title& meta, prog_func prog, bool reinstalla
 	}
 	else
 	{
-		res = install_generic_cia(&get_url, &prog, reinstallable,
-			{ meta.tid,
-			  (meta.flags & hsapi::TitleFlag::is_ktr) || strncmp(meta.prod.c_str(), "KTR-", 4) == 0,
-			  meta.version }, true, true, true); /* hs_cia: hsapi, do ver check, use dev auth */
+		TitleInformation info {
+			meta.tid,
+			(meta.flags & hsapi::TitleFlag::is_ktr) || strncmp(meta.prod.c_str(), "KTR-", 4) == 0,
+			meta.version
+		};
+		bool use_direct = ISET_DIRECT_CDN_EXPERIMENTAL
+			&& ctr::mng::is_n3ds()
+			&& !ISET_PROXY_ENABLED;
+		if(use_direct)
+		{
+			ilog("Using experimental direct-socket CDN transport");
+			direct_cdn_active = true;
+			res = install_generic_cia_impl<DirectCdnDownload>(
+				&get_url, &prog, reinstallable, info, true, true, true);
+			direct_cdn_active = false;
+			if(res == APPERR_DIRECT_SOCKET_SETUP)
+			{
+				ilog("Direct CDN setup failed; falling back to Nintendo HTTP");
+				res = install_generic_cia(&get_url, &prog, reinstallable,
+					info, true, true, true);
+			}
+		}
+		else
+			res = install_generic_cia(&get_url, &prog, reinstallable,
+				info, true, true, true); /* hs_cia: hsapi, do ver check, use dev auth */
 	}
 	return res;
+}
+
+template <typename Downloader>
+static Result hs_network_benchmark_impl(hsapi::hid id, install::NetworkBenchmarkResult& result, prog_func prog)
+{
+	static constexpr u64 benchmark_size = 32ULL * 1024ULL * 1024ULL;
+	Downloader downloader(true, true, true);
+	u64 target_size = benchmark_size;
+	u64 received = 0;
+	u64 started = 0;
+	u64 previous_time = 0;
+	u64 previous_bytes = 0;
+	bool reached_target = false;
+
+	downloader.on_total_size_try_get([&]() -> Result {
+		if(!downloader.maybe_total_size())
+			return APPERR_NOSIZE;
+		target_size = std::min<u64>(benchmark_size, downloader.maybe_total_size());
+		started = previous_time = osGetTime();
+		return 0;
+	});
+
+	downloader.on_chunk([&](size_t chunk_size) -> Result {
+		received += chunk_size;
+		u64 now = osGetTime();
+		u64 delta_ms = now - previous_time;
+		if(delta_ms)
+		{
+			float instant = ((received - previous_bytes) / (1024.0f * 1024.0f))
+				/ (delta_ms / 1000.0f);
+			if(instant > result.peak_mib_s)
+				result.peak_mib_s = instant;
+		}
+		previous_time = now;
+		previous_bytes = received;
+
+		if(received >= target_size)
+		{
+			reached_target = true;
+			return APPERR_CANCELLED;
+		}
+		return 0;
+	});
+
+	get_url_func get_url = [id](std::string& ret) -> Result {
+		return hsapi::get_download_link(ret, id);
+	};
+
+	Result res = install_generic(&downloader, &get_url, &prog);
+	if(reached_target && res == APPERR_CANCELLED)
+		res = 0;
+
+	result.bytes = received;
+	if(started)
+		result.elapsed_ms = osGetTime() - started;
+	if(result.elapsed_ms)
+		result.average_mib_s = (received / (1024.0f * 1024.0f))
+			/ (result.elapsed_ms / 1000.0f);
+	return res;
+}
+
+Result install::hs_network_benchmark(hsapi::hid id, NetworkBenchmarkResult& result, prog_func prog)
+{
+	bool use_direct = ISET_DIRECT_CDN_EXPERIMENTAL
+		&& ctr::mng::is_n3ds()
+		&& !ISET_PROXY_ENABLED;
+	if(use_direct)
+	{
+		direct_cdn_active = true;
+		Result res = hs_network_benchmark_impl<DirectCdnDownload>(id, result, prog);
+		direct_cdn_active = false;
+		if(res != APPERR_DIRECT_SOCKET_SETUP)
+			return res;
+		ilog("Direct CDN benchmark setup failed; using Nintendo HTTP");
+		result = NetworkBenchmarkResult {};
+	}
+	return hs_network_benchmark_impl<http::ResumableDownload>(id, result, prog);
 }

@@ -39,12 +39,22 @@ static inline get_url_func makeurlwrap(const std::string& url)
 
 namespace install
 {
+	struct NetworkBenchmarkResult {
+		u64 bytes = 0;
+		u64 elapsed_ms = 0;
+		float average_mib_s = 0.0f;
+		float peak_mib_s = 0.0f;
+	};
+
 	void global_abort();
+	bool is_direct_cdn_active();
 
 	Result net_cia(get_url_func get_url, ctr::title_id tid, prog_func prog = default_prog_func,
 		bool reinstallable = false, bool hsapi_enabled = false, bool do_ver_check = true, bool dev_auth = false);
 	Result hs_cia(const hsapi::Title& meta, prog_func prog = default_prog_func,
 		bool reinstallable = false);
+	Result hs_network_benchmark(hsapi::hid id, NetworkBenchmarkResult& result,
+		prog_func prog = default_prog_func);
 
 	inline bool is_in_progress()
 	{
@@ -54,4 +64,3 @@ namespace install
 }
 
 #endif
-

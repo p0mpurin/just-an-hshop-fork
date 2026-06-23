@@ -145,15 +145,30 @@ void ui::ProgressBar::update_state()
 
 	if(this->flags & ui::ProgressBar::FLAG_SHOW_SPEED)
 	{
-		/* when ~1 second isn't accurate enough */
 		u64 now = osGetTime();
-		u64 diff = now - this->prevpoll;
+		if(!this->speed_window_start || this->part < this->speed_window_part)
+		{
+			this->speed_window_start = now;
+			this->speed_window_part = this->part;
+		}
 
-		/* take the sample */
-		const float actual_bytes_s = (((float) this->part - (float) this->prevpart) / (diff / 1000.0f));
-		this->speedDiffs.push(actual_bytes_s);
-		/* and average it against the last 30 */
-		const float bytes_s = this->speedDiffs.avg();
+		/* Direct sockets arrive in short bursts. Sample only complete
+		 * ~1 second byte windows so render/event timing cannot become a
+		 * fake 1-6 MiB/s spike. Blend consecutive windows lightly. */
+		u64 window_ms = now - this->speed_window_start;
+		if(window_ms >= 900)
+		{
+			const float sample = ((float)(this->part - this->speed_window_part))
+				/ (window_ms / 1000.0f);
+			if(this->displayed_bytes_s == 0.0f)
+				this->displayed_bytes_s = sample;
+			else
+				this->displayed_bytes_s = this->displayed_bytes_s * 0.65f + sample * 0.35f;
+			this->speedDiffs.push(this->displayed_bytes_s);
+			this->speed_window_start = now;
+			this->speed_window_part = this->part;
+		}
+		const float bytes_s = this->displayed_bytes_s;
 		const char *format;
 		float speed_i;
 		/* we can use MiB/s */
@@ -168,9 +183,6 @@ void ui::ProgressBar::update_state()
 			speed_i = bytes_s / 1024.0f;
 			format = "KiB/s";
 		}
-		this->prevpart = this->part;
-		this->prevpoll = now;
-
 		std::string speed = "SPEED  " + floating_prec<float>(speed_i) + " " + std::string(format);
 
 		/* if we have no speed yet, we cannot know the ETA, so we just omit it */

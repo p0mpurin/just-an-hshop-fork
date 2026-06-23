@@ -1,5 +1,14 @@
 # Nocturne changelog
 
+## Unreleased
+
+- Added an optional New 3DS direct-socket CDN transport
+- Kept NBAPI authentication on Nintendo's stable HTTP service
+- Added automatic fallback when the direct CDN connection cannot start
+- Added bounded connection timeouts and responsive download cancellation
+- Added an authenticated, network-only hShop CDN benchmark to title details
+- Reworked speed and ETA sampling for accurate sustained-throughput readings
+
 ## 1.0.1
 
 - Added automatic Old 3DS and Old 2DS compatibility

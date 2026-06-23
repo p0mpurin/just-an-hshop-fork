@@ -377,10 +377,10 @@ Result hsapi::get_theme_preview_png(std::string& ret, hsapi::hid id)
 
 /* {{{1 DLApi */
 
-Result hsapi::get_download_link(std::string& ret, const Title& meta)
+Result hsapi::get_download_link(std::string& ret, hid id)
 {
 	std::string data;
-	Result res = basereq(HS_CDN_BASE "/nbcontent/" + std::to_string(meta.id) + "/request",
+	Result res = basereq(HS_CDN_BASE "/nbcontent/" + std::to_string(id) + "/request",
 		data, HTTPC_METHOD_GET, nullptr, 0, true, true);
 	if(R_FAILED(res)) return res;
 
@@ -419,7 +419,7 @@ Result hsapi::get_download_link(std::string& ret, const Title& meta)
 	u32 response_id = read_u32(token_header + 8);
 	u32 token_offset = read_u32(token_header + 12);
 	size_t blob_start = object_header_size + token_header_size;
-	if(response_id != meta.id || token_offset >= blob_size)
+	if(response_id != id || token_offset >= blob_size)
 		return APPERR_INVALID_NB;
 
 	const char *token_start = data.data() + blob_start + token_offset;
@@ -429,8 +429,13 @@ Result hsapi::get_download_link(std::string& ret, const Title& meta)
 		return APPERR_INVALID_NB;
 
 	std::string token(token_start, token_length);
-	ret = HS_CDN_BASE "/nbcontent/" + std::to_string(meta.id) + "?token=" + token;
+	ret = HS_CDN_BASE "/nbcontent/" + std::to_string(id) + "?token=" + token;
 	return OK;
+}
+
+Result hsapi::get_download_link(std::string& ret, const Title& meta)
+{
+	return get_download_link(ret, meta.id);
 }
 
 /* 1}}} */

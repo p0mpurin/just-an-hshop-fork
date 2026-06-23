@@ -17,6 +17,8 @@ A modern Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wallpap
   - dedicated Core 2 CIA writer on New 3DS
   - pipelined 1 MiB network/install buffers
   - direct CDN connection
+- Optional experimental direct-socket CDN transport on New 3DS
+- Authenticated network-only CDN benchmark from title details
 - Quiet user-initiated download cancellation
 - Custom HOME Menu icon and banner
 - Fork-safe tracking of official 3hs releases
@@ -28,6 +30,8 @@ A modern Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wallpap
 - FBI or another CIA installer
 
 New 3DS-family systems use the enhanced 804 MHz/L2/Core 2 path. Old 3DS and Old 2DS systems automatically use a safe compatibility path and should expect lower download speeds.
+
+The experimental direct-socket transport can be selected under **Settings → Performance mode**. Authentication remains on the standard HTTP service, and connection setup falls back automatically when the direct path is unavailable.
 
 ## Installation
 

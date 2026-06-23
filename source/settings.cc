@@ -581,7 +581,9 @@ static std::string serialize_id_text(SettingsId ID)
 		return std::to_string((g_nsettings.wallpaper_dim * 100 + 127) / 255) + "%";
 	case ID_Performance:
 		return ctr::mng::is_n3ds()
-			? "New 3DS · Enhanced"
+			? (ISET_DIRECT_CDN_EXPERIMENTAL
+				? "New 3DS · Direct socket"
+				: "New 3DS · Enhanced")
 			: "Old 3DS · Compatible";
 	}
 
@@ -1034,10 +1036,27 @@ static void update_settings_ID(SettingsId ID)
 		break;
 	}
 	case ID_Performance:
-		if(ctr::mng::is_n3ds())
-			ui::notice("New 3DS enhanced mode is active.\n\n804 MHz CPU  ·  L2 cache\nCore 2 CIA writer  ·  1 MiB pipeline\nDirect CDN connection");
-		else
+		if(!ctr::mng::is_n3ds())
+		{
 			ui::notice("Old 3DS compatibility mode is active.\n\nDefault-core CIA writer\n1 MiB buffered pipeline\nDirect CDN connection\n\nDownload speed is limited by older hardware.");
+			break;
+		}
+		{
+			enum class CdnTransport { stable, direct }
+				mode = ISET_DIRECT_CDN_EXPERIMENTAL ? CdnTransport::direct : CdnTransport::stable;
+			read_set_enum<CdnTransport>(
+				{ "Stable · Nintendo HTTP", "Experimental · Direct socket" },
+				{ CdnTransport::stable, CdnTransport::direct },
+				mode
+			);
+			if(mode == CdnTransport::direct)
+			{
+				g_nsettings.flags0 |= FLAG0_DIRECT_CDN_EXPERIMENTAL;
+				ui::notice("Experimental direct-socket CDN mode enabled.\n\nAuthentication remains on the stable HTTP service. Large game payloads bypass HTTP IPC and fall back automatically if the direct connection cannot start.");
+			}
+			else
+				g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
+		}
 		break;
 	}
 }

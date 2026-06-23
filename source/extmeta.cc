@@ -21,6 +21,7 @@
 
 #include "image_ldr.hh"
 #include "extmeta.hh"
+#include "installgui.hh"
 #include "thread.hh"
 #include "hsapi.hh"
 #include "queue.hh"
@@ -206,6 +207,11 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.size(0.36f)
 		.add_to(queue);
 
+	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_R " Network test")
+		.x(205.0f).y(216.0f)
+		.size(0.36f)
+		.add_to(queue);
+
 	/* only applies to themes */
 	if(hsapi::category(base.cat).name == THEMES_CATEGORY)
 	{
@@ -304,6 +310,15 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.when_kdown([&base](u32) -> bool { ui::RenderQueue::global()->render_and_then([&base]() -> void {
 				queue_add(base.id, true);
 			}); return true; })
+		.add_to(queue);
+
+	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_R)
+		.when_kdown([&base](u32) -> bool {
+			ui::RenderQueue::global()->render_and_then([&base]() -> void {
+				install::gui::network_benchmark(base.id, hsapi::title_name(base));
+			});
+			return true;
+		})
 		.add_to(queue);
 
 	if (base.alt_names.size() > 1) {

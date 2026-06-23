@@ -155,8 +155,9 @@ namespace ui
 		std::function<std::string(u64)> postfix = loadingbar_postfix;
 
 		/* data for ETA/speed */
-		u64 prevpoll = osGetTime() - 1; /* -1 to ensure update_state() never divs by 0 */
-		u64 prevpart = 0;
+		u64 speed_window_start = 0;
+		u64 speed_window_part = 0;
+		float displayed_bytes_s = 0.0f;
 
 		SpeedBuffer speedDiffs;
 
