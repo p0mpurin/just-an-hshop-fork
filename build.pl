@@ -79,6 +79,7 @@ sub configure {
 	my $devid     = getconf "device_id";
 	my $dserv     = getconf "debug_server", "HS_DEBUG_SERVER";
 	my $upbase    = getconf "update_base", "HS_UPDATE_BASE";
+	my $nupbase   = getconf "nocturne_update_base", "NOCTURNE_UPDATE_BASE";
 	my $cdnbase   = getconf "cdn_base", "HS_CDN_BASE";
 	my $siteloc   = getconf "site_url", "HS_WEBSITE";
 	my $nbloc     = getconf "nb_base", "HS_NB_BASE";
@@ -103,6 +104,7 @@ sub configure {
 	$cflags .= " -DDEVICE_ID=$devid" if $devid;
 	$cflags .= " -DHS_DEBUG_SERVER=\\\"$dserv\\\"" if $dserv;
 	$cflags .= " -DHS_UPDATE_BASE=\\\"$upbase\\\"" if $upbase;
+	$cflags .= " -DNOCTURNE_UPDATE_BASE=\\\"$nupbase\\\"" if $nupbase;
 	$cflags .= " -DHS_NB_BASE=\\\"$nbloc\\\"" if $nbloc;
 	$cflags .= " -DHS_CDN_BASE=\\\"$cdnbase\\\"" if $cdnbase;
 	$cflags .= " -DHS_SITE_LOC=\\\"$siteloc\\\"" if $siteloc;
@@ -155,6 +157,8 @@ sub configure_help {
   device_id, DEVICE_ID [device-id]      sets the device id for device-specific builds
   debug_server, HS_DEBUG_SERVER [url]   sets the debug server url
   update_base, HS_UPDATE_BASE [url]     sets the update base url
+  nocturne_update_base, NOCTURNE_UPDATE_BASE [url]
+                                      sets the Nocturne self-update base url
   nb_base, HS_NB_BASE [url]             sets the NBAPI base url
   cdn_base, HS_CDN_BASE [url]           sets the CDN base url
   site_url, HS_SITE_URL [url]           sets the site base url

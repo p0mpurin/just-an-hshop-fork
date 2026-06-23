@@ -14,10 +14,12 @@ These rules are mandatory for AI agents and maintainers before committing or pub
 - Future GitHub releases must include both assets:
   - `3hs.cia`
   - `nocturne-version`
-- The launch updater checks the latest version and downloads the CIA from GitHub's stable latest-release URLs:
-  - `https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/nocturne-version`
-  - `https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/3hs.cia`
-- Keep publishing `nocturne-version` as a release asset. Update detection depends on it.
+- The launch updater checks the latest version and downloads the CIA from `NOCTURNE_UPDATE_BASE`.
+- Prefer a simple static HTTP endpoint for `NOCTURNE_UPDATE_BASE`; the 3DS HTTP service is unreliable with GitHub's HTTPS/API/CDN behavior.
+- `NOCTURNE_UPDATE_BASE` must serve:
+  - `/nocturne-version`
+  - `/3hs.cia`
+- Keep publishing `nocturne-version` as a GitHub release asset too, but do not rely on GitHub as the in-app update transport unless hardware testing proves it works.
 - Do not point Nocturne auto-update at the official 3hs CIA. Official 3hs updates are only a compatibility/source signal because installing stock 3hs would overwrite this fork.
 
 ## Build and Publish Rules
@@ -28,6 +30,7 @@ These rules are mandatory for AI agents and maintainers before committing or pub
 perl build.pl --target release
 ```
 
+- For release builds with in-app updates, configure `nocturne_update_base=...` before building if the current target does not already include it.
 - After building, record or verify the SHA256 of `3hs.cia`.
 - Tag releases with the matching version, for example `v1.5.13`.
 - Mark the newest GitHub release as Latest, otherwise installed apps will keep seeing the previous release.

@@ -34,6 +34,9 @@
 #if !defined(HS_CDN_BASE) || !defined(HS_SITE_LOC) || !defined(HS_UPDATE_BASE) || !defined(HS_NB_BASE)
 	#error "You must define HS_CDN_BASE, HS_SITE_LOC, HS_NB_BASE and HS_UPDATE_BASE"
 #endif
+#ifndef NOCTURNE_UPDATE_BASE
+	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
+#endif
 
 #define OK 0
 
@@ -365,7 +368,7 @@ Result hsapi::get_latest_version_string(std::string& ret)
 Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 {
 	ilog("Getting latest Nocturne version");
-	Result res = basereq("https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/nocturne-version",
+	Result res = basereq(NOCTURNE_UPDATE_BASE "/nocturne-version",
 		ret, HTTPC_METHOD_GET, nullptr, 0, false);
 	if(R_FAILED(res)) return res;
 	trim(ret, " \t\n");

@@ -82,6 +82,7 @@ Nocturne's launch updater is based on GitHub Releases. Before publishing a featu
 - Create a matching tag and GitHub release, for example `v1.5.13`.
 - Attach both `3hs.cia` and `nocturne-version` to the GitHub release.
 - Mark the newest release as **Latest**.
+- Mirror `3hs.cia` and `nocturne-version` to the configured `NOCTURNE_UPDATE_BASE` endpoint used by release builds.
 
 If `nocturne-version` is missing or does not match the compiled app version, installed clients may not see the update correctly.
 
@@ -95,7 +96,7 @@ Configure the release target:
 
 ```sh
 perl build.pl --target release --configure \
-  'release,targets=cia,update_base=https://download2.erista.me/3hs,nb_base=https://hshop.erista.me/nbapi,cdn_base=http://dl.hshopusercontent.com,site_url=https://hshop.erista.me'
+  'release,targets=cia,update_base=https://download2.erista.me/3hs,nocturne_update_base=http://your-update-host/nocturne,nb_base=https://hshop.erista.me/nbapi,cdn_base=http://dl.hshopusercontent.com,site_url=https://hshop.erista.me'
 ```
 
 Then build:

@@ -24,7 +24,11 @@
 #include "i18n.hh"
 #include "log.hh"
 
-#define NOCTURNE_UPDATE_CIA_URL "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/3hs.cia"
+#ifndef NOCTURNE_UPDATE_BASE
+	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
+#endif
+
+#define NOCTURNE_UPDATE_CIA_URL NOCTURNE_UPDATE_BASE "/3hs.cia"
 #define NOCTURNE_APP_TID 0x0004000003DF1000ULL
 
 update::update_status update::update_app(Result &res)
