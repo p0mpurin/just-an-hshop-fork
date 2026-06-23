@@ -16,8 +16,8 @@ void ui::StatusLine::reset()
 void ui::StatusLine::start(const std::string& str, ui::StatusLine::StatusDisplayType type)
 {
 	this->text.setup(this->screen, str);
-	this->text->resize(0.35f, 0.35f);
-	this->text->set_raw_y(ui::screen_height() - 10.0f);
+	this->text->resize(0.40f, 0.40f);
+	this->text->set_raw_y(ui::screen_height() - 14.0f);
 	this->fadeoutx = -this->text->width() - 10.0f;
 	this->text.finalize();
 

@@ -89,14 +89,17 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	ui::Text *press_to_install;
 	ui::Text *prodcode;
 	ui::Text *version;
+	ui::Text *name_text;
+	ui::Text *queue_hint;
 
 	ui::builder<ui::Text>(ui::Screen::top, str::press_to_install)
-		.size(0.38f, 0.38f)
+		.size(0.50f, 0.50f)
 		.x(ui::layout::center_x)
 		.max_width(382.0f)
 		.wrap()
 		.add_to(&press_to_install, queue);
-	press_to_install->set_y(215.0f);
+	/* Reserve the lower status strip for SD/NAND/network indicators. */
+	press_to_install->set_y(194.0f);
 
 	/***
 	 * name (wrapped)
@@ -114,17 +117,20 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 	/* name */
 	ui::builder<ui::Text>(ui::Screen::top, str::name)
-		.size(0.36f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(25.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::top, base.name)
-		.size(0.56f)
+		.size(0.50f)
 		.x(9.0f)
 		.y(36.0f)
 		.max_width(382.0f)
 		.wrap()
-		.add_to(queue);
+		.add_to(&name_text, queue);
+	/* Long localized titles used to run directly into the alternate-name row. */
+	if(name_text->height() > 42.0f)
+		name_text->resize(0.42f, 0.42f);
 
 	ui::Text *alt_text = nullptr;
 	ui::Text *alt_text_label = nullptr;
@@ -140,17 +146,19 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 				ui::builder<ui::Text>(ui::Screen::top, str::alt_name);
 
 		alt_label_builder
-			.size(0.36f)
+			.size(0.40f)
 			.x(9.0f)
 			.y(91.0f)
 			.add_to(&alt_text_label, queue);
 		ui::builder<ui::Text>(ui::Screen::top, base.alt)
-			.size(0.45f)
+			.size(0.40f)
 			.x(9.0f)
 			.y(103.0f)
 			.max_width(382.0f)
 			.wrap()
 			.add_to(&alt_text, queue);
+		if(alt_text->height() > 35.0f)
+			alt_text->resize(0.40f, 0.40f);
 	}
 
 
@@ -174,7 +182,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	if(vc_type)
 	{
 		ui::builder<ui::Text>(ui::Screen::top, str::virtual_console_type)
-			.size(0.36f)
+			.size(0.40f)
 			.x(205.0f)
 			.y(157.0f)
 			.add_to(queue);
@@ -189,7 +197,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 	/* category -> subcategory */
 	ui::builder<ui::Text>(ui::Screen::top, str::category)
-		.size(0.36f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(157.0f)
 		.add_to(queue);
@@ -204,12 +212,12 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	/* Button hint add to queue */
 	ui::builder<ui::Text>(ui::Screen::bottom, str::hint_add_queue)
 		.x(9.0f).y(7.0f)
-		.size(0.36f)
-		.add_to(queue);
+		.size(0.40f)
+		.add_to(&queue_hint, queue);
 
 	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_R " Network test")
-		.x(205.0f).y(216.0f)
-		.size(0.36f)
+		.x(195.0f).y(218.0f)
+		.size(0.40f)
 		.add_to(queue);
 
 	/* only applies to themes */
@@ -217,8 +225,9 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	{
 		/* Button hint preview theme */
 		ui::builder<ui::Text>(ui::Screen::bottom, str::hint_preview_theme)
-			.right(queue.back(), 5.0f).y(7.0f)
-			.size(0.36f)
+			.right(queue_hint, 7.0f).y(7.0f)
+			.size(0.40f)
+			.max_width(155.0f)
 			.add_to(queue);
 
 		ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_X)
@@ -236,21 +245,21 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.max_width(140.0f)
 		.add_to(&version, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::version)
-		.size(0.34f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(29.0f)
 		.add_to(queue);
 
 	/* product code */
 	ui::builder<ui::Text>(ui::Screen::bottom, prodcode_s)
-		.size(0.48f)
+		.size(0.43f)
 		.x(163.0f)
 		.y(42.0f)
 		.max_width(148.0f)
 		.wrap()
 		.add_to(&prodcode, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::prodcode)
-		.size(0.34f)
+		.size(0.40f)
 		.x(163.0f)
 		.y(29.0f)
 		.add_to(queue);
@@ -267,7 +276,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.y(91.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::size)
-		.size(0.34f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(78.0f)
 		.add_to(queue);
@@ -279,7 +288,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.y(140.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::tid)
-		.size(0.34f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(127.0f)
 		.add_to(queue);
@@ -291,7 +300,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.y(189.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::landing_id)
-		.size(0.34f)
+		.size(0.40f)
 		.x(9.0f)
 		.y(176.0f)
 		.add_to(queue);

@@ -101,6 +101,7 @@ namespace ui
 		std::vector<callback_t> funcs;
 		u32 kdownmask = KEY_A, kdown;
 		float w, h;
+		float highlight_y = 14.0f;
 		u32 i = 0;
 
 
@@ -108,4 +109,3 @@ namespace ui
 }
 
 #endif
-

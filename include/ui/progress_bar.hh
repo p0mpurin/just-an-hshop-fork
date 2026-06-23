@@ -145,7 +145,7 @@ namespace ui
 		void update_state();
 
 		u32 flags;
-		float bcx, ex, w, outerw;
+		float bcx, ex, w, targetw, outerw;
 		u64 part, total;
 
 		C2D_Text bc, a, d, e;

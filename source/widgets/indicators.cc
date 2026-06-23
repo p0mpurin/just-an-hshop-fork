@@ -29,8 +29,8 @@
 #define TAG_CTR 2
 #define TAG_SD  3
 
-#define DIM_X 0.35f
-#define DIM_Y 0.35f
+#define DIM_X 0.40f
+#define DIM_Y 0.40f
 
 void ui::FreeSpaceIndicator::setup()
 {
@@ -38,19 +38,19 @@ void ui::FreeSpaceIndicator::setup()
 
 	ui::builder<ui::Text>(this->screen)
 		.size(DIM_X, DIM_Y)
-		.y(ui::screen_height() - 10.0f)
+		.y(ui::screen_height() - 14.0f)
 		.tag(TAG_SD)
 		.add_to(this->queue);
 
 	ui::builder<ui::Text>(this->screen)
 		.size(DIM_X, DIM_Y)
-		.y(ui::screen_height() - 10.0f)
+		.y(ui::screen_height() - 14.0f)
 		.tag(TAG_TWL)
 		.add_to(this->queue);
 
 	ui::builder<ui::Text>(this->screen)
 		.size(DIM_X, DIM_Y)
-		.y(ui::screen_height() - 10.0f)
+		.y(ui::screen_height() - 14.0f)
 		.tag(TAG_CTR)
 		.add_to(this->queue);
 
@@ -313,4 +313,3 @@ void ui::NetIndicator::update()
 		panic("EINVAL");
 	}
 }
-

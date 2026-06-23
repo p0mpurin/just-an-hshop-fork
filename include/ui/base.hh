@@ -60,12 +60,12 @@
 	this->slots = ui::ThemeManager::global()->get_slots(this, (slot).id, (slot).count, (slot).getters);
 
 // Button glyphs
-#define UI_GLYPH_A               "\uE000"
-#define UI_GLYPH_B               "\uE001"
-#define UI_GLYPH_X               "\uE002"
-#define UI_GLYPH_Y               "\uE003"
-#define UI_GLYPH_L               "\uE004"
-#define UI_GLYPH_R               "\uE005"
+#define UI_GLYPH_A               "[A]"
+#define UI_GLYPH_B               "[B]"
+#define UI_GLYPH_X               "[X]"
+#define UI_GLYPH_Y               "[Y]"
+#define UI_GLYPH_L               "[L]"
+#define UI_GLYPH_R               "[R]"
 #define UI_GLYPH_DPAD_CLEAR      "\uE006"
 #define UI_GLYPH_CPAD            "\uE077"
 #define UI_GLYPH_DPAD_UP         "\uE079"

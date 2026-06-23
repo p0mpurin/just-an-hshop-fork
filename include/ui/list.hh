@@ -80,6 +80,7 @@ namespace ui
 			this->keys = KEY_A;
 			this->view = 0;
 			this->pos = 0;
+			this->highlightY = this->y;
 
 			this->sx = ui::screen_width(this->screen) - List::scrollbar_width - 5.0f;
 
@@ -191,6 +192,20 @@ builtin_controls_done:
 					List::scrollbar_width, this->sh,
 					this->slots.get(1));
 			}
+
+			/* A restrained eased wash follows the selected row. It is drawn
+			 * behind the text, so selection feels responsive without boxing
+			 * every item or reducing readability. */
+			float target_highlight = this->y + List::text_spacing * (this->pos - this->view) - 1.0f;
+			this->highlightY += (target_highlight - this->highlightY) * 0.32f;
+			if(target_highlight - this->highlightY < 0.08f && target_highlight - this->highlightY > -0.08f)
+				this->highlightY = target_highlight;
+			C2D_DrawRectSolid(this->x + 5.0f, this->highlightY, this->z - 0.05f,
+				this->sx - this->x - 13.0f, List::text_spacing,
+				C2D_Color32(255, 134, 188, 28));
+			C2D_DrawRectSolid(this->x + 5.0f, this->highlightY + 3.0f, this->z,
+				2.0f, List::text_spacing - 6.0f,
+				C2D_Color32(255, 164, 204, 190));
 
 			/* render the on-screen elements */
 			size_t end = this->view + (this->lines.size() > this->amountRows
@@ -326,6 +341,7 @@ builtin_controls_done:
 		float sh; /* scrollbar height */
 		float sx; /* scrollbar x */
 		float sy; /* scrollbar y */
+		float highlightY;
 
 		std::vector<C2D_Text> lines;
 		std::vector<T> *items;

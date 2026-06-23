@@ -64,6 +64,7 @@ std::string ui::up_to_mib_postfix(u64 n)
 void ui::ProgressBar::setup(u64 part, u64 total)
 {
 	this->outerw = OUTER_W(this->screen);
+	this->w = this->targetw = 0.0f;
 	this->buf = C2D_TextBufNew(100); /* probably big enough */
 	this->update(part, total);
 	this->x = X_OFFSET; /* set a good default */
@@ -83,6 +84,9 @@ void ui::ProgressBar::destroy()
 bool ui::ProgressBar::render(ui::Keys& keys)
 {
 	(void) keys;
+	this->w += (this->targetw - this->w) * 0.24f;
+	if(this->targetw - this->w < 0.08f && this->targetw - this->w > -0.08f)
+		this->w = this->targetw;
 	/* background rect */
 	C2D_DrawRectSolid(this->x, this->y, this->z, this->outerw, Y_LEN, this->slots.get(2));
 
@@ -123,7 +127,7 @@ static std::string format_duration(time_t secs)
 void ui::ProgressBar::update_state()
 {
 	float perc = this->total == 0 ? 0.0f : ((float) this->part / this->total);
-	this->w = (ui::screen_width(this->screen) - (X_OFFSET * 2) - 4) * perc;
+	this->targetw = (ui::screen_width(this->screen) - (X_OFFSET * 2) - 4) * perc;
 
 	// (a)        (b/c)
 	// 90%         9/10

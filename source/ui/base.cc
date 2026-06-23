@@ -26,6 +26,7 @@
 
 #include <3rd/stb_image.h>
 #include <vector>
+#include <cmath>
 
 /* internal constants */
 #define THEME_PATH get_settings()->isLightMode ? "romfs:/light.hstx" : "romfs:/dark.hstx"
@@ -159,11 +160,15 @@ float ui::center_align_y(BaseWidget *from, BaseWidget *newel)
 
 #define NOTICE_BUILDER(msg,rq) \
 	ui::builder<ui::Text>(ui::Screen::top, str::press_a_exit) \
+		.size(0.48f) \
+		.max_width(380.0f) \
 		.x(ui::layout::center_x) \
 		.y(ui::layout::bottom) \
 		.wrap() \
 		.add_to(rq); \
 	ui::builder<ui::Text>(ui::Screen::top, msg) \
+		.size(0.45f) \
+		.max_width(370.0f) \
 		.x(ui::layout::center_x) \
 		.y(ypos) \
 		.wrap() \
@@ -1183,8 +1188,12 @@ bool ui::Text::render(ui::Keys&)
 			if(this->maxw) xd += this->x;
 
 		}
-		C2D_DrawText(&this->lines[i], C2D_WithColor, xd,
-			this->y + (this->lineHeight * i), this->z, this->xsiz, this->ysiz, this->slots[0]);
+		/* Fractional coordinates soften the system font on the physical
+		 * 3DS LCD. Snap each line to the pixel grid for cleaner glyphs. */
+		float draw_x = std::round(xd);
+		float draw_y = std::round(this->y + (this->lineHeight * i));
+		C2D_DrawText(&this->lines[i], C2D_WithColor, draw_x,
+			draw_y, this->z, this->xsiz, this->ysiz, this->slots[0]);
 	}
 
 	return true;

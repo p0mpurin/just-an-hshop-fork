@@ -29,6 +29,8 @@ namespace ui
 
 			this->w = w;
 			this->h = h;
+			this->entrance = 0.0f;
+			this->last_lift = 0.0f;
 		}
 
 		void destroy() override
@@ -48,12 +50,19 @@ namespace ui
 
 		bool render(ui::Keys& keys) override
 		{
-			C2D_DrawRectSolid(this->x, this->y, ui::layer::above_image,
-				this->w, this->h, C2D_Color32(0,0,0,196));
-			C2D_DrawRectSolid(this->x + 8.0f, this->y + 1.0f, ui::layer::top,
-				this->w - 16.0f, 1.0f, C2D_Color32(255,255,255,26));
-			C2D_DrawRectSolid(this->x + this->w - 12.0f, this->y + 8.0f, ui::layer::top,
-				3.0f, 3.0f, C2D_Color32(255,164,204,255));
+			this->entrance += (1.0f - this->entrance) * 0.24f;
+			float lift = (1.0f - this->entrance) * 9.0f;
+			this->group.translate(0.0f, lift - this->last_lift);
+			this->last_lift = lift;
+			u8 panel_alpha = (u8)(196.0f * this->entrance);
+			u8 edge_alpha = (u8)(26.0f * this->entrance);
+			u8 accent_alpha = (u8)(255.0f * this->entrance);
+			C2D_DrawRectSolid(this->x, this->y + lift, ui::layer::above_image,
+				this->w, this->h, C2D_Color32(0,0,0,panel_alpha));
+			C2D_DrawRectSolid(this->x + 8.0f, this->y + lift + 1.0f, ui::layer::top,
+				this->w - 16.0f, 1.0f, C2D_Color32(255,255,255,edge_alpha));
+			C2D_DrawRectSolid(this->x + this->w - 12.0f, this->y + lift + 8.0f, ui::layer::top,
+				3.0f, 3.0f, C2D_Color32(255,164,204,accent_alpha));
 			return this->group.render_all(keys);
 		}
 
@@ -146,6 +155,8 @@ namespace ui
 	protected:
 		WidgetGroup group;
 		float w, h;
+		float entrance;
+		float last_lift;
 		bool pinput, pobscure;
 
 		float inner_height() { return this->h > 2 * y_margin ? this->h - 2 * y_margin : this->h; }

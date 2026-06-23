@@ -291,7 +291,7 @@ int main(int argc, char* argv[])
 	{
 		ui::PopUp::pop_up(ui::Screen::bottom, ui::PopUp::ClaimScreen, [](ui::PopUp *pop_up) -> void {
 			pop_up->make_builder<ui::Text>(str::language_detected)
-				.size(0.36f)
+				.size(0.42f)
 				.wrap()
 				.x(ui::layout::center_x)
 				.add_to(pop_up);
@@ -393,24 +393,29 @@ int main(int argc, char* argv[])
 		ui::I18NEnabledRenderQueue rq;
 		
 		ui::builder<ui::Text>(ui::Screen::top, str::startup_notice_title)
-			.size(1.2f)
+			.size(0.85f)
 			.x(ui::layout::center_x)
 			.y(5.0f)
 			.add_to(rq);
 		
 		ui::builder<ui::Text>(ui::Screen::top, str::startup_notice_text)
+			.size(0.48f)
+			.max_width(376.0f)
 			.x(ui::layout::center_x)
 			.under(rq.back())
 			.wrap()
 			.add_to(rq);
 		
-		ui::builder<ui::Text>(ui::Screen::top, HS_SITE_LOC "/3hs")
+		ui::builder<ui::Text>(ui::Screen::top, "github.com/p0mpurin/just-an-hshop-fork")
+			.size(0.44f)
+			.max_width(376.0f)
 			.x(ui::layout::center_x)
 			.under(rq.back(), 5.0f)
 			.wrap()
 			.add_to(rq);
 		
 		ui::builder<ui::Text>(ui::Screen::top, str::press_any_button_continue)
+			.size(0.46f)
 			.x(ui::layout::center_x)
 			.y(ui::layout::bottom)
 			.add_to(rq);

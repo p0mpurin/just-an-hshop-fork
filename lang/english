@@ -1000,8 +1000,8 @@ Important!
 
 # Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
 - startup_notice_text
-3hs is free software. If you paid for 3hs itself or paid extra for it as part of a bundle, please request a refund immediately!\n
-3hs is and will always be free to download from:
+Nocturne is free software. If you paid for this app itself or paid extra for it as part of a bundle, please request a refund.\n
+Nocturne is an unofficial community fork of 3hs. It is not maintained by the hShop team and does not receive official 3hs updates. Fork updates are published separately at:
 
 # Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
 - press_any_button_continue

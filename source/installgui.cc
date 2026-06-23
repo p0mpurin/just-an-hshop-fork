@@ -49,8 +49,10 @@ void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
 	 * compact stage line and clearer speed/ETA labels. */
 	ui::Text *donate;
 	ui::builder<ui::Text>(ui::progloc(), str::do_donate)
-		.size(0.42f)
+		.size(0.46f)
 		.x(ui::layout::center_x)
+		.y(18.0f)
+		.max_width(ui::screen_width(ui::progloc()) - 20.0f)
 		.wrap()
 		.add_to(&donate, queue);
 
@@ -58,22 +60,22 @@ void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
 		.size(0.40f)
 		.x(ui::layout::center_x)
 		.y(48.0f)
+		.max_width(ui::screen_width(ui::progloc()) - 20.0f)
 		.wrap()
 		.add_to(stage, queue);
 
 	ui::builder<ui::ProgressBar>(ui::progloc())
-		.y(ui::layout::center_y)
+		.y(105.0f)
 		.use_speed()
 		.add_to(bar, queue);
-
-	float center_above_progbar = (queue.back()->get_y() - donate->height()) / 2.0f;
-	donate->set_y(center_above_progbar + 10.0f);
 
 	if(label.size())
 	{
 		ui::builder<ui::Text>(ui::progloc() == ui::Screen::top ? ui::Screen::bottom : ui::Screen::top, label)
+			.size(0.40f)
 			.x(ui::layout::center_x)
-			.y(ui::layout::center_y)
+			.y(28.0f)
+			.max_width(ui::screen_width(ui::progloc() == ui::Screen::top ? ui::Screen::bottom : ui::Screen::top) - 20.0f)
 			.z(ui::layer::top)
 			.wrap()
 			.add_to(queue);
@@ -89,9 +91,10 @@ void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
 
 	/* Do not source this control hint from title/theme metadata. */
 	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_B " (hold): Cancel Download")
-		.size(0.42f)
+		.size(0.40f)
 		.x(ui::layout::center_x)
-		.y(ui::layout::top)
+		.y(220.0f)
+		.max_width(300.0f)
 		.add_to(queue);
 
 	queue.render_frame();

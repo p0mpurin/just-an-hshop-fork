@@ -148,6 +148,13 @@ bool ui::MenuSelect::render(ui::Keys& k)
 	C2D_DrawRectSolid(16.0f, 8.0f, -0.29f,
 		ui::screen_width(this->screen) - 32.0f, 1.0f,
 		C2D_Color32(255, 255, 255, 24));
+	float target_y = 14.0f + (this->i - start) * 24.0f;
+	this->highlight_y += (target_y - this->highlight_y) * 0.34f;
+	C2D_DrawRectSolid(18.0f, this->highlight_y, -0.08f,
+		ui::screen_width(this->screen) - 36.0f, this->h,
+		C2D_Color32(255, 134, 188, 26));
+	C2D_DrawRectSolid(18.0f, this->highlight_y + 4.0f, 0.0f,
+		2.0f, this->h - 8.0f, C2D_Color32(255, 164, 204, 210));
 
 	for(u32 i = start; i < end; ++i)
 	{

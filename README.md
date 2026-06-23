@@ -7,9 +7,12 @@ A modern Nintendo 3DS fork of 3hs with an OLED-focused interface, custom wallpap
 ## Highlights
 
 - OLED-black and light-pink visual redesign
+- Smooth eased selection, popup, and progress animations
+- Crisp pixel-aligned typography with readable text sizing
 - Custom PNG/JPEG wallpapers from `/3ds/3hs/backgrounds/`
 - Adjustable wallpaper dimming
 - Redesigned title details and download interface
+- Clear `[A]`, `[B]`, `[X]`, and `[Y]` action badges
 - Live download stage, speed, progress, and ETA
 - Hardware-adaptive performance pipeline:
   - safe Old 3DS/2DS compatibility mode
