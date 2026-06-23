@@ -611,31 +611,28 @@ void ui::background_rect(ui::Screen scr, float x, float y, float z, float w, flo
 	}
 }
 
-static bool make_fit_image(C2D_Image *out, const u8 *source, int sw, int sh, int dw, int dh)
+static bool make_cover_image(C2D_Image *out, const u8 *source, int sw, int sh, int dw, int dh)
 {
 	if(sw <= 0 || sh <= 0 || dw <= 0 || dh <= 0)
 		return false;
 
-	/* Scale to fit within the destination, preserving aspect ratio.
-	 * This is like CSS object-fit: contain — the entire image is
-	 * visible and the rest is transparent. */
-	std::vector<u32> pixels((size_t) dw * dh, 0); /* zero = transparent/black */
-	const float scale = std::min(dw / (float) sw, dh / (float) sh);
-	const int out_w = (int)(sw * scale);
-	const int out_h = (int)(sh * scale);
-	const int offset_x = (dw - out_w) / 2;
-	const int offset_y = (dh - out_h) / 2;
+	std::vector<u32> pixels((size_t) dw * dh);
+	const float scale = std::max(dw / (float) sw, dh / (float) sh);
+	const float visible_w = dw / scale;
+	const float visible_h = dh / scale;
+	const float crop_x = (sw - visible_w) * 0.5f;
+	const float crop_y = (sh - visible_h) * 0.5f;
 
-	for(int y = 0; y < out_h; ++y)
+	for(int y = 0; y < dh; ++y)
 	{
-		int sy = (int)(y / scale);
+		int sy = (int) (crop_y + (y + 0.5f) / scale);
 		sy = std::max(0, std::min(sh - 1, sy));
-		for(int x = 0; x < out_w; ++x)
+		for(int x = 0; x < dw; ++x)
 		{
-			int sx = (int)(x / scale);
+			int sx = (int) (crop_x + (x + 0.5f) / scale);
 			sx = std::max(0, std::min(sw - 1, sx));
 			const u8 *rgba = source + ((size_t) sy * sw + sx) * 4;
-			pixels[(size_t)(y + offset_y) * dw + (x + offset_x)] =
+			pixels[(size_t) y * dw + x] =
 				((u32) rgba[0] << 24) | ((u32) rgba[1] << 16)
 				| ((u32) rgba[2] << 8) | rgba[3];
 		}
@@ -677,12 +674,12 @@ bool ui::set_user_background(const std::string& path)
 
 	C2D_Image next_top = { nullptr, nullptr };
 	C2D_Image next_bottom = { nullptr, nullptr };
-	/* Fit the entire image within the screen — no cropping, black bars
-	 * on the sides if the aspect ratio doesn't match. */
+	/* Cover-crop the wallpaper to fill both screens edge-to-edge.
+	 * In 800px mode the top screen uses the full 800px width. */
 	unsigned top_w = g_top_wide ? 800 : 400;
-	bool ok = make_fit_image(&next_top, bitmap, width, height,
+	bool ok = make_cover_image(&next_top, bitmap, width, height,
 		top_w, 240)
-		&& make_fit_image(&next_bottom, bitmap, width, height, 320, 240);
+		&& make_cover_image(&next_bottom, bitmap, width, height, 320, 240);
 	stbi_image_free(bitmap);
 
 	if(!ok)

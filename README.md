@@ -65,8 +65,6 @@ Place `.png`, `.jpg`, or `.jpeg` files in:
 
 Open **Settings → Background image** to choose one, then adjust **Wallpaper dimming** for readability.
 
-The wallpaper is automatically resized to fit the screen. For best results in standard mode, use **400×240** images. If you enable **800px top screen** mode in Settings, use **800×240** wallpapers for a perfect fit — smaller images will be centred with black bars on the sides, and larger images will be scaled down.
-
 ## Upstream updates
 
 Nocturne checks the official 3hs version for compatibility. It does not install the stock 3hs CIA automatically because doing so would overwrite the fork.
