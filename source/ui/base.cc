@@ -150,6 +150,11 @@ static inline void begin_top_scene()
 	C2D_ViewReset();
 }
 
+static float top_framebuffer_width()
+{
+	return g_top_wide ? 800.0f : ui::dimensions::width_top;
+}
+
 static inline void begin_bottom_scene()
 {
 	C2D_SceneBegin(g_bot);
@@ -710,13 +715,15 @@ bool ui::user_background_loaded()
 float ui::screen_width(ui::Screen scr)
 {
 	if(scr == ui::Screen::top)
-		return g_top_wide ? 800.0f : ui::dimensions::width_top;
+		return ui::dimensions::width_top;
 	return ui::dimensions::width_bottom;
 }
 
 static void draw_nocturne_chrome(ui::Screen screen)
 {
-	const float width = ui::screen_width(screen);
+	const float width = screen == ui::Screen::top
+		? top_framebuffer_width()
+		: ui::screen_width(screen);
 	if(user_background_active)
 	{
 		/* Wallpapers are atmosphere, never the content surface. This fixed

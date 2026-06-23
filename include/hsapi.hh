@@ -129,6 +129,7 @@ namespace hsapi
 	Result upload_log(const char *contents, u32 size, std::string& logid);
 	Result get_theme_preview_png(std::string& ret, hsapi::hid id);
 	Result get_latest_version_string(std::string& ret);
+	Result get_nocturne_latest_version_string(std::string& ret);
 
 	/* dlapi ops */
 	Result get_download_link(std::string& ret, hid id);

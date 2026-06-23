@@ -24,12 +24,15 @@
 #include "i18n.hh"
 #include "log.hh"
 
+#define NOCTURNE_UPDATE_CIA_URL "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/3hs.cia"
+#define NOCTURNE_APP_TID 0x0004000003DF1000ULL
+
 update::update_status update::update_app(Result &res)
 {
 	std::string nver;
 	app_version api_version;
 
-	if(R_FAILED(res = hsapi::get_latest_version_string(nver)))
+	if(R_FAILED(res = hsapi::get_nocturne_latest_version_string(nver)))
 		return update_status::failed_update_check;
 
 	if (!api_version.parse(nver.c_str(), nver.size()))
@@ -44,7 +47,36 @@ update::update_status update::update_app(Result &res)
 		return update_status::failed_update_check;
 	}
 
-	ilog("Fetched new version %s", nver.c_str());
+	ilog("Fetched latest Nocturne version %s", nver.c_str());
+
+	if(api_version > update::CUR_APP_VERSION)
+	{
+		ilog("Installing Nocturne update " VERSION " -> %s", nver.c_str());
+		res = install::gui::net_cia(NOCTURNE_UPDATE_CIA_URL,
+			ctr::title_id(NOCTURNE_APP_TID), true, true, false, false);
+		return R_SUCCEEDED(res)
+			? update_status::updated_successfully
+			: update_status::failed_update_install;
+	}
+
+	if(R_FAILED(res = hsapi::get_latest_version_string(nver)))
+	{
+		ilog("Official 3hs update check failed (%08lX); Nocturne is up-to-date", res);
+		return update_status::up_to_date;
+	}
+
+	if (!api_version.parse(nver.c_str(), nver.size()))
+	{
+		char badver[9] = { 0 };
+		strncpy(badver, nver.c_str(), 8);
+		if (!strlen(badver))
+			ilog("did not receive any official version string from server");
+		else
+			ilog("received bad official version string '%s'... from server", badver);
+		return update_status::up_to_date;
+	}
+
+	ilog("Fetched latest official 3hs version %s", nver.c_str());
 
 	if(api_version <= update::CUR_APP_VERSION)
 		return update_status::up_to_date;

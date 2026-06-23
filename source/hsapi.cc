@@ -362,6 +362,16 @@ Result hsapi::get_latest_version_string(std::string& ret)
 	return OK;
 }
 
+Result hsapi::get_nocturne_latest_version_string(std::string& ret)
+{
+	ilog("Getting latest Nocturne version");
+	Result res = basereq("https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download/nocturne-version",
+		ret, HTTPC_METHOD_GET, nullptr, 0, false);
+	if(R_FAILED(res)) return res;
+	trim(ret, " \t\n");
+	return OK;
+}
+
 Result hsapi::get_theme_preview_png(std::string& ret, hsapi::hid id)
 {
 	ilog("Getting theme preview");

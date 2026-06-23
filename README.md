@@ -51,9 +51,9 @@ You can install a newer Nocturne CIA over an existing installation. If HOME Menu
 
 Scan this with **FBI → Remote Install → Scan QR Code**:
 
-<img src="assets/nocturne-v1.5.11-fbi-qr.png" alt="Nocturne v1.5.11 FBI QR" width="320">
+<img src="assets/nocturne-v1.5.11-fbi-qr.png" alt="Nocturne FBI QR" width="320">
 
-This QR points directly to the `3hs.cia` release asset for v1.5.11.
+For the newest build, download `3hs.cia` from the latest release.
 
 ## Wallpapers
 

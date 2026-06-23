@@ -1,5 +1,11 @@
 # Nocturne changelog
 
+## 1.5.12
+
+- Added Nocturne launch-time self-updates from GitHub Releases
+- Kept official 3hs update checks non-destructive so stock CIAs do not overwrite the fork
+- Fixed 800px top-screen mode UI layout so widgets stay fitted to the visible 400px screen area
+
 ## 1.5.11
 
 - Added size badges to the title browse list
