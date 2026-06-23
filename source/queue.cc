@@ -196,6 +196,24 @@ void show_queue()
 					queue_remove(i);
 				else if(kDown & KEY_A)
 					queue_process(i);
+				else if((kDown & KEY_L) && i > 0)
+				{
+					std::swap(g_queue[i], g_queue[i - 1]);
+					--i;
+					meta->set_title(self->at(i));
+					self->set_pos(i);
+					self->update();
+					return true;
+				}
+				else if((kDown & KEY_R) && i < g_queue.size() - 1)
+				{
+					std::swap(g_queue[i], g_queue[i + 1]);
+					++i;
+					meta->set_title(self->at(i));
+					self->set_pos(i);
+					self->update();
+					return true;
+				}
 
 				if(g_queue.size() == 0)
 					return false; /* we're done */
@@ -215,7 +233,7 @@ void show_queue()
 		.when_change([meta](list_t *self, size_t i) -> void {
 			meta->set_title(self->at(i));
 		})
-		.buttons(KEY_X)
+		.buttons(KEY_X | KEY_L | KEY_R)
 		.x(5.0f).y(25.0f)
 		.add_to(queue);
 
@@ -228,6 +246,13 @@ void show_queue()
 		.wrap()
 		.x(ui::layout::right)
 		.y(210.0f)
+		.add_to(queue);
+
+	/* Hint for queue reordering */
+	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_L "/" UI_GLYPH_R ": Reorder, " UI_GLYPH_X ": Remove, " UI_GLYPH_A ": Install")
+		.size(0.38f)
+		.x(ui::layout::left)
+		.y(220.0f)
 		.add_to(queue);
 
 	queue.render_finite_button(KEY_B);

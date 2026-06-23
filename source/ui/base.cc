@@ -1649,8 +1649,13 @@ bool ui::Toggle::render(ui::Keys& keys)
 		this->last_touch_toggle = osGetTime();
 	}
 
+	/* Subtle pink border for definition against dark backgrounds */
+	C2D_DrawRectSolid(this->x - 1, this->y - 1, this->z - 0.01f, this->width() + 2, this->height() + 2,
+		C2D_Color32(255, 164, 204, 32));
+	/* Toggle track */
 	C2D_DrawRectSolid(this->x, this->y, this->z, this->width(), this->height(), this->slots.get(this->toggled_state ? 0 : 1));
-	C2D_DrawRectSolid(SLIDER_X(this), SLIDER_Y(this), this->z, SLIDER_WIDTH(this), SLIDER_HEIGHT(this), this->slots.get(2));
+	/* Toggle slider with slight shadow for depth */
+	C2D_DrawRectSolid(SLIDER_X(this), SLIDER_Y(this), this->z + 0.01f, SLIDER_WIDTH(this), SLIDER_HEIGHT(this), this->slots.get(2));
 
 	return true;
 }

@@ -176,18 +176,18 @@ builtin_controls_done:
 			/* Smoked glass catalogue plane. */
 			C2D_DrawRectSolid(this->x, this->y - 4.0f, this->z - 0.30f,
 				this->sx - this->x - 3.0f, this->height() + 5.0f,
-				C2D_Color32(0, 0, 0, 178));
-			/* A faint reflected edge suggests glass without boxing it in. */
+				C2D_Color32(0, 0, 0, 186));
+			/* Pink accent edge line along the top */
 			C2D_DrawRectSolid(this->x + 8.0f, this->y - 3.0f, this->z - 0.29f,
 				this->sx - this->x - 19.0f, 1.0f,
-				C2D_Color32(255, 255, 255, 24));
+				C2D_Color32(255, 164, 204, 42));
 
 			/* render scrollbar */
 			if(this->lines.size() > this->amountRows)
 			{
 				C2D_DrawRectSolid(this->sx, this->y - 4.0f, this->z - 0.20f,
 					List::scrollbar_width, this->height() + 5.0f,
-					C2D_Color32(255, 255, 255, 18));
+					C2D_Color32(255, 164, 204, 22));
 				C2D_DrawRectSolid(this->sx, this->sy, this->z - 0.10f,
 					List::scrollbar_width, this->sh,
 					this->slots.get(1));
@@ -202,10 +202,10 @@ builtin_controls_done:
 				this->highlightY = target_highlight;
 			C2D_DrawRectSolid(this->x + 5.0f, this->highlightY, this->z - 0.05f,
 				this->sx - this->x - 13.0f, List::text_spacing,
-				C2D_Color32(255, 134, 188, 28));
-			C2D_DrawRectSolid(this->x + 5.0f, this->highlightY + 3.0f, this->z,
-				2.0f, List::text_spacing - 6.0f,
-				C2D_Color32(255, 164, 204, 190));
+				C2D_Color32(255, 134, 188, 32));
+			C2D_DrawRectSolid(this->x + 5.0f, this->highlightY + 2.0f, this->z,
+				3.0f, List::text_spacing - 4.0f,
+				C2D_Color32(255, 164, 204, 200));
 
 			/* render the on-screen elements */
 			size_t end = this->view + (this->lines.size() > this->amountRows
@@ -237,7 +237,7 @@ builtin_controls_done:
 				}
 
 				u32 draw_color = i == this->pos
-					? C2D_Color32(255, 220, 238, 255) : color;
+					? C2D_Color32(255, 224, 240, 255) : color;
 				C2D_DrawText(&this->lines[i], C2D_WithColor, this->x + List::text_offset - ofs,
 					this->y + List::text_spacing * j, this->z + 0.05f, List::text_size, List::text_size,
 					draw_color);

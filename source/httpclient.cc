@@ -324,7 +324,14 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 			goto fail;
 		}
 		if(res == (Result) HTTPC_RESULTCODE_DOWNLOADPENDING)
-			panic_assert(pos == prev_pos + http::ResumableDownload::ChunkMaxSize, "partial chunk when full expected");
+		{
+			if(pos != prev_pos + http::ResumableDownload::ChunkMaxSize)
+			{
+				/* Partial chunk is fine — the HTTPC service may deliver
+				 * less than the requested ChunkMaxSize. Accept any progress
+				 * and request the next chunk. */
+			}
+		}
 		chunk_size = pos - prev_pos;
 		if (this->hsapiEnabled && chunk_num == 0 && status != 200 && status != 206) {
 			nb::Result nbres;

@@ -31,8 +31,8 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 10
-#define VERSION_DESC "in aeternum memoratus" VERSION_SUFFIX
+#define VERSION_PATCH 11
+#define VERSION_DESC "nocturnal speed" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)
 #define INT_TO_STR_(i) #i

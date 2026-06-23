@@ -61,6 +61,11 @@ namespace install
 		extern Handle active_cia_handle;
 		return active_cia_handle != CIA_HANDLE_INVALID;
 	}
+
+	/* Pre-fetch and cache the CDN download URL while the user browses.
+	 * Called from the title details screen before the user presses install. */
+	void pre_fetch_url(const hsapi::Title& meta);
+	void clear_prefetched_url();
 }
 
 #endif

@@ -70,6 +70,15 @@ static void update_settings_ID(SettingsId id);
 NewSettings *get_nsettings()
 { return &g_nsettings; }
 
+static bool validate_settings_language()
+{
+	if(g_nsettings.lang < lang::_i_max)
+		return false;
+
+	g_nsettings.lang = lang::english;
+	return true;
+}
+
 static void write_settings_to_file()
 {
 	mkdir("/3ds", 0777);
@@ -328,6 +337,7 @@ bool ensure_settings()
 	g_loaded = true; /* we'll always write _something_ to settings after this point */
 
 	bool ret = false;
+	bool fixed_language = false;
 
 	FILE *settings_f = fopen(SETTINGS_LOCATION, "r");
 	if(!settings_f) { reset_settings(true); return true; }
@@ -345,6 +355,8 @@ bool ensure_settings()
 	{
 		/* legacy format; migrate to new format */
 		migrate_settings(buf);
+		if(validate_settings_language())
+			write_settings();
 		goto out;
 	}
 	if(memcmp(buf, "4HSS", 4) != 0)
@@ -354,7 +366,7 @@ bool ensure_settings()
 	}
 	g_nsettings.flags0 = * (u64 *) &buf[0x04];
 	g_nsettings.lang = buf[0x0C];
-	/* TODO: Check validity of lang */
+	fixed_language = validate_settings_language();
 	g_nsettings.max_elogs = buf[0x0D];
 	g_nsettings.migration = buf[0x0E];
 	g_nsettings.wallpaper_dim = buf[0x0F];
@@ -383,6 +395,8 @@ bool ensure_settings()
 	else g_nsettings.background_path.clear();
 
 	apply_migrations();
+	if(fixed_language)
+		write_settings();
 
 	goto out;
 default_settings:

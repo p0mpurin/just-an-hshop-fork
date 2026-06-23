@@ -87,12 +87,17 @@ bool ui::ProgressBar::render(ui::Keys& keys)
 	this->w += (this->targetw - this->w) * 0.24f;
 	if(this->targetw - this->w < 0.08f && this->targetw - this->w > -0.08f)
 		this->w = this->targetw;
+	/* outer border — subtle pink outline defining the bar area */
+	C2D_DrawRectSolid(this->x - 1, this->y - 1, this->z,
+		this->outerw + 2, Y_LEN + 2, this->slots.get(1));
 	/* background rect */
-	C2D_DrawRectSolid(this->x, this->y, this->z, this->outerw, Y_LEN, this->slots.get(2));
+	C2D_DrawRectSolid(this->x, this->y, this->z + 0.01f, this->outerw, Y_LEN, this->slots.get(2));
 
 	// Overlay actual process
 	if(this->w != 0)
-		C2D_DrawRectSolid(X_OFFSET + 2, this->y + 2, this->z, this->w, Y_LEN - 4, this->slots.get(1));
+		C2D_DrawRectSolid(X_OFFSET + 1, this->y + 1, this->z + 0.02f, this->w, Y_LEN - 2, this->slots.get(1));
+	else
+		C2D_DrawRectSolid(X_OFFSET + 1, this->y + 1, this->z + 0.02f, 0, Y_LEN - 2, this->slots.get(1));
 
 	if(this->flags & ui::ProgressBar::FLAG_ACTIVE)
 	{

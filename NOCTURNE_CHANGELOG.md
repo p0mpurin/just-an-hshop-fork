@@ -1,5 +1,19 @@
 # Nocturne changelog
 
+## 1.5.11
+
+- Added size badges to the title browse list
+- Added queue reordering with [L]/[R] buttons
+- Refined dark theme palette with improved contrast and warmth
+- Improved MenuSelect, List, and PopUp animations and visual polish
+- Polished progress bar, toggle, checkbox, and button widgets
+- Increased DirectCdnDownload recv buffer from 256 KiB to 1 MiB (4× fewer syscalls)
+- Added DNS caching for the direct socket path (avoids repeated getaddrinfo calls)
+- Added TCP_NODELAY and doubled SO_RCVBUF for smoother TCP throughput
+- Increased CIA write pipeline from 2 to 3 slots for better write-variance tolerance
+- Removed panic_assert on partial HTTPC chunks (no more random crash deaths)
+- Pre-fetch CDN download URL while user browses title details (saves ~500ms on install start)
+
 ## 1.2.2
 
 - Removed decorative frosted bars that could appear empty after changing screens

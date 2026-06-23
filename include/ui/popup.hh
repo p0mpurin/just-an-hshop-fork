@@ -50,19 +50,22 @@ namespace ui
 
 		bool render(ui::Keys& keys) override
 		{
-			this->entrance += (1.0f - this->entrance) * 0.24f;
-			float lift = (1.0f - this->entrance) * 9.0f;
+			this->entrance += (1.0f - this->entrance) * 0.22f;
+			float lift = (1.0f - this->entrance) * 12.0f;
 			this->group.translate(0.0f, lift - this->last_lift);
 			this->last_lift = lift;
-			u8 panel_alpha = (u8)(196.0f * this->entrance);
-			u8 edge_alpha = (u8)(26.0f * this->entrance);
+			u8 panel_alpha = (u8)(200.0f * this->entrance);
+			u8 edge_alpha = (u8)(48.0f * this->entrance);
 			u8 accent_alpha = (u8)(255.0f * this->entrance);
+			/* Dark panel with slight pink tint for depth */
 			C2D_DrawRectSolid(this->x, this->y + lift, ui::layer::above_image,
-				this->w, this->h, C2D_Color32(0,0,0,panel_alpha));
+				this->w, this->h, C2D_Color32(10, 6, 8, panel_alpha));
+			/* Pink accent line along the top edge instead of plain white */
 			C2D_DrawRectSolid(this->x + 8.0f, this->y + lift + 1.0f, ui::layer::top,
-				this->w - 16.0f, 1.0f, C2D_Color32(255,255,255,edge_alpha));
-			C2D_DrawRectSolid(this->x + this->w - 12.0f, this->y + lift + 8.0f, ui::layer::top,
-				3.0f, 3.0f, C2D_Color32(255,164,204,accent_alpha));
+				this->w - 16.0f, 1.0f, C2D_Color32(255, 164, 204, edge_alpha));
+			/* Pink accent corner dot — same accent but slightly larger */
+			C2D_DrawRectSolid(this->x + this->w - 14.0f, this->y + lift + 8.0f, ui::layer::top,
+				4.0f, 4.0f, C2D_Color32(255, 164, 204, accent_alpha));
 			return this->group.render_all(keys);
 		}
 

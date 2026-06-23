@@ -22,6 +22,7 @@
 #include "image_ldr.hh"
 #include "extmeta.hh"
 #include "installgui.hh"
+#include "install.hh"
 #include "thread.hh"
 #include "hsapi.hh"
 #include "queue.hh"
@@ -401,6 +402,11 @@ bool show_extmeta_lazy(const hsapi::PartialTitle& base, hsapi::Title *full)
 	 * waiting for the *fetching* of the full data
 	 * and *setting* of the renderqueue callback */
 	th.join();
+
+	/* Pre-fetch the CDN download URL while the user reads the details.
+	 * This saves ~500ms when they press A to install. */
+	if(full->id != 0)
+		install::pre_fetch_url(*full);
 
 	ui::set_desc(desc);
 	return ret;

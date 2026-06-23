@@ -34,6 +34,7 @@
 #include <poll.h>
 #include <algorithm>
 #include <cctype>
+#include <netinet/tcp.h>
 
 namespace ui
 {
@@ -48,6 +49,21 @@ namespace install {
 	Handle active_cia_handle = CIA_HANDLE_INVALID;
 	static bool direct_cdn_active = false;
 	bool is_direct_cdn_active() { return direct_cdn_active; }
+
+	/* Pre-fetched download URL — set by pre_fetch_url(), consumed by hs_cia(). */
+	static std::string g_prefetched_url;
+	static hsapi::hid g_prefetched_id = 0;
+	void pre_fetch_url(const hsapi::Title& meta)
+	{
+		std::string url;
+		if(R_SUCCEEDED(hsapi::scall(hsapi::get_download_link, url, meta)))
+		{
+			g_prefetched_url = url;
+			g_prefetched_id = meta.id;
+			ilog("pre-fetched download URL for id=%u", meta.id);
+		}
+	}
+	void clear_prefetched_url() { g_prefetched_url.clear(); g_prefetched_id = 0; }
 }
 using install::active_cia_handle;
 
@@ -92,6 +108,70 @@ public:
 	}
 
 private:
+	/* DNS cache: avoids repeated getaddrinfo() calls for the same CDN host.
+	 * The hShop CDN typically serves all content from a single hostname. */
+	struct CachedAddr {
+		struct sockaddr_in addr;
+		socklen_t len;
+	};
+	static std::unordered_map<std::string, CachedAddr>& dns_cache()
+	{
+		static std::unordered_map<std::string, CachedAddr> cache;
+		return cache;
+	}
+	/* Attempt to use cached DNS; returns true if it created a socket. */
+	bool try_cached_dns(const std::string& host, int& out_fd)
+	{
+		auto& cache = dns_cache();
+		auto it = cache.find(host);
+		if(it == cache.end()) return false;
+
+		int fd = socket(it->second.addr.sin_family, SOCK_STREAM, 0);
+		if(fd < 0) return false;
+
+		int receive_buffer = 2 * 1024 * 1024;
+		setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &receive_buffer, sizeof(receive_buffer));
+		int one = 1;
+		setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
+		int original_flags = fcntl(fd, F_GETFL, 0);
+		fcntl(fd, F_SETFL, original_flags | O_NONBLOCK);
+
+		int connected = connect(fd, (struct sockaddr *)&it->second.addr, it->second.len);
+		if(connected != 0 && errno != EINPROGRESS)
+		{
+			close(fd);
+			cache.erase(it);
+			return false;
+		}
+
+		bool ready = connected == 0;
+		for(unsigned waited_ms = 0; !ready && !this->cancelled && waited_ms < 10000; waited_ms += 100)
+		{
+			struct pollfd pfd { fd, POLLOUT, 0 };
+			int poll_result = poll(&pfd, 1, 100);
+			this->notify();
+			if(poll_result > 0)
+			{
+				int socket_error = 0;
+				socklen_t error_size = sizeof(socket_error);
+				if(getsockopt(fd, SOL_SOCKET, SO_ERROR, &socket_error, &error_size) == 0
+					&& socket_error == 0)
+					ready = true;
+				else
+					break;
+			}
+		}
+
+		if(ready && !this->cancelled)
+		{
+			fcntl(fd, F_SETFL, original_flags);
+			out_fd = fd;
+			return true;
+		}
+		close(fd);
+		cache.erase(it);
+		return false;
+	}
 	Result execute_url(const std::string& target_url, unsigned redirect_depth)
 	{
 		std::string host, path;
@@ -100,6 +180,19 @@ private:
 		if(!this->buffer)
 			return APPERR_OUT_OF_MEM;
 
+		Result result = APPERR_DIRECT_SOCKET_SETUP;
+		int cached_fd = -1;
+
+		/* Try cached DNS first — avoids repeated getaddrinfo IPC. */
+		if(try_cached_dns(host, cached_fd))
+		{
+			this->socket_fd = cached_fd;
+			result = APPERR_DIRECT_SOCKET_TRANSFER;
+			goto send_request;
+		}
+
+		/* Cache miss — resolve via service call. */
+		{
 		struct addrinfo hints {};
 		hints.ai_family = AF_INET;
 		hints.ai_socktype = SOCK_STREAM;
@@ -107,14 +200,15 @@ private:
 		if(getaddrinfo(host.c_str(), "80", &hints, &addresses) != 0)
 			return APPERR_DIRECT_SOCKET_SETUP;
 
-		Result result = APPERR_DIRECT_SOCKET_SETUP;
 		for(struct addrinfo *it = addresses; it && this->socket_fd < 0; it = it->ai_next)
 		{
 			int fd = socket(it->ai_family, it->ai_socktype, it->ai_protocol);
 			if(fd < 0)
 				continue;
-			int receive_buffer = 1024 * 1024;
+			int receive_buffer = 2 * 1024 * 1024;
 			setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &receive_buffer, sizeof(receive_buffer));
+			int one = 1;
+			setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
 			int original_flags = fcntl(fd, F_GETFL, 0);
 			fcntl(fd, F_SETFL, original_flags | O_NONBLOCK);
 			int connected = connect(fd, it->ai_addr, it->ai_addrlen);
@@ -146,6 +240,11 @@ private:
 			{
 				fcntl(fd, F_SETFL, original_flags);
 				this->socket_fd = fd;
+				/* Cache the successfully resolved address. */
+				CachedAddr ca;
+				memcpy(&ca.addr, it->ai_addr, it->ai_addrlen);
+				ca.len = it->ai_addrlen;
+				dns_cache()[host] = ca;
 			}
 			else
 				close(fd);
@@ -153,6 +252,9 @@ private:
 		freeaddrinfo(addresses);
 		if(this->socket_fd < 0)
 			return result;
+		} /* end of cache-miss block */
+
+send_request:
 
 		std::string request =
 			"GET " + path + " HTTP/1.1\r\n"
@@ -298,7 +400,9 @@ done:
 	}
 
 	std::string url;
-	static constexpr size_t receive_size = 256 * 1024;
+		/* 1 MiB matches the CIA write pipeline chunk size, halving recv()
+	 * syscall count vs 256 KiB and reducing inter-thread synchronization. */
+	static constexpr size_t receive_size = 1024 * 1024;
 	u8 *buffer = nullptr;
 	std::function<Result()> on_total = []() -> Result { return 0; };
 	std::function<Result(size_t)> on_chunk_cb = [](size_t) -> Result { return 0; };
@@ -535,7 +639,10 @@ public:
 	}
 
 private:
-	static constexpr size_t slot_count = 2;
+	/* Three slots let the network thread stay ahead of SD writes.
+	 * With 2 slots the producer blocks as soon as the writer lags
+	 * by one chunk; 3 slots absorb brief write-variance spikes. */
+	static constexpr size_t slot_count = 3;
 	struct Slot {
 		u8 *data = nullptr;
 		u64 offset = 0;
@@ -712,6 +819,15 @@ Result install::hs_cia(const hsapi::Title& meta, prog_func prog, bool reinstalla
 {
 	Result res;
 	get_url_func get_url = [meta](std::string& ret) -> Result {
+		/* Use the pre-fetched URL if it matches this title. */
+		if(meta.id == g_prefetched_id && !g_prefetched_url.empty())
+		{
+			ret = g_prefetched_url;
+			g_prefetched_url.clear();
+			g_prefetched_id = 0;
+			ilog("using pre-fetched download URL for id=%u", meta.id);
+			return 0;
+		}
 		return hsapi::get_download_link(ret, meta);
 	};
 

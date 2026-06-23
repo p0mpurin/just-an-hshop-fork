@@ -86,8 +86,8 @@ bool ui::CheckBox::render(ui::Keys& keys)
 		float xmid = (this->x+this->ox)/2;
 
 		/* draw an actual check, a little outside the reported bounds from width() and height() but that's fine */
-		C2D_DrawLine(this->x - 2.0f, ymid - 1.0f, this->slots[1], xmid, this->oy - 1.0f, this->slots[1], 2.0f, this->z);
-		C2D_DrawLine(xmid, this->oy - 1.0f, this->slots[1], this->ox + 2.0f, this->y - 2.0f, this->slots[1], 2.0f, this->z);
+		C2D_DrawLine(this->x - 1.5f, ymid, this->slots[1], xmid, this->oy - 1.0f, this->slots[1], 2.5f, this->z);
+		C2D_DrawLine(xmid, this->oy - 1.0f, this->slots[1], this->ox + 1.5f, this->y - 1.0f, this->slots[1], 2.5f, this->z);
 	}
 
 	return true;
