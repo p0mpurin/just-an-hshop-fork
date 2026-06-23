@@ -55,6 +55,7 @@ static ui::ScopedWidget<ui::Sprite> bottom_background;
 static C2D_Image user_top_background = { nullptr, nullptr };
 static C2D_Image user_bottom_background = { nullptr, nullptr };
 static bool user_background_active = false;
+static float user_top_bg_width = 400.0f; /* actual rendered width of the top wallpaper */
 
 static ui::select_command_handler select_command;
 static bool previous_select_was_command;
@@ -125,7 +126,12 @@ static void draw_top_background(ui::Keys& keys)
 {
 	if(user_background_active)
 	{
-		C2D_DrawImageAt(user_top_background, 0.0f, 0.0f, -0.9f);
+		/* Center the wallpaper in 800px mode if it's narrower than the screen.
+		 * This avoids ugly upscaling of 400px wallpapers to 800px. */
+		float bg_x = g_top_wide
+			? (800.0f - user_top_bg_width) * 0.5f
+			: 0.0f;
+		C2D_DrawImageAt(user_top_background, bg_x, 0.0f, -0.9f);
 	}
 	else if(top_background->has_image())
 	{
@@ -673,8 +679,12 @@ bool ui::set_user_background(const std::string& path)
 
 	C2D_Image next_top = { nullptr, nullptr };
 	C2D_Image next_bottom = { nullptr, nullptr };
+	/* In 800px mode, cap the crop to the source width. If the wallpaper
+	 * source is only 400px (designed for normal 3DS), don't upscale it
+	 * — it'll be centred in the 800px framebuffer. */
+	unsigned top_w = g_top_wide ? std::min<unsigned>(width, 800) : 400;
 	bool ok = make_cover_image(&next_top, bitmap, width, height,
-		g_top_wide ? 800 : 400, 240)
+		top_w, 240)
 		&& make_cover_image(&next_bottom, bitmap, width, height, 320, 240);
 	stbi_image_free(bitmap);
 
@@ -692,6 +702,7 @@ bool ui::set_user_background(const std::string& path)
 	}
 	user_top_background = next_top;
 	user_bottom_background = next_bottom;
+	user_top_bg_width = (float)top_w;
 	user_background_active = true;
 	ilog("background: loaded %s (%dx%d)", path.c_str(), width, height);
 	return true;
