@@ -52,6 +52,8 @@ update::update_status update::update_app(Result &res)
 	if(api_version > update::CUR_APP_VERSION)
 	{
 		ilog("Installing Nocturne update " VERSION " -> %s", nver.c_str());
+		if(!ui::Confirm::exec("Nocturne " + nver + " is available.\n\nInstall it now?", "Update available", true))
+			return update_status::up_to_date;
 		res = install::gui::net_cia(NOCTURNE_UPDATE_CIA_URL,
 			ctr::title_id(NOCTURNE_APP_TID), true, true, false, false);
 		return R_SUCCEEDED(res)

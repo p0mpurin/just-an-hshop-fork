@@ -244,7 +244,7 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 			return APPERR_MAX_REDIRECTS;
 		}
 
-		char newurl[1024];
+		char newurl[4096];
 		TRYJ(httpcGetResponseHeader(&this->hctx, "location", newurl, sizeof(newurl)));
 		newurl[sizeof(newurl) - 1] = '\0';
 

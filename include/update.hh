@@ -31,8 +31,8 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 13
-#define VERSION_DESC "update test polish" VERSION_SUFFIX
+#define VERSION_PATCH 14
+#define VERSION_DESC "update redirect fix" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)
 #define INT_TO_STR_(i) #i

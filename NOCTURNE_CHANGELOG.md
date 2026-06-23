@@ -1,5 +1,11 @@
 # Nocturne changelog
 
+## 1.5.14
+
+- Fixed GitHub updater fetches by avoiding long release-asset redirects for version checks
+- Increased HTTP redirect URL capacity for GitHub release asset downloads
+- Added a visible update confirmation prompt when a Nocturne update is found
+
 ## 1.5.13
 
 - Small polish release for validating the GitHub-based in-app updater
