@@ -25,6 +25,7 @@
 #include <nblib/nblib.hh>
 
 #include <algorithm>
+#include <cctype>
 
 #if defined(HS_DEBUG_SERVER)
 	#define HS_NB_BASE  HS_DEBUG_SERVER ":5000/nbapi"
@@ -370,11 +371,23 @@ Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 		data, HTTPC_METHOD_GET, nullptr, 0, false);
 	if(R_FAILED(res)) return res;
 
-	const std::string key = "\"tag_name\":\"v";
+	const std::string key = "\"tag_name\"";
 	size_t start = data.find(key);
 	if(start == std::string::npos)
 		return APPERR_INVALID_VERSION_STRING;
 	start += key.size();
+	while(start < data.size() && std::isspace((unsigned char)data[start]))
+		++start;
+	if(start >= data.size() || data[start] != ':')
+		return APPERR_INVALID_VERSION_STRING;
+	++start;
+	while(start < data.size() && std::isspace((unsigned char)data[start]))
+		++start;
+	if(start >= data.size() || data[start] != '"')
+		return APPERR_INVALID_VERSION_STRING;
+	++start;
+	if(start < data.size() && data[start] == 'v')
+		++start;
 	size_t end = data.find('"', start);
 	if(end == std::string::npos)
 		return APPERR_INVALID_VERSION_STRING;

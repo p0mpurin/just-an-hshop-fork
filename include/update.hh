@@ -31,8 +31,8 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 16
-#define VERSION_DESC "updater test" VERSION_SUFFIX
+#define VERSION_PATCH 17
+#define VERSION_DESC "updater parser fix" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)
 #define INT_TO_STR_(i) #i

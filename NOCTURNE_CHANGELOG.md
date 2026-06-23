@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.17
+
+- Fixed GitHub Releases API version parsing when JSON contains whitespace
+- Added a visible notice if Nocturne update checking fails
+
 ## 1.5.16
 
 - Tiny release for testing the visible in-app updater prompt and install flow
