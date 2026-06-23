@@ -1,5 +1,9 @@
 # Nocturne changelog
 
+## 1.5.16
+
+- Tiny release for testing the visible in-app updater prompt and install flow
+
 ## 1.5.15
 
 - Switched Nocturne update detection to the GitHub Releases API to avoid raw-file cache lag
