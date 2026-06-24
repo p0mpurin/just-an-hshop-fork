@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.27
+
+- Returned Nocturne updates to a stock-style static HTTP endpoint
+- Kept detailed updater diagnostics and completed-response timeout handling
+
 ## 1.5.26
 
 - Read the latest Nocturne version from the GitHub `latest/download/3hs.cia` redirect

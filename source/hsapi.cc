@@ -21,13 +21,10 @@
 #include "settings.hh"
 #include "util.hh"
 #include "log.hh"
-#include "proxy.hh"
-#include "update.hh"
 
 #include <nblib/nblib.hh>
 
 #include <algorithm>
-#include <string.h>
 
 #if defined(HS_DEBUG_SERVER)
 	#define HS_NB_BASE  HS_DEBUG_SERVER ":5000/nbapi"
@@ -38,11 +35,7 @@
 	#error "You must define HS_CDN_BASE, HS_SITE_LOC, HS_NB_BASE and HS_UPDATE_BASE"
 #endif
 #ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
-#endif
-
-#ifndef NOCTURNE_RELEASE_LATEST_URL
-	#define NOCTURNE_RELEASE_LATEST_URL "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest"
+	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
 #endif
 
 #define OK 0
@@ -376,93 +369,9 @@ Result hsapi::get_latest_version_string(std::string& ret)
 
 Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 {
-	std::string latest_cia_url = std::string(NOCTURNE_UPDATE_BASE) + "/3hs.cia";
-	ilog("[updater] START %s", latest_cia_url.c_str());
-
-	httpcContext hctx;
-	Result res = 0;
-	s32 status = 0;
-	char location[512] = { 0 };
-
-	if(R_FAILED(res = httpcOpenContext(&hctx, HTTPC_METHOD_GET, latest_cia_url.c_str(), 0)))
-	{
-		http::http_set_last_error("latest-cia:open 0x%08lX", res);
-		return res;
-	}
-
-	if(R_FAILED(res = httpcSetKeepAlive(&hctx, HTTPC_KEEPALIVE_ENABLED)))
-	{
-		http::http_set_last_error("latest-cia:keepalive 0x%08lX", res);
-		goto out;
-	}
-
-	if(R_FAILED(res = httpcSetSSLOpt(&hctx, SSLCOPT_DisableVerify)))
-	{
-		http::http_set_last_error("latest-cia:sslopt 0x%08lX", res);
-		goto out;
-	}
-
-	if(R_FAILED(res = httpcAddRequestHeaderField(&hctx, "User-Agent", USER_AGENT)))
-	{
-		http::http_set_last_error("latest-cia:ua 0x%08lX", res);
-		goto out;
-	}
-
-	if(R_FAILED(res = proxy::apply(&hctx)))
-	{
-		http::http_set_last_error("latest-cia:proxy 0x%08lX", res);
-		goto out;
-	}
-
-	if(R_FAILED(res = httpcBeginRequest(&hctx)))
-	{
-		http::http_set_last_error("latest-cia:begin 0x%08lX", res);
-		goto out;
-	}
-
-	if(R_FAILED(res = httpcGetResponseStatusCodeTimeout(&hctx, (u32 *)&status, 10000000000L)))
-	{
-		http::http_set_last_error("latest-cia:status 0x%08lX", res);
-		goto out;
-	}
-
-	if(status / 100 != 3)
-	{
-		http::http_set_last_error("latest-cia:status st=%ld", status);
-		res = APPERR_NON200;
-		goto out;
-	}
-
-	if(R_FAILED(res = httpcGetResponseHeader(&hctx, "location", location, sizeof(location))))
-	{
-		http::http_set_last_error("latest-cia:location 0x%08lX st=%ld", res, status);
-		goto out;
-	}
-	location[sizeof(location) - 1] = '\0';
-
-	{
-		const char *tag = strstr(location, "/download/v");
-		if(!tag)
-		{
-			http::http_set_last_error("latest-cia:badloc st=%ld", status);
-			res = APPERR_INVALID_VERSION_STRING;
-			goto out;
-		}
-		tag += strlen("/download/v");
-		const char *tag_end = strchr(tag, '/');
-		if(!tag_end || tag_end == tag || tag_end - tag > 8)
-		{
-			http::http_set_last_error("latest-cia:badtag st=%ld", status);
-			res = APPERR_INVALID_VERSION_STRING;
-			goto out;
-		}
-		ret.assign(tag, tag_end - tag);
-	}
-
-	http::http_set_last_error("");
-
-out:
-	httpcCloseContext(&hctx);
+	ilog("[updater] START %s/version.txt", NOCTURNE_UPDATE_BASE);
+	Result res = basereq(NOCTURNE_UPDATE_BASE "/version.txt",
+		ret, HTTPC_METHOD_GET, nullptr, 0, false);
 	if(R_FAILED(res))
 	{
 		elog("[updater] FAILED with 0x%08lX", res);

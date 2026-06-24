@@ -51,7 +51,7 @@
 #define TIP_GIVER 0
 
 #ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
+	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
 #endif
 
 ctr::thread<Handle &, Handle &> *wlan_thread = nullptr;
@@ -762,7 +762,7 @@ int main(int argc, char* argv[])
 				}
 				msg += "Build: " VERSION "\n";
 				msg += "Base: " NOCTURNE_UPDATE_BASE "\n";
-				msg += "File: latest/download/3hs.cia";
+				msg += "File: version.txt";
 				ui::notice(msg, 42.0f);
 			}
 			break;
