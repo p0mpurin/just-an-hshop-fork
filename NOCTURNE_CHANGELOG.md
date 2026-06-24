@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.29
+
+- Switched Nocturne's static updater check from `/version.txt` to stock-style `/version`
+- Kept the static `/3hs.cia` install URL for the current updater host
+
 ## 1.5.28
 
 - Made failed startup update checks non-intrusive so transient HTTP errors do not show a boot popup

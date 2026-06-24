@@ -31,8 +31,8 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 28
-#define VERSION_DESC "quiet startup update checks" VERSION_SUFFIX
+#define VERSION_PATCH 29
+#define VERSION_DESC "stock version endpoint" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)
 #define INT_TO_STR_(i) #i
