@@ -12,6 +12,9 @@ The install script uses Universal-Updater's `downloadRelease` action to fetch
 `3hs.cia` from the latest non-prerelease GitHub release in
 `p0mpurin/just-an-hshop-fork`.
 
+The app icon is served through `icons/nocturne.t3x`, generated from
+`icons/nocturne.t3s`.
+
 For each Nocturne release:
 
 1. Bump `storeInfo.revision`.

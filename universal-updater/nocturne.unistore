@@ -5,8 +5,10 @@
         "description": "Nocturne releases for Universal-Updater",
         "url": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/nocturne.unistore",
         "file": "nocturne.unistore",
+        "sheetURL": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/icons/nocturne.t3x",
+        "sheet": "nocturne.t3x",
         "version": 3,
-        "revision": 1531
+        "revision": 1532
     },
     "storeContent": [
         {
@@ -16,6 +18,8 @@
                 "description": "An unofficial 3hs fork with a Nocturne interface, performance changes, and quality-of-life improvements.",
                 "category": ["utility"],
                 "console": ["3DS"],
+                "icon_index": 0,
+                "sheet_index": 0,
                 "license": "gpl-3.0",
                 "last_updated": "2026-06-24 at 12:00 (UTC)",
                 "version": "v1.5.31"
