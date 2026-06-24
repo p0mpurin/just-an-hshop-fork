@@ -1,5 +1,11 @@
 # Nocturne changelog
 
+## 1.5.32
+
+- Centered the Universal-Updater notice and made it show only once (not every launch)
+- Cleaned up old in-app self-updater code paths
+- Added Universal-Updater icon to the UniStore listing
+
 ## 1.5.31
 
 - Removed the fragile launch-time Nocturne self-updater

@@ -83,6 +83,7 @@ enum NewSettings_flags0 {
 	FLAG0_BACKGROUND_TIP_SEEN = 0x200000,
 	FLAG0_DIRECT_CDN_EXPERIMENTAL = 0x400000,
 	FLAG0_TOP_WIDE_EXPERIMENTAL = 0x800000,
+	FLAG0_UU_NOTICE_SEEN        = 0x1000000,
 };
 
 #define ISET_RESUME_DOWNLOADS (get_nsettings()->flags0 & FLAG0_RESUME_DOWNLOADS)
@@ -105,6 +106,7 @@ enum NewSettings_flags0 {
 #define ISET_BACKGROUND_TIP_SEEN (get_nsettings()->flags0 & FLAG0_BACKGROUND_TIP_SEEN)
 #define ISET_DIRECT_CDN_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_DIRECT_CDN_EXPERIMENTAL)
 #define ISET_TOP_WIDE_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_TOP_WIDE_EXPERIMENTAL)
+#define ISET_UU_NOTICE_SEEN (get_nsettings()->flags0 & FLAG0_UU_NOTICE_SEEN)
 
 enum SettingsId
 {
@@ -150,6 +152,8 @@ void log_settings();
 void fix_sort_settings();
 bool should_show_background_tip();
 void mark_background_tip_seen();
+bool should_show_uu_notice();
+void mark_uu_notice_seen();
 
 namespace ui { class Theme; }
 std::vector<ui::Theme>& themes();

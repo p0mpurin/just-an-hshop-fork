@@ -740,7 +740,44 @@ int main(int argc, char* argv[])
 	}
 
 	ilog("Skipping in-app updater; Nocturne updates are handled by Universal-Updater");
-	ui::notice("Nocturne no longer updates itself on launch.\n\nTo update safely, open Universal-Updater and install the latest Nocturne release from the Nocturne UniStore.", 42.0f);
+
+	if(should_show_uu_notice())
+	{
+		ui::I18NEnabledRenderQueue rq;
+
+		ui::builder<ui::Text>(ui::Screen::top, "Universal-Updater")
+			.size(0.75f)
+			.x(ui::layout::center_x)
+			.y(60.0f)
+			.add_to(rq);
+
+		ui::builder<ui::Text>(ui::Screen::top, "Nocturne updates through Universal-Updater.\n\nOpen Universal-Updater on your 3DS, scan the QR code from the Nocturne GitHub page, and add the Nocturne UniStore to get the latest release.")
+			.size(0.48f)
+			.max_width(376.0f)
+			.x(ui::layout::center_x)
+			.under(rq.back(), 12.0f)
+			.wrap()
+			.add_to(rq);
+
+		ui::builder<ui::Text>(ui::Screen::top, "github.com/p0mpurin/just-an-hshop-fork")
+			.size(0.44f)
+			.max_width(376.0f)
+			.x(ui::layout::center_x)
+			.under(rq.back(), 8.0f)
+			.wrap()
+			.add_to(rq);
+
+		ui::builder<ui::Text>(ui::Screen::top, str::press_any_button_continue)
+			.size(0.46f)
+			.x(ui::layout::center_x)
+			.y(ui::layout::bottom)
+			.add_to(rq);
+
+		rq.render_finite_button(0xFFFFFFFF & ~(KEY_CSTICK_LEFT | KEY_CSTICK_RIGHT | KEY_CSTICK_UP | KEY_CSTICK_DOWN | 
+			KEY_CPAD_LEFT | KEY_CPAD_RIGHT | KEY_CPAD_UP | KEY_CPAD_DOWN));
+
+		mark_uu_notice_seen();
+	}
 
 	ui::set_focus(false);
 #endif

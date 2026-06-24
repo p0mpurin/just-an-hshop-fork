@@ -420,6 +420,16 @@ void mark_background_tip_seen()
 	write_settings();
 }
 
+bool should_show_uu_notice()
+{ return !ISET_UU_NOTICE_SEEN; }
+
+void mark_uu_notice_seen()
+{
+	g_nsettings.flags0 |= FLAG0_UU_NOTICE_SEEN;
+	write_settings();
+	settings_sync(); /* force immediate save */
+}
+
 void cleanup_themes()
 {
 	for(ui::Theme& theme : g_avail_themes)
