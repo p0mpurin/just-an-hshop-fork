@@ -50,6 +50,10 @@
 #define VERSION_CHECK 1
 #define TIP_GIVER 0
 
+#ifndef NOCTURNE_UPDATE_BASE
+	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
+#endif
+
 ctr::thread<Handle &, Handle &> *wlan_thread = nullptr;
 static Handle wlan_thread_exit_event = 0;
 static Handle wlan_disconnect_event = 0;
@@ -756,7 +760,8 @@ int main(int argc, char* argv[])
 					msg += http::http_last_error();
 					msg += "\n";
 				}
-				msg += "URL: nocturne.atwebpages.com";
+				msg += "Build: " VERSION "\n";
+				msg += "Base: " NOCTURNE_UPDATE_BASE;
 				ui::notice(msg, 42.0f);
 			}
 			break;

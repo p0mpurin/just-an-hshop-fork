@@ -48,7 +48,7 @@ static LightLock current_download_lock;
 static u32 hscert_chain = 0;
 
 /* Store the last failed step for the updater UI */
-static char g_last_http_error[128] = {};
+static char g_last_http_error[256] = {};
 namespace http {
 	const char *http_last_error() { return g_last_http_error; }
 }
@@ -221,6 +221,8 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 	Result res = 0, nres = 0;
 	s32 status = 0;
 	u32 chunk_num = 0;
+	u32 request_size = 0;
+	const char *fail_stage = "start";
 	bool bad_http_status = false;
 
 	if(battery_is_critical())
@@ -234,10 +236,12 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 	}
 	ilog("[http] setup_handle OK");
 
+	fail_stage = "begin";
 	ilog("[http] httpcBeginRequest");
 	TRYJ(httpcBeginRequest(&this->hctx));
 	ilog("[http] httpcBeginRequest OK");
 
+	fail_stage = "status";
 	ilog("[http] httpcGetResponseStatusCode");
 	TRYJ(httpcGetResponseStatusCodeTimeout(&this->hctx, (u32 *)&status, this->timeout));
 	ilog("[http] status=%ld", status);
@@ -261,6 +265,7 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 		}
 
 		char newurl[4096];
+		fail_stage = "redirect";
 		TRYJ(httpcGetResponseHeader(&this->hctx, "location", newurl, sizeof(newurl)));
 		newurl[sizeof(newurl) - 1] = '\0';
 
@@ -311,6 +316,7 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 
 	if(!(this->flags & http::ResumableDownload::flag_size))
 	{
+		fail_stage = "size";
 		TRYJ(httpcGetDownloadSizeState(&this->hctx, nullptr, &this->totalSize));
 		if(R_FAILED(res = this->on_total_size_try_get_()))
 			goto fail;
@@ -328,14 +334,16 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 			goto fail;
 		}
 		if(this->flags & http::ResumableDownload::flag_exit) goto cancel;
-		u32 request_size = http::ResumableDownload::ChunkMaxSize;
+		request_size = http::ResumableDownload::ChunkMaxSize;
 		if(this->totalSize > prev_pos)
 			request_size = MIN(request_size, this->totalSize - prev_pos);
+		fail_stage = "recv";
 		res = httpcReceiveDataTimeout(&this->hctx, (u8 *) this->buffer, request_size, this->timeout);
 		if(res) ilog("[http] httpcReceiveData returned 0x%08lX chunk=%lu", res, (unsigned long)chunk_num);
 		if(this->flags & http::ResumableDownload::flag_exit) goto cancel;
 
 
+		fail_stage = "progress";
 		nres = httpcGetDownloadSizeState(&this->hctx, &pos, nullptr);
 		if(R_FAILED(nres)) res = nres;
 		if((R_FAILED(res) && res != (Result) HTTPC_RESULTCODE_DOWNLOADPENDING))
@@ -395,8 +403,15 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 	if(res == 0) this->notify();
 
 fail:
-	elog("[http] FAIL at chunk=%lu code=0x%08lX", (unsigned long)chunk_num, res);
-	snprintf(g_last_http_error, sizeof(g_last_http_error), "http[%lu] 0x%08lX", (unsigned long)chunk_num, res);
+	elog("[http] FAIL stage=%s chunk=%lu code=0x%08lX status=%ld pos=%lu prev=%lu total=%lu req=%lu url=%s",
+		fail_stage, (unsigned long)chunk_num, res, status, (unsigned long)pos,
+		(unsigned long)prev_pos, (unsigned long)this->totalSize,
+		(unsigned long)request_size, url);
+	snprintf(g_last_http_error, sizeof(g_last_http_error),
+		"%s c%lu r=0x%08lX st=%ld pos=%lu/%lu prev=%lu req=%lu",
+		fail_stage, (unsigned long)chunk_num, res, status,
+		(unsigned long)pos, (unsigned long)this->totalSize,
+		(unsigned long)prev_pos, (unsigned long)request_size);
 	this->close_handle();
 	this->flags &= ~(http::ResumableDownload::flag_active | http::ResumableDownload::flag_exit);
 	return res;
@@ -409,6 +424,7 @@ Result http::ResumableDownload::setup_handle(const char *url)
 {
 	char *password;
 	Result res;
+	const char *fail_stage = "open";
 
 	ilog("[http] setup_handle url=%s", url);
 	/* the last argument is use_default_proxy, we don't want that since we set it ourselves later */
@@ -420,6 +436,7 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	ilog("[http] httpcOpenContext OK");
 
 	/* Explicitly retain the connection for the duration of large transfers. */
+	fail_stage = "keepalive";
 	ilog("[http] httpcSetKeepAlive");
 	TRYJ(httpcSetKeepAlive(&this->hctx, HTTPC_KEEPALIVE_ENABLED));
 	ilog("[http] httpcSetKeepAlive OK");
@@ -427,18 +444,27 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	ilog("[http] ssl setup (is_https=%d)", strncmp(url, "https:", 6) == 0);
 	if(hscert_der_bin_size && strncmp(url, "https:", 6) == 0
 		&& (this->flags & (flag_auth | flag_device_auth)))
+	{
+		fail_stage = "cert";
 		TRYJ(httpcSelectRootCertChain(&this->hctx, hscert_chain));
+	}
 	
 	if(strncmp(url, "https:", 6) == 0)
+	{
+		fail_stage = "sslopt";
 		TRYJ(httpcSetSSLOpt(&this->hctx, SSLCOPT_DisableVerify));
+	}
 	ilog("[http] ssl setup OK");
 	ilog("[http] adding headers...");
+	fail_stage = "ua";
 	TRYJ(httpcAddRequestHeaderField(&this->hctx, "User-Agent", USER_AGENT));
 	ilog("[http] User-Agent added");
 	if(this->flags & http::ResumableDownload::flag_auth)
 	{
+		fail_stage = "auth-user";
 		TRYJ(httpcAddRequestHeaderField(&this->hctx, "X-Auth-User", hsapi_user));
 		ilog("[http] X-Auth-User added");
+		fail_stage = "auth-pass";
 		/*TRYJ(httpcAddRequestHeaderField(&this->hctx, "X-Auth-Password", password));*/password=(char*)malloc(hsapi_password_length+1);hsapi_password(password);password[hsapi_password_length]=0;TRYJ(httpcAddRequestHeaderField(&this->hctx,"X-Auth-Password",password));memset(password,0,hsapi_password_length);free(password);
 		ilog("[http] X-Auth-Password added");
 	}
@@ -448,15 +474,20 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	}
 #endif
 	if(this->postdataPtr && this->postdataLen)
+	{
+		fail_stage = "post";
 		TRYJ(httpcAddPostDataRaw(&this->hctx, (const u32 *) this->postdataPtr, this->postdataLen));
+	}
 	/* we start from downloadedSize; 0 initially and it increments after the second execute_once() */
 	if(this->downloadedSize != 0)
 	{
 		std::string val = "bytes=" + std::to_string(this->downloadedSize) + "-";
+		fail_stage = "range";
 		TRYJ(httpcAddRequestHeaderField(&this->hctx, "Range", val.c_str()));
 		ilog("[http] Range header added");
 	}
 	ilog("[http] proxy::apply...");
+	fail_stage = "proxy";
 	TRYJ(proxy::apply(&this->hctx));
 	ilog("[http] proxy::apply OK");
 
@@ -464,8 +495,8 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	ilog("[http] setup_handle SUCCESS");
 	return 0;
 fail:
-	elog("[http] setup_handle FAIL at 0x%08lX", res);
-	snprintf(g_last_http_error, sizeof(g_last_http_error), "setup 0x%08lX", res);
+	elog("[http] setup_handle FAIL stage=%s code=0x%08lX url=%s", fail_stage, res, url);
+	snprintf(g_last_http_error, sizeof(g_last_http_error), "setup:%s 0x%08lX", fail_stage, res);
 	this->close_handle();
 	return res;
 }

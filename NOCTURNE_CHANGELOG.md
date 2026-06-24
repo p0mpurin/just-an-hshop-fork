@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.22
+
+- Added detailed on-screen diagnostics for startup updater HTTP failures
+- Showed the compiled Nocturne update base and build version in update check errors
+
 ## 1.5.21
 
 - Stopped known-length HTTP downloads as soon as the advertised response body is complete
