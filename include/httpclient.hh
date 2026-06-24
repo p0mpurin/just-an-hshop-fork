@@ -36,6 +36,7 @@
 namespace http
 {
 	const char *http_last_error();
+	void http_set_last_error(const char *fmt, ...);
 	class ResumableDownload
 	{
 	public:

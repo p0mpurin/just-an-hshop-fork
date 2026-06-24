@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.25
+
+- Used GitHub's latest-release redirect tag as the Nocturne version source
+- Removed the in-app update check's dependency on the separate `nocturne-version` release asset
+
 ## 1.5.24
 
 - Switched the Nocturne updater back to GitHub's latest release assets

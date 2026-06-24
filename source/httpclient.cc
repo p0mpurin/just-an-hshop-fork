@@ -27,6 +27,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 #include "build/hscert_der.h"
 
@@ -51,6 +52,14 @@ static u32 hscert_chain = 0;
 static char g_last_http_error[256] = {};
 namespace http {
 	const char *http_last_error() { return g_last_http_error; }
+
+	void http_set_last_error(const char *fmt, ...)
+	{
+		va_list args;
+		va_start(args, fmt);
+		vsnprintf(g_last_http_error, sizeof(g_last_http_error), fmt, args);
+		va_end(args);
+	}
 }
 
 static bool battery_is_critical()
