@@ -382,6 +382,12 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 		++chunk_num;
 		/* Publish progress only after the byte count reflects this chunk. */
 		this->notify();
+
+		if(this->totalSize > 0 && prev_pos >= this->totalSize)
+		{
+			res = 0;
+			break;
+		}
 	} while(res == (Result) HTTPC_RESULTCODE_DOWNLOADPENDING);
 
 	if(bad_http_status)

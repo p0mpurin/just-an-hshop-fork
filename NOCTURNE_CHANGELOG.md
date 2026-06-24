@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.21
+
+- Stopped known-length HTTP downloads as soon as the advertised response body is complete
+- Fixed tiny startup version checks that could time out after receiving the whole file
+
 ## 1.5.20
 
 - Fixed launch update checks against tiny static `version.txt` responses on the 3DS HTTP service
