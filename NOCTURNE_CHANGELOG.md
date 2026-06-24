@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.26
+
+- Read the latest Nocturne version from the GitHub `latest/download/3hs.cia` redirect
+- Avoided the GitHub `/releases/latest` page path that fails on the 3DS HTTP service
+
 ## 1.5.25
 
 - Used GitHub's latest-release redirect tag as the Nocturne version source

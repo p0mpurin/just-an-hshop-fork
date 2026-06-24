@@ -762,7 +762,7 @@ int main(int argc, char* argv[])
 				}
 				msg += "Build: " VERSION "\n";
 				msg += "Base: " NOCTURNE_UPDATE_BASE "\n";
-				msg += "File: releases/latest";
+				msg += "File: latest/download/3hs.cia";
 				ui::notice(msg, 42.0f);
 			}
 			break;
