@@ -751,20 +751,8 @@ int main(int argc, char* argv[])
 	switch (us) {
 		case update::update_status::failed_update_check:
 			ilog("Update check failed (%08lX), continuing custom build", update_res);
-			{
-				std::string msg = "Nocturne update check failed.\n\n";
-				msg += "Error: 0x" + pad8code(update_res) + "\n";
-				if(http::http_last_error()[0])
-				{
-					msg += "Step: ";
-					msg += http::http_last_error();
-					msg += "\n";
-				}
-				msg += "Build: " VERSION "\n";
-				msg += "Base: " NOCTURNE_UPDATE_BASE "\n";
-				msg += "File: version.txt";
-				ui::notice(msg, 42.0f);
-			}
+			if(http::http_last_error()[0])
+				ilog("Nocturne updater detail: %s", http::http_last_error());
 			break;
 		case update::update_status::failed_update_install:
 			ilog("Update install failed, app blocked");

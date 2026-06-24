@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.28
+
+- Made failed startup update checks non-intrusive so transient HTTP errors do not show a boot popup
+- Kept updater failure details in logs while preserving install failure warnings
+
 ## 1.5.27
 
 - Returned Nocturne updates to a stock-style static HTTP endpoint
