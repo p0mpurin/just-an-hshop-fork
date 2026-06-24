@@ -19,6 +19,9 @@ These rules are mandatory for AI agents and maintainers before committing or pub
 - `NOCTURNE_UPDATE_BASE` must serve:
   - `/nocturne-version`
   - `/3hs.cia`
+- For the Vercel updater site, commit both mirrored files:
+  - `vercel-updater/public/nocturne-version`
+  - `vercel-updater/public/3hs.cia`
 - Keep publishing `nocturne-version` as a GitHub release asset too, but do not rely on GitHub as the in-app update transport unless hardware testing proves it works.
 - Do not point Nocturne auto-update at the official 3hs CIA. Official 3hs updates are only a compatibility/source signal because installing stock 3hs would overwrite this fork.
 
@@ -41,4 +44,4 @@ perl build.pl --target release
 
 - Keep version bumps, changelog entries, and updater asset changes atomic in one commit when they belong to the same release.
 - Do not commit local/auth files such as `source/hsapi_auth.c`.
-- Do not commit generated build outputs (`3hs.cia`, `3hs.elf`, `3hs.3dsx`) unless the repository policy changes; publish CIAs as GitHub release assets instead.
+- Do not commit root generated build outputs (`3hs.cia`, `3hs.elf`, `3hs.3dsx`). The exception is `vercel-updater/public/3hs.cia`, which is intentionally committed so the Vercel updater site can serve it.

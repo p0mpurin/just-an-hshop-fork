@@ -3,13 +3,12 @@
 .vs/
 3hs.elf
 3hs.3dsx
-3hs.cia
+/3hs.cia
 *.o
 *.d
 
 # Local/test release artifacts
 3hs-nocturne-*.cia
-vercel-updater/public/3hs.cia
 
 # Generated theme data
 data/*.hstx
