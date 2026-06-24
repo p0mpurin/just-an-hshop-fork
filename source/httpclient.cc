@@ -49,7 +49,9 @@ static u32 hscert_chain = 0;
 
 /* Store the last failed step for the updater UI */
 static char g_last_http_error[128] = {};
-const char *http_last_error() { return g_last_http_error; }
+namespace http {
+	const char *http_last_error() { return g_last_http_error; }
+}
 
 static bool battery_is_critical()
 {

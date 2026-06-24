@@ -39,6 +39,7 @@
 #include "queue.hh"
 #include "panic.hh"
 #include "hsapi.hh"
+#include "httpclient.hh"
 #include "more.hh"
 #include "next.hh"
 #include "i18n.hh"
