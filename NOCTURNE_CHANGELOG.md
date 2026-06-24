@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.24
+
+- Switched the Nocturne updater back to GitHub's latest release assets
+- Kept detailed startup updater diagnostics visible for failed update checks
+
 ## 1.5.23
 
 - Accepted 3DS HTTP receive timeouts when progress shows the full known-length response has arrived

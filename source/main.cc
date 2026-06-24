@@ -51,7 +51,7 @@
 #define TIP_GIVER 0
 
 #ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
+	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
 #endif
 
 ctr::thread<Handle &, Handle &> *wlan_thread = nullptr;
@@ -761,7 +761,8 @@ int main(int argc, char* argv[])
 					msg += "\n";
 				}
 				msg += "Build: " VERSION "\n";
-				msg += "Base: " NOCTURNE_UPDATE_BASE;
+				msg += "Base: " NOCTURNE_UPDATE_BASE "\n";
+				msg += "File: nocturne-version";
 				ui::notice(msg, 42.0f);
 			}
 			break;

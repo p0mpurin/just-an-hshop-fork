@@ -31,8 +31,8 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 23
-#define VERSION_DESC "accept completed HTTP timeouts" VERSION_SUFFIX
+#define VERSION_PATCH 24
+#define VERSION_DESC "github latest updater" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)
 #define INT_TO_STR_(i) #i

@@ -25,7 +25,7 @@
 #include "log.hh"
 
 #ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
+	#define NOCTURNE_UPDATE_BASE "https://github.com/p0mpurin/just-an-hshop-fork/releases/latest/download"
 #endif
 
 #define NOCTURNE_UPDATE_CIA_URL NOCTURNE_UPDATE_BASE "/3hs.cia"
