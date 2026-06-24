@@ -368,7 +368,7 @@ Result hsapi::get_latest_version_string(std::string& ret)
 Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 {
 	ilog("Getting latest Nocturne version");
-	Result res = basereq(NOCTURNE_UPDATE_BASE "/nocturne-version",
+	Result res = basereq(NOCTURNE_UPDATE_BASE "/version.txt",
 		ret, HTTPC_METHOD_GET, nullptr, 0, false);
 	if(R_FAILED(res)) return res;
 	trim(ret, " \t\n");
