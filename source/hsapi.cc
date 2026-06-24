@@ -25,6 +25,10 @@
 #include <nblib/nblib.hh>
 
 #include <algorithm>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <string.h>
 
 #if defined(HS_DEBUG_SERVER)
 	#define HS_NB_BASE  HS_DEBUG_SERVER ":5000/nbapi"
@@ -368,9 +372,59 @@ Result hsapi::get_latest_version_string(std::string& ret)
 Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 {
 	ilog("Getting latest Nocturne version");
-	Result res = basereq(NOCTURNE_UPDATE_BASE "/version.txt",
-		ret, HTTPC_METHOD_GET, nullptr, 0, false);
-	if(R_FAILED(res)) return res;
+	/* Use a raw HTTP request over plain TCP.  The 3DS HTTPC service
+	 * sometimes chokes on CDN responses; a direct socket to port 80
+	 * avoids IPC overhead and works reliably with Surge/Neocities/etc. */
+	int fd = socket(AF_INET, SOCK_STREAM, 0);
+	if(fd < 0) return APPERR_DIRECT_SOCKET_SETUP;
+
+	struct addrinfo hints {};
+	hints.ai_family = AF_INET;
+	hints.ai_socktype = SOCK_STREAM;
+	struct addrinfo *addr = nullptr;
+	const char *host = NOCTURNE_UPDATE_BASE;
+	const char *host_start = strstr(host, "://");
+	host_start = host_start ? host_start + 3 : host;
+	char hostname[128] = {};
+	const char *slash = strchr(host_start, '/');
+	size_t hostlen = slash ? (size_t)(slash - host_start) : strlen(host_start);
+	if(hostlen >= sizeof(hostname)) { close(fd); return APPERR_DIRECT_SOCKET_SETUP; }
+	memcpy(hostname, host_start, hostlen);
+	const char *path = slash ? slash : "/";
+	std::string path_with_file = std::string(path) + "version.txt";
+
+	if(getaddrinfo(hostname, "80", &hints, &addr) != 0) { close(fd); return APPERR_DIRECT_SOCKET_SETUP; }
+
+	int connected = connect(fd, addr->ai_addr, addr->ai_addrlen);
+	freeaddrinfo(addr);
+	if(connected != 0) { close(fd); return APPERR_DIRECT_SOCKET_SETUP; }
+
+	std::string req = "GET " + path_with_file + " HTTP/1.1\r\nHost: "
+		+ hostname + "\r\nUser-Agent: Nocturne-Update/1.0\r\n"
+		"Accept: */*\r\nConnection: close\r\n\r\n";
+	size_t sent = 0;
+	while(sent < req.size()) {
+		ssize_t n = send(fd, req.data() + sent, req.size() - sent, 0);
+		if(n <= 0) { close(fd); return APPERR_DIRECT_SOCKET_TRANSFER; }
+		sent += n;
+	}
+
+	char buf[1024];
+	ssize_t total = 0;
+	while(total < (ssize_t)sizeof(buf) - 1) {
+		ssize_t n = recv(fd, buf + total, sizeof(buf) - 1 - total, 0);
+		if(n <= 0) break;
+		total += n;
+	}
+	close(fd);
+	if(total <= 0) return APPERR_DIRECT_SOCKET_TRANSFER;
+	buf[total] = 0;
+
+	/* Extract the body after HTTP headers */
+	const char *body = strstr(buf, "\r\n\r\n");
+	if(!body) return APPERR_DIRECT_SOCKET_SETUP;
+	body += 4;
+	ret = body;
 	trim(ret, " \t\n");
 	return OK;
 }
