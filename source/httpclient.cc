@@ -337,6 +337,16 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 		if(R_FAILED(nres)) res = nres;
 		if((R_FAILED(res) && res != (Result) HTTPC_RESULTCODE_DOWNLOADPENDING))
 		{
+			/* Some servers close the connection after sending the full
+			 * response body. If we already have all the expected data,
+			 * treat that as a clean end-of-stream. */
+			if(this->totalSize > 0 && prev_pos >= this->totalSize)
+			{
+				ilog("[http] connection closed after complete download (%lu/%lu bytes)",
+					(unsigned long)prev_pos, (unsigned long)this->totalSize);
+				res = 0;
+				break;
+			}
 			elog("aborted http connection due to error: %08lX.", res);
 			goto fail;
 		}
