@@ -827,7 +827,10 @@ static void show_background_menu()
 		std::string path;
 	};
 	std::vector<BackgroundEntry> entries = {
-		{ STRING(none), "" }
+		{ STRING(none), "" },
+		{ "[built-in] default-01", "romfs:/backgrounds/default-01.jpg" },
+		{ "[built-in] default-02", "romfs:/backgrounds/default-02.jpg" },
+		{ "[built-in] default-03", "romfs:/backgrounds/default-03.jpg" },
 	};
 
 	DIR *dir = opendir(BACKGROUNDS_DIR);
