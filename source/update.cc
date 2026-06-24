@@ -36,8 +36,14 @@ update::update_status update::update_app(Result &res)
 	std::string nver;
 	app_version api_version;
 
-	if(R_FAILED(res = hsapi::get_nocturne_latest_version_string(nver)))
-		return update_status::failed_update_check;
+	/* Only use the official 3hs update server, which the 3DS can reliably
+	 * reach.  Nocturne does not self-update; new builds are installed
+	 * manually from the GitHub releases page. */
+	if(R_FAILED(res = hsapi::get_latest_version_string(nver)))
+	{
+		ilog("Update check failed (%08lX); continuing", res);
+		return update_status::up_to_date;
+	}
 
 	if (!api_version.parse(nver.c_str(), nver.size()))
 	{
@@ -47,51 +53,19 @@ update::update_status update::update_app(Result &res)
 			ilog("did not receive any version string from server");
 		else
 			ilog("received bad version string '%s'... from server", badver);
-		res = APPERR_INVALID_VERSION_STRING;
-		return update_status::failed_update_check;
-	}
-
-	ilog("Fetched latest Nocturne version %s", nver.c_str());
-
-	if(api_version > update::CUR_APP_VERSION)
-	{
-		ilog("Installing Nocturne update " VERSION " -> %s", nver.c_str());
-		if(!ui::Confirm::exec("Nocturne " + nver + " is available.\n\nInstall it now?", "Update available", true))
-			return update_status::up_to_date;
-		res = install::gui::net_cia(NOCTURNE_UPDATE_CIA_URL,
-			ctr::title_id(NOCTURNE_APP_TID), true, true, false, false);
-		return R_SUCCEEDED(res)
-			? update_status::updated_successfully
-			: update_status::failed_update_install;
-	}
-
-	if(R_FAILED(res = hsapi::get_latest_version_string(nver)))
-	{
-		ilog("Official 3hs update check failed (%08lX); Nocturne is up-to-date", res);
-		return update_status::up_to_date;
-	}
-
-	if (!api_version.parse(nver.c_str(), nver.size()))
-	{
-		char badver[9] = { 0 };
-		strncpy(badver, nver.c_str(), 8);
-		if (!strlen(badver))
-			ilog("did not receive any official version string from server");
-		else
-			ilog("received bad official version string '%s'... from server", badver);
 		return update_status::up_to_date;
 	}
 
 	ilog("Fetched latest official 3hs version %s", nver.c_str());
 
-	if(api_version <= update::CUR_APP_VERSION)
-		return update_status::up_to_date;
+	if(api_version > update::CUR_APP_VERSION)
+	{
+		ilog("Official 3hs %s is newer than Nocturne's upstream base " VERSION, nver.c_str());
+		ui::notice("A newer official 3hs release is available.\n\nNocturne will keep running so your UI and performance changes are preserved. The upstream source update must be merged into a new Nocturne build; installing the stock CIA would replace this fork.", 42.0f);
+		return update_status::upstream_update_available;
+	}
 
-	/* Installing hShop's stock CIA would erase every Nocturne modification.
-	 * Track the official version for compatibility, but require an upstream
-	 * source merge and a new Nocturne build instead of replacing the fork. */
-	ilog("Official 3hs %s is newer than Nocturne's upstream base " VERSION, nver.c_str());
-	return update_status::upstream_update_available;
+	return update_status::up_to_date;
 }
 
 bool update::app_version::parse(const char *str, u32 len)
