@@ -9,6 +9,7 @@
 
 # Local/test release artifacts
 3hs-nocturne-*.cia
+vercel-updater/public/3hs.cia
 
 # Generated theme data
 data/*.hstx
