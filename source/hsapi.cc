@@ -369,11 +369,15 @@ Result hsapi::get_latest_version_string(std::string& ret)
 
 Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 {
-	ilog("[updater] checking %s/version.txt", NOCTURNE_UPDATE_BASE);
+	ilog("[updater] START %s/version.txt", NOCTURNE_UPDATE_BASE);
 	Result res = basereq(NOCTURNE_UPDATE_BASE "/version.txt",
 		ret, HTTPC_METHOD_GET, nullptr, 0, false);
-	ilog("[updater] basereq returned 0x%08lX data='%s'", res, R_SUCCEEDED(res) ? ret.c_str() : "(failed)");
-	if(R_FAILED(res)) return res;
+	if(R_FAILED(res))
+	{
+		elog("[updater] FAILED with 0x%08lX", res);
+		return res;
+	}
+	ilog("[updater] OK data='%s'", ret.c_str());
 	trim(ret, " \t\n");
 	return OK;
 }

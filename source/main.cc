@@ -750,7 +750,8 @@ int main(int argc, char* argv[])
 			 * access to the app. API errors are reported separately below.
 			 */
 			ilog("Update check failed (%08lX), continuing custom build", update_res);
-			ui::notice("Nocturne update check failed.\n\nThe app will keep running, but automatic updates may not be available right now.\n\nResult: 0x" + pad8code(update_res), 42.0f);
+			log_flush();
+			ui::notice("Nocturne update check failed.\n\nThe app will keep running, but automatic updates may not be available right now.\n\nCheck /3ds/3hs/log.txt for details.\n\nResult: 0x" + pad8code(update_res), 42.0f);
 			break;
 		case update::update_status::failed_update_install:
 			ilog("Update install failed, app blocked");

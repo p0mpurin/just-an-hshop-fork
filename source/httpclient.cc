@@ -384,24 +384,37 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	char *password;
 	Result res;
 
+	ilog("[http] setup_handle url=%s", url);
 	/* the last argument is use_default_proxy, we don't want that since we set it ourselves later */
 	if(R_FAILED(res = httpcOpenContext(&this->hctx, this->method, url, 0)))
+	{
+		elog("[http] httpcOpenContext FAIL 0x%08lX", res);
 		return res;
+	}
+	ilog("[http] httpcOpenContext OK");
 
 	/* Explicitly retain the connection for the duration of large transfers. */
+	ilog("[http] httpcSetKeepAlive");
 	TRYJ(httpcSetKeepAlive(&this->hctx, HTTPC_KEEPALIVE_ENABLED));
+	ilog("[http] httpcSetKeepAlive OK");
 	
+	ilog("[http] ssl setup (is_https=%d)", strncmp(url, "https:", 6) == 0);
 	if(hscert_der_bin_size && strncmp(url, "https:", 6) == 0
 		&& (this->flags & (flag_auth | flag_device_auth)))
 		TRYJ(httpcSelectRootCertChain(&this->hctx, hscert_chain));
 	
 	if(strncmp(url, "https:", 6) == 0)
 		TRYJ(httpcSetSSLOpt(&this->hctx, SSLCOPT_DisableVerify));
+	ilog("[http] ssl setup OK");
+	ilog("[http] adding headers...");
 	TRYJ(httpcAddRequestHeaderField(&this->hctx, "User-Agent", USER_AGENT));
+	ilog("[http] User-Agent added");
 	if(this->flags & http::ResumableDownload::flag_auth)
 	{
 		TRYJ(httpcAddRequestHeaderField(&this->hctx, "X-Auth-User", hsapi_user));
+		ilog("[http] X-Auth-User added");
 		/*TRYJ(httpcAddRequestHeaderField(&this->hctx, "X-Auth-Password", password));*/password=(char*)malloc(hsapi_password_length+1);hsapi_password(password);password[hsapi_password_length]=0;TRYJ(httpcAddRequestHeaderField(&this->hctx,"X-Auth-Password",password));memset(password,0,hsapi_password_length);free(password);
+		ilog("[http] X-Auth-Password added");
 	}
 #if 0
 	if(this->flags & http::ResumableDownload::flag_device_auth)
@@ -415,12 +428,17 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	{
 		std::string val = "bytes=" + std::to_string(this->downloadedSize) + "-";
 		TRYJ(httpcAddRequestHeaderField(&this->hctx, "Range", val.c_str()));
+		ilog("[http] Range header added");
 	}
+	ilog("[http] proxy::apply...");
 	TRYJ(proxy::apply(&this->hctx));
+	ilog("[http] proxy::apply OK");
 
 	this->flags |= http::ResumableDownload::flag_active;
+	ilog("[http] setup_handle SUCCESS");
 	return 0;
 fail:
+	elog("[http] setup_handle FAIL at 0x%08lX", res);
 	this->close_handle();
 	return res;
 }
