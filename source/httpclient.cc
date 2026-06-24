@@ -47,6 +47,10 @@ static http::ResumableDownload *current_download = nullptr;
 static LightLock current_download_lock;
 static u32 hscert_chain = 0;
 
+/* Store the last failed step for the updater UI */
+static char g_last_http_error[128] = {};
+const char *http_last_error() { return g_last_http_error; }
+
 static bool battery_is_critical()
 {
 	u8 level, state;
@@ -371,6 +375,7 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 
 fail:
 	elog("[http] FAIL at chunk=%lu code=0x%08lX", (unsigned long)chunk_num, res);
+	snprintf(g_last_http_error, sizeof(g_last_http_error), "http[%lu] 0x%08lX", (unsigned long)chunk_num, res);
 	this->close_handle();
 	this->flags &= ~(http::ResumableDownload::flag_active | http::ResumableDownload::flag_exit);
 	return res;
@@ -439,6 +444,7 @@ Result http::ResumableDownload::setup_handle(const char *url)
 	return 0;
 fail:
 	elog("[http] setup_handle FAIL at 0x%08lX", res);
+	snprintf(g_last_http_error, sizeof(g_last_http_error), "setup 0x%08lX", res);
 	this->close_handle();
 	return res;
 }

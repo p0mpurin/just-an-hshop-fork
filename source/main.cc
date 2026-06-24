@@ -745,13 +745,19 @@ int main(int argc, char* argv[])
 
 	switch (us) {
 		case update::update_status::failed_update_check:
-			/*
-			 * This is a custom fork, so the upstream updater must never prevent
-			 * access to the app. API errors are reported separately below.
-			 */
 			ilog("Update check failed (%08lX), continuing custom build", update_res);
-			log_flush();
-			ui::notice("Nocturne update check failed.\n\nThe app will keep running, but automatic updates may not be available right now.\n\nCheck /3ds/3hs/log.txt for details.\n\nResult: 0x" + pad8code(update_res), 42.0f);
+			{
+				std::string msg = "Nocturne update check failed.\n\n";
+				msg += "Error: 0x" + pad8code(update_res) + "\n";
+				if(http::http_last_error()[0])
+				{
+					msg += "Step: ";
+					msg += http::http_last_error();
+					msg += "\n";
+				}
+				msg += "URL: nocturne.atwebpages.com";
+				ui::notice(msg, 42.0f);
+			}
 			break;
 		case update::update_status::failed_update_install:
 			ilog("Update install failed, app blocked");

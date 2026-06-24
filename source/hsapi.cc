@@ -382,6 +382,10 @@ Result hsapi::get_nocturne_latest_version_string(std::string& ret)
 	return OK;
 }
 
+/* Expose last updater error for the UI */
+static Result g_last_updater_error = 0;
+Result hsapi::last_updater_error() { return g_last_updater_error; }
+
 Result hsapi::get_theme_preview_png(std::string& ret, hsapi::hid id)
 {
 	ilog("Getting theme preview");
