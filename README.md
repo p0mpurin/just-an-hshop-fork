@@ -13,6 +13,7 @@ Nocturne is an unofficial community fork. It is not maintained or supported by t
 - 804 MHz + L2 cache + Core 2 CIA writer on New 3DS
 - 800px wide top-screen mode for New 3DS
 - Live download speed, ETA, and transfer stage
+- Notification LED progress feedback during installs
 - Size badges next to titles and queue reordering
 - Auto-shutdown after install completes (toggle in Settings)
 - Old 3DS / 2DS compatibility

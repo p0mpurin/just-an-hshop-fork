@@ -1904,7 +1904,7 @@ void ui::LED::SetTimeout(time_t newTime)
 void ui::LED::ClearResetFlags(void)
 {
 	/* functionally equivalent to LEDFlags = LED_NONE currently */
-	LEDFlags &= ~(LED_TIMEOUT | LED_SLEEP_MODE);
+	LEDFlags &= ~(LED_TIMEOUT | LED_RESET_SLEEP);
 }
 
 Result ui::LED::ResetPattern()

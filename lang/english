@@ -567,7 +567,7 @@ Enable LED status indicators
 
 # setting description
 - allow_led_desc
-Flash the LED light to inform you of various status changes.
+Flash the LED light to show status changes and install progress.
 
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo

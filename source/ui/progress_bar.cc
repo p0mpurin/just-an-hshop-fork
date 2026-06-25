@@ -16,6 +16,8 @@
 
 #include <ui/progress_bar.hh>
 
+#include <algorithm>
+
 #define OUTER_W(screen) (ui::screen_width(screen) - (X_OFFSET * 2))
 #define GRAPH_STEP(x) ((ui::screen_width(screen) - ((x) * 2)) / (float) (ui::SpeedBuffer::max_size() - 2))
 #define LATENCY_BAR_HEIGHT 50.0f
@@ -131,8 +133,14 @@ static std::string format_duration(time_t secs)
 
 void ui::ProgressBar::update_state()
 {
-	float perc = this->total == 0 ? 0.0f : ((float) this->part / this->total);
-	this->targetw = (ui::screen_width(this->screen) - (X_OFFSET * 2) - 4) * perc;
+	u64 now = osGetTime();
+	if(!this->display_initialized || this->display_total != this->total || this->part < this->display_part)
+	{
+		this->display_part = this->part;
+		this->display_update_time = now;
+		this->display_total = this->total;
+		this->display_initialized = true;
+	}
 
 	// (a)        (b/c)
 	// 90%         9/10
@@ -140,21 +148,10 @@ void ui::ProgressBar::update_state()
 	// 1MiB/s  1:00 ETA
 	// (d)          (e)
 
-	// Parse strings
-	std::string bc = this->serialize(this->part, this->total) + "/" + this->serialize(this->total, this->total) + this->postfix(this->total);
-	std::string a = floating_prec<float>(perc * 100, 1) + "%";
-
 	C2D_TextBufClear(this->buf);
-
-	ui::parse_text(&this->bc, this->buf, bc.c_str());
-	ui::parse_text(&this->a, this->buf, a.c_str());
-
-	C2D_TextOptimize(&this->bc);
-	C2D_TextOptimize(&this->a);
 
 	if(this->flags & ui::ProgressBar::FLAG_SHOW_SPEED)
 	{
-		u64 now = osGetTime();
 		if(!this->speed_window_start || this->part < this->speed_window_part)
 		{
 			this->speed_window_start = now;
@@ -205,6 +202,34 @@ void ui::ProgressBar::update_state()
 		C2D_TextGetDimensions(&this->e, TEXT_DIM, TEXT_DIM, &this->ex, nullptr);
 		this->ex = ui::screen_width(this->screen) - X_OFFSET - this->ex;
 	}
+
+	if(this->part >= this->total)
+		this->display_part = this->part;
+	else if(this->display_part < this->part)
+	{
+		u64 elapsed_ms = now - this->display_update_time;
+		float visual_bytes_s = this->displayed_bytes_s > 0.0f
+			? this->displayed_bytes_s
+			: 1024.0f * 1024.0f;
+		u64 advance = (u64)(visual_bytes_s * (elapsed_ms / 1000.0f));
+		if(advance < 32 * 1024)
+			advance = std::min<u64>(this->part - this->display_part, 32 * 1024);
+		this->display_part = std::min<u64>(this->part, this->display_part + advance);
+	}
+	this->display_update_time = now;
+
+	float perc = this->total == 0 ? 0.0f : ((float) this->display_part / this->total);
+	this->targetw = (ui::screen_width(this->screen) - (X_OFFSET * 2) - 4) * perc;
+
+	// Parse strings
+	std::string bc = this->serialize(this->display_part, this->total) + "/" + this->serialize(this->total, this->total) + this->postfix(this->total);
+	std::string a = floating_prec<float>(perc * 100, 1) + "%";
+
+	ui::parse_text(&this->bc, this->buf, bc.c_str());
+	ui::parse_text(&this->a, this->buf, a.c_str());
+
+	C2D_TextOptimize(&this->bc);
+	C2D_TextOptimize(&this->a);
 
 	// Pad to right
 	C2D_TextGetDimensions(&this->bc, TEXT_DIM, TEXT_DIM, &this->bcx, nullptr);

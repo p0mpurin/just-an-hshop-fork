@@ -27,19 +27,11 @@
 #include "widgets/indicators.hh"
 #include "find_missing.hh"
 #include "lumalocale.hh"
+#include "notification_led.hh"
 #include "settings.hh"
 #include "hsapi.hh"
 #include "panic.hh"
 #include "log.hh"
-
-
-UI_CTHEME_GETTER(color_led_green, ui::theme::led_green_color)
-UI_CTHEME_GETTER(color_led_red, ui::theme::led_red_color)
-static ui::slot_color_getter slotmgr_getters[] = {
-	color_led_green, color_led_red
-};
-
-static ui::SlotManager slotmgr;
 
 
 void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
@@ -104,6 +96,23 @@ static bool ask_reinstall(bool interactive)
 {
 	return interactive ?
 		ui::Confirm::exec(str::already_installed_reinstall) : false;
+}
+
+static void update_led_progress(u64 now, u64 total)
+{
+	if(total == 0)
+	{
+		Led_SetDownloadingProgress(0);
+		return;
+	}
+
+	if(now >= total)
+	{
+		Led_SetInstalling();
+		return;
+	}
+
+	Led_SetDownloadingProgress((int)((now * 100) / total));
 }
 
 static void finalize_hs_install(const hsapi::Title& meta, std::vector<hsapi::RelatedFullTitle>& related, bool interactive)
@@ -210,7 +219,9 @@ Result install::gui::net_cia(const std::string& url, ctr::title_id tid, bool int
 	Result res = 0;
 
 start_install:
+	Led_Init();
 	res = install::net_cia(makeurlwrap(url), tid, [&queue, &bar, stage](u64 now, u64 total) -> void {
+		update_led_progress(now, total);
 		stage->set_text(now ? "Downloading + installing" : "Preparing installation");
 		bar->update(now, total);
 		bar->activate();
@@ -225,15 +236,22 @@ start_install:
 
 	if(R_FAILED(res) && res != APPERR_CANCELLED)
 	{
+		Led_SetError();
 		error_container err = get_error(res);
 		report_error(err, "User was installing from " + url);
 		if(interactive) handle_error(err);
 	}
+	else if(res == APPERR_CANCELLED)
+	{
+		Led_SetCancelled();
+	}
 	else if(R_SUCCEEDED(res))
 	{
 		stage->set_text("Finalizing installation");
+		Led_SetInstalling();
 		queue.render_frame();
 		finalize_install(tid, interactive);
+		Led_SetDone();
 	}
 
 	ui::set_focus(focus);
@@ -260,7 +278,9 @@ Result install::gui::hs_cia(const hsapi::Title& meta, bool interactive, bool def
 		elog("failed to acquire sleep mode lock: %08lX", res);
 
 start_install:
+	Led_Init();
 	res = install::hs_cia(meta, [&queue, &bar, stage](u64 now, u64 total) -> void {
+		update_led_progress(now, total);
 		stage->set_text(now
 			? (install::is_direct_cdn_active()
 				? "Direct socket + installing"
@@ -280,6 +300,7 @@ start_install:
 	if(R_SUCCEEDED(res))
 	{
 		stage->set_text("Verifying + finalizing");
+		Led_SetInstalling();
 		queue.render_frame();
 		res = ctr::mng::import_seed(meta.tid, &meta.seed);
 		finalize_hs_install(meta, relatedTitles, interactive);
@@ -303,6 +324,10 @@ start_install:
 		error_container err = get_error(res);
 		report_error(err, "User was installing (" + meta.tid.to_string() + ") (" + std::to_string(meta.id) + ")");
 		if(interactive) handle_error(err);
+	}
+	else
+	{
+		Led_SetCancelled();
 	}
 
 	if(interactive) ctr::dmn::decrease_sleep_lock_ref();
@@ -354,17 +379,5 @@ Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
 	return res;
 }
 
-static void setled(size_t i)
-{
-	if(!slotmgr.is_initialized())
-		slotmgr = ui::ThemeManager::global()->get_slots(nullptr, "__global_install_gui_colors", 2, slotmgr_getters);
-
-	ilog("color: %08lX", slotmgr.get(i));
-
-	ui::LED::Pattern pattern;
-	ui::LED::Solid(&pattern, UI_LED_MAKE_ANIMATION(0, 0xFF, 0), slotmgr.get(i));
-	ui::LED::SetSleepPattern(&pattern);
-}
-
-void install::gui::SuccessLED() { setled(0); }
-void install::gui::ErrorLED()   { setled(1); }
+void install::gui::SuccessLED() { Led_SetDone(); }
+void install::gui::ErrorLED()   { Led_SetError(); }

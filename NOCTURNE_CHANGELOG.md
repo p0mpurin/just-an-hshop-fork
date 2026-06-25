@@ -1,5 +1,11 @@
 # Nocturne changelog
 
+## 1.5.36
+
+- Added notification LED progress feedback during downloads and installs
+- LED progress moves from blue to green while installing
+- Success, error, and cancel states now use distinct LED signals
+
 ## 1.5.35
 
 - Added auto-shutdown after install option in Settings

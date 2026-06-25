@@ -158,6 +158,10 @@ namespace ui
 		u64 speed_window_start = 0;
 		u64 speed_window_part = 0;
 		float displayed_bytes_s = 0.0f;
+		u64 display_part = 0;
+		u64 display_update_time = 0;
+		u64 display_total = 0;
+		bool display_initialized = false;
 
 		SpeedBuffer speedDiffs;
 
