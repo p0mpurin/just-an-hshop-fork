@@ -6,7 +6,7 @@ Nocturne is an unofficial community fork. It is not maintained or supported by t
 
 ## What's different
 
-- Dark OLED theme with pink accents
+- Wallpaper-based theming with pink accents
 - Smoother animations on menus, popups, and progress bars
 - Custom wallpapers from `/3ds/3hs/backgrounds/`
 - Direct-socket CDN downloads on New 3DS (skips Nintendo's HTTP service)
