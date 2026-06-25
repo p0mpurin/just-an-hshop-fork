@@ -23,6 +23,11 @@ tools/wifi_benchmark/*.elf
 # API credentials generated for local builds
 source/hsapi_auth.c
 
+# AI / agent tooling (local only)
+.reasonix/
+reasonix.toml
+AGENTS.md
+
 # Editor and OS files
 .DS_Store
 Thumbs.db
