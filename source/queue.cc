@@ -26,7 +26,9 @@
 #include <algorithm>
 #include <vector>
 
+#include "settings.hh"
 #include "dmn.hh"
+#include "mng.hh"
 #include "lumalocale.hh"
 #include "installgui.hh"
 #include "panic.hh"
@@ -137,6 +139,12 @@ void queue_process_all()
 		ui::LED::ClearResetFlags();
 		install::gui::SuccessLED();
 		ctr::dmn::decrease_sleep_lock_ref();
+
+		if(ISET_AUTO_SHUTDOWN)
+		{
+			settings_sync();
+			ctr::mng::shutdown_console();
+		}
 	}
 
 	if(procflag & SET_PATCH) luma::maybe_set_gamepatching();

@@ -544,6 +544,8 @@ static bool serialize_id_bool(SettingsId ID)
 		return ISET_GOTO_REGION;
 	case ID_TopWide:
 		return ISET_TOP_WIDE_EXPERIMENTAL;
+	case ID_AutoShutdown:
+		return ISET_AUTO_SHUTDOWN;
 	case ID_TimeFmt:
 	case ID_ProgLoc:
 	case ID_Language:
@@ -578,6 +580,7 @@ static std::string serialize_id_text(SettingsId ID)
 	case ID_GotoRegion:
 	case ID_ProxyEnabled:
 	case ID_TopWide:
+	case ID_AutoShutdown:
 		panic("impossible text setting switch case reached");
 	case ID_TimeFmt:
 		return ISET_BAD_TIME_FORMAT ? STRING(fmt_12h) : STRING(fmt_24h);
@@ -983,6 +986,9 @@ static void update_settings_ID(SettingsId ID)
 		g_nsettings.flags0 ^= FLAG0_TOP_WIDE_EXPERIMENTAL;
 		ui::notice("800px top-screen mode changed.\n\nRestart Nocturne for the framebuffer change to fully apply.\n\nThis is experimental and may not work on Old 2DS.");
 		break;
+	case ID_AutoShutdown:
+		g_nsettings.flags0 ^= FLAG0_AUTO_SHUTDOWN;
+		break;
 	// Enums
 	case ID_TimeFmt:
 	{
@@ -1127,7 +1133,8 @@ void log_settings()
 		"backgroundPath: %s, "
 		"wallpaperDim: %u, "
 		"topWide: %s, "
-		"performanceMode: new3ds",
+		"performanceMode: new3ds, "
+		"autoShutdown: %s",
 			BOOL(ISET_RESUME_DOWNLOADS), BOOL(ISET_LOAD_FREE_SPACE),
 			BOOL(ISET_SHOW_BATTERY), BOOL(ISET_SHOW_NET), BOOL(ISET_BAD_TIME_FORMAT),
 			ISET_PROGBAR_TOP ? "top" : "bottom",
@@ -1136,7 +1143,8 @@ void log_settings()
 			method2str_en(SETTING_DEFAULT_SORTMETHOD), direction2str_en(SETTING_DEFAULT_SORTDIRECTION),
 			BOOL(g_nsettings.proxy_port != 0), g_nsettings.theme_path.c_str(), BOOL(ISET_DISABLE_GRAPH),
 			g_nsettings.background_path.empty() ? "(none)" : g_nsettings.background_path.c_str(),
-			g_nsettings.wallpaper_dim, BOOL(ISET_TOP_WIDE_EXPERIMENTAL));
+			g_nsettings.wallpaper_dim, BOOL(ISET_TOP_WIDE_EXPERIMENTAL),
+			BOOL(ISET_AUTO_SHUTDOWN));
 #undef BOOL
 }
 
@@ -1181,6 +1189,7 @@ void show_settings()
 		{ str::wallpaper_dimming, str::wallpaper_dimming_desc, ID_WallpaperDim, true },
 		{ str::performance_mode, str::performance_mode_desc, ID_Performance, true },
 		{ str::top_wide_mode, str::top_wide_mode_desc, ID_TopWide, false },
+		{ str::auto_shutdown, str::auto_shutdown_desc, ID_AutoShutdown, false },
 	};
 
 	panic_assert(settingsInfo.size() > 0, "empty settings meta table");

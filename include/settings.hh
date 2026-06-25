@@ -84,6 +84,7 @@ enum NewSettings_flags0 {
 	FLAG0_DIRECT_CDN_EXPERIMENTAL = 0x400000,
 	FLAG0_TOP_WIDE_EXPERIMENTAL = 0x800000,
 	FLAG0_UU_NOTICE_SEEN        = 0x1000000,
+	FLAG0_AUTO_SHUTDOWN         = 0x2000000,
 };
 
 #define ISET_RESUME_DOWNLOADS (get_nsettings()->flags0 & FLAG0_RESUME_DOWNLOADS)
@@ -107,6 +108,7 @@ enum NewSettings_flags0 {
 #define ISET_DIRECT_CDN_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_DIRECT_CDN_EXPERIMENTAL)
 #define ISET_TOP_WIDE_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_TOP_WIDE_EXPERIMENTAL)
 #define ISET_UU_NOTICE_SEEN (get_nsettings()->flags0 & FLAG0_UU_NOTICE_SEEN)
+#define ISET_AUTO_SHUTDOWN (get_nsettings()->flags0 & FLAG0_AUTO_SHUTDOWN)
 
 enum SettingsId
 {
@@ -133,6 +135,7 @@ enum SettingsId
 	ID_WallpaperDim, // show as text: selector
 	ID_Performance,  // show as text: information
 	ID_TopWide,      // bool: experimental 800px top screen
+	ID_AutoShutdown, // bool: auto shutdown after install
 };
 
 void reset_settings(bool set_default_lang = false);

@@ -426,7 +426,7 @@ include $build_dir/file-list.mk
 
 # 3DS configuration
 SYSFLAGS := -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft \\
-	-isystem/opt/devkitpro/devkitARM/arm-none-eabi/include/c++/12.2.0 -isystem/opt/devkitpro/devkitARM/arm-none-eabi/include/c++/12.2.0/arm-none-eabi
+	-isystem/opt/devkitpro/devkitARM/arm-none-eabi/include/c++/16.1.0 -isystem/opt/devkitpro/devkitARM/arm-none-eabi/include/c++/16.1.0/arm-none-eabi
 
 SOURCE_FLAGS := \\
 	\$(SYSFLAGS) \\

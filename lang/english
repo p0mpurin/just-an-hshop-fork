@@ -612,6 +612,14 @@ Shows the New 3DS optimizations active in this build.
 - top_wide_mode_desc
 Experimental high-resolution top-screen mode. Uses the 3DS wide framebuffer path; restart Nocturne after changing this.
 
+# scroll, setting title
+- auto_shutdown
+Auto-shutdown after install
+
+# setting description
+- auto_shutdown_desc
+Automatically turn off the console after an install completes successfully.
+
 - background_first_launch
 Custom wallpapers are supported.\n\nPlace PNG or JPEG images in:\n/3ds/3hs/backgrounds/\n\nThen open Settings → Background image. Use Wallpaper dimming to balance image brightness and text readability.
 

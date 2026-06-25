@@ -291,6 +291,11 @@ start_install:
 				ui::notice(str::file_installed);
 		}
 		install::gui::SuccessLED();
+		if(interactive && ISET_AUTO_SHUTDOWN)
+		{
+			settings_sync();
+			ctr::mng::shutdown_console();
+		}
 	}
 	else if(res != APPERR_CANCELLED)
 	{

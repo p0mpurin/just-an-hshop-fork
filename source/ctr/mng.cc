@@ -17,6 +17,8 @@
 #include <ctr/mng.hh>
 #include <lzss.hh>
 
+#include <3ds/services/ptmsysm.h>
+
 #define CTR_REGION_ERROR 0xFF
 #define CTR_REGION_UNSET 0xFE
 
@@ -316,4 +318,11 @@ Result ctr::mng::dspfirm::ensure_auto(const char *path)
 
 	return 1;
 	/* note: 0 = dsp firm dumped, 1 = "valid" dsp firm already exists */
+}
+
+void ctr::mng::shutdown_console()
+{
+	ptmSysmInit();
+	PTMSYSM_ShutdownAsync(5000000000LL);
+	ptmSysmExit();
 }

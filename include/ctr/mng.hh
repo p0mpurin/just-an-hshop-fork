@@ -60,6 +60,8 @@ namespace ctr::mng
 	Result delete_ticket(ctr::title_id tid);
 
 	Result import_seed(ctr::title_id tid, const u8 (*seed)[16]);
+
+	void shutdown_console();
 };
 
 #endif

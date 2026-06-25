@@ -1,5 +1,12 @@
 # Nocturne changelog
 
+## 1.5.35
+
+- Added auto-shutdown after install option in Settings
+- Console powers off automatically when install completes successfully
+- Works for single installs and "Install All" from queue
+- Disabled by default; enable in Settings
+
 ## 1.5.34
 
 - Bundled 3 default wallpapers — the app looks great from first launch
