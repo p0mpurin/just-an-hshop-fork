@@ -43,6 +43,19 @@ enum class SortMethod {
 	none      = 7,
 };
 #define SORTMETHOD_SHIFT 9
+enum class AccentPreset {
+	nocturne = 0,
+	theme_default = 1,
+	cherry = 2,
+	lavender = 3,
+	blue = 4,
+	teal = 5,
+	green = 6,
+	amber = 7,
+	orange = 8,
+	red = 9,
+	mono = 10,
+};
 
 struct NewSettings {
 	u64 flags0;
@@ -50,6 +63,7 @@ struct NewSettings {
 	u8 max_elogs;
 	u8 migration;
 	u8 wallpaper_dim;
+	u8 accent_preset;
 	std::string theme_path;
 	std::string background_path;
 	u16 proxy_port;
@@ -133,9 +147,17 @@ enum SettingsId
 	ID_ProxyEnabled, // bool: custom menu
 	ID_Background,   // show as text: custom menu
 	ID_WallpaperDim, // show as text: selector
+	ID_Theme,        // show as text: custom menu
+	ID_Accent,       // show as text: selector
 	ID_Performance,  // show as text: information
 	ID_TopWide,      // bool: experimental 800px top screen
 	ID_AutoShutdown, // bool: auto shutdown after install
+};
+
+struct SettingCategory {
+	str::type name;
+	str::type desc;
+	std::vector<SettingsId> ids;
 };
 
 void reset_settings(bool set_default_lang = false);
@@ -143,6 +165,7 @@ SortMethod settings_sort_switch();
 NewSettings *get_nsettings();
 bool settings_are_ready();
 void load_current_theme();
+void apply_visual_settings();
 void show_set_language();
 /* returns true if settings were reset */
 bool ensure_settings();

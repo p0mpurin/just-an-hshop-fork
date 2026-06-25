@@ -94,6 +94,7 @@ static void write_settings_to_file()
 	header[0x0E] = g_nsettings.migration;
 	memset(&header[0xF], 0, sizeof(u32) * 3 + sizeof(u8) * 3);
 	header[0x0F] = g_nsettings.wallpaper_dim;
+	header[0x10] = g_nsettings.accent_preset;
 	* (u16 *) &header[0x1E] = (u16) g_nsettings.theme_path.size();
 
 	panic_assert(fwrite(header, sizeof(header), 1, f) == 1, "failed to write to settings");
@@ -190,6 +191,7 @@ static void migrate_settings(u8 *buf)
 	g_nsettings.lang = settings->language;
 	g_nsettings.max_elogs = settings->maxExtraLogs;
 	g_nsettings.wallpaper_dim = 132;
+	g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
 	g_nsettings.theme_path = settings->isLightMode ? SPECIAL_LIGHT : SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 
@@ -227,6 +229,7 @@ void reset_settings(bool set_default_lang)
 
 	g_nsettings.max_elogs = 0; /* memory log by default */
 	g_nsettings.wallpaper_dim = 132;
+	g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
 	g_nsettings.theme_path = SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 	g_nsettings.proxy_port = 0; /* disable proxy by default */
@@ -370,9 +373,12 @@ bool ensure_settings()
 	g_nsettings.max_elogs = buf[0x0D];
 	g_nsettings.migration = buf[0x0E];
 	g_nsettings.wallpaper_dim = buf[0x0F];
+	g_nsettings.accent_preset = buf[0x10];
 	/* Reserved bytes were zero in settings written before this option. */
 	if(g_nsettings.wallpaper_dim < 64)
 		g_nsettings.wallpaper_dim = 132;
+	if(g_nsettings.accent_preset > (u8) AccentPreset::mono)
+		g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
 	/* start parsing strings */
 	offset = 0x1E;
 	if(!parse_string(g_nsettings.theme_path, buf, offset, size)) goto default_settings;
@@ -518,6 +524,110 @@ static const char *method2str_en(SortMethod dir)
 	return "unknown";
 }
 
+static const char *accent2str(AccentPreset preset)
+{
+	switch(preset)
+	{
+	case AccentPreset::nocturne: return "Nocturne pink";
+	case AccentPreset::theme_default: return "Theme default";
+	case AccentPreset::cherry: return "Cherry";
+	case AccentPreset::lavender: return "Lavender";
+	case AccentPreset::blue: return "Blue";
+	case AccentPreset::teal: return "Teal";
+	case AccentPreset::green: return "Green";
+	case AccentPreset::amber: return "Amber";
+	case AccentPreset::orange: return "Orange";
+	case AccentPreset::red: return "Red";
+	case AccentPreset::mono: return "Monochrome";
+	}
+	return "Unknown";
+}
+
+static u32 rgba(u8 r, u8 g, u8 b, u8 a = 0xFF)
+{
+	return ((u32) a << 24) | ((u32) b << 16) | ((u32) g << 8) | r;
+}
+
+struct AccentPalette {
+	u32 accent;
+	u32 accent2;
+	u32 dark;
+	u32 darker;
+	u32 light;
+	u32 warning;
+};
+
+static AccentPalette accent_palette(AccentPreset preset)
+{
+	switch(preset)
+	{
+	case AccentPreset::cherry:
+		return { rgba(255, 79, 129), rgba(255, 130, 163), rgba(54, 24, 34), rgba(34, 18, 25), rgba(255, 218, 228), rgba(255, 80, 96) };
+	case AccentPreset::lavender:
+		return { rgba(190, 143, 255), rgba(216, 184, 255), rgba(41, 29, 59), rgba(28, 22, 39), rgba(238, 224, 255), rgba(255, 124, 181) };
+	case AccentPreset::blue:
+		return { rgba(86, 166, 255), rgba(142, 198, 255), rgba(22, 38, 61), rgba(15, 25, 40), rgba(218, 236, 255), rgba(255, 113, 113) };
+	case AccentPreset::teal:
+		return { rgba(64, 215, 200), rgba(130, 236, 224), rgba(18, 51, 50), rgba(13, 33, 34), rgba(213, 252, 247), rgba(255, 129, 83) };
+	case AccentPreset::green:
+		return { rgba(98, 220, 122), rgba(164, 241, 176), rgba(24, 53, 31), rgba(17, 35, 23), rgba(223, 252, 226), rgba(255, 118, 94) };
+	case AccentPreset::amber:
+		return { rgba(255, 191, 73), rgba(255, 218, 135), rgba(62, 43, 18), rgba(38, 29, 16), rgba(255, 241, 213), rgba(255, 99, 90) };
+	case AccentPreset::orange:
+		return { rgba(255, 136, 68), rgba(255, 181, 124), rgba(62, 32, 19), rgba(39, 24, 17), rgba(255, 229, 210), rgba(255, 82, 92) };
+	case AccentPreset::red:
+		return { rgba(255, 86, 96), rgba(255, 142, 149), rgba(59, 24, 28), rgba(37, 18, 21), rgba(255, 221, 224), rgba(255, 196, 72) };
+	case AccentPreset::mono:
+		return { rgba(220, 220, 220), rgba(255, 255, 255), rgba(42, 42, 42), rgba(24, 24, 24), rgba(245, 245, 245), rgba(255, 115, 115) };
+	case AccentPreset::nocturne:
+	case AccentPreset::theme_default:
+		return { rgba(255, 164, 204), rgba(255, 134, 188), rgba(53, 44, 49), rgba(26, 20, 23, 0xBB), rgba(245, 240, 242), rgba(255, 107, 168) };
+	}
+	return accent_palette(AccentPreset::nocturne);
+}
+
+static void apply_accent_preset()
+{
+	AccentPreset preset = (AccentPreset) g_nsettings.accent_preset;
+	if(preset == AccentPreset::theme_default)
+		return;
+
+	AccentPalette p = accent_palette(preset);
+	ui::Theme *theme = ui::Theme::global();
+	*theme->get_color(ui::theme::text_color) = p.light;
+	*theme->get_color(ui::theme::button_border_color) = p.accent;
+	*theme->get_color(ui::theme::button_background_color) = p.darker;
+	*theme->get_color(ui::theme::battery_green_color) = p.accent;
+	*theme->get_color(ui::theme::battery_red_color) = p.warning;
+	*theme->get_color(ui::theme::toggle_green_color) = p.accent2;
+	*theme->get_color(ui::theme::toggle_red_color) = p.dark;
+	*theme->get_color(ui::theme::toggle_slider_color) = rgba(255, 255, 255);
+	*theme->get_color(ui::theme::progress_bar_foreground_color) = p.accent2;
+	*theme->get_color(ui::theme::progress_bar_background_color) = p.dark;
+	*theme->get_color(ui::theme::scrollbar_color) = p.accent;
+	*theme->get_color(ui::theme::smdh_icon_border_color) = p.accent;
+	*theme->get_color(ui::theme::checkbox_border_color) = p.dark;
+	*theme->get_color(ui::theme::checkbox_check_color) = p.accent;
+	*theme->get_color(ui::theme::graph_line_color) = p.accent;
+	*theme->get_color(ui::theme::warning_color) = p.warning;
+	*theme->get_color(ui::theme::x_color) = p.warning;
+	*theme->get_color(ui::theme::battery_charging_color) = p.accent;
+}
+
+void apply_visual_settings()
+{
+	std::string active_id = ui::Theme::global()->id;
+	for(ui::Theme& theme : g_avail_themes)
+	{
+		if(theme.id == active_id)
+		{
+			ui::Theme::global()->replace_with(theme);
+			break;
+		}
+	}
+	apply_accent_preset();
+}
+
 static bool serialize_id_bool(SettingsId ID)
 {
 	switch(ID)
@@ -557,6 +667,8 @@ static bool serialize_id_bool(SettingsId ID)
 	case ID_ProxyEnabled:
 	case ID_Background:
 	case ID_WallpaperDim:
+	case ID_Theme:
+	case ID_Accent:
 	case ID_Performance:
 		panic("impossible bool setting switch case reached");
 	}
@@ -609,6 +721,10 @@ static std::string serialize_id_text(SettingsId ID)
 		}
 	case ID_WallpaperDim:
 		return std::to_string((g_nsettings.wallpaper_dim * 100 + 127) / 255) + "%";
+	case ID_Theme:
+		return ui::Theme::global()->name;
+	case ID_Accent:
+		return accent2str((AccentPreset) g_nsettings.accent_preset);
 	case ID_Performance:
 		return ctr::mng::is_n3ds()
 			? (ISET_DIRECT_CDN_EXPERIMENTAL
@@ -941,6 +1057,8 @@ void show_set_language()
 	ui::set_focus(focus);
 }
 
+static void show_wallpaper_slider();
+
 static void update_settings_ID(SettingsId ID)
 {
 	switch(ID)
@@ -1065,14 +1183,46 @@ static void update_settings_ID(SettingsId ID)
 		show_background_menu();
 		break;
 	case ID_WallpaperDim:
+		show_wallpaper_slider();
+		break;
+	case ID_Theme:
+		show_theme_menu();
+		break;
+	case ID_Accent:
 	{
-		u8 dim = g_nsettings.wallpaper_dim;
-		read_set_enum<u8>(
-			{ "Bright · 25%", "Balanced · 52%", "Dim · 66%", "Dark · 80%" },
-			{ 64, 132, 168, 204 },
-			dim
+		AccentPreset preset = (AccentPreset) g_nsettings.accent_preset;
+		read_set_enum<AccentPreset>(
+			{
+				accent2str(AccentPreset::nocturne),
+				accent2str(AccentPreset::theme_default),
+				accent2str(AccentPreset::cherry),
+				accent2str(AccentPreset::lavender),
+				accent2str(AccentPreset::blue),
+				accent2str(AccentPreset::teal),
+				accent2str(AccentPreset::green),
+				accent2str(AccentPreset::amber),
+				accent2str(AccentPreset::orange),
+				accent2str(AccentPreset::red),
+				accent2str(AccentPreset::mono),
+			},
+			{
+				AccentPreset::nocturne,
+				AccentPreset::theme_default,
+				AccentPreset::cherry,
+				AccentPreset::lavender,
+				AccentPreset::blue,
+				AccentPreset::teal,
+				AccentPreset::green,
+				AccentPreset::amber,
+				AccentPreset::orange,
+				AccentPreset::red,
+				AccentPreset::mono,
+			},
+			preset
 		);
-		g_nsettings.wallpaper_dim = dim;
+		g_nsettings.accent_preset = (u8) preset;
+		apply_visual_settings();
+		ui::ThemeManager::global()->reget();
 		break;
 	}
 	case ID_Performance:
@@ -1132,6 +1282,7 @@ void log_settings()
 		"disableGraph: %s, "
 		"backgroundPath: %s, "
 		"wallpaperDim: %u, "
+		"accentPreset: %s, "
 		"topWide: %s, "
 		"performanceMode: new3ds, "
 		"autoShutdown: %s",
@@ -1143,7 +1294,8 @@ void log_settings()
 			method2str_en(SETTING_DEFAULT_SORTMETHOD), direction2str_en(SETTING_DEFAULT_SORTDIRECTION),
 			BOOL(g_nsettings.proxy_port != 0), g_nsettings.theme_path.c_str(), BOOL(ISET_DISABLE_GRAPH),
 			g_nsettings.background_path.empty() ? "(none)" : g_nsettings.background_path.c_str(),
-			g_nsettings.wallpaper_dim, BOOL(ISET_TOP_WIDE_EXPERIMENTAL),
+			g_nsettings.wallpaper_dim, accent2str((AccentPreset) g_nsettings.accent_preset),
+			BOOL(ISET_TOP_WIDE_EXPERIMENTAL),
 			BOOL(ISET_AUTO_SHUTDOWN));
 #undef BOOL
 }
@@ -1163,36 +1315,94 @@ static void display_setting_value(const SettingInfo& set, ui::Text *value, ui::T
 	toggle->set_toggled(serialize_id_bool(set.ID));
 }
 
-void show_settings()
+static void show_wallpaper_slider()
 {
-	std::vector<SettingInfo> settingsInfo =
-	{
-		{ str::resume_dl      , str::resume_dl_desc      , ID_Resumable  , false },
-		{ str::load_space     , str::load_space_desc     , ID_FreeSpace  , false },
-		{ str::show_battery   , str::show_battery_desc   , ID_Battery    , false },
-		{ str::check_extra    , str::check_extra_desc    , ID_Extra      , false },
-		{ str::warn_no_base   , str::warn_no_base_desc   , ID_WarnNoBase , false },
-		{ str::allow_led      , str::allow_led_desc      , ID_AllowLED   , false },
-		{ str::default_reinst , str::default_reinst_desc , ID_Reinstall  , false },
-		{ str::show_alt       , str::show_alt_desc       , ID_ShowAlt    , false },
-		{ str::disable_graph  , str::disable_graph_desc  , ID_DisGraph   , false },
-		{ str::goto_region    , str::goto_region_desc    , ID_GotoRegion , false },
-		{ str::time_format    , str::time_format_desc    , ID_TimeFmt    , true  },
-		{ str::progbar_screen , str::progbar_screen_desc , ID_ProgLoc    , true  },
-		{ str::language       , str::language_desc       , ID_Language   , true  },
-		{ str::lumalocalemode , str::lumalocalemode_desc , ID_Localemode , true  },
-		{ str::proxy          , str::proxy_desc          , ID_Proxy      , true  },
-		{ str::max_elogs      , str::max_elogs_desc      , ID_MaxELogs   , true  },
-		{ str::def_sort_meth  , str::def_sort_meth_desc  , ID_Method     , true  },
-		{ str::def_sort_dir   , str::def_sort_dir_desc   , ID_Direction  , true  },
-		{ str::background_image, str::background_image_desc, ID_Background, true },
-		{ str::wallpaper_dimming, str::wallpaper_dimming_desc, ID_WallpaperDim, true },
-		{ str::performance_mode, str::performance_mode_desc, ID_Performance, true },
-		{ str::top_wide_mode, str::top_wide_mode_desc, ID_TopWide, false },
-		{ str::auto_shutdown, str::auto_shutdown_desc, ID_AutoShutdown, false },
-	};
+	u8 dim = g_nsettings.wallpaper_dim;
+	bool focus = ui::set_focus(true);
+	ui::I18NEnabledRenderQueue q;
+	ui::Text *val;
 
-	panic_assert(settingsInfo.size() > 0, "empty settings meta table");
+	ui::builder<ui::Text>(ui::Screen::top, "")
+		.x(ui::layout::center_x).y(ui::layout::center_y)
+		.size(0.55f).wrap()
+		.add_to(&val, q);
+
+	auto update = [&dim, val]() {
+		int pct = (dim * 100 + 127) / 255;
+		char buf[64];
+		snprintf(buf, sizeof(buf), "Wallpaper dimming\n\n%d%%", pct);
+		val->set_text(buf);
+	};
+	update();
+
+	ui::builder<ui::Text>(ui::Screen::bottom,
+			STRING(dimming_hint))
+		.x(ui::layout::center_x)
+		.y(200.0f).size(0.38f).wrap()
+		.add_to(q);
+
+	q.render_frame();
+
+	while(aptMainLoop())
+	{
+		ui::scan_keys();
+		u32 kDown = ui::kDown();
+		u32 kHeld = ui::kHeld();
+		if(kDown & (KEY_B | KEY_A)) break;
+		bool changed = false;
+		u8 step = (kDown | kHeld) & (KEY_DUP | KEY_DDOWN) ? 25 : 5;
+		if((kDown | kHeld) & KEY_DLEFT)  { dim = dim >= step ? dim - step : 0; changed = true; }
+		if((kDown | kHeld) & KEY_DRIGHT) { dim = dim <= 255 - step ? dim + step : 255; changed = true; }
+		if(changed)
+		{
+			g_nsettings.wallpaper_dim = dim;
+			update();
+			apply_visual_settings();
+			ui::ThemeManager::global()->reget();
+			q.render_frame();
+		}
+	}
+	ui::set_focus(focus);
+}
+
+static SettingInfo make_info(SettingsId id)
+{
+	switch(id)
+	{
+	case ID_Resumable:    return { str::resume_dl      , str::resume_dl_desc      , id, false };
+	case ID_FreeSpace:    return { str::load_space     , str::load_space_desc     , id, false };
+	case ID_Battery:      return { str::show_battery   , str::show_battery_desc   , id, false };
+	case ID_Extra:        return { str::check_extra    , str::check_extra_desc    , id, false };
+	case ID_WarnNoBase:   return { str::warn_no_base   , str::warn_no_base_desc   , id, false };
+	case ID_AllowLED:     return { str::allow_led      , str::allow_led_desc      , id, false };
+	case ID_Reinstall:    return { str::default_reinst , str::default_reinst_desc , id, false };
+	case ID_ShowAlt:      return { str::show_alt       , str::show_alt_desc       , id, false };
+	case ID_DisGraph:     return { str::disable_graph  , str::disable_graph_desc  , id, false };
+	case ID_GotoRegion:   return { str::goto_region    , str::goto_region_desc    , id, false };
+	case ID_TimeFmt:      return { str::time_format    , str::time_format_desc    , id, true  };
+	case ID_ProgLoc:      return { str::progbar_screen , str::progbar_screen_desc , id, true  };
+	case ID_Language:     return { str::language       , str::language_desc       , id, true  };
+	case ID_Localemode:   return { str::lumalocalemode , str::lumalocalemode_desc , id, true  };
+	case ID_Proxy:        return { str::proxy          , str::proxy_desc          , id, true  };
+	case ID_MaxELogs:     return { str::max_elogs      , str::max_elogs_desc      , id, true  };
+	case ID_Method:       return { str::def_sort_meth  , str::def_sort_meth_desc  , id, true  };
+	case ID_Direction:    return { str::def_sort_dir   , str::def_sort_dir_desc   , id, true  };
+	case ID_Theme:        return { str::themes         , str::theme_desc          , id, true  };
+	case ID_Accent:       return { str::accent_color   , str::accent_color_desc   , id, true  };
+	case ID_Background:   return { str::background_image, str::background_image_desc, id, true };
+	case ID_WallpaperDim: return { str::wallpaper_dimming, str::wallpaper_dimming_desc, id, true };
+	case ID_Performance:  return { str::performance_mode, str::performance_mode_desc, id, true };
+	case ID_TopWide:      return { str::top_wide_mode, str::top_wide_mode_desc, id, false };
+	case ID_AutoShutdown: return { str::auto_shutdown, str::auto_shutdown_desc, id, false };
+	default: panic("unhandled setting id in make_info");
+	}
+}
+
+static void show_settings_category(const SettingCategory& cat)
+{
+	std::vector<SettingInfo> settingsInfo;
+	for(SettingsId id : cat.ids)
+		settingsInfo.push_back(make_info(id));
 
 	using list_t = ui::List<SettingInfo>;
 
@@ -1227,7 +1437,7 @@ void show_settings()
 		.wrap()
 		.hide()
 		.add_to(&value, queue);
-	ui::builder<ui::Toggle>(ui::Screen::bottom, serialize_id_bool(settingsInfo[0].ID),
+	ui::builder<ui::Toggle>(ui::Screen::bottom, settingsInfo[0].as_text ? false : serialize_id_bool(settingsInfo[0].ID),
 			[&current_setting, &dirty]() -> void { update_settings_ID(current_setting); dirty = true; })
 		.x(10.0f)
 		.under(desc, 5.0f)
@@ -1253,25 +1463,6 @@ void show_settings()
 		.x(5.0f).y(25.0f)
 		.add_to(&list, queue);
 
-	auto reset_settings_local = [](u32) -> bool {
-		ui::RenderQueue::global()->render_and_then([]() -> void {
-			if(ui::Confirm::exec(str::sure_reset))
-			{
-				reset_settings();
-				ui::set_user_background("");
-				/* Perhaps this should be intergrated into reset_settings()?
-				 * only other place it's used is main() where nothing is loaded yet anyway */
-				ui::ThemeManager::global()->reget();
-				ui::RenderQueue::global()->find_tag<ui::FreeSpaceIndicator>(ui::tag::free_indicator)->update();
-			}
-		});
-		return true;
-	};
-
-	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_R)
-		.when_kdown(reset_settings_local)
-		.add_to(queue);
-
 	queue.render_finite_button(KEY_B);
 	ui::set_focus(focus);
 
@@ -1279,11 +1470,86 @@ void show_settings()
 	{
 		log_on_settings_changed();
 		write_settings();
-		/* Force an immediate flush instead of deferring to atexit.
-		 * The atexit handler may not run if the user presses HOME
-		 * after changing a setting and before fully exiting the app. */
 		settings_sync();
 	}
+}
+
+void show_settings()
+{
+	static SettingCategory cats[] = {
+		{ str::cat_theming, str::cat_theming_desc,
+			{ ID_Theme, ID_Accent, ID_Background, ID_WallpaperDim, ID_TopWide } },
+		{ str::cat_display, str::cat_display_desc,
+			{ ID_FreeSpace, ID_Battery, ID_ShowAlt, ID_DisGraph, ID_TimeFmt, ID_ProgLoc } },
+		{ str::cat_install, str::cat_install_desc,
+			{ ID_Resumable, ID_WarnNoBase, ID_Reinstall, ID_Extra, ID_AutoShutdown, ID_AllowLED } },
+		{ str::cat_system, str::cat_system_desc,
+			{ ID_Language, ID_Localemode, ID_Method, ID_Direction, ID_GotoRegion } },
+		{ str::cat_advanced, str::cat_advanced_desc,
+			{ ID_Proxy, ID_Performance, ID_MaxELogs } },
+	};
+
+	bool focus = ui::set_focus(true);
+
+	for(;;)
+	{
+		ui::I18NEnabledRenderQueue queue;
+		ui::MenuSelect *ms;
+		ui::Text *desc;
+
+		ui::builder<ui::Text>(ui::Screen::top, cats[0].desc)
+			.x(ui::layout::center_x)
+			.y(36.0f)
+			.wrap()
+			.add_to(&desc, queue);
+
+		auto sel_cb = [](int i) -> std::function<bool()> {
+			return [i]() -> bool {
+				show_settings_category(cats[i]);
+				return true;
+			};
+		};
+
+		ui::builder<ui::MenuSelect>(ui::Screen::bottom)
+			.when_changed([&desc, &ms]() -> bool {
+				desc->set_text(cats[ms->pos()].desc);
+				return true;
+			})
+			.add_to(&ms, queue);
+
+		for(size_t i = 0; i < sizeof(cats) / sizeof(cats[0]); ++i)
+			ms->add_row(i18n::getstr(cats[i].name), sel_cb((int)i));
+
+		auto reset_fn = [](u32) -> bool {
+			ui::RenderQueue::global()->render_and_then([]() -> void {
+				if(ui::Confirm::exec(str::sure_reset))
+				{
+					reset_settings();
+					ui::set_user_background("");
+					ui::ThemeManager::global()->reget();
+					ui::RenderQueue::global()->find_tag<ui::FreeSpaceIndicator>(ui::tag::free_indicator)->update();
+				}
+			});
+			return true;
+		};
+
+		ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_R)
+			.when_kdown(reset_fn)
+			.add_to(queue);
+
+		ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_R ": Reset to defaults")
+			.size(0.35f)
+			.x(ui::layout::center_x)
+			.y(218.0f)
+			.wrap()
+			.add_to(queue);
+
+		queue.render_finite_button(KEY_B);
+		if(!aptMainLoop())
+			break;
+	}
+
+	ui::set_focus(focus);
 }
 
 #include "build/light_hstx.h"
@@ -1301,10 +1567,8 @@ void load_current_theme()
 
 	ui::Theme *light_theme;
 
-	/* Nocturne owns its visual system. Legacy/custom 3hs themes can otherwise
-	 * leak unrelated colours into only one screen while our custom surfaces
-	 * stay pink. Wallpapers remain independently configurable. */
-	g_nsettings.theme_path = SPECIAL_DARK;
+	if(g_nsettings.theme_path.empty())
+		g_nsettings.theme_path = SPECIAL_DARK;
 
 	/* we must first load the theme we **don't** want to select */
 	int firstIndex = g_nsettings.theme_path == SPECIAL_LIGHT ? 1 : 0;
@@ -1393,6 +1657,7 @@ void show_theme_menu()
 		.when_select([&ms]() -> bool {
 			ui::Theme::global()->replace_with(g_avail_themes[ms->pos()]);
 			g_nsettings.theme_path = g_avail_themes[ms->pos()].id;
+			apply_accent_preset();
 			ui::ThemeManager::global()->reget();
 			return true;
 		})

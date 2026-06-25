@@ -23,6 +23,9 @@ tools/wifi_benchmark/*.elf
 # API credentials generated for local builds
 source/hsapi_auth.c
 
+# Reference source (local only)
+originalsoruce/
+
 # AI / agent tooling (local only)
 .reasonix/
 reasonix.toml

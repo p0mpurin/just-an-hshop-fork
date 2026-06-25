@@ -1,5 +1,12 @@
 # Nocturne changelog
 
+## 1.5.37
+
+- Settings now organized into categories: Theming, Display, Install, System, Advanced
+- Wallpaper dimming uses a slider instead of presets
+- Category picker on bottom screen with descriptions on top
+- Centered navigation hints across the settings screens
+
 ## 1.5.36
 
 - Added notification LED progress feedback during downloads and installs

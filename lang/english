@@ -587,6 +587,15 @@ by %1
 - themes
 Themes
 
+- theme_desc
+Choose the active app theme.
+
+- accent_color
+Accent color
+
+- accent_color_desc
+Choose the highlight color used for buttons, toggles, progress bars, graphs, warnings, and other UI accents.
+
 # custom background selector in settings
 - background_image
 Background image
@@ -619,6 +628,50 @@ Auto-shutdown after install
 # setting description
 - auto_shutdown_desc
 Automatically turn off the console after an install completes successfully.
+
+# scroll, setting category
+- cat_theming
+Theming
+
+# setting category description
+- cat_theming_desc
+Wallpapers, display mode, and visual style.
+
+# scroll, setting category
+- cat_display
+Display
+
+# setting category description
+- cat_display_desc
+On-screen indicators, graph, and time format.
+
+# scroll, setting category
+- cat_install
+Install
+
+# setting category description
+- cat_install_desc
+Download behaviour, warnings, and LEDs.
+
+# scroll, setting category
+- cat_system
+System
+
+# setting category description
+- cat_system_desc
+Language, sorting, and locale settings.
+
+# scroll, setting category
+- cat_advanced
+Advanced
+
+# setting category description
+- cat_advanced_desc
+Proxy, performance, and logs.
+
+# keyboard hint for wallpaper dimming slider
+- dimming_hint
+D-pad left/right to adjust, A to confirm
 
 - background_first_launch
 Custom wallpapers are supported.\n\nPlace PNG or JPEG images in:\n/3ds/3hs/backgrounds/\n\nThen open Settings → Background image. Use Wallpaper dimming to balance image brightness and text readability.

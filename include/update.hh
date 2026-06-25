@@ -31,7 +31,7 @@
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 5
-#define VERSION_PATCH 36
+#define VERSION_PATCH 37
 #define VERSION_DESC "Stable" VERSION_SUFFIX
 
 #define INT_TO_STR(i) INT_TO_STR_(i)

@@ -35,7 +35,7 @@ void ui::MenuSelect::setup()
 
 	constexpr float y = 14.0f + (22.0f + 2.0f) * MAX_PER_PAGE;
 	this->hint.setup(this->screen, str::hint_navigate);
-	this->hint->set_x(12.0f);
+	this->hint->set_x(ui::layout::center_x);
 	this->hint->set_y(y);
 	this->hint->resize(0.4f, 0.4f);
 }
