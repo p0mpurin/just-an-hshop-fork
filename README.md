@@ -22,7 +22,7 @@ Nocturne is an unofficial community fork. It is not maintained or supported by t
 
 Scan the QR code with **FBI > Remote Install > Scan QR Code**:
 
-<img src="assets/nocturne-fbi-qr.png" alt="Nocturne FBI QR" width="320">
+<img src="assets/nocturne-latest-fbi-qr.png" alt="Nocturne FBI QR" width="320">
 
 Or grab the CIA from [Releases](../../releases) and install manually.
 
