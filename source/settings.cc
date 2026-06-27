@@ -38,9 +38,9 @@
 #include "mng.hh"
 #include "log.hh"
 
-#define SETTINGS_LOCATION "/3ds/3hs/settings"
-#define THEMES_DIR        "/3ds/3hs/themes/"
-#define BACKGROUNDS_DIR   "/3ds/3hs/backgrounds/"
+#define SETTINGS_LOCATION "/3ds/Rune3DS/settings"
+#define THEMES_DIR        "/3ds/Rune3DS/themes/"
+#define BACKGROUNDS_DIR   "/3ds/Rune3DS/backgrounds/"
 #define SPECIAL_LIGHT     "special:light"
 #define SPECIAL_DARK      "special:dark"
 #define SPECIAL_PREFIX    "special:"
@@ -82,7 +82,7 @@ static bool validate_settings_language()
 static void write_settings_to_file()
 {
 	mkdir("/3ds", 0777);
-	mkdir("/3ds/3hs", 0777); /* ensure these dirs exist */
+	mkdir("/3ds/Rune3DS", 0777); /* ensure these dirs exist */
 	FILE *f = fopen(SETTINGS_LOCATION, "w");
 	panic_assert(f, "failed to open settings file for writing");
 
@@ -191,7 +191,7 @@ static void migrate_settings(u8 *buf)
 	g_nsettings.lang = settings->language;
 	g_nsettings.max_elogs = settings->maxExtraLogs;
 	g_nsettings.wallpaper_dim = 132;
-	g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
+	g_nsettings.accent_preset = (u8) AccentPreset::rune;
 	g_nsettings.theme_path = settings->isLightMode ? SPECIAL_LIGHT : SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 
@@ -229,7 +229,7 @@ void reset_settings(bool set_default_lang)
 
 	g_nsettings.max_elogs = 0; /* memory log by default */
 	g_nsettings.wallpaper_dim = 132;
-	g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
+	g_nsettings.accent_preset = (u8) AccentPreset::rune;
 	g_nsettings.theme_path = SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 	g_nsettings.proxy_port = 0; /* disable proxy by default */
@@ -378,7 +378,7 @@ bool ensure_settings()
 	if(g_nsettings.wallpaper_dim < 64)
 		g_nsettings.wallpaper_dim = 132;
 	if(g_nsettings.accent_preset > (u8) AccentPreset::mono)
-		g_nsettings.accent_preset = (u8) AccentPreset::nocturne;
+		g_nsettings.accent_preset = (u8) AccentPreset::rune;
 	/* start parsing strings */
 	offset = 0x1E;
 	if(!parse_string(g_nsettings.theme_path, buf, offset, size)) goto default_settings;
@@ -392,7 +392,7 @@ bool ensure_settings()
 		if(!parse_string(g_nsettings.proxy_username, buf, offset, size)) goto default_settings;
 		if(!parse_string(g_nsettings.proxy_password, buf, offset, size)) goto default_settings;
 	}
-	/* Added by Nocturne. Old settings files end before this optional field. */
+	/* Added by Rune3DS. Old settings files end before this optional field. */
 	if(offset < size)
 	{
 		if(!parse_string(g_nsettings.background_path, buf, offset, size))
@@ -518,7 +518,7 @@ static const char *method2str_en(SortMethod dir)
 	case SortMethod::tid: return "title ID";
 	case SortMethod::size: return "size";
 	case SortMethod::downloads: return "downloads";
-	case SortMethod::id: return "hShop ID";
+	case SortMethod::id: return "Content ID";
 	case SortMethod::none: return "(none)";
 	}
 	return "unknown";
@@ -528,7 +528,7 @@ static const char *accent2str(AccentPreset preset)
 {
 	switch(preset)
 	{
-	case AccentPreset::nocturne: return "Nocturne pink";
+	case AccentPreset::rune: return "Rune minimal";
 	case AccentPreset::theme_default: return "Theme default";
 	case AccentPreset::cherry: return "Cherry";
 	case AccentPreset::lavender: return "Lavender";
@@ -579,11 +579,11 @@ static AccentPalette accent_palette(AccentPreset preset)
 		return { rgba(255, 86, 96), rgba(255, 142, 149), rgba(59, 24, 28), rgba(37, 18, 21), rgba(255, 221, 224), rgba(255, 196, 72) };
 	case AccentPreset::mono:
 		return { rgba(220, 220, 220), rgba(255, 255, 255), rgba(42, 42, 42), rgba(24, 24, 24), rgba(245, 245, 245), rgba(255, 115, 115) };
-	case AccentPreset::nocturne:
+	case AccentPreset::rune:
 	case AccentPreset::theme_default:
-		return { rgba(255, 164, 204), rgba(255, 134, 188), rgba(53, 44, 49), rgba(26, 20, 23, 0xBB), rgba(245, 240, 242), rgba(255, 107, 168) };
+		return { rgba(250, 250, 250), rgba(220, 220, 220), rgba(36, 36, 36), rgba(17, 17, 17, 0xE8), rgba(237, 237, 237), rgba(255, 95, 87) };
 	}
-	return accent_palette(AccentPreset::nocturne);
+	return accent_palette(AccentPreset::rune);
 }
 
 static void apply_accent_preset()
@@ -938,7 +938,7 @@ static bool supported_background_name(const std::string& name)
 static void show_background_menu()
 {
 	mkdir("/3ds", 0777);
-	mkdir("/3ds/3hs", 0777);
+	mkdir("/3ds/Rune3DS", 0777);
 	mkdir(BACKGROUNDS_DIR, 0777);
 
 	struct BackgroundEntry {
@@ -973,7 +973,7 @@ static void show_background_menu()
 	ui::I18NEnabledRenderQueue queue;
 	ui::MenuSelect *menu;
 	ui::builder<ui::Text>(ui::Screen::top,
-			"SD / 3ds / 3hs / backgrounds")
+			"SD / 3ds / Rune3DS / backgrounds")
 		.size(0.45f)
 		.x(ui::layout::center_x)
 		.y(36.0f)
@@ -988,6 +988,12 @@ static void show_background_menu()
 		.add_to(queue);
 
 	ui::builder<ui::MenuSelect>(ui::Screen::bottom)
+		.when_changed([&menu, &entries]() -> bool {
+			const std::string& path = entries[menu->pos()].path;
+			if(path != g_nsettings.background_path && ui::set_user_background(path))
+				g_nsettings.background_path = path;
+			return true;
+		})
 		.add_to(&menu, queue);
 
 	for(size_t i = 0; i < entries.size(); ++i)
@@ -1102,7 +1108,7 @@ static void update_settings_ID(SettingsId ID)
 		break;
 	case ID_TopWide:
 		g_nsettings.flags0 ^= FLAG0_TOP_WIDE_EXPERIMENTAL;
-		ui::notice("800px top-screen mode changed.\n\nRestart Nocturne for the framebuffer change to fully apply.\n\nThis is experimental and may not work on Old 2DS.");
+		ui::notice("800px top-screen mode changed.\n\nRestart Rune3DS for the framebuffer change to fully apply.\n\nThis is experimental and may not work on Old 2DS.");
 		break;
 	case ID_AutoShutdown:
 		g_nsettings.flags0 ^= FLAG0_AUTO_SHUTDOWN;
@@ -1191,38 +1197,46 @@ static void update_settings_ID(SettingsId ID)
 	case ID_Accent:
 	{
 		AccentPreset preset = (AccentPreset) g_nsettings.accent_preset;
-		read_set_enum<AccentPreset>(
-			{
-				accent2str(AccentPreset::nocturne),
-				accent2str(AccentPreset::theme_default),
-				accent2str(AccentPreset::cherry),
-				accent2str(AccentPreset::lavender),
-				accent2str(AccentPreset::blue),
-				accent2str(AccentPreset::teal),
-				accent2str(AccentPreset::green),
-				accent2str(AccentPreset::amber),
-				accent2str(AccentPreset::orange),
-				accent2str(AccentPreset::red),
-				accent2str(AccentPreset::mono),
-			},
-			{
-				AccentPreset::nocturne,
-				AccentPreset::theme_default,
-				AccentPreset::cherry,
-				AccentPreset::lavender,
-				AccentPreset::blue,
-				AccentPreset::teal,
-				AccentPreset::green,
-				AccentPreset::amber,
-				AccentPreset::orange,
-				AccentPreset::red,
-				AccentPreset::mono,
-			},
-			preset
-		);
-		g_nsettings.accent_preset = (u8) preset;
-		apply_visual_settings();
-		ui::ThemeManager::global()->reget();
+		std::vector<std::string> labels = {
+				accent2str(AccentPreset::rune),
+			accent2str(AccentPreset::theme_default),
+			accent2str(AccentPreset::cherry),
+			accent2str(AccentPreset::lavender),
+			accent2str(AccentPreset::blue),
+			accent2str(AccentPreset::teal),
+			accent2str(AccentPreset::green),
+			accent2str(AccentPreset::amber),
+			accent2str(AccentPreset::orange),
+			accent2str(AccentPreset::red),
+			accent2str(AccentPreset::mono),
+		};
+		std::vector<AccentPreset> values = {
+				AccentPreset::rune,
+			AccentPreset::theme_default,
+			AccentPreset::cherry,
+			AccentPreset::lavender,
+			AccentPreset::blue,
+			AccentPreset::teal,
+			AccentPreset::green,
+			AccentPreset::amber,
+			AccentPreset::orange,
+			AccentPreset::red,
+			AccentPreset::mono,
+		};
+		ui::I18NEnabledRenderQueue queue;
+		ui::Selector<AccentPreset> *sel;
+		auto apply = [&preset](AccentPreset value) -> void {
+			preset = value;
+			g_nsettings.accent_preset = (u8) value;
+			apply_visual_settings();
+			ui::ThemeManager::global()->reget();
+		};
+		ui::builder<ui::Selector<AccentPreset>>(ui::Screen::bottom, labels, values, &preset)
+			.when_changed(apply)
+			.add_to(&sel, queue);
+		sel->search_set_idx(preset);
+		queue.render_finite();
+		apply(preset);
 		break;
 	}
 	case ID_Performance:
@@ -1661,6 +1675,10 @@ void show_theme_menu()
 			name->set_text(theme.name);
 
 			author->set_y(ui::under(name, author));
+			ui::Theme::global()->replace_with(theme);
+			g_nsettings.theme_path = theme.id;
+			apply_accent_preset();
+			ui::ThemeManager::global()->reget();
 			return true;
 		})
 		.add_to(&ms, queue);

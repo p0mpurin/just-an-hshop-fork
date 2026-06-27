@@ -8,7 +8,7 @@ Loading...
 An unsupp'rt'd firmware wast did detect
 
 - install_luma
-3hs cannot beest hath used on this system
+Rune3DS cannot beest hath used on this system
 
 - queue
 Queueth
@@ -17,9 +17,9 @@ Queueth
 Did fail to initialize netw'rking
 
 - credits_thanks
-Thanketh thee f'r using 3hs, a 3ds client f'r hShop.
+Thanketh thee f'r using Rune3DS, a 3ds client f'r catalog.
 Thee can receiveth this software f'r free at
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Presseth ui_glyph_a to installeth this content. 
@@ -156,7 +156,7 @@ Summary: %1
 Module: %1
 
 - hs_bunny_found
-Congrats! thee hath found the hShop bunny!
+Congrats! thee hath found the catalog bunny!
 
 - already_installed_reinstall
 Title already did install.  Reinstall?
@@ -199,7 +199,7 @@ f'r this changeth to taketh effect
 Restart anon?
 
 - this_version
-This is 3hs v'rsion %1
+This is Rune3DS v'rsion %1
 
 - retry_req
 Requesteth did fail.  Retry?
@@ -222,7 +222,7 @@ Invalid qu'ry
 press UI_GLYPH_A to wend backeth
 
 - min_constraint
-Current 3hs v'rsion %1 is base'r than the requir'd v'rsion %2
+Current Rune3DS v'rsion %1 is base'r than the requir'd v'rsion %2
 
 - proxy
 Proxy
@@ -264,16 +264,16 @@ Toggle the batt'ry leveleth indicat'r
 Selecteth the timeth f'rmat
 
 - language_desc
-Setteth the language f'r 3hs.
+Setteth the language f'r Rune3DS.
 
 - lumalocalemode_desc
-Setteth the mode of the lumalocale autosett'r.  Automatic selects a language automatically.  If 't be true this is setteth to manual, 3hs shall prompt f'r a climature aft'r the installation of content
+Setteth the mode of the lumalocale autosett'r.  Automatic selects a language automatically.  If 't be true this is setteth to manual, Rune3DS shall prompt f'r a climature aft'r the installation of content
 
 - check_extra_desc
 Searcheth f'r extra content aft'r installation
 
 - proxy_desc
-Configure a proxy server for 3hs. This setting is for advanced users.
+Configure a proxy server for Rune3DS. This setting is for advanced users.
 
 - install_all
 Installeth all
@@ -327,7 +327,7 @@ else       return "%1 (%2 blocks)";
 Searcheth by text
 
 - search_id
-Searcheth by hShop ID
+Searcheth by Content ID
 
 - search_tid
 Searcheth by Title ID
@@ -411,7 +411,7 @@ Flasheth the hath LED lighteth to inf'rm thee of various status changes.
 # If you've already translated this string you don't have to again
 - dev_unitinfo
 According to this console's ENVINFO, this is a development unit.
-3hs will not function correctly on this system.
+Rune3DS will not function correctly on this system.
 In case you have a retail 3DS, ensure "Enable developer UNITINFO" in the Luma3DS configuration is disabled.
 
 # nowrap, used in for examples language select
@@ -491,7 +491,7 @@ Automatically ent'r the subcateg'ry c'rresponding to the system climature, if 't
 
 - add_music
 Thee has't not yet did add any music!
-tryeth putting music in /3ds/3hs/music on thy sd card
+tryeth putting music in /3ds/Rune3DS/music on thy sd card
 
 - add_playlist
 Thee has't yet to addeth any playlists!
@@ -639,17 +639,17 @@ N'rmal searcheth
 ♪ Playing %1 by %2 ♪
 
 - outdated_system
-An outdat'd system firmware wast did detect.  A system firmware of at least 9.6.0 is requir'd to useth 3hs
+An outdat'd system firmware wast did detect.  A system firmware of at least 9.6.0 is requir'd to useth Rune3DS
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type
 Virtual Console typeth
 
-# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+# Shown while Rune3DS is launching, while attempting to enable WiFi if it's disabled.
 - check_net
 'nabling WiFi...
 
-# Shown while 3hs is launching, while attempting to connect to the internet
+# Shown while Rune3DS is launching, while attempting to connect to the internet
 - check_inet
 Connecting to the int'rnet...
 
@@ -657,9 +657,9 @@ Connecting to the int'rnet...
 - alt_name_n_of_n
 Alt'rnative nameth (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: switch)
 
-# Shown in search when an invalid hShop ID is entered
+# Shown in search when an invalid Content ID is entered
 - invalid_hsid
-Invalid hShop IDeth.
+Invalid Content IDeth.
 
 
 # Shown when other parameters have been entered in legacy search but a unique ID was specified as well

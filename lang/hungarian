@@ -8,7 +8,7 @@ Betöltés...
 Nem támogatott firmware észlelve.
 
 - install_luma
-Ezen a rendszeren a 3hs nem használható.
+Ezen a rendszeren a Rune3DS nem használható.
 
 - queue
 Várólista
@@ -17,9 +17,9 @@ Várólista
 Az internethez kapcsolódás sikertelen volt
 
 - credits_thanks
-Köszönjük hogy 3hs-t, a 3DS hShop klienset választottad.
+Köszönjük hogy Rune3DS-t, a 3DS catalog klienset választottad.
 Ez a szoftver ingyenesen elérhető az alábbi címen:
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Telepítéshez nyomd meg az UI_GLYPH_A gombot.
@@ -44,7 +44,7 @@ Letöltési ID
 Kategória
 
 - landing_id
-hShop ID
+Content ID
 
 - description
 Leírás
@@ -156,7 +156,7 @@ Summary: %1
 Module: %1
 
 - hs_bunny_found
-Gratulálunk! Megtaláltad a hShop nyuszit!
+Gratulálunk! Megtaláltad a catalog nyuszit!
 
 - already_installed_reinstall
 Az alábbi letöltés már fel van telepítve. Újra akarod telepíteni?
@@ -198,7 +198,7 @@ A változtatások véglegesítéséhez a rendszer újraindítása szükséges.
 Újraindítod most?
 
 - this_version
-A 3hs aktuális verziója %1
+A Rune3DS aktuális verziója %1
 
 - retry_req
 A kérelem hibába ütközött. Újra próbálod?
@@ -221,7 +221,7 @@ Helytelen folyamat
 Visszalépéshez nyomd meg az UI_GLYPH_A gombot.
 
 - min_constraint
-A 3hs aktuális %1 verziója korábbi, mint a szükséges %2 verzió
+A Rune3DS aktuális %1 verziója korábbi, mint a szükséges %2 verzió
 
 - proxy
 Proxy
@@ -263,16 +263,16 @@ Akkumulátor szint kijelzésének ki/be kapcsolása.
 Idő formátum beállítása.
 
 - language_desc
-3hs nyelvének beállítása.
+Rune3DS nyelvének beállítása.
 
 - lumalocalemode_desc
-LumaLocale módjának beállítása. Automatikus mód magától fog nyelvet választani. Ha manuálisra van állítva, 3hs a letöltések telepítését követően a régió kiválasztását fogja kérni.
+LumaLocale módjának beállítása. Automatikus mód magától fog nyelvet választani. Ha manuálisra van állítva, Rune3DS a letöltések telepítését követően a régió kiválasztását fogja kérni.
 
 - check_extra_desc
 Kapcsolódó letöltések megkeresése a telepítés után.
 
 - proxy_desc
-Proxy szerver beállítása a 3hs-hez. Ez az opció tapasztaltabb felhasználóknak ajánlott.
+Proxy szerver beállítása a Rune3DS-hez. Ez az opció tapasztaltabb felhasználóknak ajánlott.
 
 - install_all
 Összes telepítése
@@ -325,7 +325,7 @@ Az alábbi ID számra hivatkozva tudsz segítséget kérni:
 Keresés szöveg alapján
 
 - search_id
-Keresés hShop ID alapján
+Keresés Content ID alapján
 
 - search_tid
 Keresés Letöltési ID alapján
@@ -410,7 +410,7 @@ Ez a LED lámpák használatával fog tájékoztatni különböző állapotvált
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 A konzolod az ENVINFO konfigurációk alapján egy fejlesztői modell.
-3hs nem fog helyesen futni ezen a rendszeren.
+Rune3DS nem fog helyesen futni ezen a rendszeren.
 Ha a 3DS konzolod egy rendes modell, a Luma3DS konfigurációkban az "Enable developer UNITINFO" opciót hagyd kikapcsolva.
 
 # nowrap, used in for examples language select

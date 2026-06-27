@@ -1,8 +1,21 @@
-# Nocturne changelog
+# Rune3DS changelog
+
+## 1.5.40
+
+- Rebranded public app text, install docs, UniStore metadata, and QR assets to Rune3DS
+- Moved Rune3DS app data folders to `/3ds/Rune3DS`
+- Updated visible catalog labels to use generic Rune3DS wording
+- Renamed the release CIA asset, FBI QR target, and UniStore download target to `Rune3DS.cia`
+
+## 1.5.39
+
+- Refreshed the default Rune3DS theme with a minimal black, white, and gray palette
+- Redesigned shared navigation surfaces with quieter dock, list, menu, and metadata styling
+- Theme, accent, background, and dimming changes now preview immediately while browsing settings
 
 ## 1.5.38
 
-- Built release with refreshed hShop API authentication
+- Built release with refreshed catalog API authentication
 - Removed duplicate size badges from title lists; size remains visible in title details
 
 ## 1.5.37
@@ -43,19 +56,19 @@
 
 ## 1.5.31
 
-- Removed the fragile launch-time Nocturne self-updater
-- Added a startup notice directing users to update Nocturne through Universal-Updater
-- Added a custom Nocturne UniStore that installs the latest GitHub release CIA
+- Removed the fragile launch-time Rune3DS self-updater
+- Added a startup notice directing users to update Rune3DS through Universal-Updater
+- Added a custom Rune3DS UniStore that installs the latest GitHub release CIA
 
 ## 1.5.30
 
-- Validation build for the stock-style static Nocturne updater endpoint
-- Kept `/version` and `/3hs.cia` as the in-app update transport
+- Validation build for the stock-style static Rune3DS updater endpoint
+- Kept `/version` and the release CIA as the in-app update transport
 
 ## 1.5.29
 
-- Switched Nocturne's static updater check from `/version.txt` to stock-style `/version`
-- Kept the static `/3hs.cia` install URL for the current updater host
+- Switched Rune3DS's static updater check from `/version.txt` to stock-style `/version`
+- Kept the static release CIA install URL for the current updater host
 
 ## 1.5.28
 
@@ -64,22 +77,22 @@
 
 ## 1.5.27
 
-- Returned Nocturne updates to a stock-style static HTTP endpoint
+- Returned Rune3DS updates to a stock-style static HTTP endpoint
 - Kept detailed updater diagnostics and completed-response timeout handling
 
 ## 1.5.26
 
-- Read the latest Nocturne version from the GitHub `latest/download/3hs.cia` redirect
+- Read the latest Rune3DS version from the GitHub latest release CIA redirect
 - Avoided the GitHub `/releases/latest` page path that fails on the 3DS HTTP service
 
 ## 1.5.25
 
-- Used GitHub's latest-release redirect tag as the Nocturne version source
-- Removed the in-app update check's dependency on the separate `nocturne-version` release asset
+- Used GitHub's latest-release redirect tag as the Rune3DS version source
+- Removed the in-app update check's dependency on the separate `rune3ds-version` release asset
 
 ## 1.5.24
 
-- Switched the Nocturne updater back to GitHub's latest release assets
+- Switched the Rune3DS updater back to GitHub's latest release assets
 - Kept detailed startup updater diagnostics visible for failed update checks
 
 ## 1.5.23
@@ -90,7 +103,7 @@
 ## 1.5.22
 
 - Added detailed on-screen diagnostics for startup updater HTTP failures
-- Showed the compiled Nocturne update base and build version in update check errors
+- Showed the compiled Rune3DS update base and build version in update check errors
 
 ## 1.5.21
 
@@ -104,7 +117,7 @@
 
 ## 1.5.19
 
-- Moved Nocturne's in-app updater to the Vercel static update endpoint
+- Moved Rune3DS's in-app updater to the Vercel static update endpoint
 - Mirrored the updater CIA in the Vercel site so the 3DS no longer depends on GitHub release downloads
 
 ## 1.5.18
@@ -115,7 +128,7 @@
 ## 1.5.17
 
 - Fixed GitHub Releases API version parsing when JSON contains whitespace
-- Added a visible notice if Nocturne update checking fails
+- Added a visible notice if Rune3DS update checking fails
 
 ## 1.5.16
 
@@ -123,13 +136,13 @@
 
 ## 1.5.15
 
-- Switched Nocturne update detection to the GitHub Releases API to avoid raw-file cache lag
+- Switched Rune3DS update detection to the GitHub Releases API to avoid raw-file cache lag
 
 ## 1.5.14
 
 - Fixed GitHub updater fetches by avoiding long release-asset redirects for version checks
 - Increased HTTP redirect URL capacity for GitHub release asset downloads
-- Added a visible update confirmation prompt when a Nocturne update is found
+- Added a visible update confirmation prompt when a Rune3DS update is found
 
 ## 1.5.13
 
@@ -137,8 +150,8 @@
 
 ## 1.5.12
 
-- Added Nocturne launch-time self-updates from GitHub Releases
-- Kept official 3hs update checks non-destructive so stock CIAs do not overwrite the fork
+- Added Rune3DS launch-time self-updates from GitHub Releases
+- Kept compatibility update checks non-destructive so stock CIAs do not overwrite the fork
 - Fixed 800px top-screen mode UI layout so widgets stay fitted to the visible 400px screen area
 
 ## 1.5.11
@@ -180,8 +193,8 @@
 - Increased minimum text sizes and improved status-line readability
 - Fixed title-detail, metadata, action-hint, download-screen, and free-space text overlap
 - Improved long-title and alternative-title wrapping
-- Updated the startup notice to identify Nocturne as an unofficial fork
-- Clarified that official 3hs updates do not update Nocturne
+- Updated the startup notice to identify Rune3DS as an unofficial fork
+- Clarified that compatibility updates do not update Rune3DS
 
 ## 1.1.0
 
@@ -189,7 +202,7 @@
 - Kept NBAPI authentication on Nintendo's stable HTTP service
 - Added automatic fallback when the direct CDN connection cannot start
 - Added bounded connection timeouts and responsive download cancellation
-- Added an authenticated, network-only hShop CDN benchmark to title details
+- Added an authenticated, network-only catalog CDN benchmark to title details
 - Reworked speed and ETA sampling for accurate sustained-throughput readings
 
 ## 1.0.1
@@ -201,7 +214,7 @@
 
 ## 1.0.0
 
-- Introduced the OLED-black and light-pink Nocturne interface
+- Introduced the OLED-black and light-pink Rune3DS interface
 - Added custom wallpaper selection and adjustable dimming
 - Added first-launch wallpaper guidance
 - Redesigned title details, lists, menus, and download presentation
@@ -211,4 +224,4 @@
 - Added quiet download cancellation
 - Added custom HOME Menu banner and icon
 - Hardened NBAPI parsing, authentication, HTTP status handling, and token decoding
-- Added fork-safe official 3hs version tracking
+- Added fork-safe compatibility version tracking

@@ -19,6 +19,7 @@
 
 #include <ui/base.hh>
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -226,6 +227,12 @@ namespace ui
 				this->instance().search_set_idx(val);
 				return this->return_value();
 			}
+
+			ReturnValue when_changed(std::function<void(TEnum)> cb)
+			{
+				this->instance().change_callback = cb;
+				return this->return_value();
+			}
 		};
 
 	private:
@@ -235,6 +242,7 @@ namespace ui
 		std::vector<C2D_Text> labels;
 		bool exclusiveMode = true;
 		TEnum *res = nullptr;
+		std::function<void(TEnum)> change_callback = [](TEnum) -> void { };
 		C2D_TextBuf buf;
 		size_t idx = 0;
 
@@ -264,6 +272,7 @@ namespace ui
 			if(this->idx > 0) --this->idx;
 			else this->idx = this->labels.size() - 1;
 			this->assign_txty();
+			this->change_callback((*this->values)[this->idx]);
 		}
 
 		void wrap_plus()
@@ -271,6 +280,7 @@ namespace ui
 			if(this->idx < this->labels.size() - 1) ++this->idx;
 			else this->idx = 0;
 			this->assign_txty();
+			this->change_callback((*this->values)[this->idx]);
 		}
 
 		UI_CTHEME_GETTER(color_button, ui::theme::button_background_color)

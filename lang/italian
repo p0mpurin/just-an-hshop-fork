@@ -8,7 +8,7 @@ Caricamento...
 È stato trovato un firmware non supportato.
 
 - install_luma
-3hs non può essere utilizzato su questo sistema.
+Rune3DS non può essere utilizzato su questo sistema.
 
 - queue
 Coda
@@ -17,9 +17,9 @@ Coda
 Impossibile inizializzare la rete
 
 - credits_thanks
-Grazie per aver scelto 3hs, app hShop per 3DS.
+Grazie per aver scelto Rune3DS, app catalog per 3DS.
 Puoi prendere gratis questo software a
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Premi UI_GLYPH_A per installare il contenuto
@@ -44,7 +44,7 @@ ID Titolo
 Categoria
 
 - landing_id
-hShop ID
+Content ID
 
 - description
 Descrizione
@@ -156,7 +156,7 @@ Riepilogo: %1
 Modulo: %1
 
 - hs_bunny_found
-Congratulazioni! Hai trovato il coniglio hShop!
+Congratulazioni! Hai trovato il coniglio catalog!
 
 - already_installed_reinstall
 Titolo già installato. Reinstallare?
@@ -198,7 +198,7 @@ Il sistema dev'essere riavviato perché i cambiamenti abbiano effetto.
 Riavviare adesso?
 
 - this_version
-Questa è la versione di 3hs %1
+Questa è la versione di Rune3DS %1
 
 - retry_req
 Richiesta fallita. Riprovare?
@@ -221,7 +221,7 @@ Richiesta non valida
 Premi UI_GLYPH_A per tornare indietro
 
 - min_constraint
-Questa versione di 3hs %1 è più vecchia di quella richiesta %2
+Questa versione di Rune3DS %1 è più vecchia di quella richiesta %2
 
 - proxy
 Proxy
@@ -263,16 +263,16 @@ Scegli se visualizzare lo stato della batteria.
 Seleziona il formato delle ore.
 
 - language_desc
-Imposta la linugua di 3hs.
+Imposta la linugua di Rune3DS.
 
 - lumalocalemode_desc
-Imposta la modalità del LumaLocale autosetter. 'Automatico' seleziona la lingua automaticamente. Se viene scelto 'manuale', 3hs chiederà la regione dopo l'installazione del contenuto.
+Imposta la modalità del LumaLocale autosetter. 'Automatico' seleziona la lingua automaticamente. Se viene scelto 'manuale', Rune3DS chiederà la regione dopo l'installazione del contenuto.
 
 - check_extra_desc
 Cerca dei contenuti extra dopo l'installazione.
 
 - proxy_desc
-Configura un server proxy per 3hs. Questa impostazione è per gli utenti avanzati.
+Configura un server proxy per Rune3DS. Questa impostazione è per gli utenti avanzati.
 
 - install_all
 Installa tutto
@@ -326,7 +326,7 @@ else       return "%1 (%2 blocchi)";
 Cerca tramite testo
 
 - search_id
-Cerca tramite ID hShop
+Cerca tramite ID catalog
 
 - search_tid
 Cerca tramite ID Titolo
@@ -408,7 +408,7 @@ Lampeggia il LED per informarti di vari cambiamenti di stato.
 
 - dev_unitinfo
 Secondo la configurazione di questa console, questa è una variante di sviluppo.
-3hs non funzionerà correttamente su questo sistema.
+Rune3DS non funzionerà correttamente su questo sistema.
 In caso tu abbia un 3DS normale, assicurati che "Enable developer UNITINFO" nella configurazione di Luma3DS sia disattivato.
 
 - hint_navigate
@@ -422,7 +422,7 @@ Temi
 
 - dev_unitinfo
 Secondo questa console ENVINFO, questa è un'unità di sviluppo.
-3hs non funzionerà correttamente su questo sistema.
+Rune3DS non funzionerà correttamente su questo sistema.
 Nel caso in cui hai un 3DS retail, assicurati che "Abilita lo sviluppatore UNITINFO" nella configurazione di Luma3DS sia disabilitato.
 
 - hint_navigate
@@ -489,7 +489,7 @@ Entra automaticamente nella subcategoria corrispondente alla regione di sistema,
 
 - add_music
 Non hai ancora aggiunto musica!
-Prova ad inserire musica in /3ds/3hs/music sulla tua scheda SD
+Prova ad inserire musica in /3ds/Rune3DS/music sulla tua scheda SD
 
 - add_playlist
 Devi ancora aggiungere playlist!
@@ -639,17 +639,17 @@ Ricerca normale
 ♪ Riproducendo %1 di %2 ♪
 
 - outdated_system
-È stato rilevato un firmware di sistema obsoleto. Per utilizzare 3hs è necessario un firmware di versione almeno 9.6.0.
+È stato rilevato un firmware di sistema obsoleto. Per utilizzare Rune3DS è necessario un firmware di versione almeno 9.6.0.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type
 Tipo di Virtual Console
 
-# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+# Shown while Rune3DS is launching, while attempting to enable WiFi if it's disabled.
 - check_net
 Attivazione del WiFi...
 
-# Shown while 3hs is launching, while attempting to connect to the internet
+# Shown while Rune3DS is launching, while attempting to connect to the internet
 - check_inet
 Connessione a internet...
 
@@ -657,9 +657,9 @@ Connessione a internet...
 - alt_name_n_of_n
 Nome alternativo (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: cambia)
 
-# Shown in search when an invalid hShop ID is entered
+# Shown in search when an invalid Content ID is entered
 - invalid_hsid
-ID hShop non valido.
+ID catalog non valido.
 
 # Shown when other parameters have been entered in legacy search but a unique ID was specified as well
 - no_other_params_uniq

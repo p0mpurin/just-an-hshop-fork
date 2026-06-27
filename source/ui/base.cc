@@ -770,7 +770,7 @@ float ui::screen_width(ui::Screen scr)
 	return ui::dimensions::width_bottom;
 }
 
-static void draw_nocturne_chrome(ui::Screen screen)
+static void draw_rune_chrome(ui::Screen screen)
 {
 	const float width = screen == ui::Screen::top
 		? top_framebuffer_width()
@@ -935,7 +935,7 @@ bool ui::RenderQueue::render_exclusive_frame(ui::Keys& keys)
 
 	begin_top_scene();
 	draw_top_background(keys);
-	draw_nocturne_chrome(ui::Screen::top);
+	draw_rune_chrome(ui::Screen::top);
 	ret &= this->render_top(keys);
 
 	begin_bottom_scene();
@@ -943,7 +943,7 @@ bool ui::RenderQueue::render_exclusive_frame(ui::Keys& keys)
 		C2D_DrawImageAt(user_bottom_background, 0.0f, 0.0f, -0.9f);
 	else if(bottom_background->has_image())
 		bottom_background->render(keys);
-	draw_nocturne_chrome(ui::Screen::bottom);
+	draw_rune_chrome(ui::Screen::bottom);
 	ret &= this->render_bottom(keys);
 
 	ret &= this->exit_frame();
@@ -958,7 +958,7 @@ bool ui::RenderQueue::render_frame(ui::Keys& keys)
 
 	begin_top_scene();
 	draw_top_background(keys);
-	draw_nocturne_chrome(ui::Screen::top);
+	draw_rune_chrome(ui::Screen::top);
 	ret &= this->render_top(keys);
 	ret &= g_renderqueue.render_top(keys);
 
@@ -967,7 +967,7 @@ bool ui::RenderQueue::render_frame(ui::Keys& keys)
 		C2D_DrawImageAt(user_bottom_background, 0.0f, 0.0f, -0.9f);
 	else if(bottom_background->has_image())
 		bottom_background->render(keys);
-	draw_nocturne_chrome(ui::Screen::bottom);
+	draw_rune_chrome(ui::Screen::bottom);
 	ret &= this->render_bottom(keys);
 	ret &= g_renderqueue.render_bottom(keys);
 

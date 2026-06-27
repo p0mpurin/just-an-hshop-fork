@@ -34,8 +34,8 @@
 #if !defined(HS_CDN_BASE) || !defined(HS_SITE_LOC) || !defined(HS_UPDATE_BASE) || !defined(HS_NB_BASE)
 	#error "You must define HS_CDN_BASE, HS_SITE_LOC, HS_NB_BASE and HS_UPDATE_BASE"
 #endif
-#ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
+#ifndef RUNE_UPDATE_BASE
+	#define RUNE_UPDATE_BASE "https://example.invalid/rune3ds"
 #endif
 
 #define OK 0
@@ -324,19 +324,19 @@ Result hsapi::id_pair_by_title_id(std::vector<hsapi::IdPair>& ret, const std::ve
 
 Result hsapi::get_by_title_id(std::vector<hsapi::Title>& ret, const std::string& title_id)
 {
-	ilog("Getting hshop title by title id");
+	ilog("Getting catalog title by title id");
 	return nbreqa<hsapi::Title>(HS_NB_BASE "/title/id/" + title_id, ret);
 }
 
 Result hsapi::get_by_id(hsapi::Title &ret, const hsapi::hid id)
 {
-	ilog("Getting hshop title by id");
+	ilog("Getting catalog title by id");
 	return nbreq(HS_NB_BASE "/title/" + std::to_string(id), ret);
 }
 
 Result hsapi::get_by_ids(std::vector<hsapi::Title>& ret, const std::vector<hsapi::hid>& ids)
 {
-	ilog("Getting hshop titles by id array");
+	ilog("Getting catalog titles by id array");
 	std::string url = HS_NB_BASE "/title/batch?ids=";
 	join_t<hsapi::hid>(url, ids, ",");
 	return nbreqa<hsapi::Title>(url, ret);
@@ -367,10 +367,10 @@ Result hsapi::get_latest_version_string(std::string& ret)
 	return OK;
 }
 
-Result hsapi::get_nocturne_latest_version_string(std::string& ret)
+Result hsapi::get_rune_latest_version_string(std::string& ret)
 {
-	ilog("[updater] START %s/version", NOCTURNE_UPDATE_BASE);
-	Result res = basereq(NOCTURNE_UPDATE_BASE "/version",
+	ilog("[updater] START %s/version", RUNE_UPDATE_BASE);
+	Result res = basereq(RUNE_UPDATE_BASE "/version",
 		ret, HTTPC_METHOD_GET, nullptr, 0, false);
 	if(R_FAILED(res))
 	{

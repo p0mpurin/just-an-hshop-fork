@@ -229,7 +229,7 @@ void handle_error(const error_container& err, const std::string *label)
 	consoleInit(GFX_TOP, NULL);
 
 	printf("\x1b[31mFATAL PANIC -- INITIALIZATION FAILED\x1b[0m\n");
-	printf("Failed to initialize 3hs: %s\n", msg.c_str());
+	printf("Failed to initialize Rune3DS: %s\n", msg.c_str());
 	printf("  from %s.\n", caller.c_str());
 	printf("\x1b[31mFATAL PANIC -- INITIALIZATION FAILED\x1b[0m\n");
 	printf("Press [A] to exit\n");

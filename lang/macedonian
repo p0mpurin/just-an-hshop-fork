@@ -11,7 +11,7 @@
 
 # displayed under above string
 - install_luma
-3hs не може да се користи на овоj уред.
+Rune3DS не може да се користи на овоj уред.
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -21,12 +21,12 @@
 - fail_init_networking
 Не може да се инициjализира врската
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-Thank you for using 3hs, a 3DS client for hShop.
-Ви благодариме што го користите 3hs, клиентот 3DS за hShop.
+Thank you for using Rune3DS, a 3DS client for catalog.
+Ви благодариме што го користите Rune3DS, клиентот 3DS за catalog.
 Овоj софтвер можете да го добиете бесплатно на
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Притиснете UI_GLYPH_A за да го инсталирате ова.
@@ -56,9 +56,9 @@ ID на играта
 - category
 Категориjа
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-ID hShop
+ID catalog
 
 # nowrap, used for category description
 - description
@@ -212,7 +212,7 @@ Jазик
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Секоjа чест! Го наjдовте заjачето на hShop!
+Секоjа чест! Го наjдовте заjачето на catalog!
 
 - already_installed_reinstall
 Насловот е веке инсталиран. Да се ​​преинсталира?
@@ -263,7 +263,7 @@ Luma3DS game patching е вклучено.
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-Ова е 3hs верзиjа %1
+Ова е Rune3DS верзиjа %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -293,7 +293,7 @@ Luma3DS game patching е вклучено.
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-Тековната 3hs верзиjа %1 е помала од потребната %2
+Тековната Rune3DS верзиjа %1 е помала од потребната %2
 
 # scroll, setting title
 - proxy
@@ -349,11 +349,11 @@ Luma3DS game patching е вклучено.
 
 # setting description
 - language_desc
-Поставете го jазикот 3hs.
+Поставете го jазикот Rune3DS.
 
 # setting description
 - lumalocalemode_desc
-Поставете го режимот на LumaLocale. Автоматски избира јазик автоматски. Ако е поставено на рачен, 3hs ке побара регионот по инсталираньето.
+Поставете го режимот на LumaLocale. Автоматски избира јазик автоматски. Ако е поставено на рачен, Rune3DS ке побара регионот по инсталираньето.
 
 # setting description
 - check_extra_desc
@@ -361,7 +361,7 @@ Luma3DS game patching е вклучено.
 
 # setting description
 - proxy_desc
-Конфигурираjте прокси-сервер за 3hs. Оваа поставка е наменета за напредни корисници.
+Конфигурираjте прокси-сервер за Rune3DS. Оваа поставка е наменета за напредни корисници.
 
 # install all from queue
 - install_all
@@ -427,7 +427,7 @@ else       return "%1 (%2 блокови)";
 
 # nowrap, search menu item
 - search_id
-Пребарувајте по ID на hShop
+Пребарувајте по ID на catalog
 
 # nowrap, search menu item
 - search_tid
@@ -532,7 +532,7 @@ else       return "%1 (%2 блокови)";
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 Според ENVINFO на оваа конзола, ова е развоjна единица.
-3hs нема да функционира правилно на овоj систем.
+Rune3DS нема да функционира правилно на овоj систем.
 Во случаj да имате нормален 3DS, проверете дали "Enable developer UNITINFO" во конфигурациjата на Luma3DS е исклучено.
 
 # nowrap, used in for examples language select
@@ -612,7 +612,7 @@ UI_GLYPH_X: преглед на тема
 
 - add_music
 Немате музика!
-Обидете се да ставите музика во /3ds/3hs/music на вашата SD.
+Обидете се да ставите музика во /3ds/Rune3DS/music на вашата SD.
 
 - add_playlist
 Немате плеjлисти!
@@ -761,7 +761,7 @@ ID на играта обично се структурирани вака: 0004
 
 
 - outdated_system
-Откриен е застарен системски фирмвер. Потребен е системски фирмвер од најмалку 9.6.0 за употреба на 3hs.
+Откриен е застарен системски фирмвер. Потребен е системски фирмвер од најмалку 9.6.0 за употреба на Rune3DS.
 
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important

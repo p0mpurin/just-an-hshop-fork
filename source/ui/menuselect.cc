@@ -23,7 +23,7 @@
 static u32 menu_text_normal()
 { return *ui::Theme::global()->get_color(ui::theme::text_color); }
 static u32 menu_text_focus()
-{ return C2D_Color32(255, 220, 238, 255); }
+{ return C2D_Color32(255, 255, 255, 255); }
 UI_STATIC_SLOTS(menu_normal_slot, "MenuSelectTextNormal", menu_text_normal)
 UI_STATIC_SLOTS(menu_focus_slot, "MenuSelectTextFocus", menu_text_focus)
 
@@ -144,23 +144,19 @@ bool ui::MenuSelect::render(ui::Keys& k)
 	/* aka u32 i = start_of_page */
 	u32 start = this->i - (this->i % MAX_PER_PAGE);
 	u32 end = MIN(start + MAX_PER_PAGE, this->btns.size());
-	/* Dark panel backdrop — slightly richer opacity for better text contrast */
 	C2D_DrawRectSolid(6.0f, 7.0f, -0.30f,
 		ui::screen_width(this->screen) - 12.0f, 202.0f,
-		C2D_Color32(0, 0, 0, 186));
-	/* Subtle pink accent line along the top of the panel */
+		C2D_Color32(0, 0, 0, 210));
 	C2D_DrawRectSolid(16.0f, 8.0f, -0.29f,
 		ui::screen_width(this->screen) - 32.0f, 1.0f,
-		C2D_Color32(255, 164, 204, 42));
+		C2D_Color32(255, 255, 255, 32));
 	float target_y = 14.0f + (this->i - start) * 24.0f;
 	this->highlight_y += (target_y - this->highlight_y) * 0.34f;
-	/* Selection highlight — soft pink fill with more presence */
 	C2D_DrawRectSolid(18.0f, this->highlight_y, -0.08f,
 		ui::screen_width(this->screen) - 36.0f, this->h,
-		C2D_Color32(255, 134, 188, 38));
-	/* Left accent indicator — thicker and more visible, signals current selection */
+		C2D_Color32(255, 255, 255, 20));
 	C2D_DrawRectSolid(18.0f, this->highlight_y + 3.0f, 0.0f,
-		3.0f, this->h - 6.0f, C2D_Color32(255, 164, 204, 225));
+		2.0f, this->h - 6.0f, C2D_Color32(255, 255, 255, 170));
 
 	for(u32 i = start; i < end; ++i)
 	{

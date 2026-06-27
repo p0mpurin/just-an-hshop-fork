@@ -1,14 +1,14 @@
 # Build output
 .build-stage/
 .vs/
-3hs.elf
-3hs.3dsx
-/3hs.cia
+/Rune3DS.elf
+/Rune3DS.3dsx
+/Rune3DS.cia
 *.o
 *.d
 
 # Local/test release artifacts
-3hs-nocturne-*.cia
+Rune3DS-*.cia
 
 # Generated theme data
 data/*.hstx

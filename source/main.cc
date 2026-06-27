@@ -53,6 +53,24 @@ ctr::thread<Handle &, Handle &> *wlan_thread = nullptr;
 static Handle wlan_thread_exit_event = 0;
 static Handle wlan_disconnect_event = 0;
 
+class HomeDock : public ui::BaseWidget
+{ UI_WIDGET("HomeDock")
+public:
+	float width() override { return ui::screen_width(this->screen); }
+	float height() override { return ui::screen_height(); }
+
+	bool render(ui::Keys&) override
+	{
+		C2D_DrawRectSolid(0.0f, 182.0f, ui::layer::bottom - 0.05f, 320.0f, 58.0f,
+			C2D_Color32(0, 0, 0, 218));
+		C2D_DrawRectSolid(16.0f, 183.0f, ui::layer::bottom - 0.04f, 288.0f, 1.0f,
+			C2D_Color32(255, 255, 255, 34));
+		C2D_DrawRectSolid(154.0f, 193.0f, ui::layer::bottom - 0.03f, 1.0f, 28.0f,
+			C2D_Color32(255, 255, 255, 26));
+		return true;
+	}
+};
+
 #ifndef RELEASE
 class FrameCounter : public ui::BaseWidget
 { UI_WIDGET("FrameCounter")
@@ -231,7 +249,7 @@ int main(int argc, char* argv[])
 #else
 	#define EV "-debug"
 #endif
-	ilog("current 3hs version is " VVERSION EV "%s" " \"" VERSION_DESC "\"", envIsHomebrew() ? "-3dsx" : "");
+	ilog("current Rune3DS version is " VVERSION EV "%s" " \"" VERSION_DESC "\"", envIsHomebrew() ? "-3dsx" : "");
 #undef EV
 
 	log_settings();
@@ -266,7 +284,7 @@ int main(int argc, char* argv[])
 	osSetSpeedupEnable(true); // speedup for n3dses
 
 	/*
-		if R is held while 3hs is launching, we will reset the settings and the set language to English.
+		if R is held while Rune3DS is launching, we will reset the settings and the set language to English.
 		this is useful in case the user does not understand the system language and/or an improper region change
 		causes old language settings to remain in the CFG system save.
 	*/
@@ -406,7 +424,7 @@ int main(int argc, char* argv[])
 			.wrap()
 			.add_to(rq);
 		
-		ui::builder<ui::Text>(ui::Screen::top, "github.com/p0mpurin/just-an-hshop-fork")
+		ui::builder<ui::Text>(ui::Screen::top, "Rune3DS releases are published on GitHub.")
 			.size(0.44f)
 			.max_width(376.0f)
 			.x(ui::layout::center_x)
@@ -429,8 +447,8 @@ int main(int argc, char* argv[])
 	if(should_show_background_tip())
 	{
 		mkdir("/3ds", 0777);
-		mkdir("/3ds/3hs", 0777);
-		mkdir("/3ds/3hs/backgrounds", 0777);
+		mkdir("/3ds/Rune3DS", 0777);
+		mkdir("/3ds/Rune3DS/backgrounds", 0777);
 
 		/* Select the first built-in wallpaper on first launch */
 		get_nsettings()->background_path = "romfs:/backgrounds/default-01.jpg";
@@ -450,28 +468,7 @@ int main(int argc, char* argv[])
 		.add_to(ui::RenderQueue::global());
 
 	/* buttons */
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::settings_image)
-		.when_clicked([](ui::Button *) -> bool {
-			ui::RenderQueue::global()->render_and_then(show_settings);
-			return true;
-		})
-		.disable_background()
-		.wrap()
-		.x(5.0f)
-		.y(210.0f)
-		.tag(ui::tag::settings)
-		.add_to(ui::RenderQueue::global());
-
-	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::more_image)
-		.when_clicked([](ui::Button *) -> bool {
-			ui::RenderQueue::global()->render_and_then(show_more);
-			return true;
-		})
-		.disable_background()
-		.wrap()
-		.right(ui::RenderQueue::global()->back())
-		.y(210.0f)
-		.tag(ui::tag::more)
+	ui::builder<HomeDock>(ui::Screen::bottom)
 		.add_to(ui::RenderQueue::global());
 
 	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::search_image)
@@ -487,9 +484,33 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.right(ui::RenderQueue::global()->back())
-		.y(210.0f)
+		.x(86.0f)
+		.y(202.0f)
 		.tag(ui::tag::search)
+		.add_to(ui::RenderQueue::global());
+
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::settings_image)
+		.when_clicked([](ui::Button *) -> bool {
+			ui::RenderQueue::global()->render_and_then(show_settings);
+			return true;
+		})
+		.disable_background()
+		.wrap()
+		.x(184.0f)
+		.y(202.0f)
+		.tag(ui::tag::settings)
+		.add_to(ui::RenderQueue::global());
+
+	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::more_image)
+		.when_clicked([](ui::Button *) -> bool {
+			ui::RenderQueue::global()->render_and_then(show_more);
+			return true;
+		})
+		.disable_background()
+		.wrap()
+		.x(216.0f)
+		.y(202.0f)
+		.tag(ui::tag::more)
 		.add_to(ui::RenderQueue::global());
 
 	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::random_image)
@@ -507,14 +528,14 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.right(ui::RenderQueue::global()->back())
-		.y(210.0f)
+		.x(248.0f)
+		.y(202.0f)
 		.tag(ui::tag::random)
 		.add_to(ui::RenderQueue::global());
 
 	ui::builder<ui::Button>(ui::Screen::bottom, str::queue)
 		.additional_i18n_update([](ui::Button *btn, lang::type) -> void {
-			btn->set_x(ui::right(ui::RenderQueue::global()->find_tag(ui::tag::random), btn));
+			btn->set_x(83.0f - btn->width() / 2.0f);
 		})
 		.when_clicked([](ui::Button *) -> bool {
 			ui::RenderQueue::global()->render_and_then(show_queue);
@@ -522,8 +543,8 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.right(ui::RenderQueue::global()->back())
-		.y(210.0f)
+		.x(31.0f)
+		.y(196.0f)
 		.tag(ui::tag::queue)
 		.add_to(ui::RenderQueue::global());
 
@@ -744,7 +765,7 @@ int main(int argc, char* argv[])
 		block_app(str::luma_not_installed, str::install_luma);
 	}
 
-	ilog("Skipping in-app updater; Nocturne updates are handled by Universal-Updater");
+	ilog("Skipping in-app updater; Rune3DS updates are handled by Universal-Updater");
 
 	if(should_show_uu_notice())
 	{
@@ -756,7 +777,7 @@ int main(int argc, char* argv[])
 			.y(60.0f)
 			.add_to(rq);
 
-		ui::builder<ui::Text>(ui::Screen::top, "Nocturne updates through Universal-Updater.\n\nOpen Universal-Updater on your 3DS, scan the QR code from the Nocturne GitHub page, and add the Nocturne UniStore to get the latest release.")
+		ui::builder<ui::Text>(ui::Screen::top, "Rune3DS updates through Universal-Updater.\n\nOpen Universal-Updater on your 3DS, scan the QR code from the Rune3DS GitHub page, and add the Rune3DS UniStore to get the latest release.")
 			.size(0.48f)
 			.max_width(376.0f)
 			.x(ui::layout::center_x)
@@ -764,7 +785,7 @@ int main(int argc, char* argv[])
 			.wrap()
 			.add_to(rq);
 
-		ui::builder<ui::Text>(ui::Screen::top, "github.com/p0mpurin/just-an-hshop-fork")
+		ui::builder<ui::Text>(ui::Screen::top, "Rune3DS releases are published on GitHub.")
 			.size(0.44f)
 			.max_width(376.0f)
 			.x(ui::layout::center_x)

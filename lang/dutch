@@ -8,7 +8,7 @@ Aan het laden ...
 Je gebruikt een (C)FW die niet ondersteund is
 
 - install_luma
-Je kan 3hs niet op deze 3DS gebruiken
+Je kan Rune3DS niet op deze 3DS gebruiken
 
 - queue
 Wachtrij
@@ -17,9 +17,9 @@ Wachtrij
 Kon netwerkdiensten niet opstarten
 
 - credits_thanks
-Bedankt voor het gebruiken van 3hs, een 3DS hShop applicatie
+Bedankt voor het gebruiken van Rune3DS, een 3DS catalog applicatie
 Je kan deze software gratis verkrijgen op
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Klik op UI_GLYPH_A als je deze titel wilt installeren.
@@ -44,7 +44,7 @@ Titel ID
 Categorie
 
 - landing_id
-hShop ID
+Content ID
 
 - description
 Beschrijving
@@ -158,7 +158,7 @@ Samenvatting: %1
 Module: %1
 
 - hs_bunny_found
-Je hebt het hShop konijn gevonden!
+Je hebt het catalog konijn gevonden!
 
 - already_installed_reinstall
 Titel is al geïnstalleerd. Herinstalleeren?
@@ -200,7 +200,7 @@ Om de verandering te zien, moet je je 3DS herstarten
 Nu herstarten?
 
 - this_version
-Dit is 3hs versie %1
+Dit is Rune3DS versie %1
 
 - retry_req
 Opnieuw proberen gegevens te halen?
@@ -223,7 +223,7 @@ Ongeldige zoekopdracht
 Klik op UI_GLYPH_A om terug te gaan
 
 - min_constraint
-Huidige 3hs versie %1 is lager dan het minimale wat %2 is
+Huidige Rune3DS versie %1 is lager dan het minimale wat %2 is
 
 - proxy
 Proxy
@@ -328,7 +328,7 @@ else       return "%1 (%2 blokken)";
 Zoek op tekst
 
 - search_id
-Vind met hShop ID
+Vind met Content ID
 
 - search_tid
 Vind met titel ID
@@ -406,11 +406,11 @@ Een bestand was geïnstalleerd. Deze zullen niet op je HOME-menu komen
 Zet LED status licht aan
 
 - allow_led_desc
-Dit zorgt ervoor dat 3hs de kleur van de LED kan veranderen om status veranderingen aan te geven, zoals wanneer een titel klaar is met installeren.
+Dit zorgt ervoor dat Rune3DS de kleur van de LED kan veranderen om status veranderingen aan te geven, zoals wanneer een titel klaar is met installeren.
 
 - dev_unitinfo
 Volgens ENVINFO is deze 3DS een ontwikkelaars variant.
-3hs zal niet correct werken op deze 3DS.
+Rune3DS zal niet correct werken op deze 3DS.
 Als je een normale 3DS hebt, controleer dan of "Enable developer UNITINFO" uit staat in de Luma3DS instellingen.
 
 - hint_navigate
@@ -473,7 +473,7 @@ Spring naar de in de subcategorie selectie naar de correcte subregio
 
 - add_music
 Je hebt nog geen muziek toegevoegt!
-Plaats de bestanden in /3ds/3hs/music op je SD kaart.
+Plaats de bestanden in /3ds/Rune3DS/music op je SD kaart.
 
 - add_playlist
 Je hebt nog geen afspeellijsten toegevoegt!
@@ -589,16 +589,16 @@ Normale zoekmethode
 ♪ %1 door %2 aan het spelen ♪
 
 - outdated_system
-Het system heeft een verouderde versie. Om 3hs te gebruiken heb je minstens versie 9.6.0 nodig.
+Het system heeft een verouderde versie. Om Rune3DS te gebruiken heb je minstens versie 9.6.0 nodig.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type
 Virtual Console type
 
-# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+# This string is a bit weird. It's displayed the first time Rune3DS is booted and is meant to prevent the question "Rune3DS is in Japanese/Welsh how fix" in the Discord support channels
 #  %1 = your language name
 - automatically_detected
-3hs heeft automatisch gedetecteerd dat de systeemtaal %1 is. Klik op UI_GLYPH_A om te bevestigen.
+Rune3DS heeft automatisch gedetecteerd dat de systeemtaal %1 is. Klik op UI_GLYPH_A om te bevestigen.
 
 - press_b_continue
 Klik op UI_GLYPH_B om verder te gaan.
@@ -615,11 +615,11 @@ Is this correct? Klopt dit?
 - alt_name_n_of_n
 Alternatieve naam (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: wissel)
 
-# Shown while 3hs is launching, while attempting to connect to the internet
+# Shown while Rune3DS is launching, while attempting to connect to the internet
 - check_inet
 Aan het verbinden met het internet...
 
-# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+# Shown while Rune3DS is launching, while attempting to enable WiFi if it's disabled.
 - check_net
 WiFi aan het inschakelen...
 
@@ -637,7 +637,7 @@ Klaar. Als sommige DLC nog steeds niet werkt, probeer het dan opnieuw te install
 Klik op UI_GLYPH_A om terug te gaan.
 
 - do_donate
-Als je hShop nuttig vond, doneer dan alsjeblieft door PAGE_DONATE te bezoeken op een ander apparaat!
+Als je catalog nuttig vond, doneer dan alsjeblieft door PAGE_DONATE te bezoeken op een ander apparaat!
 
 # General UI, used in places like the proxy toggle in settings
 - enabled
@@ -655,9 +655,9 @@ UI_GLYPH_B (houd vast): Annuleer download
 - installing_fixed_dlc_tickets
 Gerepareerde DLC tickets aan het installeren...
 
-# Shown in search when an invalid hShop ID is entered
+# Shown in search when an invalid Content ID is entered
 - invalid_hsid
-Ongeldige hShop ID.
+Ongeldige Content ID.
 
 # invalid unique ID specified during search
 - invalid_uniq
@@ -691,29 +691,29 @@ Ticketdatabase aan het openen...
 
 # Shown when an update failed or an outdated 3dsx version is used
 - outdated_app
-Deze versie van 3hs is verouderd. Om 3hs te gebruiken moet je de laatste versie hebben geïnstalleerd.
+Deze versie van Rune3DS is verouderd. Om Rune3DS te gebruiken moet je de laatste versie hebben geïnstalleerd.
 
 # Shown when an update failed or an outdated 3dsx version is used
 - please_update_manually
-Werk 3hs handmatig bij en probeer het opnieuw.
+Werk Rune3DS handmatig bij en probeer het opnieuw.
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_title
 Belangrijk!
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_text
-3hs is gratis software. Als je hebt betaald voor 3hs of extra hebt betaald as deel van een bundel, vraag meteen je geld terug!\n
-3hs is en zal altijd gratis beschikbaar zijn via:
+Rune3DS is gratis software. Als je hebt betaald voor Rune3DS of extra hebt betaald as deel van een bundel, vraag meteen je geld terug!\n
+Rune3DS is en zal altijd gratis beschikbaar zijn via:
 
-# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+# Shown on startup in the "get a refund if you paid for Rune3DS" message. Should be generic, may be reused for other stuff later.
 - press_any_button_continue
 Klik op een knop om verder te gaan.
 
 # Shown in proxy menu, on the top screen
 # Note: "Enabled" and "Disabled" should be the same as the separate "enabled" and "disabled" strings
 - proxy_toggle_hint
-Aan: gebruik een proxy specifiek aan 3hs.
+Aan: gebruik een proxy specifiek aan Rune3DS.
 Uit: gebruik de proxy geconfigureerd in Systeeminstellingen.
 
 # Error message for search
@@ -724,17 +724,17 @@ De zoekopdracht moet ten minste 1 karakter bevattten.
 - unique_id
 Uniek ID
 
-# Shown when checking for 3hs updates has failed
+# Shown when checking for Rune3DS updates has failed
 - update_check_failed
-Kon niet controleren op updates voor 3hs.
+Kon niet controleren op updates voor Rune3DS.
 
-# Shown when installing a 3hs update has failed
+# Shown when installing a Rune3DS update has failed
 - update_install_failed
-Kon de 3hs update niet installeren.
+Kon de Rune3DS update niet installeren.
 
-# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+# Shown when checking for Rune3DS updates has failed or when installing a Rune3DS update has failed
 - update_try_again_or_update_manually
-Probeer het opnieuw of werk 3hs handmatig bij.
+Probeer het opnieuw of werk Rune3DS handmatig bij.
 
 # Shown when user is asked whether or not to fix tickets
 - fix_n_dlc_tickets +code(number)

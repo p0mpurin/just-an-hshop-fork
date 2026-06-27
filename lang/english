@@ -1,7 +1,7 @@
 
-# This is the base 3hs translation file.
+# This is the base Rune3DS translation file.
 # All other translations should derive from this file.
-# If you want to translate 3hs in your language please contact us in the hShop discord server.
+# If you want to translate Rune3DS in your language please contact us in the catalog discord server.
 
 # Some strings have a comment which indicates a context, this may help while translating
 #  - If you require context for anything else feel free to ask
@@ -13,7 +13,7 @@
 # UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
 #  - They should be kept exactly as-is, they should be encircled by spaces
 #    - Even if your language has no such things, not having a space causes ugly clamping
-# PAGE_ is a prefix for a URL to a hShop page
+# PAGE_ is a prefix for a URL to a catalog page
 #  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
 # Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
 # Although text wraps in most cases, it's for the best not make your translation too verbose
@@ -29,7 +29,7 @@
 #   - For example, "blocks", "HOME menu", "theme"
 #
 #
-# Any questions and new translations can be posted in the hShop discord channel
+# Any questions and new translations can be posted in the catalog discord channel
 
 # The name of the language this file is for in that language (i.e. Español for Spanish)
 - native_name
@@ -44,7 +44,7 @@ An unsupported firmware was detected.
 
 # displayed under above string
 - install_luma
-3hs cannot be used on this system.
+Rune3DS cannot be used on this system.
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -54,11 +54,11 @@ Queue
 - fail_init_networking
 Failed to initialize networking
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-Thank you for using 3hs, a 3DS client for hShop.
+Thank you for using Rune3DS, a 3DS client for catalog.
 You can get this software for free at
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Press UI_GLYPH_A to install this content.
@@ -88,9 +88,9 @@ Title ID
 - category
 Category
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-hShop ID
+Content ID
 
 # nowrap, used for category description
 - description
@@ -248,7 +248,7 @@ Module: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Congrats! You found the hShop bunny!
+Congrats! You found the catalog bunny!
 
 - already_installed_reinstall
 Title already installed. Reinstall?
@@ -299,7 +299,7 @@ Restart now?
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-This is 3hs version %1
+This is Rune3DS version %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -329,7 +329,7 @@ Press UI_GLYPH_A to go back.
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-Current 3hs version %1 is lower than the required version %2
+Current Rune3DS version %1 is lower than the required version %2
 
 # scroll, setting title
 - proxy
@@ -386,11 +386,11 @@ Select the time format.
 
 # setting description
 - language_desc
-Set the language for 3hs.
+Set the language for Rune3DS.
 
 # setting description
 - lumalocalemode_desc
-Set the operating mode for locale emulation setup. "Automatic" will automatically configure the language. "Manual" will make 3hs ask you to choose the language after content installation.
+Set the operating mode for locale emulation setup. "Automatic" will automatically configure the language. "Manual" will make Rune3DS ask you to choose the language after content installation.
 
 # setting description
 - check_extra_desc
@@ -398,7 +398,7 @@ Search for extra content after installation.
 
 # setting description
 - proxy_desc
-Configure a proxy server for 3hs. This setting is for advanced users.
+Configure a proxy server for Rune3DS. This setting is for advanced users.
 
 # install all from queue
 - install_all
@@ -467,7 +467,7 @@ Search by text
 
 # legacy; nowrap, search menu item
 - search_id
-Search by hShop ID
+Search by Content ID
 
 # legacy; nowrap, search menu item
 - search_tid
@@ -572,7 +572,7 @@ Flash the LED light to show status changes and install progress.
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 According to this console's ENVINFO, this is a development unit.
-3hs will not function correctly on this system.
+Rune3DS will not function correctly on this system.
 In case you have a retail 3DS, ensure "Enable developer UNITINFO" in the Luma3DS configuration is disabled.
 
 # nowrap, used in for examples language select
@@ -601,7 +601,7 @@ Choose the highlight color used for buttons, toggles, progress bars, graphs, war
 Background image
 
 - background_image_desc
-Choose a PNG or JPEG from /3ds/3hs/backgrounds. Images are cover-cropped for both screens.
+Choose a PNG or JPEG from /3ds/Rune3DS/backgrounds. Images are cover-cropped for both screens.
 
 - wallpaper_dimming
 Wallpaper dimming
@@ -619,7 +619,7 @@ Shows the New 3DS optimizations active in this build.
 800px top screen
 
 - top_wide_mode_desc
-Experimental high-resolution top-screen mode. Uses the 3DS wide framebuffer path; restart Nocturne after changing this.
+Experimental high-resolution top-screen mode. Uses the 3DS wide framebuffer path; restart Rune3DS after changing this.
 
 # scroll, setting title
 - auto_shutdown
@@ -674,7 +674,7 @@ Proxy, performance, and logs.
 D-pad left/right to adjust, A to confirm
 
 - background_first_launch
-Custom wallpapers are supported.\n\nPlace PNG or JPEG images in:\n/3ds/3hs/backgrounds/\n\nThen open Settings → Background image. Use Wallpaper dimming to balance image brightness and text readability.
+Custom wallpapers are supported.\n\nPlace PNG or JPEG images in:\n/3ds/Rune3DS/backgrounds/\n\nThen open Settings → Background image. Use Wallpaper dimming to balance image brightness and text readability.
 
 # informing user that the preview image (for themes) that was on the server was unable to be displayed
 - invalid_theme_preview
@@ -743,7 +743,7 @@ Automatically enter the subcategory corresponding to the system region, if it ex
 
 - add_music
 You have not yet added any music!
-Try placing music files in /3ds/3hs/music on your SD card.
+Try placing music files in /3ds/Rune3DS/music on your SD card.
 
 - add_playlist
 You have yet to add any playlists!
@@ -897,7 +897,7 @@ Normal search
 ♪ Playing %1 by %2 ♪
 
 - outdated_system
-An outdated system firmware was detected. A system firmware of at least 9.6.0 is required to use 3hs.
+An outdated system firmware was detected. A system firmware of at least 9.6.0 is required to use Rune3DS.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type
@@ -908,14 +908,14 @@ Virtual Console type
 # -- v1.4.4 barrier -- #
 
 - do_donate
-If you found hShop useful, please make a donation by visiting PAGE_DONATE on another device!
+If you found catalog useful, please make a donation by visiting PAGE_DONATE on another device!
 
 # -- v1.4.5 barrier -- #
 
-# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels
+# This string is a bit weird. It's displayed the first time Rune3DS is booted and is meant to prevent the question "Rune3DS is in Japanese/Welsh how fix" in the Discord support channels
 #  %1 = your language name
 - automatically_detected
-3hs has automatically detected %1 as the system language. Press UI_GLYPH_A to confirm.
+Rune3DS has automatically detected %1 as the system language. Press UI_GLYPH_A to confirm.
 
 # This is used to dismiss an error screen
 - press_b_continue
@@ -945,11 +945,11 @@ Is this correct? Is this correct?
 
 # -- v1.5.0 barrier -- #
 
-# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+# Shown while Rune3DS is launching, while attempting to enable WiFi if it's disabled.
 - check_net
 Enabling WiFi...
 
-# Shown while 3hs is launching, while attempting to connect to the internet
+# Shown while Rune3DS is launching, while attempting to connect to the internet
 - check_inet
 Connecting to the internet...
 
@@ -957,29 +957,29 @@ Connecting to the internet...
 - alt_name_n_of_n
 Alternative name (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: switch)
 
-# Shown in search when an invalid hShop ID is entered
+# Shown in search when an invalid Content ID is entered
 - invalid_hsid
-Invalid hShop ID.
+Invalid Content ID.
 
 # Shown when an update failed or an outdated 3dsx version is used
 - outdated_app
-This version of 3hs is outdated. To use 3hs, you must have the latest version installed.
+This version of Rune3DS is outdated. To use Rune3DS, you must have the latest version installed.
 
 # Shown when an update failed or an outdated 3dsx version is used
 - please_update_manually
-Please update 3hs manually and try again.
+Please update Rune3DS manually and try again.
 
-# Shown when checking for 3hs updates has failed
+# Shown when checking for Rune3DS updates has failed
 - update_check_failed
-Could not check for 3hs updates.
+Could not check for Rune3DS updates.
 
-# Shown when installing a 3hs update has failed
+# Shown when installing a Rune3DS update has failed
 - update_install_failed
-Could not install the 3hs update.
+Could not install the Rune3DS update.
 
-# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+# Shown when checking for Rune3DS updates has failed or when installing a Rune3DS update has failed
 - update_try_again_or_update_manually
-Please try again or update 3hs manually.
+Please try again or update Rune3DS manually.
 
 # 1.5.6 barrier
 
@@ -1061,15 +1061,15 @@ Enabled
 
 # 1.5.9 barrier
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_title
 Important!
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_text
-Nocturne is free software. If you paid for this app itself or paid extra for it as part of a bundle, please request a refund.\n
-Nocturne is an unofficial community fork of 3hs. It is not maintained by the hShop team and does not receive official 3hs updates. Fork updates are published separately at:
+Rune3DS is free software. If you paid for this app itself or paid extra for it as part of a bundle, please request a refund.\n
+Rune3DS is an independent community project. Updates are published separately at:
 
-# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+# Shown on startup in the "get a refund if you paid for Rune3DS" message. Should be generic, may be reused for other stuff later.
 - press_any_button_continue
 Press any button to continue.

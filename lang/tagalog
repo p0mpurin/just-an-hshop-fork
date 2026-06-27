@@ -11,7 +11,7 @@ May nakitang hindi sinusuportahang na firmware.
 
 # displayed under above string
 - install_luma
-Hindi magagamit ang 3hs sa sistemang ito.
+Hindi magagamit ang Rune3DS sa sistemang ito.
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -21,11 +21,11 @@ Pila
 - fail_init_networking
 Nabigong pagsimula sa aplikasyon
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-Salamat sa paggamit ng 3hs, isang 3ds aplikasyon para sa hShop.
+Salamat sa paggamit ng Rune3DS, isang 3ds aplikasyon para sa catalog.
 Makukuha mo ang software na ito nang libre sa
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Pindutin ang UI_GLYPH_A upang i-install ang pamagat na ito.
@@ -55,9 +55,9 @@ ID sa Titulo
 - category
 Kategorya
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-ID pang hShop
+ID pang catalog
 
 # nowrap, used for category description
 - description
@@ -212,7 +212,7 @@ Modyul: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Congrats! Nahanap mo ang hShop bunny!
+Congrats! Nahanap mo ang catalog bunny!
 
 - already_installed_reinstall
 Naka-install na ang Titulo. I-install muli?
@@ -263,7 +263,7 @@ I-restart ngayon?
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-Ito ay 3hs na bersyon %1
+Ito ay Rune3DS na bersyon %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -293,7 +293,7 @@ Pindutin ang UI_GLYPH_A upang bumalik.
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-Ang kasalukuyang 3hs na bersyon %1 ay mas mababa kaysa sa kinakailangang bersyon %2
+Ang kasalukuyang Rune3DS na bersyon %1 ay mas mababa kaysa sa kinakailangang bersyon %2
 
 # scroll, setting title
 - proxy
@@ -349,11 +349,11 @@ Piliin ang pormat ng oras.
 
 # setting description
 - language_desc
-Itakda ang wika ng 3hs.
+Itakda ang wika ng Rune3DS.
 
 # setting description
 - lumalocalemode_desc
-Itakda ang moda sa LumaLocale autosetter. Awtomatic ay pumipili ng wika awtomatiko. Kung ito itinakda sa manual, 3hs ay mag-prompt ng rehiyon pagkatapos ng pag-install sa titulo.
+Itakda ang moda sa LumaLocale autosetter. Awtomatic ay pumipili ng wika awtomatiko. Kung ito itinakda sa manual, Rune3DS ay mag-prompt ng rehiyon pagkatapos ng pag-install sa titulo.
 
 # setting description
 - check_extra_desc
@@ -361,7 +361,7 @@ Paghahanap ng dagdag titulo pagkatapos ng pag-install.
 
 # setting description
 - proxy_desc
-Mag-configure ng proxy server sa loob ng 3hs. Ang setting na ito ay para sa mga advanced na user.
+Mag-configure ng proxy server sa loob ng Rune3DS. Ang setting na ito ay para sa mga advanced na user.
 
 # install all from queue
 - install_all
@@ -427,7 +427,7 @@ paghanap sa pamamagitan ng text
 
 # nowrap, search menu item
 - search_id
-Maghanap sa pamamagitan ng hShop na ID
+Maghanap sa pamamagitan ng catalog na ID
 
 # nowrap, search menu item
 - search_tid
@@ -532,7 +532,7 @@ Ito ay magpapa-flash ng LED na ilaw upang ipaalam sa iyo ang iba't ibang pagbaba
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 Ayon sa ENVINFO ng console na ito, isa itong development unit.
-Hindi gagana nang tama ang 3hs sa system na ito.
+Hindi gagana nang tama ang Rune3DS sa system na ito.
 Kung sakaling mayroon kang retail na 3DS, tiyakin na ang "Enable developer UNITINFO" sa configuration ng Luma3DS ay hindi pinagana.
 
 # nowrap, used in for examples language select

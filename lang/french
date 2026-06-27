@@ -8,7 +8,7 @@ Chargement...
 Un firmware non supporté a été détecté.
 
 - install_luma
-3hs ne peut pas être utilisé sur ce système.
+Rune3DS ne peut pas être utilisé sur ce système.
 
 - queue
 Liste d'attente
@@ -17,9 +17,9 @@ Liste d'attente
 Impossible d'initialiser le réseau
 
 - credits_thanks
-Merci d'utiliser 3hs, un client 3DS pour hShop.
+Merci d'utiliser Rune3DS, un client 3DS pour catalog.
 Vous pouvez avoir ce logiciel gratuitement sur
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Appuyez sur UI_GLYPH_A pour installer ce contenu.
@@ -44,7 +44,7 @@ ID de titre
 Catégorie
 
 - landing_id
-ID hShop
+ID catalog
 
 - description
 Description
@@ -156,7 +156,7 @@ Summary: %1
 Module: %1
 
 - hs_bunny_found
-Bravo! Tu as trouvé le lapin hShop!
+Bravo! Tu as trouvé le lapin catalog!
 
 - already_installed_reinstall
 Le titre est déjà installé. Voulez-vous le réinstaller?
@@ -198,7 +198,7 @@ La console doit redémarrer pour que ce changement fasse effet.
 Redémarrer maintenant?
 
 - this_version
-Version de 3hs %1
+Version de Rune3DS %1
 
 - retry_req
 Echec de la requête. Réessayer?
@@ -221,7 +221,7 @@ Recherche invalide
  appuyez sur UI_GLYPH_A pour revenir.
 
 - min_constraint
-La version actuelle de 3hs %1 est inférieure à celle requise %2
+La version actuelle de Rune3DS %1 est inférieure à celle requise %2
 
 - proxy
 Proxy
@@ -263,7 +263,7 @@ Active/Désactive l'indicateur de batterie.
 Choisissez le format de l'heure.
 
 - language_desc
-Change la langue de 3hs.
+Change la langue de Rune3DS.
 
 - lumalocalemode_desc
 Choisit le mode de LumaLocale autosetter. "Automatique" séléctionne une langue automatiquement alors que "Manuel" affiche la région à choisir après l'installation.
@@ -272,7 +272,7 @@ Choisit le mode de LumaLocale autosetter. "Automatique" séléctionne une langue
 Cherche de contenu additionnel après l'installation.
 
 - proxy_desc
-Configure un serveur proxy pour 3hs. Ce paramètre est pour les utilisateurs avancés.
+Configure un serveur proxy pour Rune3DS. Ce paramètre est pour les utilisateurs avancés.
 
 - install_all
 Tout installer
@@ -326,7 +326,7 @@ else       return "%1 (%2 blocs)";
 Recherche par texte
 
 - search_id
-Recherche par l'ID hShop
+Recherche par l'ID catalog
 
 - search_tid
 Recherche par title ID
@@ -408,7 +408,7 @@ Fait clignoter la LED pour informer des différents changements d'état.
 
 - dev_unitinfo
 Cette console a été détecté en tant qu'unité de développement.
-3hs risque de ne pas fonctionner correctement.
+Rune3DS risque de ne pas fonctionner correctement.
 Si vous avez une 3ds normale, soyez sûr d'avoir désactivé "Enable developer UNITINFO" dans le menu de configuration luma.
 
 - hint_navigate
@@ -485,7 +485,7 @@ Entre automatiquement dans la sous-catégorie correspondant à la région du sys
 
 - add_music
 Vous n'avez pas encore ajouté de musique!
-Essayez d'en mettre dans /3ds/3hs/music dans la carte SD.
+Essayez d'en mettre dans /3ds/Rune3DS/music dans la carte SD.
 
 - add_playlist
 Vous n'avez pas encore ajouté de playlists!
@@ -635,7 +635,7 @@ Recherche normale
 ♪ En cours: %1 par %2 ♪
 
 - outdated_system
-Un ancien système a été détecté. Il faut au moins être en 9.6.0 pour utiliser 3hs.
+Un ancien système a été détecté. Il faut au moins être en 9.6.0 pour utiliser Rune3DS.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type
@@ -645,16 +645,16 @@ Type de Console Virtuelle
 - query_too_short
 La recherche doit contenir au moins 1 caractère.
 
-# This string is a bit weird. It's displayed the first time 3hs is booted and is meant to prevent the question "3hs is in Japanese/Welsh how fix" in the Discord support channels and helpers answering with "hold R while launching hShop"
+# This string is a bit weird. It's displayed the first time Rune3DS is booted and is meant to prevent the question "Rune3DS is in Japanese/Welsh how fix" in the Discord support channels and helpers answering with "hold R while launching catalog"
 #  %1 = your language name
 - automatically_detected
-3hs a automatiquement détecté le %1 en tant que langue système. Appuyez sur UI_GLYPH_A pour confirmer.
+Rune3DS a automatiquement détecté le %1 en tant que langue système. Appuyez sur UI_GLYPH_A pour confirmer.
 
-# Shown while 3hs is launching, while attempting to enable WiFi if it's disabled.
+# Shown while Rune3DS is launching, while attempting to enable WiFi if it's disabled.
 - check_net
 Activation du WiFi...
 
-# Shown while 3hs is launching, while attempting to connect to the internet
+# Shown while Rune3DS is launching, while attempting to connect to the internet
 - check_inet
 Connection à internet...
 
@@ -662,24 +662,24 @@ Connection à internet...
 - alt_name_n_of_n
 Nom alternatif (%1/%2) (UI_GLYPH_DPAD_HORIZONTAL/UI_GLYPH_CPAD: changer)
 
-# Shown in search when an invalid hShop ID is entered
+# Shown in search when an invalid Content ID is entered
 - invalid_hsid
-hShop ID incorrect.
+Content ID incorrect.
 
-# Shown when checking for 3hs updates has failed
+# Shown when checking for Rune3DS updates has failed
 - update_check_failed
-Impossible d'obtenir les MAJs de 3hs
+Impossible d'obtenir les MAJs de Rune3DS
 
-# Shown when installing a 3hs update has failed
+# Shown when installing a Rune3DS update has failed
 - update_install_failed
-L'installation de la MAJ de 3hs a échoué
+L'installation de la MAJ de Rune3DS a échoué
 
-# Shown when checking for 3hs updates has failed or when installing a 3hs update has failed
+# Shown when checking for Rune3DS updates has failed or when installing a Rune3DS update has failed
 - update_try_again_or_update_manually
 Tentez de réessayer ou mettez à jour manuellement
 
 - do_donate
-Si vous trouvez hShop utile, vous pouvez faire un don sur PAGE_DONATE en utilisant un autre appareil!
+Si vous trouvez catalog utile, vous pouvez faire un don sur PAGE_DONATE en utilisant un autre appareil!
 
 - error_occurred
 Une erreur est survenue
@@ -694,7 +694,7 @@ Est-ce correct? Is this correct?
 Ancienne méthode
 
 - outdated_app
-Cette version de 3hs est obsolète. Vous devez mettre à jour vers la dernière version.
+Cette version de Rune3DS est obsolète. Vous devez mettre à jour vers la dernière version.
 
 - please_update_manually
 Mettez à jour manuellement et réessayez.
@@ -716,17 +716,17 @@ Le unique ID est incorrect
 - unique_id
 Unique ID
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_title
 Important!
 
-# Shown on startup to deter shady console resellers from jacking up prices just because 3hs is preinstalled.
+# Shown on startup to deter shady console resellers from jacking up prices just because Rune3DS is preinstalled.
 - startup_notice_text
-3hs est un logiciel GRATUIT. Si vous avez payé pour 3hs ou payé un supplément avec 3hs préinstallé, vous vous êtes fait arnaqué!
+Rune3DS est un logiciel GRATUIT. Si vous avez payé pour Rune3DS ou payé un supplément avec Rune3DS préinstallé, vous vous êtes fait arnaqué!
 Demandez un remboursement si possible!
-3hs est, et sera toujours gratuit et téléchargeable sur:
+Rune3DS est, et sera toujours gratuit et téléchargeable sur:
 
-# Shown on startup in the "get a refund if you paid for 3hs" message. Should be generic, may be reused for other stuff later.
+# Shown on startup in the "get a refund if you paid for Rune3DS" message. Should be generic, may be reused for other stuff later.
 - press_any_button_continue
 Appuyez sur un bouton pour continuer 
 

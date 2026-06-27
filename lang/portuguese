@@ -8,7 +8,7 @@ Carregando...
 Uma versão de sistema não suportada foi detetada.
 
 - install_luma
-O 3hs não consegue ser usado neste sistema.
+O Rune3DS não consegue ser usado neste sistema.
 
 - queue
 Fila
@@ -17,9 +17,9 @@ Fila
 Falha ao iniciar a rede
 
 - credits_thanks
-Obrigado por usares a 3hs, um cliente de 3DS para a hShop.
+Obrigado por usares a Rune3DS, um cliente de 3DS para a catalog.
 Podes ter este programa de graça pelo
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Pressiona UI_GLYPH_A para instalar este conteúdo.
@@ -44,7 +44,7 @@ ID do Jogo
 Categoria
 
 - landing_id
-ID hShop
+ID catalog
 
 - description
 Descrição
@@ -156,7 +156,7 @@ Resumo: %1
 Modulo: %1
 
 - hs_bunny_found
-Parabens! Encontraste o coelho do hShop!
+Parabens! Encontraste o coelho do catalog!
 
 - already_installed_reinstall
 Jogo já instalado. Reinstalar?
@@ -198,7 +198,7 @@ A consola tem de ser reinicia para as mudanças tomarem efeito.
 Reiniciar agora?
 
 - this_version
-Está na versão 3hs %1
+Está na versão Rune3DS %1
 
 - retry_req
 Pedido falhado. Tentar novamente?
@@ -221,7 +221,7 @@ Pesquisa invalida
 Pressiona UI_GLYPH_A para voltar.
 
 - min_constraint
-Atual versão 3hs %1 é menor que a versão requerida %2
+Atual versão Rune3DS %1 é menor que a versão requerida %2
 
 - proxy
 Proxy
@@ -263,16 +263,16 @@ Ligue o indicador do nível de bateria.
 Selecione o formato de tempo.
 
 - language_desc
-Define a linguagem para o 3hs.
+Define a linguagem para o Rune3DS.
 
 - lumalocalemode_desc
-Define o modo do LumaLocale auto-defenidor. Automaticamente seleciona a linguagem automatica. Se isto for definido para manual, o 3hs vai pedir pela região depois da instalação do conteúdo.
+Define o modo do LumaLocale auto-defenidor. Automaticamente seleciona a linguagem automatica. Se isto for definido para manual, o Rune3DS vai pedir pela região depois da instalação do conteúdo.
 
 - check_extra_desc
 Pesquisar por conteúdo extra depois da instalação.
 
 - proxy_desc
-Configurar um server proxy para o 3hs. Esta definição é apenas para utilizadores avançados.
+Configurar um server proxy para o Rune3DS. Esta definição é apenas para utilizadores avançados.
 
 - install_all
 Instalar tudo
@@ -326,7 +326,7 @@ else       return "%1 (%2 blocos)";
 Pesquisa por texto
 
 - search_id
-Pesquisa por ID hShop
+Pesquisa por ID catalog
 
 - search_tid
 Pesquisar por ID de Jogo
@@ -408,7 +408,7 @@ Isto vai piscar a luz LED para te informar das variadas mudanças de estado, por
 
 - dev_unitinfo
 Segundo a ENVINFO desta consola isto é uma development unit.
-A 3hs não vai funcionar correctamente neste sistema.
+A Rune3DS não vai funcionar correctamente neste sistema.
 No caso de teres um 3ds de varejo assegura-te que "Enable developer UNITINFO" nas settings da Luma3DS está desligado.
 
 - hint_navigate

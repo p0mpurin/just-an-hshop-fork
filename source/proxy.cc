@@ -22,7 +22,7 @@
 #include "panic.hh"
 #include "i18n.hh"
 
-#define PROXYFILE "/3ds/3hs/proxy"
+#define PROXYFILE "/3ds/Rune3DS/proxy"
 
 // https://3dbrew.org/wiki/HTTPC:SetProxy
 static Result httpcSetProxy(httpcContext *context, u16 port, u32 proxylen, const char *proxy,
@@ -189,4 +189,3 @@ void proxy::legacy::del()
 {
 	remove(PROXYFILE);
 }
-

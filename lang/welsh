@@ -12,7 +12,7 @@ Canfuwyd cadarnwedd anghydnaws.
 
 # displayed under above string
 - install_luma
-Does dim modd defnyddio 3hs ar y sustem hon.
+Does dim modd defnyddio Rune3DS ar y sustem hon.
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -22,11 +22,11 @@ Ciw
 - fail_init_networking
 Wedi methu cychwyn cysylltiad rhwydwaith
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-Diolch am ddefnyddio 3hs, cleient hShop ar gyfer 3DS.
+Diolch am ddefnyddio Rune3DS, cleient catalog ar gyfer 3DS.
 Mae'r meddalwedd hwn ar gael yn rhad ac am ddim yn
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Gwasgwch UI_GLYPH_A i osod y cynnwys hwn.
@@ -56,9 +56,9 @@ ID Teitl
 - category
 Categori
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-ID hShop
+ID catalog
 
 # nowrap, used for category description
 - description
@@ -212,7 +212,7 @@ Modiwl: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Llongyfs! Dych chi wedi ffeindio'r gwningen hShop!
+Llongyfs! Dych chi wedi ffeindio'r gwningen catalog!
 
 - already_installed_reinstall
 Teitl eisoes wedi'i osod. Ydych chi am ei ailosod?
@@ -263,7 +263,7 @@ Ydych chi am ailgychwyn nawr?
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-Dyma 3hs fersiwn %1
+Dyma Rune3DS fersiwn %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -293,7 +293,7 @@ Gwasgwch UI_GLYPH_A i fynd yn ôl.
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-Mae'r fersiwn 3hs cyfredol (%1) yn is na'r fersiwn gofynnol (%2)
+Mae'r fersiwn Rune3DS cyfredol (%1) yn is na'r fersiwn gofynnol (%2)
 
 # scroll, setting title
 - proxy
@@ -349,11 +349,11 @@ Dewis y fformat amser.
 
 # setting description
 - language_desc
-Dewis yr iaith ar gyfer 3hs.
+Dewis yr iaith ar gyfer Rune3DS.
 
 # setting description
 - lumalocalemode_desc
-Dewis modd yr autoddewisydd LumaLocale. Mae "awtomatig" yn dewis iaith yn awtomatig. Os ydy hwn wedi'i osod i "â llaw", bydd 3hs yn gofyn i chi am ranbarth ar ôl gosod cynnwys.
+Dewis modd yr autoddewisydd LumaLocale. Mae "awtomatig" yn dewis iaith yn awtomatig. Os ydy hwn wedi'i osod i "â llaw", bydd Rune3DS yn gofyn i chi am ranbarth ar ôl gosod cynnwys.
 
 # setting description
 - check_extra_desc
@@ -361,7 +361,7 @@ Chwilio am gynnwys ychwanegol ar ôl gosod.
 
 # setting description
 - proxy_desc
-Ffurfweddu gweinydd dirprwyol ar gyfer 3hs. Mae'r gosodiad hwn ar gyfer defnyddwyr uwch.
+Ffurfweddu gweinydd dirprwyol ar gyfer Rune3DS. Mae'r gosodiad hwn ar gyfer defnyddwyr uwch.
 
 # install all from queue
 - install_all
@@ -452,7 +452,7 @@ Chwiliad yn ôl testun
 
 # nowrap, search menu item
 - search_id
-Chwiliad yn ôl ID hShop
+Chwiliad yn ôl ID catalog
 
 # nowrap, search menu item
 - search_tid
@@ -557,7 +557,7 @@ Fflachio'r goleuad LED i roi gwybod i chi am wahanol newidiadau statws, megis pa
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 Yn ôl ENVINFO y consol hwn, mae hon yn uned ddatblygiadol.
-Fydd 3hs ddim yn gweithio'n iawn ar y sustem hon.
+Fydd Rune3DS ddim yn gweithio'n iawn ar y sustem hon.
 Os oes 3DS normal gyda chi, sicrhewch bod "Enable developer UNITINFO" yn y ffurfweddiad Luma3DS yn analluog.
 
 # nowrap, used in for examples language select
@@ -637,7 +637,7 @@ Neidio i'r isranbarth cywir yn y detholiad is-gategori os ydy ef yn bodoli.
 
 - add_music
 Rydych chi heb ychwanegu cerddoriaeth!
-Gallwch chi roi cerddoriaeth yn y ffolder /3ds/3hs/music ar eich cerdyn SD.
+Gallwch chi roi cerddoriaeth yn y ffolder /3ds/Rune3DS/music ar eich cerdyn SD.
 
 - add_playlist
 Rydych chi heb greu rhestri chwarae!
@@ -785,7 +785,7 @@ Chwiliad normal
 ♪ Chwarae %1 gan %2 ♪
 
 - outdated_system
-Canfuwyd hen gadarnwedd sustem. Mae angen cadarnwedd sustem fersiwn 9.6.0 o leiaf i ddefnyddio 3hs.
+Canfuwyd hen gadarnwedd sustem. Mae angen cadarnwedd sustem fersiwn 9.6.0 o leiaf i ddefnyddio Rune3DS.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type

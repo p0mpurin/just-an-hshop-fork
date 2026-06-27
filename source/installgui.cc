@@ -37,7 +37,7 @@
 void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
 	ui::Text **stage, const std::string& label)
 {
-	/* Keep the upstream download screen structure. Nocturne adds only a
+	/* Keep the download screen structure. Rune3DS adds only a
 	 * compact stage line and clearer speed/ETA labels. */
 	ui::Text *donate;
 	ui::builder<ui::Text>(ui::progloc(), str::do_donate)
@@ -345,7 +345,7 @@ Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
 	ui::Text *stage;
 	ui::I18NEnabledRenderQueue queue;
 	make_render_queue(queue, &bar, &stage, label);
-	stage->set_text("hShop CDN network-only test");
+	stage->set_text("Network-only test");
 	queue.render_frame();
 
 	install::NetworkBenchmarkResult stats;
@@ -366,14 +366,14 @@ Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
 	{
 		char message[256];
 		snprintf(message, sizeof(message),
-			"hShop CDN network-only result\n\nAverage  %.2f MiB/s\nPeak       %.2f MiB/s\nData       %.1f MiB\n\nNo CIA data was installed or written to SD.",
+			"Network-only result\n\nAverage  %.2f MiB/s\nPeak       %.2f MiB/s\nData       %.1f MiB\n\nNo CIA data was installed or written to SD.",
 			stats.average_mib_s, stats.peak_mib_s, stats.bytes / (1024.0f * 1024.0f));
 		ui::notice(message, 42.0f);
 	}
 	else if(res != APPERR_CANCELLED)
 	{
 		error_container err = get_error(res);
-		report_error(err, "User was running hShop CDN network benchmark for landing ID " + std::to_string(id));
+		report_error(err, "User was running network benchmark for content ID " + std::to_string(id));
 		handle_error(err);
 	}
 	return res;

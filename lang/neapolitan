@@ -8,7 +8,7 @@ Caricamento...
 Nu' firewall che non se può suopportà è stato rilevat.
 
 - install_luma
-3hs non gira n'goppa stò sistema.
+Rune3DS non gira n'goppa stò sistema.
 
 - queue
 Coda
@@ -17,9 +17,9 @@ Coda
 Impossibile inizializzare a' rete
 
 - credits_thanks
-Grazie ppe aver scelto 3hs, app hShop ppe 3DS.
+Grazie ppe aver scelto Rune3DS, app catalog ppe 3DS.
 Puoi prendere gratis chistu software a
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Priem UI_GLYPH_A ppe installar stù file in più.
@@ -44,7 +44,7 @@ ID titul'
 Categoria
 
 - landing_id
-hShop ID
+Content ID
 
 - description
 Descrizione
@@ -156,7 +156,7 @@ Riepilug': %1
 Modul: %1
 
 - hs_bunny_found
-Brav cumpà, hai truvat o cunigl di hShop!
+Brav cumpà, hai truvat o cunigl di catalog!
 
 - already_installed_reinstall
 O titul è stat già aggiurnat. Reinstallà?
@@ -198,7 +198,7 @@ O' sistem per avè i cambiament dev esser riavviat.
 Vuò riavvià mo?
 
 - this_version
-Chist è a versiun o' 3hs %1
+Chist è a versiun o' Rune3DS %1
 
 - retry_req
 A richiest' è fallit. Ripruv?
@@ -221,7 +221,7 @@ A richiest nun va bon
 Priem UI_GLYPH_Aper per turnà aret
 
 - min_constraint
-Chest versiun ndo' 3hs %1 è truopp viecch ro' normal %2
+Chest versiun ndo' Rune3DS %1 è truopp viecch ro' normal %2
 
 - proxy
 Proxy
@@ -263,16 +263,16 @@ Sciegl se vuoò verè o stat liber rà batterie.
 Seleziun o fortmat rè' or.
 
 - language_desc
-Impuost a leng ro' 3hs.
+Impuost a leng ro' Rune3DS.
 
 - lumalocalemode_desc
-Impuost a modalità ro' Lumalocale autosetter. "Va sul iss" seleziun a leng sul iss. Se vuò metter "manual",3hs vuò sapè a ru' vien'.
+Impuost a modalità ro' Lumalocale autosetter. "Va sul iss" seleziun a leng sul iss. Se vuò metter "manual",Rune3DS vuò sapè a ru' vien'.
 
 - check_extra_desc
 Cierc contenut extra aropp l installaziun.
 
 - proxy_desc
-Configur nu' server proxy po' 3hs. Chist è na' impstaziun per utient eshpiert.
+Configur nu' server proxy po' Rune3DS. Chist è na' impstaziun per utient eshpiert.
 
 - install_all
 Install tutt
@@ -326,7 +326,7 @@ else       return "%1 (%2 e bluocc)";
 Cierch tramit u tiest
 
 - search_id
-Cierc tramit o' ID hShop
+Cierc tramit o' ID catalog
 
 - search_tid
 Cierc tramit ID Titul

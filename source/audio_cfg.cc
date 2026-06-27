@@ -33,7 +33,7 @@
 #include <string>
 #include <vector>
 
-#define MUSIC_DIR "/3ds/3hs/music"
+#define MUSIC_DIR "/3ds/Rune3DS/music"
 
 struct cwav_meta {
 	std::string path, title, artist;
@@ -454,4 +454,3 @@ void show_audio_config()
 
 	commit_changes();
 }
-

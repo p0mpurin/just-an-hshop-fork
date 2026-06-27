@@ -8,7 +8,7 @@ Se încarcă...
 O versiune de sistem nesuportată a fost detectată.
 
 - install_luma
-3hs nu poate fi folosit pe acest sistem.
+Rune3DS nu poate fi folosit pe acest sistem.
 
 - queue
 Coadă
@@ -17,9 +17,9 @@ Coadă
 Nu s-au putut inițializa serviciile de rețea
 
 - credits_thanks
-Mulțumim că folosiți 3hs, un client 3DS pentru hShop.
+Mulțumim că folosiți Rune3DS, un client 3DS pentru catalog.
 Puteți obține această aplicație pe gratis la
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Apăsați UI_GLYPH_A pentru a instala acest conținut.
@@ -44,7 +44,7 @@ ID de titlu
 Categorie
 
 - landing_id
-ID hShop
+ID catalog
 
 - description
 Descriere
@@ -156,7 +156,7 @@ Sumar: %1
 Modul: %1
 
 - hs_bunny_found
-Felicitări! Ai găsit iepurașul hShop!
+Felicitări! Ai găsit iepurașul catalog!
 
 - already_installed_reinstall
 Titlu deja instalat. Reinstalați?
@@ -199,7 +199,7 @@ pentru ca această schimbare să aibă efect.
 Reporniți acum?
 
 - this_version
-Acesta este 3hs versiunea %1
+Acesta este Rune3DS versiunea %1
 
 - retry_req
 Cerere eșuată. Reîncercați?
@@ -222,7 +222,7 @@ Căutare invalidă
 Apăsați UI_GLYPH_A pentru a vă întoarce.
 
 - min_constraint
- Versiunea curentă a 3hs %1 este mai mică decât versiunea necesară %2
+ Versiunea curentă a Rune3DS %1 este mai mică decât versiunea necesară %2
 
 - proxy
 Proxy
@@ -264,16 +264,16 @@ Afișați indicatorul de baterie.
 Selectați formatul orar.
 
 - language_desc
-Setați limba a 3hs.
+Setați limba a Rune3DS.
 
 - lumalocalemode_desc
-Setați modul autosetatorului LumaLocale. Automat alege o limbă automat. Dacă este setat la manual, 3hs va solicita o regiune după instalarea conținutului.
+Setați modul autosetatorului LumaLocale. Automat alege o limbă automat. Dacă este setat la manual, Rune3DS va solicita o regiune după instalarea conținutului.
 
 - check_extra_desc
 Căutați conținut extra după instalare.
 
 - proxy_desc
-Configurați un server proxy pentru 3hs. Această setare este pentru utilizatorii avansați.
+Configurați un server proxy pentru Rune3DS. Această setare este pentru utilizatorii avansați.
 
 - install_all
 Instalați tot
@@ -327,7 +327,7 @@ else       return "%1 (%2 blocuri)";
 Căutați după text
 
 - search_id
-Căutați după ID hShop
+Căutați după ID catalog
 
 - search_tid
 Căutați după ID de titlu
@@ -415,7 +415,7 @@ Aceasta va porni lumina LED pentru a vă informa despre schimbări, precum atunc
 
 - dev_unitinfo
 Potrivit ENVINFO-ului al acestei console, aceasta este o unitate de dezvoltare.
-3hs nu va funcționa corect pe acest sistem.
+Rune3DS nu va funcționa corect pe acest sistem.
 În cazul în care aveți un 3DS comercial, asigurați-vă că opțiunea "Enable developer UNITINFO" în Luma3DS este oprită.
 
 - hint_navigate
@@ -491,7 +491,7 @@ Sare la subregiunea sistemului dacă o subcategorie a acesteia există.
 
 - add_music
 Nu ați adăugat încă muzică!
-Încercați să puneți muzica în /3ds/3hs/music pe cardul SD
+Încercați să puneți muzica în /3ds/Rune3DS/music pe cardul SD
 
 - add_playlist
 Nu ați adăugat încă nicio listă de cântece!
@@ -639,7 +639,7 @@ Căutare normală
 ♪ Rulează %1 de %2 ♪
 
 - outdated_system
-O versiune învechită de sistem a fost detectată. Versiunea de sistem 9.6.0 este necesară pentru 3hs.
+O versiune învechită de sistem a fost detectată. Versiunea de sistem 9.6.0 este necesară pentru Rune3DS.
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important
 - virtual_console_type

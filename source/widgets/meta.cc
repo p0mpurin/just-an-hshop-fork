@@ -17,9 +17,11 @@
 #include "widgets/meta.hh"
 
 #define META_PANEL() do { \
-	C2D_DrawRectSolid(7.0f, 7.0f, -0.30f, 306.0f, 194.0f, C2D_Color32(0, 0, 0, 178)); \
-	C2D_DrawRectSolid(16.0f, 8.0f, -0.29f, 288.0f, 1.0f, C2D_Color32(255, 255, 255, 24)); \
-	C2D_DrawRectSolid(298.0f, 16.0f, -0.19f, 3.0f, 3.0f, C2D_Color32(255, 164, 204, 255)); \
+	C2D_DrawRectSolid(8.0f, 10.0f, -0.33f, 304.0f, 194.0f, C2D_Color32(0, 0, 0, 212)); \
+	C2D_DrawRectSolid(8.0f, 10.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 34)); \
+	C2D_DrawRectSolid(8.0f, 203.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18)); \
+	C2D_DrawRectSolid(18.0f, 72.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 20)); \
+	C2D_DrawRectSolid(18.0f, 119.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 14)); \
 	} while(0)
 
 #define PAIR_I18N(val, title, val_i18n) do { \
@@ -122,10 +124,10 @@ float ui::CatMeta::height()
 { return 0.0f; } /* fullscreen */
 
 float ui::CatMeta::get_y()
-{ return 15.0f; }
+{ return 18.0f; }
 
 float ui::CatMeta::get_x()
-{ return 15.0f; }
+{ return 18.0f; }
 
 /* SubMeta */
 
@@ -173,10 +175,10 @@ float ui::SubMeta::height()
 { return 0.0f; } /* fullscreen */
 
 float ui::SubMeta::get_y()
-{ return 15.0f; }
+{ return 18.0f; }
 
 float ui::SubMeta::get_x()
-{ return 15.0f; }
+{ return 18.0f; }
 
 /* TitleMeta */
 
@@ -228,7 +230,7 @@ float ui::TitleMeta::height()
 { return 0.0f; } /* fullscreen */
 
 float ui::TitleMeta::get_y()
-{ return 15.0f; }
+{ return 18.0f; }
 
 float ui::TitleMeta::get_x()
-{ return 15.0f; }
+{ return 18.0f; }

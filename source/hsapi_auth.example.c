@@ -1,10 +1,9 @@
 /*
  * Local build placeholder.
  *
- * Nocturne uses the client-auth implementation distributed in the official
- * public 3hs source archive. Builders should provide that upstream
- * source/hsapi_auth.c file locally; personal hShop credentials are not
- * expected or required.
+ * Rune3DS uses a local client-auth implementation. Builders should provide
+ * source/hsapi_auth.c locally; personal service credentials are not expected
+ * or required.
  *
  * source/hsapi_auth.c is ignored by Git and should not be committed here.
  */

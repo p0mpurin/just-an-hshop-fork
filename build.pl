@@ -42,7 +42,7 @@ my $romfs_dir = "romfs";
 my $graphics_output = "$romfs_dir/gfx";
 
 # Name of the project, name of the binary
-my $binary_name = "3hs";
+my $binary_name = "Rune3DS";
 
 # These are in addition to "-lcitro2d -lcitro3d -lctru -lm"
 my $libraries = "-lmbedcrypto";
@@ -60,8 +60,8 @@ my $compiler_prefix = "arm-none-eabi-";
 # RSF file for compiling a CIA
 my $cia_rsf = "cia_stuff/3hs.rsf";
 
-my $app_title = "3hs Nocturne";
-my $app_description = "A dark, modern on-device client";
+my $app_title = "Rune3DS";
+my $app_description = "A minimal on-device catalog client";
 my $app_author = "p0mpurin";
 my $app_icon = "cia_stuff/icon.png";
 my $app_banner = "cia_stuff/banner.bnr";
@@ -79,13 +79,13 @@ sub configure {
 	my $devid     = getconf "device_id";
 	my $dserv     = getconf "debug_server", "HS_DEBUG_SERVER";
 	my $upbase    = getconf "update_base", "HS_UPDATE_BASE";
-	my $nupbase   = getconf "nocturne_update_base", "NOCTURNE_UPDATE_BASE";
+	my $nupbase   = getconf "rune_update_base", "RUNE_UPDATE_BASE";
 	my $cdnbase   = getconf "cdn_base", "HS_CDN_BASE";
 	my $siteloc   = getconf "site_url", "HS_WEBSITE";
 	my $nbloc     = getconf "nb_base", "HS_NB_BASE";
 	my $htbackend = getconf("http_backend") || 'httpc';
 
-	error "Must provide hShop server URLs, see the README"
+	error "Must provide server URLs, see the README"
 		unless $upbase && ($dserv || ($cdnbase && $siteloc && $nbloc));
 
 	my $htbackend_enum_val;
@@ -104,7 +104,7 @@ sub configure {
 	$cflags .= " -DDEVICE_ID=$devid" if $devid;
 	$cflags .= " -DHS_DEBUG_SERVER=\\\"$dserv\\\"" if $dserv;
 	$cflags .= " -DHS_UPDATE_BASE=\\\"$upbase\\\"" if $upbase;
-	$cflags .= " -DNOCTURNE_UPDATE_BASE=\\\"$nupbase\\\"" if $nupbase;
+	$cflags .= " -DRUNE_UPDATE_BASE=\\\"$nupbase\\\"" if $nupbase;
 	$cflags .= " -DHS_NB_BASE=\\\"$nbloc\\\"" if $nbloc;
 	$cflags .= " -DHS_CDN_BASE=\\\"$cdnbase\\\"" if $cdnbase;
 	$cflags .= " -DHS_SITE_LOC=\\\"$siteloc\\\"" if $siteloc;
@@ -157,8 +157,8 @@ sub configure_help {
   device_id, DEVICE_ID [device-id]      sets the device id for device-specific builds
   debug_server, HS_DEBUG_SERVER [url]   sets the debug server url
   update_base, HS_UPDATE_BASE [url]     sets the update base url
-  nocturne_update_base, NOCTURNE_UPDATE_BASE [url]
-                                      sets the Nocturne self-update base url
+  rune_update_base, RUNE_UPDATE_BASE [url]
+                                      sets the Rune3DS self-update base url
   nb_base, HS_NB_BASE [url]             sets the NBAPI base url
   cdn_base, HS_CDN_BASE [url]           sets the CDN base url
   site_url, HS_SITE_URL [url]           sets the site base url
@@ -273,7 +273,9 @@ sub hasconf {
 
 sub make_file_list {
 	my (@files, @data_files, @gfx_files);
-	find { no_chdir => 1, wanted => sub { push @files, $_ if /\.(cpp|cc|c)$/; } }, @source_directories;
+	find { no_chdir => 1, wanted => sub {
+		push @files, $_ if /\.(cpp|cc|c)$/ && $_ !~ /\.example\.(cpp|cc|c)$/;
+	} }, @source_directories;
 	find { no_chdir => 1, wanted => sub { push @data_files, $_ if -f; } }, @data_directories;
 	find { no_chdir => 1, wanted => sub { push @gfx_files, $_ if -f; } }, $graphics_directory;
 

@@ -44,7 +44,7 @@ enum class SortMethod {
 };
 #define SORTMETHOD_SHIFT 9
 enum class AccentPreset {
-	nocturne = 0,
+	rune = 0,
 	theme_default = 1,
 	cherry = 2,
 	lavender = 3,

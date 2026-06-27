@@ -24,19 +24,19 @@
 #include "i18n.hh"
 #include "log.hh"
 
-#ifndef NOCTURNE_UPDATE_BASE
-	#define NOCTURNE_UPDATE_BASE "http://nocturne.atwebpages.com"
+#ifndef RUNE_UPDATE_BASE
+	#define RUNE_UPDATE_BASE "https://example.invalid/rune3ds"
 #endif
 
-#define NOCTURNE_UPDATE_CIA_URL NOCTURNE_UPDATE_BASE "/3hs.cia"
-#define NOCTURNE_APP_TID 0x0004000003DF1000ULL
+#define RUNE_UPDATE_CIA_URL RUNE_UPDATE_BASE "/Rune3DS.cia"
+#define RUNE_APP_TID 0x0004000003DF1000ULL
 
 update::update_status update::update_app(Result &res)
 {
 	std::string nver;
 	app_version api_version;
 
-	if(R_FAILED(res = hsapi::get_nocturne_latest_version_string(nver)))
+	if(R_FAILED(res = hsapi::get_rune_latest_version_string(nver)))
 		return update_status::failed_update_check;
 
 	if (!api_version.parse(nver.c_str(), nver.size()))
@@ -51,15 +51,15 @@ update::update_status update::update_app(Result &res)
 		return update_status::failed_update_check;
 	}
 
-	ilog("Fetched latest Nocturne version %s", nver.c_str());
+	ilog("Fetched latest Rune3DS version %s", nver.c_str());
 
 	if(api_version > update::CUR_APP_VERSION)
 	{
-		ilog("Installing Nocturne update " VERSION " -> %s", nver.c_str());
-		if(!ui::Confirm::exec("Nocturne " + nver + " is available.\n\nInstall it now?", "Update available", true))
+		ilog("Installing Rune3DS update " VERSION " -> %s", nver.c_str());
+		if(!ui::Confirm::exec("Rune3DS " + nver + " is available.\n\nInstall it now?", "Update available", true))
 			return update_status::up_to_date;
-		res = install::gui::net_cia(NOCTURNE_UPDATE_CIA_URL,
-			ctr::title_id(NOCTURNE_APP_TID), true, true, false, false);
+		res = install::gui::net_cia(RUNE_UPDATE_CIA_URL,
+			ctr::title_id(RUNE_APP_TID), true, true, false, false);
 		return R_SUCCEEDED(res)
 			? update_status::updated_successfully
 			: update_status::failed_update_install;
@@ -67,7 +67,7 @@ update::update_status update::update_app(Result &res)
 
 	if(R_FAILED(res = hsapi::get_latest_version_string(nver)))
 	{
-		ilog("Official 3hs update check failed (%08lX); Nocturne is up-to-date", res);
+		ilog("Compatibility update check failed (%08lX); Rune3DS is up-to-date", res);
 		return update_status::up_to_date;
 	}
 
@@ -82,12 +82,12 @@ update::update_status update::update_app(Result &res)
 		return update_status::up_to_date;
 	}
 
-	ilog("Fetched latest official 3hs version %s", nver.c_str());
+	ilog("Fetched latest compatibility version %s", nver.c_str());
 
 	if(api_version <= update::CUR_APP_VERSION)
 		return update_status::up_to_date;
 
-	ilog("Official 3hs %s is newer than Nocturne's upstream base " VERSION, nver.c_str());
+	ilog("Compatibility version %s is newer than Rune3DS base " VERSION, nver.c_str());
 	return update_status::upstream_update_available;
 }
 

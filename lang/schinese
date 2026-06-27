@@ -12,7 +12,7 @@
 
 # displayed under above string
 - install_luma
-3hs 不能在此系统使用。
+Rune3DS 不能在此系统使用。
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -22,11 +22,11 @@
 - fail_init_networking
 初始化网络连接失败
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-感谢你使用 3hs 这是 hShop 在 3DS 上的客户端软件。
+感谢你使用 Rune3DS 这是 catalog 在 3DS 上的客户端软件。
 本软件可以在以下链接免费下载：
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 按 UI_GLYPH_A 安装此内容。
@@ -56,9 +56,9 @@ Title ID
 - category
 类别
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-hShop ID
+Content ID
 
 # nowrap, used for category description
 - description
@@ -212,7 +212,7 @@ Module: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-祝贺！你找到 hShop 的兔女郎了！
+祝贺！你找到 catalog 的兔女郎了！
 
 - already_installed_reinstall
 内容已经安装，要重新安装吗？
@@ -263,7 +263,7 @@ Luma3DS 游戏补丁已生效。
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-当前的 3hs 版本是 %1
+当前的 Rune3DS 版本是 %1
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -293,7 +293,7 @@ Luma3DS 游戏补丁已生效。
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-当前的 3hs 版本 %1 低于需求版本 %2
+当前的 Rune3DS 版本 %1 低于需求版本 %2
 
 # scroll, setting title
 - proxy
@@ -349,11 +349,11 @@ Luma3DS 游戏补丁已生效。
 
 # setting description
 - language_desc
-选择 3hs 语言。
+选择 Rune3DS 语言。
 
 # setting description
 - lumalocalemode_desc
-选择跨区模式。“自动”将会自动选择游戏语言分区。若设定为“手动”，3hs 会在内容安装完成后以你指定的语言分区对其进行修改。
+选择跨区模式。“自动”将会自动选择游戏语言分区。若设定为“手动”，Rune3DS 会在内容安装完成后以你指定的语言分区对其进行修改。
 
 # setting description
 - check_extra_desc
@@ -361,7 +361,7 @@ Luma3DS 游戏补丁已生效。
 
 # setting description
 - proxy_desc
-修改 3hs 的代理设置。此选项面向高级用户。
+修改 Rune3DS 的代理设置。此选项面向高级用户。
 
 # install all from queue
 - install_all
@@ -427,7 +427,7 @@ Luma3DS 游戏补丁已生效。
 
 # nowrap, search menu item
 - search_id
-hShop ID 搜索
+Content ID 搜索
 
 # nowrap, search menu item
 - search_tid
@@ -532,7 +532,7 @@ Title ID 搜索
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 根据本设备的 ENVINFO，这可能是一台 3DS 开发机。
-3hs 将不会在此系统上正确运行。
+Rune3DS 将不会在此系统上正确运行。
 如果你的 3DS 的确是常规机型，请去 Luma3DS 设置中禁用 "Enable developer UNITINFO"。
 
 # nowrap, used in for examples language select
@@ -618,7 +618,7 @@ UI_GLYPH_X：预览主题
 
 - add_music
 您还没有添加任何音乐！
-尝试将音乐放入 SD 卡上的 /3ds/3hs/music
+尝试将音乐放入 SD 卡上的 /3ds/Rune3DS/music
 
 
 - add_playlist
@@ -794,7 +794,7 @@ Add
 
 
 - outdated_system
-检测到过时的系统固件。 使用3HS需要至少9.6.0的系统固件。
+检测到过时的系统固件。 使用Rune3DS需要至少9.6.0的系统固件。
 
 
 # used as a subtext for display the virtual console type in extmeta, "Virtual Console" should probably be left untranslated, double capital (the V and C) is very important

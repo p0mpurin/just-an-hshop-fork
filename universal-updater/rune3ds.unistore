@@ -1,0 +1,46 @@
+{
+    "storeInfo": {
+        "title": "Rune3DS",
+        "author": "p0mpurin",
+        "description": "Rune3DS releases for Universal-Updater",
+        "url": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/rune3ds.unistore",
+        "file": "rune3ds.unistore",
+        "sheetURL": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/icons/rune3ds.t3x",
+        "sheet": "rune3ds.t3x",
+        "version": 3,
+        "revision": 1540
+    },
+    "storeContent": [
+        {
+            "info": {
+                "title": "Rune3DS",
+                "author": "p0mpurin",
+                "description": "A minimal on-device catalog client with a clean Rune3DS interface.",
+                "category": ["utility"],
+                "console": ["3DS"],
+                "icon_index": 0,
+                "sheet_index": 0,
+                "license": "gpl-3.0",
+                "last_updated": "2026-06-27 at 22:33 (UTC)",
+                "version": "v1.5.40"
+            },
+            "Install Rune3DS.cia": [
+                {
+                    "type": "downloadRelease",
+                    "repo": "p0mpurin/just-an-hshop-fork",
+                    "file": "Rune3DS.cia",
+                    "output": "sdmc:/Rune3DS.cia",
+                    "includePrereleases": false
+                },
+                {
+                    "type": "installCia",
+                    "file": "/Rune3DS.cia"
+                },
+                {
+                    "type": "deleteFile",
+                    "file": "sdmc:/Rune3DS.cia"
+                }
+            ]
+        }
+    ]
+}

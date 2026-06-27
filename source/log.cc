@@ -33,7 +33,7 @@
 #include <3ds.h>
 
 #define MIN(a,b) (((a)<(b))?(a):(b))
-#define F "/3ds/3hs/3hs.log"
+#define F "/3ds/Rune3DS/rune3ds.log"
 #define GEN_MAX_LEN 200
 
 
@@ -79,7 +79,7 @@ static void reserve_main_log()
 		return;
 	--max;
 
-#define SET(p,i) sprintf(p + sizeof("/3ds/3hs/3hs.log.") - 1, "%u", (i)+1);
+#define SET(p,i) sprintf(p + sizeof("/3ds/Rune3DS/rune3ds.log.") - 1, "%u", (i)+1);
 	for(val = 0; val != max; ++val)
 	{
 		SET(path1, val);
@@ -105,7 +105,7 @@ static FILE *open_f()
 	{
 		reserve_main_log();
 		mkdir("/3ds", 0777);
-		mkdir("/3ds/3hs", 0777);
+		mkdir("/3ds/Rune3DS", 0777);
 		log_state |= ST_FSET;
 	}
 	log_file = fopen(F, "w+");
@@ -165,14 +165,14 @@ out:
 
 #define LOGS_ITER(path, ent, ...) \
 	do { \
-		DIR *d = opendir("/3ds/3hs"); \
+		DIR *d = opendir("/3ds/Rune3DS"); \
 		struct dirent *ent; \
 		while((ent = readdir(d))) \
 		{ \
-			if(strncmp(ent->d_name, "3hs.log", sizeof("3hs.log") - 1) == 0) \
+			if(strncmp(ent->d_name, "rune3ds.log", sizeof("rune3ds.log") - 1) == 0) \
 			{ \
-				static char path[NAME_MAX+sizeof("/3ds/3hs/")] = "/3ds/3hs/"; \
-				strcpy(path + sizeof("/3ds/3hs/") - 1, ent->d_name); \
+				static char path[NAME_MAX+sizeof("/3ds/Rune3DS/")] = "/3ds/Rune3DS/"; \
+				strcpy(path + sizeof("/3ds/Rune3DS/") - 1, ent->d_name); \
 				__VA_ARGS__ \
 			} \
 		}  \
@@ -190,7 +190,7 @@ static void log_delete_invalid()
 {
 	u8 max = get_max_elogs();
 	LOGS_ITER(path, ent,
-		char *start = ent->d_name + sizeof("3hs.log.") - 1;
+		char *start = ent->d_name + sizeof("rune3ds.log.") - 1;
 		char *end;
 		errno = 0;
 		unsigned long id = strtoul(start, &end, 10);

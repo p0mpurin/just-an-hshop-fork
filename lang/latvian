@@ -8,7 +8,7 @@ Notiek ielāde...
 Tika konstatēta neatbalstīta programmaparatūra.
 
 - install_luma
-Šajā sistēmā nevar izmantot 3hs.
+Šajā sistēmā nevar izmantot Rune3DS.
 
 - queue
 Rindā
@@ -17,9 +17,9 @@ Rindā
 Neizdevās inicializēt tīkla izveidi
 
 - credits_thanks
-Paldies, ka izmantojās 3hs, hShop 3DS klientu.
+Paldies, ka izmantojās Rune3DS, catalog 3DS klientu.
 Jūs varat iegūt šo programmatūru bez maksas vietnē
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Nospiediet UI_GLYPH_A lai instalētu šo saturu.
@@ -44,7 +44,7 @@ Aplikācijas ID
 Kategorija
 
 - landing_id
-hShop ID
+Content ID
 
 - description
 Apraksts
@@ -156,7 +156,7 @@ Kopsavilkums: %1
 Modulis: %1
 
 - hs_bunny_found
-Apsveicu! Jūs atradāt hShop zaķi!
+Apsveicu! Jūs atradāt catalog zaķi!
 
 - already_installed_reinstall
 aplikācija jau ir instalēta. Pārinstalēt?
@@ -198,7 +198,7 @@ Lai šīs izmaiņas stātos spēkā, sistēma ir jārestartē.
 Restartēt tagad?
 
 - this_version
-Šī ir 3hs versija %1
+Šī ir Rune3DS versija %1
 
 - retry_req
 Pieprasījums neizdevās. Vai mēģināt vēlreiz?
@@ -221,7 +221,7 @@ Nederīgs vaicājums
 Nospiediet  UI_GLYPH_A lai atgrieztos.
 
 - min_constraint
-Pašreizējā 3hs versija %1 ir zemāka par nepieciešamo versiju %2
+Pašreizējā Rune3DS versija %1 ir zemāka par nepieciešamo versiju %2
 
 - proxy
 Starpniekserveris
@@ -263,16 +263,16 @@ Pārslēdziet akumulatora uzlādes līmeņa indikatoru.
 Izvēlieties laika formātu.
 
 - language_desc
-Iestatiet 3hs valodu.
+Iestatiet Rune3DS valodu.
 
 - lumalocalemode_desc
-Iestatiet LumaLocale automātiskās iestatīšanas režīmu. Automātiski automātiski atlasa valodu. Ja tas ir iestatīts uz manuāli, pēc satura instalēšanas 3hs liks norādīt reģionu.
+Iestatiet LumaLocale automātiskās iestatīšanas režīmu. Automātiski automātiski atlasa valodu. Ja tas ir iestatīts uz manuāli, pēc satura instalēšanas Rune3DS liks norādīt reģionu.
 
 - check_extra_desc
 Pēc instalēšanas meklēt papildu saturu.
 
 - proxy_desc
-Konfigurējiet starpniekserveri 3hs. Šis iestatījums ir paredzēts pieredzējušiem lietotājiem.
+Konfigurējiet starpniekserveri Rune3DS. Šis iestatījums ir paredzēts pieredzējušiem lietotājiem.
 
 - install_all
 Instalēt visu
@@ -326,7 +326,7 @@ else       return "%1 (%2 bloki)";
 Meklēt pēc teksta
 
 - search_id
-Meklēt pēc hShop ID
+Meklēt pēc Content ID
 
 - search_tid
 Meklēt pēc Aplikācijas ID
@@ -408,7 +408,7 @@ Tas LED indikators mirgos, lai informētu jūs par dažādām statusa izmaiņām
 
 - dev_unitinfo
 Saskaņā ar šīs konsoles konfigurācijas, šī ir izstrādes vienība.
-3hs šajā sistēmā nedarbosies pareizi.
+Rune3DS šajā sistēmā nedarbosies pareizi.
 Ja jums ir mazumtirdzniecības 3DS, pārliecinieties, ka Luma3DS konfigurācijā ir atspējota opcija “Enable developer UNITINFO”.
 
 - hint_navigate

@@ -109,7 +109,7 @@ public:
 
 private:
 	/* DNS cache: avoids repeated getaddrinfo() calls for the same CDN host.
-	 * The hShop CDN typically serves all content from a single hostname. */
+	 * The content CDN typically serves all content from a single hostname. */
 	struct CachedAddr {
 		struct sockaddr_in addr;
 		socklen_t len;
@@ -259,7 +259,7 @@ send_request:
 		std::string request =
 			"GET " + path + " HTTP/1.1\r\n"
 			"Host: " + host + "\r\n"
-			"User-Agent: Nocturne-Direct/1.0\r\n"
+			"User-Agent: Rune3DS-Direct/1.0\r\n"
 			"Accept: */*\r\n"
 			"Accept-Encoding: identity\r\n"
 			"Connection: close\r\n\r\n";

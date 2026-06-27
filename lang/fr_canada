@@ -8,7 +8,7 @@ Chargement...
 Version trop veille pour cette appli.
 
 - install_luma
-3hs n'peut pas être utilisé sur cette console.
+Rune3DS n'peut pas être utilisé sur cette console.
 
 - queue
 Queue
@@ -17,9 +17,9 @@ Queue
 Réseau non trouvé
 
 - credits_thanks
-Merci d'avoir utilisé 3hs.
+Merci d'avoir utilisé Rune3DS.
 Vous pouvez télécharger cette appli sur
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Appuie UI_GLYPH_A pour installer.
@@ -44,7 +44,7 @@ Title ID
 Catégorie
 
 - landing_id
-ID hShop
+ID catalog
 
 - description
 Déscription
@@ -156,7 +156,7 @@ Résumé: %1
 Module: %1
 
 - hs_bunny_found
-Bravo! T'as trouvé le lapin hShop!
+Bravo! T'as trouvé le lapin catalog!
 
 - already_installed_reinstall
 Titre déjà installé. Réinstaller?
@@ -198,7 +198,7 @@ La console doit-être redémarré pour que ce changement marche.
 Redémarre maintenant?
 
 - this_version
-La version de 3hs %1
+La version de Rune3DS %1
 
 - retry_req
 Requête en échec. Réssaie?
@@ -221,7 +221,7 @@ Requête invalide
 Press UI_GLYPH_A to go back.
 
 - min_constraint
-La Version actuelle de 3hs %1 est plus basse que %2
+La Version actuelle de Rune3DS %1 est plus basse que %2
 
 - proxy
 Proxy
@@ -263,16 +263,16 @@ Active/Désactive l'indicateur du niveau d'batterie.
 Choisis le temps de format.
 
 - language_desc
-Mets le langage pour 3hs.
+Mets le langage pour Rune3DS.
 
 - lumalocalemode_desc
-Mets le mode du LumaLocale autosetter. Automatique sélectionne un langage automatiquement. Si elle est mis en manuel, 3hs va vous demander pour la région après l'installation du contenu.
+Mets le mode du LumaLocale autosetter. Automatique sélectionne un langage automatiquement. Si elle est mis en manuel, Rune3DS va vous demander pour la région après l'installation du contenu.
 
 - check_extra_desc
 Recherche de contenu additionel après l'installation du contenu.
 
 - proxy_desc
-Configure un serveur proxy pour 3hs. Ce paramètre est pour les utilisateurs avancés.
+Configure un serveur proxy pour Rune3DS. Ce paramètre est pour les utilisateurs avancés.
 
 - install_all
 Installe tout
@@ -326,7 +326,7 @@ else       return "%1 (%2 blocs)";
 Recherce par text
 
 - search_id
-Recherche par ID hShop
+Recherche par ID catalog
 
 - search_tid
 Recherche par title ID
@@ -408,7 +408,7 @@ Ceci va flasher la lumière LED pour t'informer de plusieurs changements de stat
 
 - dev_unitinfo
 Cette console a été détecté en tant qu'unité de développement.
-3hs risque de ne pas fonctionner correctement.
+Rune3DS risque de ne pas fonctionner correctement.
 Si vous avez une 3ds normale, soyez sûr d'avoir désactivé "Enable developer UNITINFO" dans le menu de configuration luma.
 
 - hint_navigate

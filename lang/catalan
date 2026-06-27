@@ -1,17 +1,17 @@
 
-# This is the base 3hs translation file.
+# This is the base Rune3DS translation file.
 # All other translations should derive from this file.
-# If you want to translate 3hs in your language please contact us in the hShop discord server.
+# If you want to translate Rune3DS in your language please contact us in the catalog discord server.
 
 # Some strings have a comment which indicates a context, this may help while translating
 #  - If you require context for anything else feel free to ask
 #  - %<n> where <n> is a number from 1-9 is a variable, their meaning is explained in the matching comment
 #  - The value of the variable will literally be substituted (replaced)
-#  - if this doesn't work in your language ask in the hShop discord channel so i can write a workaround for you
+#  - if this doesn't work in your language ask in the catalog discord channel so i can write a workaround for you
 # UI_GLYPH_ is a prefix for buttons in the system fonts i.e. UI_GLYPH_B is the B button on your 3DS
 #  - They should be kept exactly as-is, they should be encircled by spaces
 #    - Even if your language has no such things, not having a space causes ugly clamping
-# PAGE_* are URLs to hShop pages
+# PAGE_* are URLs to catalog pages
 #  - They should be kept exactly as-is, the actual URL gets placed in place of the PAGE_ letters
 # Preserve newlines ("enter"s), they are added for stylistic purposes, most things should neatly wrap
 # Although text wraps in most cases, it's for the best not make your translation too verbose
@@ -26,7 +26,7 @@
 # If your language is officially supported by Nintendo, use their translations for their terms
 #   - For example, "blocks", "HOME menu", "theme"
 #
-# Any questions and new translations can be posted in the hShop discord channel
+# Any questions and new translations can be posted in the catalog discord channel
 
 # The name of the language this file is for in that language (i.e. Español for Spanish)
 - native_name
@@ -41,7 +41,7 @@ S'ha detectat un firmware no compatible.
 
 # displayed under above string
 - install_luma
-No es pot utilitzar 3hs en aquesta consola.
+No es pot utilitzar Rune3DS en aquesta consola.
 
 # button, button on bottom of screen to enter queue
 - queue
@@ -51,11 +51,11 @@ Cua
 - fail_init_networking
 No s'ha pogut inicialitzar la xarxa
 
-# PAGE_3HS expands to the 3hs page on hShop
+# Rune3DS releases are published on GitHub. expands to the Rune3DS page on catalog
 - credits_thanks
-Gràcies per utilitzar 3hs, un client de 3DS per a la hShop.
+Gràcies per utilitzar Rune3DS, un client de 3DS per a la catalog.
 Aquest programa es pot baixar gratuïtament a
-PAGE_3HS
+Rune3DS releases are published on GitHub.
 
 - press_to_install
 Prem UI_GLYPH_A per instal·lar aquest contingut.
@@ -85,9 +85,9 @@ ID del contingut
 - category
 Categoria
 
-# nowrap, hShop ID used for searching, previously known as landing ID, sort method in switcher in settings
+# nowrap, Content ID used for searching, previously known as landing ID, sort method in switcher in settings
 - landing_id
-ID a la hShop
+ID a la catalog
 
 # nowrap, used for category description
 - description
@@ -241,7 +241,7 @@ Mòdul: %1
 
 # easter egg, see also: gfx/img/bun.png
 - hs_bunny_found
-Felicitats! Has trobat el conill de la hShop!
+Felicitats! Has trobat el conill de la catalog!
 
 - already_installed_reinstall
 El títol ja està instal·lat. El tornes a instal·lar?
@@ -292,7 +292,7 @@ Reinicies ara?
 
 # %1 = version int "version desc" (i.e. 1.2.0 "cotidie morimur")
 - this_version
-Aquesta és la versió %1 de 3hs
+Aquesta és la versió %1 de Rune3DS
 
 # request = API HTTP request, may be translated as "failed to access API"
 - retry_req
@@ -322,7 +322,7 @@ Prem UI_GLYPH_A per tornar.
 # %1 = current version
 # %2 = minimum required version
 - min_constraint
-La versió actual de 3hs %1 és inferior a la versió %2 necessària
+La versió actual de Rune3DS %1 és inferior a la versió %2 necessària
 
 # scroll, setting title
 - proxy
@@ -378,11 +378,11 @@ Tria el format horari.
 
 # setting description
 - language_desc
-Estableix l'idioma de 3hs.
+Estableix l'idioma de Rune3DS.
 
 # setting description
 - lumalocalemode_desc
-Estableix el mode de l'autoconfigurador de LumaLocale. Automàtic selecciona una llengua automàticament. Si s'estableix com a manual, 3hs demanarà que es triï una regió després de la instal·lació del contingut.
+Estableix el mode de l'autoconfigurador de LumaLocale. Automàtic selecciona una llengua automàticament. Si s'estableix com a manual, Rune3DS demanarà que es triï una regió després de la instal·lació del contingut.
 
 # setting description
 - check_extra_desc
@@ -390,7 +390,7 @@ Cerca contingut addicional després de la instal·lació.
 
 # setting description
 - proxy_desc
-Configura un servidor proxy per a 3hs. Aquesta configuració és per a usuaris avançats.
+Configura un servidor proxy per a Rune3DS. Aquesta configuració és per a usuaris avançats.
 
 # install all from queue
 - install_all
@@ -457,7 +457,7 @@ Cerca per text
 
 # nowrap, search menu item
 - search_id
-Cerca per ID de la hShop
+Cerca per ID de la catalog
 
 # nowrap, search menu item
 - search_tid
@@ -562,7 +562,7 @@ Això farà parpellejar la llum LED per informar de diversos canvis d'estat, com
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
 Segons la configuració d'aquesta consola, és una consola per a desenvolupadors.
-3hs no funcionarà correctament en aquesta consola.
+Rune3DS no funcionarà correctament en aquesta consola.
 Si es tracta d'un 3DS normal, assegura't que "Enable developer UNITINFO" als paràmetres del Luma3DS estigui desactivat.
 
 # nowrap, used in for examples language select
