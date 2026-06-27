@@ -1,5 +1,10 @@
 # Nocturne changelog
 
+## 1.5.38
+
+- Built release with refreshed hShop API authentication
+- Removed duplicate size badges from title lists; size remains visible in title details
+
 ## 1.5.37
 
 - Settings now organized into categories: Theming, Display, Install, System, Advanced

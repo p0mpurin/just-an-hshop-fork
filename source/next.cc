@@ -361,14 +361,7 @@ hsapi::hid next::sel_title(std::vector<hsapi::PartialTitle>& titles, struct titl
 
 	ui::builder<list_t>(ui::Screen::top, &titles)
 		.to_string([](const hsapi::PartialTitle& title) -> std::string {
-			std::string label = hsapi::title_name(title);
-			/* Append size badge when available and non-zero */
-			if(title.size > 0)
-			{
-				label += "  ";
-				label += ui::human_readable_size_block<u64>(title.size);
-			}
-			return label;
+			return hsapi::title_name(title);
 		})
 		.when_select([&ret](list_t *self, size_t i, u32 kDown) -> bool {
 			ret = self->at(i).id;

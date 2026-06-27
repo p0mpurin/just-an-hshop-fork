@@ -8,7 +8,7 @@
         "sheetURL": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/icons/nocturne.t3x",
         "sheet": "nocturne.t3x",
         "version": 3,
-        "revision": 1537
+        "revision": 1538
     },
     "storeContent": [
         {
@@ -21,8 +21,8 @@
                 "icon_index": 0,
                 "sheet_index": 0,
                 "license": "gpl-3.0",
-                "last_updated": "2026-06-26 at 01:00 (UTC)",
-                "version": "v1.5.37"
+                "last_updated": "2026-06-27 at 21:50 (UTC)",
+                "version": "v1.5.38"
             },
             "Install Nocturne.cia": [
                 {
