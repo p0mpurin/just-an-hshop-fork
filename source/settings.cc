@@ -35,6 +35,7 @@
 #include <string>
 
 #include "proxy.hh"
+#include "notification_led.hh"
 #include "mng.hh"
 #include "log.hh"
 
@@ -53,6 +54,9 @@ enum migrations {
 	migration_goto_region       = 4,
 	migration_rev_reinstall     = 5,
 	migration_enable_mem_log    = 6,
+	migration_direct_cdn_default = 7,
+	migration_stable_cdn_default = 8,
+	migration_remove_direct_cdn  = 9,
 
 	migration_meta_last,
 };
@@ -95,6 +99,7 @@ static void write_settings_to_file()
 	memset(&header[0xF], 0, sizeof(u32) * 3 + sizeof(u8) * 3);
 	header[0x0F] = g_nsettings.wallpaper_dim;
 	header[0x10] = g_nsettings.accent_preset;
+	header[0x11] = g_nsettings.surface_preset;
 	* (u16 *) &header[0x1E] = (u16) g_nsettings.theme_path.size();
 
 	panic_assert(fwrite(header, sizeof(header), 1, f) == 1, "failed to write to settings");
@@ -192,6 +197,7 @@ static void migrate_settings(u8 *buf)
 	g_nsettings.max_elogs = settings->maxExtraLogs;
 	g_nsettings.wallpaper_dim = 132;
 	g_nsettings.accent_preset = (u8) AccentPreset::rune;
+	g_nsettings.surface_preset = (u8) SurfacePreset::glass;
 	g_nsettings.theme_path = settings->isLightMode ? SPECIAL_LIGHT : SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 
@@ -230,6 +236,7 @@ void reset_settings(bool set_default_lang)
 	g_nsettings.max_elogs = 0; /* memory log by default */
 	g_nsettings.wallpaper_dim = 132;
 	g_nsettings.accent_preset = (u8) AccentPreset::rune;
+	g_nsettings.surface_preset = (u8) SurfacePreset::glass;
 	g_nsettings.theme_path = SPECIAL_DARK;
 	g_nsettings.background_path.clear();
 	g_nsettings.proxy_port = 0; /* disable proxy by default */
@@ -253,6 +260,10 @@ static void apply_migrations()
 		g_nsettings.flags0 &= ~FLAG0_DEFAULT_REINSTALL;
 	if(g_nsettings.migration < migration_enable_mem_log)
 		g_nsettings.max_elogs = 0;
+	if(g_nsettings.migration < migration_stable_cdn_default)
+		g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
+	if(g_nsettings.migration < migration_remove_direct_cdn)
+		g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
 	/* in the future more migrations may be written here */
 	g_nsettings.migration = LATEST_MIGRATION;
 	write_settings();
@@ -374,11 +385,14 @@ bool ensure_settings()
 	g_nsettings.migration = buf[0x0E];
 	g_nsettings.wallpaper_dim = buf[0x0F];
 	g_nsettings.accent_preset = buf[0x10];
+	g_nsettings.surface_preset = buf[0x11];
 	/* Reserved bytes were zero in settings written before this option. */
 	if(g_nsettings.wallpaper_dim < 64)
 		g_nsettings.wallpaper_dim = 132;
 	if(g_nsettings.accent_preset > (u8) AccentPreset::mono)
 		g_nsettings.accent_preset = (u8) AccentPreset::rune;
+	if(g_nsettings.surface_preset > (u8) SurfacePreset::contrast)
+		g_nsettings.surface_preset = (u8) SurfacePreset::glass;
 	/* start parsing strings */
 	offset = 0x1E;
 	if(!parse_string(g_nsettings.theme_path, buf, offset, size)) goto default_settings;
@@ -543,6 +557,18 @@ static const char *accent2str(AccentPreset preset)
 	return "Unknown";
 }
 
+static const char *surface2str(SurfacePreset preset)
+{
+	switch(preset)
+	{
+	case SurfacePreset::glass: return "Glass";
+	case SurfacePreset::solid: return "Solid";
+	case SurfacePreset::soft: return "Soft";
+	case SurfacePreset::contrast: return "High contrast";
+	}
+	return "Unknown";
+}
+
 static u32 rgba(u8 r, u8 g, u8 b, u8 a = 0xFF)
 {
 	return ((u32) a << 24) | ((u32) b << 16) | ((u32) g << 8) | r;
@@ -554,6 +580,16 @@ struct AccentPalette {
 	u32 dark;
 	u32 darker;
 	u32 light;
+	u32 warning;
+};
+
+struct SurfacePalette {
+	u32 background;
+	u32 text;
+	u32 surface;
+	u32 border;
+	u32 muted;
+	u32 toggle_off;
 	u32 warning;
 };
 
@@ -586,6 +622,37 @@ static AccentPalette accent_palette(AccentPreset preset)
 	return accent_palette(AccentPreset::rune);
 }
 
+static SurfacePalette surface_palette(SurfacePreset preset)
+{
+	switch(preset)
+	{
+	case SurfacePreset::solid:
+		return { rgba(0, 0, 0), rgba(245, 245, 245), rgba(12, 12, 12, 0xF2), rgba(255, 255, 255, 0x5C), rgba(31, 31, 31), rgba(31, 31, 31), rgba(255, 95, 87) };
+	case SurfacePreset::soft:
+		return { rgba(7, 7, 7), rgba(242, 242, 242), rgba(20, 20, 20, 0xDD), rgba(255, 255, 255, 0x42), rgba(38, 38, 38), rgba(34, 34, 34), rgba(255, 122, 111) };
+	case SurfacePreset::contrast:
+		return { rgba(0, 0, 0), rgba(255, 255, 255), rgba(0, 0, 0, 0xFF), rgba(255, 255, 255, 0xD8), rgba(56, 56, 56), rgba(28, 28, 28), rgba(255, 64, 64) };
+	case SurfacePreset::glass:
+	default:
+		return { rgba(0, 0, 0), rgba(237, 237, 237), rgba(17, 17, 17, 0xD8), rgba(255, 255, 255, 0x66), rgba(34, 34, 34), rgba(36, 36, 36), rgba(255, 95, 87) };
+	}
+}
+
+static void apply_surface_preset()
+{
+	SurfacePalette p = surface_palette((SurfacePreset) g_nsettings.surface_preset);
+	ui::Theme *theme = ui::Theme::global();
+	*theme->get_color(ui::theme::background_color) = p.background;
+	*theme->get_color(ui::theme::text_color) = p.text;
+	*theme->get_color(ui::theme::button_background_color) = p.surface;
+	*theme->get_color(ui::theme::button_border_color) = p.border;
+	*theme->get_color(ui::theme::toggle_red_color) = p.toggle_off;
+	*theme->get_color(ui::theme::progress_bar_background_color) = p.muted;
+	*theme->get_color(ui::theme::checkbox_border_color) = p.border;
+	*theme->get_color(ui::theme::warning_color) = p.warning;
+	*theme->get_color(ui::theme::x_color) = p.warning;
+}
+
 static void apply_accent_preset()
 {
 	AccentPreset preset = (AccentPreset) g_nsettings.accent_preset;
@@ -596,17 +663,13 @@ static void apply_accent_preset()
 	ui::Theme *theme = ui::Theme::global();
 	*theme->get_color(ui::theme::text_color) = p.light;
 	*theme->get_color(ui::theme::button_border_color) = p.accent;
-	*theme->get_color(ui::theme::button_background_color) = p.darker;
 	*theme->get_color(ui::theme::battery_green_color) = p.accent;
 	*theme->get_color(ui::theme::battery_red_color) = p.warning;
 	*theme->get_color(ui::theme::toggle_green_color) = p.accent2;
-	*theme->get_color(ui::theme::toggle_red_color) = p.dark;
 	*theme->get_color(ui::theme::toggle_slider_color) = rgba(255, 255, 255);
 	*theme->get_color(ui::theme::progress_bar_foreground_color) = p.accent2;
-	*theme->get_color(ui::theme::progress_bar_background_color) = p.dark;
 	*theme->get_color(ui::theme::scrollbar_color) = p.accent;
 	*theme->get_color(ui::theme::smdh_icon_border_color) = p.accent;
-	*theme->get_color(ui::theme::checkbox_border_color) = p.dark;
 	*theme->get_color(ui::theme::checkbox_check_color) = p.accent;
 	*theme->get_color(ui::theme::graph_line_color) = p.accent;
 	*theme->get_color(ui::theme::warning_color) = p.warning;
@@ -625,6 +688,7 @@ void apply_visual_settings()
 			break;
 		}
 	}
+	apply_surface_preset();
 	apply_accent_preset();
 }
 
@@ -669,6 +733,7 @@ static bool serialize_id_bool(SettingsId ID)
 	case ID_WallpaperDim:
 	case ID_Theme:
 	case ID_Accent:
+	case ID_Surface:
 	case ID_Performance:
 		panic("impossible bool setting switch case reached");
 	}
@@ -725,11 +790,11 @@ static std::string serialize_id_text(SettingsId ID)
 		return ui::Theme::global()->name;
 	case ID_Accent:
 		return accent2str((AccentPreset) g_nsettings.accent_preset);
+	case ID_Surface:
+		return surface2str((SurfacePreset) g_nsettings.surface_preset);
 	case ID_Performance:
 		return ctr::mng::is_n3ds()
-			? (ISET_DIRECT_CDN_EXPERIMENTAL
-				? "New 3DS · Direct socket"
-				: "New 3DS · Enhanced")
+			? "New 3DS · Enhanced"
 			: "Old 3DS · Compatible";
 	}
 
@@ -1089,8 +1154,13 @@ static void update_settings_ID(SettingsId ID)
 		g_nsettings.flags0 ^= FLAG0_SEARCH_ECONTENT;
 		break;
 	case ID_AllowLED:
+	{
+		bool was_enabled = ISET_ALLOW_LED;
 		g_nsettings.flags0 ^= FLAG0_ALLOW_LED;
+		if(was_enabled && !ISET_ALLOW_LED)
+			Led_Off(true);
 		break;
+	}
 	case ID_Reinstall:
 		g_nsettings.flags0 ^= FLAG0_DEFAULT_REINSTALL;
 		break;
@@ -1239,28 +1309,44 @@ static void update_settings_ID(SettingsId ID)
 		apply(preset);
 		break;
 	}
+	case ID_Surface:
+	{
+		SurfacePreset preset = (SurfacePreset) g_nsettings.surface_preset;
+		std::vector<std::string> labels = {
+			surface2str(SurfacePreset::glass),
+			surface2str(SurfacePreset::solid),
+			surface2str(SurfacePreset::soft),
+			surface2str(SurfacePreset::contrast),
+		};
+		std::vector<SurfacePreset> values = {
+			SurfacePreset::glass,
+			SurfacePreset::solid,
+			SurfacePreset::soft,
+			SurfacePreset::contrast,
+		};
+		ui::I18NEnabledRenderQueue queue;
+		ui::Selector<SurfacePreset> *sel;
+		auto apply = [&preset](SurfacePreset value) -> void {
+			preset = value;
+			g_nsettings.surface_preset = (u8) value;
+			apply_visual_settings();
+			ui::ThemeManager::global()->reget();
+		};
+		ui::builder<ui::Selector<SurfacePreset>>(ui::Screen::bottom, labels, values, &preset)
+			.when_changed(apply)
+			.add_to(&sel, queue);
+		sel->search_set_idx(preset);
+		queue.render_finite();
+		apply(preset);
+		break;
+	}
 	case ID_Performance:
 		if(!ctr::mng::is_n3ds())
 		{
-			ui::notice("Old 3DS compatibility mode is active.\n\nDefault-core CIA writer\n1 MiB buffered pipeline\nDirect CDN connection\n\nDownload speed is limited by older hardware.");
+			ui::notice("Old 3DS compatibility mode is active.\n\nDefault-core CIA writer\n1 MiB buffered pipeline\nStable Nintendo HTTP transport\n\nDownload speed is limited by older hardware.");
 			break;
 		}
-		{
-			enum class CdnTransport { stable, direct }
-				mode = ISET_DIRECT_CDN_EXPERIMENTAL ? CdnTransport::direct : CdnTransport::stable;
-			read_set_enum<CdnTransport>(
-				{ "Stable · Nintendo HTTP", "Experimental · Direct socket" },
-				{ CdnTransport::stable, CdnTransport::direct },
-				mode
-			);
-			if(mode == CdnTransport::direct)
-			{
-				g_nsettings.flags0 |= FLAG0_DIRECT_CDN_EXPERIMENTAL;
-				ui::notice("Experimental direct-socket CDN mode enabled.\n\nAuthentication remains on the stable HTTP service. Large game payloads bypass HTTP IPC and fall back automatically if the direct connection cannot start.");
-			}
-			else
-				g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
-		}
+			ui::notice("New 3DS enhanced mode is active.\n\nStable Nintendo HTTP transport\n1 MiB download chunks\n6-slot CIA write pipeline\nThrottled progress rendering");
 		break;
 	}
 }
@@ -1297,6 +1383,7 @@ void log_settings()
 		"backgroundPath: %s, "
 		"wallpaperDim: %u, "
 		"accentPreset: %s, "
+		"surfacePreset: %s, "
 		"topWide: %s, "
 		"performanceMode: new3ds, "
 		"autoShutdown: %s",
@@ -1309,6 +1396,7 @@ void log_settings()
 			BOOL(g_nsettings.proxy_port != 0), g_nsettings.theme_path.c_str(), BOOL(ISET_DISABLE_GRAPH),
 			g_nsettings.background_path.empty() ? "(none)" : g_nsettings.background_path.c_str(),
 			g_nsettings.wallpaper_dim, accent2str((AccentPreset) g_nsettings.accent_preset),
+			surface2str((SurfacePreset) g_nsettings.surface_preset),
 			BOOL(ISET_TOP_WIDE_EXPERIMENTAL),
 			BOOL(ISET_AUTO_SHUTDOWN));
 #undef BOOL
@@ -1403,6 +1491,7 @@ static SettingInfo make_info(SettingsId id)
 	case ID_Direction:    return { str::def_sort_dir   , str::def_sort_dir_desc   , id, true  };
 	case ID_Theme:        return { str::themes         , str::theme_desc          , id, true  };
 	case ID_Accent:       return { str::accent_color   , str::accent_color_desc   , id, true  };
+	case ID_Surface:      return { str::surface_style  , str::surface_style_desc  , id, true  };
 	case ID_Background:   return { str::background_image, str::background_image_desc, id, true };
 	case ID_WallpaperDim: return { str::wallpaper_dimming, str::wallpaper_dimming_desc, id, true };
 	case ID_Performance:  return { str::performance_mode, str::performance_mode_desc, id, true };
@@ -1492,7 +1581,7 @@ void show_settings()
 {
 	static SettingCategory cats[] = {
 		{ str::cat_theming, str::cat_theming_desc,
-			{ ID_Theme, ID_Accent, ID_Background, ID_WallpaperDim, ID_TopWide } },
+			{ ID_Theme, ID_Surface, ID_Accent, ID_Background, ID_WallpaperDim, ID_TopWide } },
 		{ str::cat_display, str::cat_display_desc,
 			{ ID_FreeSpace, ID_Battery, ID_ShowAlt, ID_DisGraph, ID_TimeFmt, ID_ProgLoc } },
 		{ str::cat_install, str::cat_install_desc,
@@ -1665,7 +1754,7 @@ void show_theme_menu()
 		.when_select([&ms]() -> bool {
 			ui::Theme::global()->replace_with(g_avail_themes[ms->pos()]);
 			g_nsettings.theme_path = g_avail_themes[ms->pos()].id;
-			apply_accent_preset();
+			apply_visual_settings();
 			ui::ThemeManager::global()->reget();
 			return true;
 		})
@@ -1677,7 +1766,7 @@ void show_theme_menu()
 			author->set_y(ui::under(name, author));
 			ui::Theme::global()->replace_with(theme);
 			g_nsettings.theme_path = theme.id;
-			apply_accent_preset();
+			apply_visual_settings();
 			ui::ThemeManager::global()->reget();
 			return true;
 		})

@@ -175,8 +175,7 @@ static const std::unordered_map<Result, std::unordered_map<Result, const char *>
 			{ 20, "Invalid DSP firmware"                                },
 			{ 21, "Received invalid version string from server"         },
 			{ 22, "Can't install title without base title unless asked" },
-			{ 23, "Direct CDN socket could not start"                    },
-			{ 24, "Direct CDN socket transfer failed"                    },
+			{ 25, "CIA write returned short write"                       },
 		}
 	},
 });

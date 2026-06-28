@@ -44,16 +44,22 @@ namespace install
 		u64 elapsed_ms = 0;
 		float average_mib_s = 0.0f;
 		float peak_mib_s = 0.0f;
+		u64 single_bytes = 0;
+		u64 single_elapsed_ms = 0;
+		float single_average_mib_s = 0.0f;
+		float single_peak_mib_s = 0.0f;
+		bool has_parallel = false;
+		u8 parallel_connections = 0;
 	};
 
 	void global_abort();
-	bool is_direct_cdn_active();
+	const char *network_benchmark_phase();
 
 	Result net_cia(get_url_func get_url, ctr::title_id tid, prog_func prog = default_prog_func,
 		bool reinstallable = false, bool hsapi_enabled = false, bool do_ver_check = true, bool dev_auth = false);
 	Result hs_cia(const hsapi::Title& meta, prog_func prog = default_prog_func,
 		bool reinstallable = false);
-	Result hs_network_benchmark(hsapi::hid id, NetworkBenchmarkResult& result,
+	Result hs_network_benchmark(const hsapi::Title& meta, NetworkBenchmarkResult& result,
 		prog_func prog = default_prog_func);
 
 	inline bool is_in_progress()

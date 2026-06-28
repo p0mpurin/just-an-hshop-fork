@@ -600,9 +600,6 @@ Stelle Internetverbindung her...
 - check_net
 Schalte WLAN ein...
 
-- do_donate
-Wenn du catalog nützlich findest, bitte Spende uns indem du PAGE_DONATE auf einem anderen Gerät besuchst!
-
 - error_occurred
 Ein Fehler ist aufgetreten
 

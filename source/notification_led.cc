@@ -135,11 +135,11 @@ void Led_SetCancelled()
 	Led_Off();
 }
 
-void Led_Off()
+void Led_Off(bool force)
 {
-	if(!ISET_ALLOW_LED || g_led_failed)
+	if((!force && !ISET_ALLOW_LED) || g_led_failed)
 		return;
-	Result res = ui::LED::ResetPattern();
+	Result res = ui::LED::ResetPattern(force);
 	if(R_FAILED(res))
 	{
 		g_led_failed = true;

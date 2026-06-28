@@ -98,7 +98,7 @@ namespace ui
 		Result SetSleepPattern(Pattern *info);
 		Result SetPattern(Pattern *info);
 		void SetTimeout(time_t newTime);
-		Result ResetPattern(void);
+		Result ResetPattern(bool force = false);
 		void ClearResetFlags(void);
 	}
 
@@ -1093,7 +1093,7 @@ namespace ui
 		void set_toggled(bool toggled);
 
 	private:
-		UI_SLOTS_PROTO(Toggle_color, 3)
+		UI_SLOTS_PROTO(Toggle_color, 4)
 		std::function<void()> toggle_cb;
 		bool toggled_state;
 		u64 last_touch_toggle;

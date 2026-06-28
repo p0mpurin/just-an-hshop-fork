@@ -563,11 +563,11 @@ A file was installed.
 
 # setting title
 - allow_led
-Enable LED status indicators
+Rune3DS install status LED
 
 # setting description
 - allow_led_desc
-Flash the LED light to show status changes and install progress.
+Use the notification LED for install progress: blue while downloading, green while installing or finished, red on errors.
 
 # don't translate "Enable developer UNITINFO", ENVINFO may be translated as configuration, retail may be translated as normal, unit may be translated as variant
 - dev_unitinfo
@@ -596,6 +596,12 @@ Accent color
 - accent_color_desc
 Choose the highlight color used for buttons, toggles, progress bars, graphs, warnings, and other UI accents.
 
+- surface_style
+Surface style
+
+- surface_style_desc
+Choose how panels and controls sit over wallpapers. Changes preview immediately.
+
 # custom background selector in settings
 - background_image
 Background image
@@ -613,7 +619,7 @@ Adjust the dark overlay above your wallpaper. Brighter settings show more of the
 Performance mode
 
 - performance_mode_desc
-Shows the New 3DS optimizations active in this build.
+Shows the active download and writer optimizations for this system.
 
 - top_wide_mode
 800px top screen
@@ -906,9 +912,6 @@ Virtual Console type
 # -- v1.4.2 barrier -- #
 
 # -- v1.4.4 barrier -- #
-
-- do_donate
-If you found catalog useful, please make a donation by visiting PAGE_DONATE on another device!
 
 # -- v1.4.5 barrier -- #
 

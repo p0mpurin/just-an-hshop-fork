@@ -647,9 +647,6 @@ Se detectó un firmware del sistema obsoleto. Se requiere un firmware del sistem
 - virtual_console_type
 Tipo de Virtual Console
 
-- do_donate
-Si catalog te ha resultado util, por favor haz una donación visitando PAGE_DONATE en otro dispositivo!
-
 # This string is a bit weird. It's displayed the first time Rune3DS is booted and is meant to prevent the question "Rune3DS is in Japanese/Welsh how fix" in the Discord support channels
 #  %1 = your language name
 - automatically_detected

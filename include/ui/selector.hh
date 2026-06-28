@@ -141,12 +141,12 @@ namespace ui
 			const float label_x = this->x + this->triw + this->triwp;
 			const float right_x = label_x + this->bw + this->triwp;
 
-			/* Three floating glass regions, separated only by space. */
-			C2D_DrawRectSolid(label_x, this->y, this->z, this->bw, this->h, C2D_Color32(0,0,0,178));
+			/* Three floating regions, separated only by space. */
+			C2D_DrawRectSolid(label_x, this->y, this->z, this->bw, this->h, this->slots.get(0));
 			C2D_DrawRectSolid(label_x + 6.0f, this->y + 1.0f, this->z + 0.01f,
-				this->bw - 12.0f, 1.0f, C2D_Color32(255,255,255,22));
-			C2D_DrawRectSolid(left_x, this->y, this->z, this->triw, this->h, C2D_Color32(0,0,0,178));
-			C2D_DrawRectSolid(right_x, this->y, this->z, this->triw, this->h, C2D_Color32(0,0,0,178));
+				this->bw - 12.0f, 1.0f, this->slots.get(2));
+			C2D_DrawRectSolid(left_x, this->y, this->z, this->triw, this->h, this->slots.get(0));
+			C2D_DrawRectSolid(right_x, this->y, this->z, this->triw, this->h, this->slots.get(0));
 			/* minus / plus glyphs */
 			C2D_DrawRectSolid(left_x + 7.0f, this->y + this->h / 2.0f, this->z + 0.02f,
 				this->triw - 14.0f, 1.0f, this->slots.get(2));

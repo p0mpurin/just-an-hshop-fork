@@ -158,9 +158,9 @@ void ui::ProgressBar::update_state()
 			this->speed_window_part = this->part;
 		}
 
-		/* Direct sockets arrive in short bursts. Sample only complete
-		 * ~1 second byte windows so render/event timing cannot become a
-		 * fake 1-6 MiB/s spike. Blend consecutive windows lightly. */
+		/* Sample complete ~1 second byte windows so render/event timing
+		 * cannot become a fake speed spike. Blend consecutive windows
+		 * lightly for a steadier display. */
 		u64 window_ms = now - this->speed_window_start;
 		if(window_ms >= 900)
 		{

@@ -56,6 +56,12 @@ enum class AccentPreset {
 	red = 9,
 	mono = 10,
 };
+enum class SurfacePreset {
+	glass = 0,
+	solid = 1,
+	soft = 2,
+	contrast = 3,
+};
 
 struct NewSettings {
 	u64 flags0;
@@ -64,6 +70,7 @@ struct NewSettings {
 	u8 migration;
 	u8 wallpaper_dim;
 	u8 accent_preset;
+	u8 surface_preset;
 	std::string theme_path;
 	std::string background_path;
 	u16 proxy_port;
@@ -95,7 +102,7 @@ enum NewSettings_flags0 {
 	FLAG0_GOTO_REGION       = 0x80000,
 	FLAG0_PROXY_ENABLED     = 0x100000,
 	FLAG0_BACKGROUND_TIP_SEEN = 0x200000,
-	FLAG0_DIRECT_CDN_EXPERIMENTAL = 0x400000,
+	FLAG0_DIRECT_CDN_EXPERIMENTAL = 0x400000, /* deprecated; cleared by migration */
 	FLAG0_TOP_WIDE_EXPERIMENTAL = 0x800000,
 	FLAG0_UU_NOTICE_SEEN        = 0x1000000,
 	FLAG0_AUTO_SHUTDOWN         = 0x2000000,
@@ -119,7 +126,6 @@ enum NewSettings_flags0 {
 #define ISET_GOTO_REGION (get_nsettings()->flags0 & FLAG0_GOTO_REGION)
 #define ISET_PROXY_ENABLED (get_nsettings()->flags0 & FLAG0_PROXY_ENABLED)
 #define ISET_BACKGROUND_TIP_SEEN (get_nsettings()->flags0 & FLAG0_BACKGROUND_TIP_SEEN)
-#define ISET_DIRECT_CDN_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_DIRECT_CDN_EXPERIMENTAL)
 #define ISET_TOP_WIDE_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_TOP_WIDE_EXPERIMENTAL)
 #define ISET_UU_NOTICE_SEEN (get_nsettings()->flags0 & FLAG0_UU_NOTICE_SEEN)
 #define ISET_AUTO_SHUTDOWN (get_nsettings()->flags0 & FLAG0_AUTO_SHUTDOWN)
@@ -149,6 +155,7 @@ enum SettingsId
 	ID_WallpaperDim, // show as text: selector
 	ID_Theme,        // show as text: custom menu
 	ID_Accent,       // show as text: selector
+	ID_Surface,      // show as text: selector
 	ID_Performance,  // show as text: information
 	ID_TopWide,      // bool: experimental 800px top screen
 	ID_AutoShutdown, // bool: auto shutdown after install

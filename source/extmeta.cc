@@ -36,6 +36,23 @@
 
 enum class extmeta_return { yes, no, none };
 
+class ExtMetaBottomPanel : public ui::BaseWidget
+{ UI_WIDGET("ExtMetaBottomPanel")
+public:
+	float width() override { return ui::screen_width(this->screen); }
+	float height() override { return ui::screen_height(); }
+
+	bool render(ui::Keys&) override
+	{
+		C2D_DrawRectSolid(8.0f, 28.0f, -0.33f, 304.0f, 148.0f, C2D_Color32(0, 0, 0, 190));
+		C2D_DrawRectSolid(8.0f, 28.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 34));
+		C2D_DrawRectSolid(8.0f, 175.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18));
+		C2D_DrawRectSolid(18.0f, 82.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 16));
+		C2D_DrawRectSolid(18.0f, 128.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 12));
+		return true;
+	}
+};
+
 template <typename TTitle = hsapi::PartialTitle>
 static void show_preview(const TTitle& title)
 {
@@ -93,14 +110,16 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	ui::Text *name_text;
 	ui::Text *queue_hint;
 
+	ui::builder<ExtMetaBottomPanel>(ui::Screen::bottom)
+		.add_to(queue);
+
 	ui::builder<ui::Text>(ui::Screen::top, str::press_to_install)
-		.size(0.50f, 0.50f)
+		.size(0.48f, 0.48f)
 		.x(ui::layout::center_x)
-		.max_width(382.0f)
+		.y(18.0f)
+		.max_width(360.0f)
 		.wrap()
 		.add_to(&press_to_install, queue);
-	/* Reserve the lower status strip for SD/NAND/network indicators. */
-	press_to_install->set_y(194.0f);
 
 	/***
 	 * name (wrapped)
@@ -117,21 +136,16 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	 ***/
 
 	/* name */
-	ui::builder<ui::Text>(ui::Screen::top, str::name)
-		.size(0.40f)
-		.x(9.0f)
-		.y(25.0f)
-		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::top, base.name)
-		.size(0.50f)
-		.x(9.0f)
-		.y(36.0f)
-		.max_width(382.0f)
+		.size(0.58f)
+		.x(ui::layout::center_x)
+		.y(48.0f)
+		.max_width(360.0f)
 		.wrap()
 		.add_to(&name_text, queue);
 	/* Long localized titles used to run directly into the alternate-name row. */
 	if(name_text->height() > 42.0f)
-		name_text->resize(0.42f, 0.42f);
+		name_text->resize(0.46f, 0.46f);
 
 	ui::Text *alt_text = nullptr;
 	ui::Text *alt_text_label = nullptr;
@@ -148,14 +162,15 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 		alt_label_builder
 			.size(0.40f)
-			.x(9.0f)
-			.y(91.0f)
+			.x(ui::layout::center_x)
+			.y(102.0f)
+			.max_width(360.0f)
 			.add_to(&alt_text_label, queue);
 		ui::builder<ui::Text>(ui::Screen::top, base.alt)
 			.size(0.40f)
-			.x(9.0f)
-			.y(103.0f)
-			.max_width(382.0f)
+			.x(ui::layout::center_x)
+			.y(115.0f)
+			.max_width(360.0f)
 			.wrap()
 			.add_to(&alt_text, queue);
 		if(alt_text->height() > 35.0f)
@@ -184,14 +199,15 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	{
 		ui::builder<ui::Text>(ui::Screen::top, str::virtual_console_type)
 			.size(0.40f)
-			.x(205.0f)
-			.y(157.0f)
+			.x(214.0f)
+			.y(154.0f)
+			.max_width(172.0f)
 			.add_to(queue);
 		ui::builder<ui::Text>(ui::Screen::top, vc_type)
 			.size(0.43f)
-			.x(205.0f)
-			.y(169.0f)
-			.max_width(186.0f)
+			.x(214.0f)
+			.y(166.0f)
+			.max_width(172.0f)
 			.wrap()
 			.add_to(queue);
 	}
@@ -199,26 +215,29 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	/* category -> subcategory */
 	ui::builder<ui::Text>(ui::Screen::top, str::category)
 		.size(0.40f)
-		.x(9.0f)
-		.y(157.0f)
+		.x(vc_type ? 14.0f : ui::layout::center_x)
+		.y(154.0f)
+		.max_width(vc_type ? 172.0f : 360.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::top, hsapi::format_category_and_subcategory(base.cat, base.subcat))
 		.size(0.43f)
-		.x(9.0f)
-		.y(169.0f)
-		.max_width(vc_type ? 186.0f : 382.0f)
+		.x(vc_type ? 14.0f : ui::layout::center_x)
+		.y(166.0f)
+		.max_width(vc_type ? 172.0f : 360.0f)
 		.wrap()
 		.add_to(queue);
 
 	/* Button hint add to queue */
 	ui::builder<ui::Text>(ui::Screen::bottom, str::hint_add_queue)
-		.x(9.0f).y(7.0f)
+		.x(11.0f).y(8.0f)
 		.size(0.40f)
+		.max_width(104.0f)
 		.add_to(&queue_hint, queue);
 
 	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_R " Network test")
-		.x(195.0f).y(218.0f)
+		.x(208.0f).y(8.0f)
 		.size(0.40f)
+		.max_width(104.0f)
 		.add_to(queue);
 
 	/* only applies to themes */
@@ -226,9 +245,9 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	{
 		/* Button hint preview theme */
 		ui::builder<ui::Text>(ui::Screen::bottom, str::hint_preview_theme)
-			.right(queue_hint, 7.0f).y(7.0f)
+			.x(116.0f).y(8.0f)
 			.size(0.40f)
-			.max_width(155.0f)
+			.max_width(88.0f)
 			.add_to(queue);
 
 		ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_X)
@@ -240,29 +259,29 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 	/* version */
 	ui::builder<ui::Text>(ui::Screen::bottom, version_s)
-		.size(0.48f)
-		.x(9.0f)
-		.y(42.0f)
-		.max_width(140.0f)
+		.size(0.50f)
+		.x(18.0f)
+		.y(47.0f)
+		.max_width(282.0f)
 		.add_to(&version, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::version)
 		.size(0.40f)
-		.x(9.0f)
-		.y(29.0f)
+		.x(18.0f)
+		.y(35.0f)
 		.add_to(queue);
 
 	/* product code */
 	ui::builder<ui::Text>(ui::Screen::bottom, prodcode_s)
-		.size(0.43f)
-		.x(163.0f)
-		.y(42.0f)
-		.max_width(148.0f)
+		.size(0.46f)
+		.x(18.0f)
+		.y(72.0f)
+		.max_width(282.0f)
 		.wrap()
 		.add_to(&prodcode, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::prodcode)
 		.size(0.40f)
-		.x(163.0f)
-		.y(29.0f)
+		.x(18.0f)
+		.y(60.0f)
 		.add_to(queue);
 
 	hsapi::hsize title_size = base.size;
@@ -272,38 +291,40 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.manual_i18n_update([title_size](ui::Text *t, lang::type) -> void {
 			t->set_text(ui::human_readable_size_block<hsapi::hsize>(title_size));
 		})
-		.size(0.48f)
-		.x(9.0f)
-		.y(91.0f)
+		.size(0.50f)
+		.x(18.0f)
+		.y(100.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::size)
 		.size(0.40f)
-		.x(9.0f)
-		.y(78.0f)
+		.x(18.0f)
+		.y(88.0f)
 		.add_to(queue);
 
 	/* title id */
 	ui::builder<ui::Text>(ui::Screen::bottom, base.tid.to_string())
-		.size(0.48f)
-		.x(9.0f)
-		.y(140.0f)
+		.size(0.46f)
+		.x(18.0f)
+		.y(125.0f)
+		.max_width(282.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::tid)
 		.size(0.40f)
-		.x(9.0f)
-		.y(127.0f)
+		.x(18.0f)
+		.y(113.0f)
 		.add_to(queue);
 
 	/* landing id */
 	ui::builder<ui::Text>(ui::Screen::bottom, std::to_string(base.id))
-		.size(0.48f)
-		.x(9.0f)
-		.y(189.0f)
+		.size(0.46f)
+		.x(18.0f)
+		.y(151.0f)
+		.max_width(282.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::landing_id)
 		.size(0.40f)
-		.x(9.0f)
-		.y(176.0f)
+		.x(18.0f)
+		.y(139.0f)
 		.add_to(queue);
 
 	/* button actions */
@@ -370,6 +391,7 @@ static extmeta_return extmeta(const hsapi::Title& title)
 bool show_extmeta_lazy(const hsapi::PartialTitle& base, hsapi::Title *full)
 {
 	ui::prev_desc desc = ui::set_desc(str::more_about_content);
+	bool focus = ui::set_focus(true);
 	ui::I18NEnabledRenderQueue queue;
 	bool ret = true;
 
@@ -408,6 +430,7 @@ bool show_extmeta_lazy(const hsapi::PartialTitle& base, hsapi::Title *full)
 	if(full->id != 0)
 		install::pre_fetch_url(*full);
 
+	ui::set_focus(focus);
 	ui::set_desc(desc);
 	return ret;
 }
@@ -426,7 +449,9 @@ bool show_extmeta_lazy(std::vector<hsapi::PartialTitle>& titles, hsapi::hid id, 
 bool show_extmeta(const hsapi::Title& title)
 {
 	ui::prev_desc desc = ui::set_desc(str::more_about_content);
+	bool focus = ui::set_focus(true);
 	bool ret = to_bool(extmeta(title));
+	ui::set_focus(focus);
 	ui::set_desc(desc);
 	return ret;
 }

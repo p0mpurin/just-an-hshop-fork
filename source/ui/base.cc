@@ -293,6 +293,7 @@ static void common_init()
 	/* This is always the correct theme: before calling ui::init() load_current_theme() is called
 	 * so that the selected theme is in the back of the themes() array */
 	ui::Theme::global()->replace_with(themes().back());
+	apply_visual_settings();
 	ui::ThemeManager::global()->reget();
 	top_background.setup(ui::Screen::top, ui::Sprite::theme, ui::theme::background_top_image);
 	top_background->set_x(0.0f);
@@ -1716,7 +1717,7 @@ bool ui::ButtonCallback::render(ui::Keys& keys)
 #define SLIDER_WIDTH(t) ((t->width() - 4) / 2)
 #define SLIDER_HEIGHT(t) (t->height() - 4)
 
-UI_SLOTS(ui::Toggle_color, color_toggle_green, color_toggle_red, color_toggle_slider)
+UI_SLOTS(ui::Toggle_color, color_toggle_green, color_toggle_red, color_toggle_slider, color_button_border)
 
 void ui::Toggle::setup(bool state, std::function<void()> on_toggle_cb)
 {
@@ -1743,9 +1744,9 @@ bool ui::Toggle::render(ui::Keys& keys)
 		this->last_touch_toggle = osGetTime();
 	}
 
-	/* Subtle pink border for definition against dark backgrounds */
+	/* Subtle theme border for definition against wallpapers. */
 	C2D_DrawRectSolid(this->x - 1, this->y - 1, this->z - 0.01f, this->width() + 2, this->height() + 2,
-		C2D_Color32(255, 164, 204, 32));
+		this->slots.get(3));
 	/* Toggle track */
 	C2D_DrawRectSolid(this->x, this->y, this->z, this->width(), this->height(), this->slots.get(this->toggled_state ? 0 : 1));
 	/* Toggle slider with slight shadow for depth */
@@ -1907,11 +1908,25 @@ void ui::LED::ClearResetFlags(void)
 	LEDFlags &= ~(LED_TIMEOUT | LED_RESET_SLEEP);
 }
 
-Result ui::LED::ResetPattern()
+Result ui::LED::ResetPattern(bool force)
 {
 	ui::LED::Pattern info;
 	memset(&info, 0, sizeof(info));
-	return ui::LED::SetPattern(&info);
+	if(!force)
+		return ui::LED::SetPattern(&info);
+
+	Result res;
+	u32 *cmdbuf = getThreadCommandBuffer();
+
+	cmdbuf[0] = 0x08010640; // https://www.3dbrew.org/wiki/PTMSYSM:SetInfoLEDPattern
+	cmdbuf[1] = info.animation;
+	memcpy(&cmdbuf[ 2], info.red_pattern  , 32);
+	memcpy(&cmdbuf[10], info.green_pattern, 32);
+	memcpy(&cmdbuf[18], info.blue_pattern , 32);
+
+	if(R_FAILED(res = svcSendSyncRequest(*ptmSysmGetSessionHandle())))
+		return res;
+	return (Result) cmdbuf[1];
 }
 
 /* BackgroundObscurer */

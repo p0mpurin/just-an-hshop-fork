@@ -63,6 +63,14 @@ namespace http
 		void requires_authentication() { this->flags |= http::ResumableDownload::flag_auth; }
 		void requires_device_authentication() { this->flags |= http::ResumableDownload::flag_device_auth; }
 		void on_chunk(std::function<Result(size_t)> func) { this->on_chunk_ = func; }
+		void on_direct_chunk(std::function<u8*(u64, size_t)> acquire,
+			std::function<Result(size_t)> commit,
+			std::function<void()> release)
+		{
+			this->direct_chunk_acquire_ = acquire;
+			this->direct_chunk_commit_ = commit;
+			this->direct_chunk_release_ = release;
+		}
 
 		/* Event that is signaled when the state changes, it is the equivalent of
 		 * signalling the event in both on_chunk() and on_total_size_try_get(), additionally
@@ -100,6 +108,16 @@ namespace http
 			this->timeout = ntm;
 		}
 
+		void set_range(u32 start, u32 end)
+		{
+			this->rangeEnabled = true;
+			this->rangeStart = start;
+			this->rangeEnd = end;
+			this->downloadedSize = 0;
+			this->totalSize = 0;
+			this->flags &= ~http::ResumableDownload::flag_size;
+		}
+
 		bool in_progress()
 		{
 			return this->flags & http::ResumableDownload::flag_active;
@@ -108,6 +126,9 @@ namespace http
 	private:
 		std::function<Result()> on_total_size_try_get_ = []() -> Result { return 0; };
 		std::function<Result(size_t)> on_chunk_ = [](size_t) -> Result { return 0; };
+		std::function<u8*(u64, size_t)> direct_chunk_acquire_;
+		std::function<Result(size_t)> direct_chunk_commit_;
+		std::function<void()> direct_chunk_release_;
 
 		u64 timeout = DefaultTimeout;
 
@@ -131,6 +152,9 @@ namespace http
 		u32 postdataLen = 0;
 		bool hsapiEnabled = false;
 		bool versionCheckEnabled = false;
+		bool rangeEnabled = false;
+		u32 rangeStart = 0;
+		u32 rangeEnd = 0;
 
 #if HTTP_BACKEND == HTTP_BACKEND_HTTPC
 		httpcContext hctx;

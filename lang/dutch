@@ -636,9 +636,6 @@ DLC repareren
 Klaar. Als sommige DLC nog steeds niet werkt, probeer het dan opnieuw te installeren.\n
 Klik op UI_GLYPH_A om terug te gaan.
 
-- do_donate
-Als je catalog nuttig vond, doneer dan alsjeblieft door PAGE_DONATE te bezoeken op een ander apparaat!
-
 # General UI, used in places like the proxy toggle in settings
 - enabled
 Aan

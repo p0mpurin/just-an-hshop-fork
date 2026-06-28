@@ -233,6 +233,9 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 	u32 request_size = 0;
 	const char *fail_stage = "start";
 	bool bad_http_status = false;
+	bool partial_request = false;
+	u8 *receive_buffer = nullptr;
+	bool direct_chunk = false;
 
 	if(battery_is_critical())
 		return APPERR_CRITICAL_BAT;
@@ -283,9 +286,10 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 		return this->perform_execute_once(newurl, redirection_depth + 1);
 	}
 
-	if((this->downloadedSize == 0 && status != 200) || (this->downloadedSize != 0 && status != 206))
+	partial_request = this->rangeEnabled || this->downloadedSize != 0;
+	if((!partial_request && status != 200) || (partial_request && status != 206))
 	{
-		elog("Status code indicating failure, expected %d, got %ld", this->downloadedSize == 0 ? 200 : 206, status);
+		elog("Status code indicating failure, expected %d, got %ld", partial_request ? 206 : 200, status);
 		if (this->downloadedSize == 0 && status == 413) {
 			res = APPERR_TOO_LARGE;
 			goto fail;
@@ -353,8 +357,20 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 		request_size = http::ResumableDownload::ChunkMaxSize;
 		if(this->totalSize > prev_pos)
 			request_size = MIN(request_size, this->totalSize - prev_pos);
+		receive_buffer = (u8 *)this->buffer;
+		direct_chunk = false;
+		if(this->direct_chunk_acquire_)
+		{
+			receive_buffer = this->direct_chunk_acquire_(this->downloadedSize, request_size);
+			if(!receive_buffer)
+			{
+				res = APPERR_OUT_OF_MEM;
+				goto fail;
+			}
+			direct_chunk = true;
+		}
 		fail_stage = "recv";
-		res = httpcReceiveDataTimeout(&this->hctx, (u8 *) this->buffer, request_size, this->timeout);
+		res = httpcReceiveDataTimeout(&this->hctx, receive_buffer, request_size, this->timeout);
 		if(res) ilog("[http] httpcReceiveData returned 0x%08lX chunk=%lu", res, (unsigned long)chunk_num);
 		if(this->flags & http::ResumableDownload::flag_exit) goto cancel;
 
@@ -394,9 +410,19 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 			}
 		}
 		chunk_size = pos - prev_pos;
+		if(chunk_size == 0 && res == (Result) HTTPC_RESULTCODE_DOWNLOADPENDING)
+		{
+			if(direct_chunk)
+			{
+				this->direct_chunk_release_();
+				direct_chunk = false;
+			}
+			this->notify();
+			continue;
+		}
 		if (this->hsapiEnabled && chunk_num == 0 && status != 200 && status != 206) {
 			nb::Result nbres;
-			if (nb::single_object::parse<nb::Result>(nbres, (u8 *)this->buffer, pos) == nb::StatusCode::SUCCESS) {
+			if (nb::single_object::parse<nb::Result>(nbres, receive_buffer, pos) == nb::StatusCode::SUCCESS) {
 				res = hsapi::handle_nb_result(nbres);
 				goto fail;
 			}
@@ -404,7 +430,8 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 			res = APPERR_NON200;
 			goto fail;
 		}
-		nres = this->on_chunk_(chunk_size);
+		nres = direct_chunk ? this->direct_chunk_commit_(chunk_size) : this->on_chunk_(chunk_size);
+		direct_chunk = false;
 		/* we can't just assign res = nres becaues res may be either
 		 * HTTPC_RESULTCODE_DOWNLOADPENDING or 0, which we can't discard */
 		if(R_FAILED(nres)) res = nres;
@@ -426,6 +453,8 @@ Result http::ResumableDownload::perform_execute_once(const char *url, int redire
 	if(res == 0) this->notify();
 
 fail:
+	if(direct_chunk && this->direct_chunk_release_)
+		this->direct_chunk_release_();
 	if(R_FAILED(res))
 	{
 		elog("[http] FAIL stage=%s chunk=%lu code=0x%08lX status=%ld pos=%lu prev=%lu total=%lu req=%lu url=%s",
@@ -509,7 +538,15 @@ Result http::ResumableDownload::setup_handle(const char *url)
 		TRYJ(httpcAddPostDataRaw(&this->hctx, (const u32 *) this->postdataPtr, this->postdataLen));
 	}
 	/* we start from downloadedSize; 0 initially and it increments after the second execute_once() */
-	if(this->downloadedSize != 0)
+	if(this->rangeEnabled)
+	{
+		u32 start = this->rangeStart + this->downloadedSize;
+		std::string val = "bytes=" + std::to_string(start) + "-" + std::to_string(this->rangeEnd);
+		fail_stage = "range";
+		TRYJ(httpcAddRequestHeaderField(&this->hctx, "Range", val.c_str()));
+		ilog("[http] Range header added: %s", val.c_str());
+	}
+	else if(this->downloadedSize != 0)
 	{
 		std::string val = "bytes=" + std::to_string(this->downloadedSize) + "-";
 		fail_stage = "range";

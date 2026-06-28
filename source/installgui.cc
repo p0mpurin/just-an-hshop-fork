@@ -33,25 +33,35 @@
 #include "panic.hh"
 #include "log.hh"
 
+struct ProgressRenderThrottle {
+	u64 last_render_ms = 0;
+
+	void reset()
+	{
+		this->last_render_ms = 0;
+	}
+
+	bool should_render(u64 now, u64 total)
+	{
+		u64 ms = osGetTime();
+		if(now == 0 || (total && now >= total) || ms - this->last_render_ms >= 100)
+		{
+			this->last_render_ms = ms;
+			return true;
+		}
+		return false;
+	}
+};
 
 void make_render_queue(ui::I18NEnabledRenderQueue& queue, ui::ProgressBar **bar,
 	ui::Text **stage, const std::string& label)
 {
 	/* Keep the download screen structure. Rune3DS adds only a
 	 * compact stage line and clearer speed/ETA labels. */
-	ui::Text *donate;
-	ui::builder<ui::Text>(ui::progloc(), str::do_donate)
-		.size(0.46f)
-		.x(ui::layout::center_x)
-		.y(18.0f)
-		.max_width(ui::screen_width(ui::progloc()) - 20.0f)
-		.wrap()
-		.add_to(&donate, queue);
-
 	ui::builder<ui::Text>(ui::progloc(), "Requesting download link")
-		.size(0.40f)
+		.size(0.44f)
 		.x(ui::layout::center_x)
-		.under(donate, 8.0f)
+		.y(34.0f)
 		.max_width(ui::screen_width(ui::progloc()) - 20.0f)
 		.wrap()
 		.add_to(stage, queue);
@@ -217,15 +227,18 @@ Result install::gui::net_cia(const std::string& url, ctr::title_id tid, bool int
 
 	bool shouldReinstall = defaultReinstallable;
 	Result res = 0;
+	ProgressRenderThrottle render_throttle;
 
 start_install:
 	Led_Init();
-	res = install::net_cia(makeurlwrap(url), tid, [&queue, &bar, stage](u64 now, u64 total) -> void {
+	render_throttle.reset();
+	res = install::net_cia(makeurlwrap(url), tid, [&queue, &bar, stage, &render_throttle](u64 now, u64 total) -> void {
 		update_led_progress(now, total);
 		stage->set_text(now ? "Downloading + installing" : "Preparing installation");
 		bar->update(now, total);
 		bar->activate();
-		queue.render_frame();
+		if(render_throttle.should_render(now, total))
+			queue.render_frame();
 	}, shouldReinstall, hsapiEnabled, doVersionCheck);
 
 	if(res == APPERR_NOREINSTALL)
@@ -273,22 +286,21 @@ Result install::gui::hs_cia(const hsapi::Title& meta, bool interactive, bool def
 
 	bool shouldReinstall = defaultReinstallable;
 	Result res = 0;
+	ProgressRenderThrottle render_throttle;
 
 	if(interactive && R_FAILED(res = ctr::dmn::increase_sleep_lock_ref()))
 		elog("failed to acquire sleep mode lock: %08lX", res);
 
 start_install:
 	Led_Init();
-	res = install::hs_cia(meta, [&queue, &bar, stage](u64 now, u64 total) -> void {
+	render_throttle.reset();
+	res = install::hs_cia(meta, [&queue, &bar, stage, &render_throttle](u64 now, u64 total) -> void {
 		update_led_progress(now, total);
-		stage->set_text(now
-			? (install::is_direct_cdn_active()
-				? "Direct socket + installing"
-				: "Downloading + installing")
-			: "Preparing installation");
+		stage->set_text(now ? "Downloading + installing" : "Preparing installation");
 		bar->update(now, total);
 		bar->activate();
-		queue.render_frame();
+		if(render_throttle.should_render(now, total))
+			queue.render_frame();
 	}, shouldReinstall);
 
 	if(res == APPERR_NOREINSTALL)
@@ -338,7 +350,7 @@ start_install:
 	return res;
 }
 
-Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
+Result install::gui::network_benchmark(const hsapi::Title& meta, const std::string& label)
 {
 	bool focus = ui::set_focus(true);
 	ui::ProgressBar *bar;
@@ -349,13 +361,9 @@ Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
 	queue.render_frame();
 
 	install::NetworkBenchmarkResult stats;
-	Result res = install::hs_network_benchmark(id, stats,
+	Result res = install::hs_network_benchmark(meta, stats,
 		[&queue, &bar, stage](u64 now, u64 total) -> void {
-			stage->set_text(now
-				? (install::is_direct_cdn_active()
-					? "Direct socket to RAM · no SD writes"
-					: "Nintendo HTTP to RAM · no SD writes")
-				: "Requesting authenticated CDN link");
+			stage->set_text(now ? install::network_benchmark_phase() : "Requesting authenticated CDN link");
 			bar->update(now, std::min<u64>(total, 32ULL * 1024ULL * 1024ULL));
 			bar->activate();
 			queue.render_frame();
@@ -364,19 +372,36 @@ Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
 	ui::set_focus(focus);
 	if(R_SUCCEEDED(res))
 	{
-		char message[256];
+		char message[640];
 		snprintf(message, sizeof(message),
-			"Network-only result\n\nAverage  %.2f MiB/s\nPeak       %.2f MiB/s\nData       %.1f MiB\n\nNo CIA data was installed or written to SD.",
-			stats.average_mib_s, stats.peak_mib_s, stats.bytes / (1024.0f * 1024.0f));
+			"Network-only result\n\nRAM: single HTTP\nAverage    %.2f MiB/s\nPeak       %.2f MiB/s\n\nRAM: parallel HTTP ranges (%u)\nAverage    %.2f MiB/s\nPeak       %.2f MiB/s\n\nData       %.1f MiB\n\nNo CIA data was installed or written to SD.",
+			stats.single_average_mib_s, stats.single_peak_mib_s,
+			stats.parallel_connections,
+			stats.average_mib_s, stats.peak_mib_s,
+			stats.bytes / (1024.0f * 1024.0f));
 		ui::notice(message, 42.0f);
 	}
 	else if(res != APPERR_CANCELLED)
 	{
 		error_container err = get_error(res);
-		report_error(err, "User was running network benchmark for content ID " + std::to_string(id));
+		report_error(err, "User was running network benchmark for content ID " + std::to_string(meta.id));
 		handle_error(err);
 	}
 	return res;
+}
+
+Result install::gui::network_benchmark(hsapi::hid id, const std::string& label)
+{
+	hsapi::Title meta;
+	Result res = hsapi::call(hsapi::title_meta, meta, std::move(id));
+	if(R_FAILED(res))
+	{
+		error_container err = get_error(res);
+		report_error(err, "User was preparing network benchmark for content ID " + std::to_string(id));
+		handle_error(err);
+		return res;
+	}
+	return install::gui::network_benchmark(meta, label);
 }
 
 void install::gui::SuccessLED() { Led_SetDone(); }

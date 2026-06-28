@@ -818,9 +818,6 @@ UI_GLYPH_L/UI_GLYPH_R: змiнити режим пошуку
 
 # -- v1.4.4 barrier -- #
 
-- do_donate
-Якщо catalog став вам у пригодi, будь ласка, зробiть пожертву, вiдвiдавши PAGE_DONATE з iншого пристрою!
-
 # -- v1.4.5 barrier -- #
 
 # This string is a bit weird. It's displayed the first time Rune3DS is booted and is meant to prevent the question "Rune3DS is in Japanese/Welsh how fix" in the Discord support channels

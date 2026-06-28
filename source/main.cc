@@ -65,8 +65,10 @@ public:
 			C2D_Color32(0, 0, 0, 218));
 		C2D_DrawRectSolid(16.0f, 183.0f, ui::layer::bottom - 0.04f, 288.0f, 1.0f,
 			C2D_Color32(255, 255, 255, 34));
-		C2D_DrawRectSolid(154.0f, 193.0f, ui::layer::bottom - 0.03f, 1.0f, 28.0f,
-			C2D_Color32(255, 255, 255, 26));
+		float sep_x[] = { 74.0f, 126.0f, 194.0f, 254.0f };
+		for(size_t i = 0; i < 4; ++i)
+			C2D_DrawRectSolid(sep_x[i], 196.0f, ui::layer::bottom - 0.03f, 1.0f, 28.0f,
+				C2D_Color32(255, 255, 255, 26));
 		return true;
 	}
 };
@@ -172,7 +174,7 @@ private:
 
 	const char *select_string()
 	{
-		return STRING(do_donate);
+		return STRING(press_any_button_continue);
 	}
 
 	unsigned frames_until_tip;
@@ -471,6 +473,21 @@ int main(int argc, char* argv[])
 	ui::builder<HomeDock>(ui::Screen::bottom)
 		.add_to(ui::RenderQueue::global());
 
+	ui::builder<ui::Button>(ui::Screen::bottom, str::queue)
+		.additional_i18n_update([](ui::Button *btn, lang::type) -> void {
+			btn->set_x(42.0f - btn->width() / 2.0f);
+		})
+		.when_clicked([](ui::Button *) -> bool {
+			ui::RenderQueue::global()->render_and_then(show_queue);
+			return true;
+		})
+		.disable_background()
+		.wrap()
+		.x(12.0f)
+		.y(197.0f)
+		.tag(ui::tag::queue)
+		.add_to(ui::RenderQueue::global());
+
 	ui::builder<ui::Button>(ui::Screen::bottom, ui::Sprite::theme, ui::theme::search_image)
 		.when_clicked([](ui::Button *btn) -> bool {
 			ui::RenderQueue::global()->render_and_then([btn]() -> void {
@@ -484,7 +501,7 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.x(86.0f)
+		.x(90.0f)
 		.y(202.0f)
 		.tag(ui::tag::search)
 		.add_to(ui::RenderQueue::global());
@@ -496,7 +513,7 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.x(184.0f)
+		.x(150.0f)
 		.y(202.0f)
 		.tag(ui::tag::settings)
 		.add_to(ui::RenderQueue::global());
@@ -508,7 +525,7 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.x(216.0f)
+		.x(210.0f)
 		.y(202.0f)
 		.tag(ui::tag::more)
 		.add_to(ui::RenderQueue::global());
@@ -528,24 +545,9 @@ int main(int argc, char* argv[])
 		})
 		.disable_background()
 		.wrap()
-		.x(248.0f)
+		.x(270.0f)
 		.y(202.0f)
 		.tag(ui::tag::random)
-		.add_to(ui::RenderQueue::global());
-
-	ui::builder<ui::Button>(ui::Screen::bottom, str::queue)
-		.additional_i18n_update([](ui::Button *btn, lang::type) -> void {
-			btn->set_x(83.0f - btn->width() / 2.0f);
-		})
-		.when_clicked([](ui::Button *) -> bool {
-			ui::RenderQueue::global()->render_and_then(show_queue);
-			return true;
-		})
-		.disable_background()
-		.wrap()
-		.x(31.0f)
-		.y(196.0f)
-		.tag(ui::tag::queue)
 		.add_to(ui::RenderQueue::global());
 
 	/* konami */

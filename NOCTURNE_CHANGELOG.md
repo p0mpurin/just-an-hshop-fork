@@ -1,5 +1,15 @@
 # Rune3DS changelog
 
+## 1.5.41
+
+- Added experimental direct CDN socket transport for faster downloads on New 3DS
+- Direct socket path now reports specific error codes per failure stage
+- Polished bottom dock bar: evenly spaced buttons with clean separators
+- Fixed bottom details panel overlapping with Queue button
+- Rebranded built-in theme names and authors
+- Improved light theme contrast and fixed invisible UI elements
+- Removed stale "Direct CDN was removed" notice from settings
+
 ## 1.5.40
 
 - Rebranded public app text, install docs, UniStore metadata, and QR assets to Rune3DS

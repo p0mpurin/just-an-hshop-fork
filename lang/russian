@@ -693,9 +693,6 @@ Rune3DS автоматически определил язык системы: %
 - update_try_again_or_update_manually
 Пожалуйста, попробуйте ещё раз или обновите Rune3DS самостоятельно.
 
-- do_donate
-Если catalog оказался для вас полезным, пожалуйста, сделайте пожертвование, посетив PAGE_DONATE с другого устройства!
-
 # This is displayed at the top of an error screen
 - error_occurred
 Произошла ошибка

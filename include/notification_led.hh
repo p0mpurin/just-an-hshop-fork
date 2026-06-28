@@ -24,6 +24,6 @@ void Led_SetInstalling();
 void Led_SetDone();
 void Led_SetError();
 void Led_SetCancelled();
-void Led_Off();
+void Led_Off(bool force = false);
 
 #endif
