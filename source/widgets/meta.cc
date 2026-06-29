@@ -17,22 +17,22 @@
 #include "widgets/meta.hh"
 
 #define META_PANEL() do { \
-	C2D_DrawRectSolid(8.0f, 10.0f, -0.33f, 304.0f, 194.0f, C2D_Color32(0, 0, 0, 212)); \
+	C2D_DrawRectSolid(8.0f, 10.0f, -0.33f, 304.0f, 166.0f, C2D_Color32(0, 0, 0, 212)); \
 	C2D_DrawRectSolid(8.0f, 10.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 34)); \
-	C2D_DrawRectSolid(8.0f, 203.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18)); \
-	C2D_DrawRectSolid(18.0f, 72.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 20)); \
-	C2D_DrawRectSolid(18.0f, 119.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 14)); \
+	C2D_DrawRectSolid(8.0f, 175.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18)); \
+	C2D_DrawRectSolid(18.0f, 66.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 20)); \
+	C2D_DrawRectSolid(18.0f, 112.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 14)); \
 	} while(0)
 
 #define PAIR_I18N(val, title, val_i18n) do { \
 	ui::builder<ui::Text>(this->screen, title) \
-		.size(0.40f) \
+		.size(0.36f) \
 		.x(this->get_x()) \
 		.under(this->queue.back(), 3.0f) \
 		.add_to(this->queue); \
 	ui::builder<ui::Text>(this->screen, val) \
 		.manual_i18n_update(val_i18n) \
-		.size(0.58f) \
+		.size(0.48f) \
 		.x(this->get_x()) \
 		.under(this->queue.back(), -1.0f) \
 		.scroll() \
@@ -41,12 +41,12 @@
 
 #define PAIR(val, title) do { \
 	ui::builder<ui::Text>(this->screen, title) \
-		.size(0.40f) \
+		.size(0.36f) \
 		.x(this->get_x()) \
 		.under(this->queue.back(), 3.0f) \
 		.add_to(this->queue); \
 	ui::builder<ui::Text>(this->screen, val) \
-		.size(0.58f) \
+		.size(0.48f) \
 		.x(this->get_x()) \
 		.under(this->queue.back(), -1.0f) \
 		.scroll() \
@@ -61,7 +61,7 @@ static void clip_q(ui::I18NEnabledRenderQueue &q, float base, float size = 0.65f
 	float totalHeight = base;
 	for(ui::BaseWidget *wid : q.bot)
 		totalHeight += wid->height();
-	if(totalHeight > 210.0f)
+	if(totalHeight > 174.0f)
 	{
 		ui::Text *prev = nullptr;
 		/* everything needs to be smaller...
@@ -90,25 +90,58 @@ void ui::CatMeta::set_cat(const hsapi::Category& cat)
 	this->size = cat.meta.size;
 
 	ui::builder<ui::Text>(this->screen, str::name)
-		.size(0.40f)
+		.size(0.36f)
 		.x(this->get_x())
 		.y(this->get_y())
 		.add_to(this->queue);
 	ui::builder<ui::Text>(this->screen, cat.disp)
-		.size(0.70f)
+		.size(0.62f)
 		.x(this->get_x())
 		.under(this->queue.back(), -1.0f)
+		.max_width(282.0f)
 		.scroll()
 		.add_to(this->queue);
 
-	PAIR_I18N(ui::human_readable_size_block(this->size), str::size,
-		[this](ui::Text *t, lang::type) -> void {
+	ui::builder<ui::Text>(this->screen, str::size)
+		.size(0.34f)
+		.x(this->get_x())
+		.y(66.0f)
+		.add_to(this->queue);
+	ui::builder<ui::Text>(this->screen, ui::human_readable_size_block(this->size))
+		.manual_i18n_update([this](ui::Text *t, lang::type) -> void {
 			t->set_text(ui::human_readable_size_block(this->size));
-		}
-	);
-	PAIR(std::to_string(cat.meta.titles), str::total_titles);
-	PAIR(cat.desc, str::description);
-	clip_q(this->queue, this->get_y());
+		})
+		.size(0.44f)
+		.x(this->get_x())
+		.y(78.0f)
+		.max_width(282.0f)
+		.scroll()
+		.add_to(this->queue);
+	ui::builder<ui::Text>(this->screen, str::total_titles)
+		.size(0.34f)
+		.x(this->get_x())
+		.y(101.0f)
+		.max_width(282.0f)
+		.add_to(this->queue);
+	ui::builder<ui::Text>(this->screen, std::to_string(cat.meta.titles))
+		.size(0.44f)
+		.x(this->get_x())
+		.y(113.0f)
+		.max_width(282.0f)
+		.scroll()
+		.add_to(this->queue);
+	ui::builder<ui::Text>(this->screen, str::description)
+		.size(0.34f)
+		.x(this->get_x())
+		.y(136.0f)
+		.add_to(this->queue);
+	ui::builder<ui::Text>(this->screen, cat.desc)
+		.size(0.34f)
+		.x(this->get_x())
+		.y(148.0f)
+		.max_width(282.0f)
+		.wrap()
+		.add_to(this->queue);
 }
 
 bool ui::CatMeta::render(ui::Keys& keys)

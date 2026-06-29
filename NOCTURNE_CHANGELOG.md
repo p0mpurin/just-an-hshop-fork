@@ -1,5 +1,12 @@
 # Rune3DS changelog
 
+## 1.5.42
+
+- Added experimental RuneFetch job handoff from title details with L for background installs
+- Rune3DS now attempts to launch the RuneFetch sysmodule when a background job is queued
+- RuneFetch jobs are written atomically to `/3ds/Rune3DS/runefetch/jobs/` for the companion sysmodule
+- RuneFetch jobs now explicitly request stream install mode
+
 ## 1.5.41
 
 - Added experimental direct CDN socket transport for faster downloads on New 3DS

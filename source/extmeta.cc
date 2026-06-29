@@ -15,6 +15,15 @@
  */
 
 #include <algorithm>
+#include <cstring>
+#include <cstdio>
+#include <ctime>
+#include <sys/stat.h>
+#include <unistd.h>
+
+extern "C" {
+#include <3ds/services/pmapp.h>
+}
 
 #include <widgets/meta.hh>
 #include <ui/base.hh>
@@ -36,6 +45,122 @@
 
 enum class extmeta_return { yes, no, none };
 
+#define RUNEFETCH_DIR        "/3ds/Rune3DS/runefetch"
+#define RUNEFETCH_JOBS_DIR   "/3ds/Rune3DS/runefetch/jobs"
+#define RUNEFETCH_STATE_DIR  "/3ds/Rune3DS/runefetch/state"
+#define RUNEFETCH_TITLE_ID   0x0004013000C0FE02ULL
+
+static Result runefetch_launch_sysmodule()
+{
+	Result res = pmAppInit();
+	if(R_FAILED(res))
+		return res;
+
+	FS_ProgramInfo program_info {};
+	program_info.programId = RUNEFETCH_TITLE_ID;
+	program_info.mediaType = MEDIATYPE_NAND;
+
+	res = PMAPP_LaunchTitle(&program_info, PMLAUNCHFLAG_LOAD_DEPENDENCIES);
+	pmAppExit();
+	return res;
+}
+
+template <typename TTitle>
+static std::string runefetch_job_basename(const TTitle& title)
+{
+	std::string source = title.tid.to_string();
+	if(source.empty())
+		source = std::to_string(title.id);
+
+	std::string out;
+	out.reserve(source.size());
+	for(char c : source)
+	{
+		bool ok = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+			(c >= '0' && c <= '9') || c == '-' || c == '_';
+		if(ok) out += c;
+	}
+	if(out.empty())
+		out = "job-" + std::to_string(title.id);
+	return out;
+}
+
+static std::string runefetch_escape_value(const std::string& value)
+{
+	std::string out;
+	out.reserve(value.size());
+	for(char c : value)
+	{
+		if(c == '\n' || c == '\r')
+			out += ' ';
+		else
+			out += c;
+	}
+	return out;
+}
+
+template <typename TTitle>
+static Result runefetch_write_job(const TTitle& title)
+{
+	std::string url;
+	Result res = hsapi::call(hsapi::get_download_link, url, (hsapi::hid) title.id);
+	if(R_FAILED(res))
+		return res;
+
+	mkdir("/3ds", 0777);
+	mkdir("/3ds/Rune3DS", 0777);
+	mkdir(RUNEFETCH_DIR, 0777);
+	mkdir(RUNEFETCH_JOBS_DIR, 0777);
+	mkdir(RUNEFETCH_STATE_DIR, 0777);
+
+	std::string base = runefetch_job_basename(title);
+	std::string tmp_path = std::string(RUNEFETCH_JOBS_DIR) + "/" + base + ".tmp";
+	std::string job_path = std::string(RUNEFETCH_JOBS_DIR) + "/" + base + ".job";
+
+	FILE *f = fopen(tmp_path.c_str(), "w");
+	if(!f)
+		return MAKERESULT(RL_PERMANENT, RS_NOTFOUND, RM_APPLICATION, 0x70);
+
+	fprintf(f, "version=1\n");
+	fprintf(f, "id=%lu\n", (unsigned long) title.id);
+	fprintf(f, "title_id=%s\n", title.tid.to_string().c_str());
+	fprintf(f, "name=%s\n", runefetch_escape_value(hsapi::title_name(title)).c_str());
+	fprintf(f, "url=%s\n", url.c_str());
+	fprintf(f, "size=%llu\n", (unsigned long long) title.size);
+	fprintf(f, "mode=stream_install\n");
+	fclose(f);
+
+	remove(job_path.c_str());
+	if(rename(tmp_path.c_str(), job_path.c_str()) != 0)
+		return MAKERESULT(RL_PERMANENT, RS_INTERNAL, RM_APPLICATION, 0x71);
+
+	return 0;
+}
+
+template <typename TTitle>
+static void runefetch_enqueue_background(const TTitle& title)
+{
+	Result res = runefetch_write_job(title);
+	if(R_FAILED(res))
+	{
+		error_container err = get_error(res);
+		report_error(err, "RuneFetch background job for content ID " + std::to_string(title.id));
+		handle_error(err);
+		return;
+	}
+
+	res = runefetch_launch_sysmodule();
+	if(R_FAILED(res))
+	{
+		error_container err = get_error(res);
+		report_error(err, "RuneFetch sysmodule launch");
+		handle_error(err);
+		return;
+	}
+
+	ui::notice("Background install queued.\n\nYou can press HOME and play another title. RuneFetch will download and install in the background.\n\nReturn when the LED shows it is ready.");
+}
+
 class ExtMetaBottomPanel : public ui::BaseWidget
 { UI_WIDGET("ExtMetaBottomPanel")
 public:
@@ -44,11 +169,11 @@ public:
 
 	bool render(ui::Keys&) override
 	{
-		C2D_DrawRectSolid(8.0f, 28.0f, -0.33f, 304.0f, 148.0f, C2D_Color32(0, 0, 0, 190));
-		C2D_DrawRectSolid(8.0f, 28.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 34));
-		C2D_DrawRectSolid(8.0f, 175.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18));
-		C2D_DrawRectSolid(18.0f, 82.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 16));
-		C2D_DrawRectSolid(18.0f, 128.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 12));
+		C2D_DrawRectSolid(8.0f, 10.0f, -0.33f, 304.0f, 194.0f, C2D_Color32(0, 0, 0, 190));
+		C2D_DrawRectSolid(8.0f, 10.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 34));
+		C2D_DrawRectSolid(8.0f, 203.0f, -0.30f, 304.0f, 1.0f, C2D_Color32(255, 255, 255, 18));
+		C2D_DrawRectSolid(18.0f, 72.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 16));
+		C2D_DrawRectSolid(18.0f, 124.0f, -0.28f, 282.0f, 1.0f, C2D_Color32(255, 255, 255, 12));
 		return true;
 	}
 };
@@ -229,15 +354,21 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 	/* Button hint add to queue */
 	ui::builder<ui::Text>(ui::Screen::bottom, str::hint_add_queue)
-		.x(11.0f).y(8.0f)
+		.x(11.0f).y(214.0f)
 		.size(0.40f)
 		.max_width(104.0f)
 		.add_to(&queue_hint, queue);
 
 	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_R " Network test")
-		.x(208.0f).y(8.0f)
+		.x(208.0f).y(214.0f)
 		.size(0.40f)
 		.max_width(104.0f)
+		.add_to(queue);
+
+	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_L " Bg download")
+		.x(116.0f).y(hsapi::category(base.cat).name == THEMES_CATEGORY ? 200.0f : 214.0f)
+		.size(0.40f)
+		.max_width(100.0f)
 		.add_to(queue);
 
 	/* only applies to themes */
@@ -245,7 +376,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 	{
 		/* Button hint preview theme */
 		ui::builder<ui::Text>(ui::Screen::bottom, str::hint_preview_theme)
-			.x(116.0f).y(8.0f)
+			.x(116.0f).y(214.0f)
 			.size(0.40f)
 			.max_width(88.0f)
 			.add_to(queue);
@@ -259,29 +390,29 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 
 	/* version */
 	ui::builder<ui::Text>(ui::Screen::bottom, version_s)
-		.size(0.50f)
+		.size(0.56f)
 		.x(18.0f)
-		.y(47.0f)
+		.y(28.0f)
 		.max_width(282.0f)
 		.add_to(&version, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::version)
-		.size(0.40f)
+		.size(0.42f)
 		.x(18.0f)
-		.y(35.0f)
+		.y(16.0f)
 		.add_to(queue);
 
 	/* product code */
 	ui::builder<ui::Text>(ui::Screen::bottom, prodcode_s)
-		.size(0.46f)
+		.size(0.52f)
 		.x(18.0f)
-		.y(72.0f)
+		.y(61.0f)
 		.max_width(282.0f)
 		.wrap()
 		.add_to(&prodcode, queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::prodcode)
-		.size(0.40f)
+		.size(0.42f)
 		.x(18.0f)
-		.y(60.0f)
+		.y(49.0f)
 		.add_to(queue);
 
 	hsapi::hsize title_size = base.size;
@@ -291,40 +422,40 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.manual_i18n_update([title_size](ui::Text *t, lang::type) -> void {
 			t->set_text(ui::human_readable_size_block<hsapi::hsize>(title_size));
 		})
-		.size(0.50f)
+		.size(0.56f)
 		.x(18.0f)
-		.y(100.0f)
+		.y(94.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::size)
-		.size(0.40f)
+		.size(0.42f)
 		.x(18.0f)
-		.y(88.0f)
+		.y(82.0f)
 		.add_to(queue);
 
 	/* title id */
 	ui::builder<ui::Text>(ui::Screen::bottom, base.tid.to_string())
-		.size(0.46f)
+		.size(0.52f)
 		.x(18.0f)
-		.y(125.0f)
+		.y(139.0f)
 		.max_width(282.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::tid)
-		.size(0.40f)
+		.size(0.42f)
 		.x(18.0f)
-		.y(113.0f)
+		.y(127.0f)
 		.add_to(queue);
 
 	/* landing id */
 	ui::builder<ui::Text>(ui::Screen::bottom, std::to_string(base.id))
-		.size(0.46f)
+		.size(0.52f)
 		.x(18.0f)
-		.y(151.0f)
+		.y(172.0f)
 		.max_width(282.0f)
 		.add_to(queue);
 	ui::builder<ui::Text>(ui::Screen::bottom, str::landing_id)
-		.size(0.40f)
+		.size(0.42f)
 		.x(18.0f)
-		.y(139.0f)
+		.y(160.0f)
 		.add_to(queue);
 
 	/* button actions */
@@ -341,6 +472,15 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.when_kdown([&base](u32) -> bool { ui::RenderQueue::global()->render_and_then([&base]() -> void {
 				queue_add(base.id, true);
 			}); return true; })
+		.add_to(queue);
+
+	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_L)
+		.when_kdown([&base](u32) -> bool {
+			ui::RenderQueue::global()->render_and_then([&base]() -> void {
+				runefetch_enqueue_background(base);
+			});
+			return true;
+		})
 		.add_to(queue);
 
 	ui::builder<ui::ButtonCallback>(ui::Screen::top, KEY_R)

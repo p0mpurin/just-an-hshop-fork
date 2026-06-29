@@ -61,6 +61,10 @@ public:
 
 	bool render(ui::Keys&) override
 	{
+		ui::BaseWidget *queue_button = ui::RenderQueue::global()->find_tag(ui::tag::queue);
+		if(queue_button && queue_button->is_hidden())
+			return true;
+
 		C2D_DrawRectSolid(0.0f, 182.0f, ui::layer::bottom - 0.05f, 320.0f, 58.0f,
 			C2D_Color32(0, 0, 0, 218));
 		C2D_DrawRectSolid(16.0f, 183.0f, ui::layer::bottom - 0.04f, 288.0f, 1.0f,
