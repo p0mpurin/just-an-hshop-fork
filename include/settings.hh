@@ -62,6 +62,10 @@ enum class SurfacePreset {
 	soft = 2,
 	contrast = 3,
 };
+enum class RuneFetchMode {
+	stream = 0,
+	cache = 1,
+};
 
 struct NewSettings {
 	u64 flags0;
@@ -106,6 +110,8 @@ enum NewSettings_flags0 {
 	FLAG0_TOP_WIDE_EXPERIMENTAL = 0x800000,
 	FLAG0_UU_NOTICE_SEEN        = 0x1000000,
 	FLAG0_AUTO_SHUTDOWN         = 0x2000000,
+	FLAG0_RUNEFETCH_CACHE       = 0x4000000,
+	FLAG0_RUNEFETCH_AUTO_LAUNCH = 0x8000000,
 };
 
 #define ISET_RESUME_DOWNLOADS (get_nsettings()->flags0 & FLAG0_RESUME_DOWNLOADS)
@@ -129,6 +135,9 @@ enum NewSettings_flags0 {
 #define ISET_TOP_WIDE_EXPERIMENTAL (get_nsettings()->flags0 & FLAG0_TOP_WIDE_EXPERIMENTAL)
 #define ISET_UU_NOTICE_SEEN (get_nsettings()->flags0 & FLAG0_UU_NOTICE_SEEN)
 #define ISET_AUTO_SHUTDOWN (get_nsettings()->flags0 & FLAG0_AUTO_SHUTDOWN)
+#define SETTING_RUNEFETCH_MODE (ISET_RUNEFETCH_CACHE ? RuneFetchMode::cache : RuneFetchMode::stream)
+#define ISET_RUNEFETCH_CACHE (get_nsettings()->flags0 & FLAG0_RUNEFETCH_CACHE)
+#define ISET_RUNEFETCH_AUTO_LAUNCH (get_nsettings()->flags0 & FLAG0_RUNEFETCH_AUTO_LAUNCH)
 
 enum SettingsId
 {
@@ -159,6 +168,8 @@ enum SettingsId
 	ID_Performance,  // show as text: information
 	ID_TopWide,      // bool: experimental 800px top screen
 	ID_AutoShutdown, // bool: auto shutdown after install
+	ID_RuneFetchMode, // show as text: selector
+	ID_RuneFetchAutoLaunch, // bool
 };
 
 struct SettingCategory {

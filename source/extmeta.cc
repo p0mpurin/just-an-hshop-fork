@@ -27,6 +27,7 @@ extern "C" {
 
 #include <widgets/meta.hh>
 #include <ui/base.hh>
+#include <ui/confirm.hh>
 
 #include "image_ldr.hh"
 #include "extmeta.hh"
@@ -38,6 +39,7 @@ extern "C" {
 #include "panic.hh"
 #include "i18n.hh"
 #include "log.hh"
+#include "settings.hh"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <3rd/stb_image.h>
@@ -47,6 +49,7 @@ enum class extmeta_return { yes, no, none };
 
 #define RUNEFETCH_DIR        "/3ds/Rune3DS/runefetch"
 #define RUNEFETCH_JOBS_DIR   "/3ds/Rune3DS/runefetch/jobs"
+#define RUNEFETCH_CANCEL_DIR "/3ds/Rune3DS/runefetch/cancel"
 #define RUNEFETCH_STATE_DIR  "/3ds/Rune3DS/runefetch/state"
 #define RUNEFETCH_TITLE_ID   0x0004013000C0FE02ULL
 
@@ -100,6 +103,23 @@ static std::string runefetch_escape_value(const std::string& value)
 }
 
 template <typename TTitle>
+static std::string runefetch_job_path(const TTitle& title)
+{
+	return std::string(RUNEFETCH_JOBS_DIR) + "/" + runefetch_job_basename(title) + ".job";
+}
+
+template <typename TTitle>
+static std::string runefetch_cancel_path(const TTitle& title)
+{
+	return std::string(RUNEFETCH_CANCEL_DIR) + "/" + runefetch_job_basename(title) + ".cancel";
+}
+
+static bool runefetch_path_exists(const std::string& path)
+{
+	return access(path.c_str(), F_OK) == 0;
+}
+
+template <typename TTitle>
 static Result runefetch_write_job(const TTitle& title)
 {
 	std::string url;
@@ -111,11 +131,14 @@ static Result runefetch_write_job(const TTitle& title)
 	mkdir("/3ds/Rune3DS", 0777);
 	mkdir(RUNEFETCH_DIR, 0777);
 	mkdir(RUNEFETCH_JOBS_DIR, 0777);
+	mkdir(RUNEFETCH_CANCEL_DIR, 0777);
 	mkdir(RUNEFETCH_STATE_DIR, 0777);
 
 	std::string base = runefetch_job_basename(title);
 	std::string tmp_path = std::string(RUNEFETCH_JOBS_DIR) + "/" + base + ".tmp";
-	std::string job_path = std::string(RUNEFETCH_JOBS_DIR) + "/" + base + ".job";
+	std::string job_path = runefetch_job_path(title);
+
+	remove(runefetch_cancel_path(title).c_str());
 
 	FILE *f = fopen(tmp_path.c_str(), "w");
 	if(!f)
@@ -127,7 +150,7 @@ static Result runefetch_write_job(const TTitle& title)
 	fprintf(f, "name=%s\n", runefetch_escape_value(hsapi::title_name(title)).c_str());
 	fprintf(f, "url=%s\n", url.c_str());
 	fprintf(f, "size=%llu\n", (unsigned long long) title.size);
-	fprintf(f, "mode=stream_install\n");
+	fprintf(f, "mode=%s\n", ISET_RUNEFETCH_CACHE ? "cache" : "stream_install");
 	fclose(f);
 
 	remove(job_path.c_str());
@@ -138,8 +161,56 @@ static Result runefetch_write_job(const TTitle& title)
 }
 
 template <typename TTitle>
+static Result runefetch_cancel_job(const TTitle& title)
+{
+	mkdir("/3ds", 0777);
+	mkdir("/3ds/Rune3DS", 0777);
+	mkdir(RUNEFETCH_DIR, 0777);
+	mkdir(RUNEFETCH_CANCEL_DIR, 0777);
+
+	std::string cancel_path = runefetch_cancel_path(title);
+	FILE *f = fopen(cancel_path.c_str(), "w");
+	if(!f)
+		return MAKERESULT(RL_PERMANENT, RS_NOTFOUND, RM_APPLICATION, 0x72);
+
+	fprintf(f, "title_id=%s\n", title.tid.to_string().c_str());
+	fprintf(f, "id=%lu\n", (unsigned long) title.id);
+	fclose(f);
+
+	remove(runefetch_job_path(title).c_str());
+	return 0;
+}
+
+template <typename TTitle>
 static void runefetch_enqueue_background(const TTitle& title)
 {
+	if(runefetch_path_exists(runefetch_job_path(title)))
+	{
+		if(!ui::Confirm::exec(
+			"RuneFetch already has a job for this title.\n\nCancel it?",
+			"RuneFetch job", false))
+			return;
+
+		Result cancel_res = runefetch_cancel_job(title);
+		if(R_FAILED(cancel_res))
+		{
+			error_container err = get_error(cancel_res);
+			report_error(err, "RuneFetch cancel job for content ID " + std::to_string(title.id));
+			handle_error(err);
+			return;
+		}
+
+		ui::notice("RuneFetch cancel requested.\n\nIf the sysmodule is already running, it will stop at the next safe checkpoint.");
+		return;
+	}
+
+	const bool cache_mode = ISET_RUNEFETCH_CACHE;
+	const char *confirm_message = cache_mode
+		? "Queue a RuneFetch background download?\n\nRuneFetch will cache the CIA so Rune3DS stays usable while it runs. Install it later from FBI."
+		: "Queue a RuneFetch stream install?\n\nThis is the fast path, but it cannot be safely canceled after install starts. Reboot the console if you need to stop it.";
+	if(!ui::Confirm::exec(confirm_message, "RuneFetch", true))
+		return;
+
 	Result res = runefetch_write_job(title);
 	if(R_FAILED(res))
 	{
@@ -149,16 +220,26 @@ static void runefetch_enqueue_background(const TTitle& title)
 		return;
 	}
 
-	res = runefetch_launch_sysmodule();
-	if(R_FAILED(res))
+	if(ISET_RUNEFETCH_AUTO_LAUNCH)
 	{
-		error_container err = get_error(res);
-		report_error(err, "RuneFetch sysmodule launch");
-		handle_error(err);
-		return;
+		res = runefetch_launch_sysmodule();
+		if(R_FAILED(res))
+		{
+			error_container err = get_error(res);
+			report_error(err, "RuneFetch sysmodule launch");
+			handle_error(err);
+			return;
+		}
 	}
 
-	ui::notice("Background install queued.\n\nYou can press HOME and play another title. RuneFetch will download and install in the background.\n\nReturn when the LED shows it is ready.");
+	if(cache_mode)
+		ui::notice(ISET_RUNEFETCH_AUTO_LAUNCH
+			? "RuneFetch download queued.\n\nYou can keep browsing Rune3DS, press HOME, or play another title. The notification LED shows progress.\n\nWhen it finishes, install the cached CIA from FBI."
+			: "RuneFetch download job written.\n\nAuto-launch is disabled, so RuneFetch will pick it up the next time the sysmodule runs.");
+	else
+		ui::notice(ISET_RUNEFETCH_AUTO_LAUNCH
+			? "RuneFetch stream install queued.\n\nYou can press HOME or play another title. Stream mode cannot be safely canceled after install starts; reboot the console if you need to stop it."
+			: "RuneFetch stream install job written.\n\nAuto-launch is disabled, so RuneFetch will pick it up the next time the sysmodule runs.");
 }
 
 class ExtMetaBottomPanel : public ui::BaseWidget
@@ -365,7 +446,7 @@ static extmeta_return extmeta(ui::I18NEnabledRenderQueue& queue, const TTitle& b
 		.max_width(104.0f)
 		.add_to(queue);
 
-	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_L " Bg download")
+	ui::builder<ui::Text>(ui::Screen::bottom, UI_GLYPH_L " RuneFetch")
 		.x(116.0f).y(hsapi::category(base.cat).name == THEMES_CATEGORY ? 200.0f : 214.0f)
 		.size(0.40f)
 		.max_width(100.0f)

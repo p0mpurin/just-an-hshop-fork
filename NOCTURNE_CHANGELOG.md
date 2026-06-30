@@ -1,5 +1,13 @@
 # Rune3DS changelog
 
+## 1.5.43
+
+- Added a RuneFetch settings section for stream install, CIA cache mode, and auto-launch behavior
+- Changed RuneFetch handoff jobs to default to stream install, with CIA caching available from settings
+- Added a confirmation prompt before queuing RuneFetch background jobs
+- Added cancel requests for existing RuneFetch jobs from the title details screen
+- Improved RuneFetch handoff messaging and button text
+
 ## 1.5.42
 
 - Added experimental RuneFetch job handoff from title details with L for background installs

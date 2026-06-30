@@ -660,6 +660,26 @@ Install
 Download behaviour, warnings, and LEDs.
 
 # scroll, setting category
+- cat_runefetch
+RuneFetch
+
+# setting category description
+- cat_runefetch_desc
+Background download and stream install handoff settings.
+
+- runefetch_mode
+Default mode
+
+- runefetch_mode_desc
+Stream install is fastest, but Rune3DS may not open while AM is busy. Cache CIA downloads to SD first, then install from FBI.
+
+- runefetch_auto_launch
+Auto-launch RuneFetch
+
+- runefetch_auto_launch_desc
+Launch the RuneFetch sysmodule immediately after writing a job.
+
+# scroll, setting category
 - cat_system
 System
 

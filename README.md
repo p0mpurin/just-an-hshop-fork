@@ -10,7 +10,7 @@ A minimal 3DS on-device catalog client. Browse, search, queue, and install conte
 - 804 MHz + L2 cache + Core 2 CIA writer on New 3DS
 - 800px wide top-screen mode for New 3DS
 - Live download speed, ETA, and transfer stage
-- Experimental RuneFetch background install handoff for companion sysmodule users
+- Experimental RuneFetch background stream install and CIA caching for companion sysmodule users
 - Notification LED progress feedback during installs
 - Queue reordering and auto-shutdown after install
 - Old 3DS / 2DS compatibility
@@ -37,7 +37,7 @@ Drop PNG or JPEG files in `/3ds/Rune3DS/backgrounds/`. Go to **Settings > Backgr
 
 ## RuneFetch
 
-Rune3DS can write experimental background install jobs for the optional RuneFetch Luma sysmodule. On a title details screen, press **L** to queue a RuneFetch job and launch the sysmodule. Current RuneFetch builds can download and install in the background.
+Rune3DS can write experimental background jobs for the optional RuneFetch Luma sysmodule. On a title details screen, press **L** to queue a RuneFetch job and launch the sysmodule. RuneFetch defaults to stream install for speed, with a Settings > RuneFetch option to switch to CIA cache mode. Stream mode cannot be safely canceled after install starts; reboot the console if you need to stop it.
 
 ## Requirements
 

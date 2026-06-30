@@ -57,6 +57,7 @@ enum migrations {
 	migration_direct_cdn_default = 7,
 	migration_stable_cdn_default = 8,
 	migration_remove_direct_cdn  = 9,
+	migration_runefetch_settings = 10,
 
 	migration_meta_last,
 };
@@ -231,7 +232,7 @@ void reset_settings(bool set_default_lang)
 	                   | ((u64) SortDirection::ascending  << SORTDIRECTION_SHIFT)
 	                   | ((u64) SortMethod::none         << SORTMETHOD_SHIFT)
 	                   | FLAG0_SEARCH_ECONTENT            | FLAG0_WARN_NO_BASE
-	                   | FLAG0_ALLOW_LED;
+	                   | FLAG0_ALLOW_LED                  | FLAG0_RUNEFETCH_AUTO_LAUNCH;
 
 	g_nsettings.max_elogs = 0; /* memory log by default */
 	g_nsettings.wallpaper_dim = 132;
@@ -264,6 +265,11 @@ static void apply_migrations()
 		g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
 	if(g_nsettings.migration < migration_remove_direct_cdn)
 		g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
+	if(g_nsettings.migration < migration_runefetch_settings)
+	{
+		g_nsettings.flags0 &= ~FLAG0_RUNEFETCH_CACHE;
+		g_nsettings.flags0 |= FLAG0_RUNEFETCH_AUTO_LAUNCH;
+	}
 	/* in the future more migrations may be written here */
 	g_nsettings.migration = LATEST_MIGRATION;
 	write_settings();
@@ -569,6 +575,16 @@ static const char *surface2str(SurfacePreset preset)
 	return "Unknown";
 }
 
+static const char *runefetch_mode2str(RuneFetchMode mode)
+{
+	switch(mode)
+	{
+	case RuneFetchMode::stream: return "Stream install";
+	case RuneFetchMode::cache: return "Cache CIA";
+	}
+	return "Unknown";
+}
+
 static u32 rgba(u8 r, u8 g, u8 b, u8 a = 0xFF)
 {
 	return ((u32) a << 24) | ((u32) b << 16) | ((u32) g << 8) | r;
@@ -720,10 +736,13 @@ static bool serialize_id_bool(SettingsId ID)
 		return ISET_TOP_WIDE_EXPERIMENTAL;
 	case ID_AutoShutdown:
 		return ISET_AUTO_SHUTDOWN;
+	case ID_RuneFetchAutoLaunch:
+		return ISET_RUNEFETCH_AUTO_LAUNCH;
 	case ID_TimeFmt:
 	case ID_ProgLoc:
 	case ID_Language:
 	case ID_Localemode:
+	case ID_RuneFetchMode:
 	case ID_Proxy:
 	case ID_MaxELogs:
 	case ID_Method:
@@ -758,6 +777,7 @@ static std::string serialize_id_text(SettingsId ID)
 	case ID_ProxyEnabled:
 	case ID_TopWide:
 	case ID_AutoShutdown:
+	case ID_RuneFetchAutoLaunch:
 		panic("impossible text setting switch case reached");
 	case ID_TimeFmt:
 		return ISET_BAD_TIME_FORMAT ? STRING(fmt_12h) : STRING(fmt_24h);
@@ -796,6 +816,8 @@ static std::string serialize_id_text(SettingsId ID)
 		return ctr::mng::is_n3ds()
 			? "New 3DS · Enhanced"
 			: "Old 3DS · Compatible";
+	case ID_RuneFetchMode:
+		return runefetch_mode2str(SETTING_RUNEFETCH_MODE);
 	}
 
 	return STRING(unknown);
@@ -1183,6 +1205,9 @@ static void update_settings_ID(SettingsId ID)
 	case ID_AutoShutdown:
 		g_nsettings.flags0 ^= FLAG0_AUTO_SHUTDOWN;
 		break;
+	case ID_RuneFetchAutoLaunch:
+		g_nsettings.flags0 ^= FLAG0_RUNEFETCH_AUTO_LAUNCH;
+		break;
 	// Enums
 	case ID_TimeFmt:
 	{
@@ -1246,6 +1271,20 @@ static void update_settings_ID(SettingsId ID)
 		SortMethod mode = settings_sort_switch();
 		g_nsettings.flags0 = (g_nsettings.flags0 & ~(FLAG0_SORTMETHOD0 | FLAG0_SORTMETHOD1 | FLAG0_SORTMETHOD2 | FLAG0_SORTMETHOD3))
 		                   | ((u64) mode << SORTMETHOD_SHIFT);
+		break;
+	}
+	case ID_RuneFetchMode:
+	{
+		RuneFetchMode mode = SETTING_RUNEFETCH_MODE;
+		read_set_enum<RuneFetchMode>(
+			{ "Stream install", "Cache CIA" },
+			{ RuneFetchMode::stream, RuneFetchMode::cache },
+			mode
+		);
+		if(mode == RuneFetchMode::cache)
+			g_nsettings.flags0 |= FLAG0_RUNEFETCH_CACHE;
+		else
+			g_nsettings.flags0 &= ~FLAG0_RUNEFETCH_CACHE;
 		break;
 	}
 	// Other
@@ -1386,7 +1425,9 @@ void log_settings()
 		"surfacePreset: %s, "
 		"topWide: %s, "
 		"performanceMode: new3ds, "
-		"autoShutdown: %s",
+		"autoShutdown: %s, "
+		"runefetchMode: %s, "
+		"runefetchAutoLaunch: %s",
 			BOOL(ISET_RESUME_DOWNLOADS), BOOL(ISET_LOAD_FREE_SPACE),
 			BOOL(ISET_SHOW_BATTERY), BOOL(ISET_SHOW_NET), BOOL(ISET_BAD_TIME_FORMAT),
 			ISET_PROGBAR_TOP ? "top" : "bottom",
@@ -1398,7 +1439,9 @@ void log_settings()
 			g_nsettings.wallpaper_dim, accent2str((AccentPreset) g_nsettings.accent_preset),
 			surface2str((SurfacePreset) g_nsettings.surface_preset),
 			BOOL(ISET_TOP_WIDE_EXPERIMENTAL),
-			BOOL(ISET_AUTO_SHUTDOWN));
+			BOOL(ISET_AUTO_SHUTDOWN),
+			runefetch_mode2str(SETTING_RUNEFETCH_MODE),
+			BOOL(ISET_RUNEFETCH_AUTO_LAUNCH));
 #undef BOOL
 }
 
@@ -1497,6 +1540,8 @@ static SettingInfo make_info(SettingsId id)
 	case ID_Performance:  return { str::performance_mode, str::performance_mode_desc, id, true };
 	case ID_TopWide:      return { str::top_wide_mode, str::top_wide_mode_desc, id, false };
 	case ID_AutoShutdown: return { str::auto_shutdown, str::auto_shutdown_desc, id, false };
+	case ID_RuneFetchMode: return { str::runefetch_mode, str::runefetch_mode_desc, id, true };
+	case ID_RuneFetchAutoLaunch: return { str::runefetch_auto_launch, str::runefetch_auto_launch_desc, id, false };
 	default: panic("unhandled setting id in make_info");
 	}
 }
@@ -1586,6 +1631,8 @@ void show_settings()
 			{ ID_FreeSpace, ID_Battery, ID_ShowAlt, ID_DisGraph, ID_TimeFmt, ID_ProgLoc } },
 		{ str::cat_install, str::cat_install_desc,
 			{ ID_Resumable, ID_WarnNoBase, ID_Reinstall, ID_Extra, ID_AutoShutdown, ID_AllowLED } },
+		{ str::cat_runefetch, str::cat_runefetch_desc,
+			{ ID_RuneFetchMode, ID_RuneFetchAutoLaunch } },
 		{ str::cat_system, str::cat_system_desc,
 			{ ID_Language, ID_Localemode, ID_Method, ID_Direction, ID_GotoRegion } },
 		{ str::cat_advanced, str::cat_advanced_desc,
