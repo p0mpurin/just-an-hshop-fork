@@ -3,12 +3,12 @@
         "title": "Rune3DS",
         "author": "p0mpurin",
         "description": "Rune3DS releases for Universal-Updater",
-        "url": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/rune3ds.unistore",
+        "url": "https://raw.githubusercontent.com/p0mpurin/Rune3DS/main/universal-updater/rune3ds.unistore",
         "file": "rune3ds.unistore",
-        "sheetURL": "https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/icons/rune3ds.t3x",
+        "sheetURL": "https://raw.githubusercontent.com/p0mpurin/Rune3DS/main/universal-updater/icons/rune3ds.t3x",
         "sheet": "rune3ds.t3x",
         "version": 3,
-        "revision": 1543
+        "revision": 1544
     },
     "storeContent": [
         {
@@ -21,13 +21,13 @@
                 "icon_index": 0,
                 "sheet_index": 0,
                 "license": "gpl-3.0",
-                "last_updated": "2026-06-29 at 23:40 (UTC)",
-                "version": "v1.5.43"
+                "last_updated": "2026-06-30 at 13:47 (UTC)",
+                "version": "v1.5.44"
             },
             "Install Rune3DS.cia": [
                 {
                     "type": "downloadRelease",
-                    "repo": "p0mpurin/just-an-hshop-fork",
+                    "repo": "p0mpurin/Rune3DS",
                     "file": "Rune3DS.cia",
                     "output": "sdmc:/Rune3DS.cia",
                     "includePrereleases": false

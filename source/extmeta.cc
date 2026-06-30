@@ -119,6 +119,28 @@ static bool runefetch_path_exists(const std::string& path)
 	return access(path.c_str(), F_OK) == 0;
 }
 
+static bool runefetch_job_allows_cancel(const std::string& path)
+{
+	FILE *f = fopen(path.c_str(), "r");
+	if(!f)
+		return false;
+
+	char line[128];
+	while(fgets(line, sizeof(line), f))
+	{
+		if(strncmp(line, "mode=", 5) != 0)
+			continue;
+
+		char *mode = line + 5;
+		mode[strcspn(mode, "\r\n")] = '\0';
+		fclose(f);
+		return strcmp(mode, "cache") == 0 || strcmp(mode, "download_only") == 0;
+	}
+
+	fclose(f);
+	return false;
+}
+
 template <typename TTitle>
 static Result runefetch_write_job(const TTitle& title)
 {
@@ -184,10 +206,17 @@ static Result runefetch_cancel_job(const TTitle& title)
 template <typename TTitle>
 static void runefetch_enqueue_background(const TTitle& title)
 {
-	if(runefetch_path_exists(runefetch_job_path(title)))
+	std::string job_path = runefetch_job_path(title);
+	if(runefetch_path_exists(job_path))
 	{
+		if(!runefetch_job_allows_cancel(job_path))
+		{
+			ui::notice("RuneFetch already has a stream install job for this title.\n\nStream installs cannot be safely canceled after install starts. Reboot the console if you need to stop it.");
+			return;
+		}
+
 		if(!ui::Confirm::exec(
-			"RuneFetch already has a job for this title.\n\nCancel it?",
+			"RuneFetch already has a cached download job for this title.\n\nCancel it?",
 			"RuneFetch job", false))
 			return;
 
@@ -207,7 +236,7 @@ static void runefetch_enqueue_background(const TTitle& title)
 	const bool cache_mode = ISET_RUNEFETCH_CACHE;
 	const char *confirm_message = cache_mode
 		? "Queue a RuneFetch background download?\n\nRuneFetch will cache the CIA so Rune3DS stays usable while it runs. Install it later from FBI."
-		: "Queue a RuneFetch stream install?\n\nThis is the fast path, but it cannot be safely canceled after install starts. Reboot the console if you need to stop it.";
+		: "Queue a RuneFetch stream install?\n\nThis is experimental and mainly tested on New 3DS/New 2DS. It downloads and installs through AM in the background, but it cannot be safely canceled after install starts. Reboot the console if you need to stop it.";
 	if(!ui::Confirm::exec(confirm_message, "RuneFetch", true))
 		return;
 

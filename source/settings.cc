@@ -58,6 +58,7 @@ enum migrations {
 	migration_stable_cdn_default = 8,
 	migration_remove_direct_cdn  = 9,
 	migration_runefetch_settings = 10,
+	migration_runefetch_old3ds_cache = 11,
 
 	migration_meta_last,
 };
@@ -232,7 +233,8 @@ void reset_settings(bool set_default_lang)
 	                   | ((u64) SortDirection::ascending  << SORTDIRECTION_SHIFT)
 	                   | ((u64) SortMethod::none         << SORTMETHOD_SHIFT)
 	                   | FLAG0_SEARCH_ECONTENT            | FLAG0_WARN_NO_BASE
-	                   | FLAG0_ALLOW_LED                  | FLAG0_RUNEFETCH_AUTO_LAUNCH;
+	                   | FLAG0_ALLOW_LED                  | FLAG0_RUNEFETCH_AUTO_LAUNCH
+	                   | (ctr::mng::is_n3ds() ? 0 : FLAG0_RUNEFETCH_CACHE);
 
 	g_nsettings.max_elogs = 0; /* memory log by default */
 	g_nsettings.wallpaper_dim = 132;
@@ -267,9 +269,14 @@ static void apply_migrations()
 		g_nsettings.flags0 &= ~FLAG0_DIRECT_CDN_EXPERIMENTAL;
 	if(g_nsettings.migration < migration_runefetch_settings)
 	{
-		g_nsettings.flags0 &= ~FLAG0_RUNEFETCH_CACHE;
+		if(ctr::mng::is_n3ds())
+			g_nsettings.flags0 &= ~FLAG0_RUNEFETCH_CACHE;
+		else
+			g_nsettings.flags0 |= FLAG0_RUNEFETCH_CACHE;
 		g_nsettings.flags0 |= FLAG0_RUNEFETCH_AUTO_LAUNCH;
 	}
+	if(g_nsettings.migration < migration_runefetch_old3ds_cache && !ctr::mng::is_n3ds())
+		g_nsettings.flags0 |= FLAG0_RUNEFETCH_CACHE;
 	/* in the future more migrations may be written here */
 	g_nsettings.migration = LATEST_MIGRATION;
 	write_settings();
@@ -1276,11 +1283,17 @@ static void update_settings_ID(SettingsId ID)
 	case ID_RuneFetchMode:
 	{
 		RuneFetchMode mode = SETTING_RUNEFETCH_MODE;
+		RuneFetchMode old_mode = mode;
 		read_set_enum<RuneFetchMode>(
 			{ "Stream install", "Cache CIA" },
 			{ RuneFetchMode::stream, RuneFetchMode::cache },
 			mode
 		);
+		if(mode == RuneFetchMode::stream && old_mode != RuneFetchMode::stream
+			&& !ui::Confirm::exec(
+				"RuneFetch stream install is experimental and mainly tested on New 3DS/New 2DS.\n\nIt cannot be safely canceled after install starts. Continue with stream install?",
+				"RuneFetch", false))
+			mode = old_mode;
 		if(mode == RuneFetchMode::cache)
 			g_nsettings.flags0 |= FLAG0_RUNEFETCH_CACHE;
 		else

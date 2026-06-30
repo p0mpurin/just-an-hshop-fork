@@ -5,7 +5,7 @@ This folder contains the custom Universal-Updater store for Rune3DS.
 Users can add this UniStore in Universal-Updater:
 
 ```text
-https://raw.githubusercontent.com/p0mpurin/just-an-hshop-fork/main/universal-updater/rune3ds.unistore
+https://raw.githubusercontent.com/p0mpurin/Rune3DS/main/universal-updater/rune3ds.unistore
 ```
 
 The install script uses Universal-Updater's `downloadRelease` action to fetch

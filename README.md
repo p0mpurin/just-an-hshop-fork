@@ -37,7 +37,7 @@ Drop PNG or JPEG files in `/3ds/Rune3DS/backgrounds/`. Go to **Settings > Backgr
 
 ## RuneFetch
 
-Rune3DS can write experimental background jobs for the optional RuneFetch Luma sysmodule. On a title details screen, press **L** to queue a RuneFetch job and launch the sysmodule. RuneFetch defaults to stream install for speed, with a Settings > RuneFetch option to switch to CIA cache mode. Stream mode cannot be safely canceled after install starts; reboot the console if you need to stop it.
+Rune3DS can write experimental background jobs for the optional RuneFetch Luma sysmodule. On a title details screen, press **L** to queue a RuneFetch job and launch the sysmodule. RuneFetch defaults to stream install on New 3DS / New 2DS and CIA cache mode on Old 3DS / Old 2DS. Settings > RuneFetch lets you switch modes. Stream mode cannot be safely canceled after install starts; reboot the console if you need to stop it.
 
 ## Requirements
 

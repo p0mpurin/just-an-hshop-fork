@@ -1,5 +1,12 @@
 # Rune3DS changelog
 
+## 1.5.44
+
+- Warn before enabling or queuing RuneFetch stream installs
+- Keep RuneFetch stream jobs non-cancellable from Rune3DS once queued
+- Default RuneFetch to CIA cache mode on Old 3DS / Old 2DS systems
+- Updated Universal-Updater metadata to use the Rune3DS repository
+
 ## 1.5.43
 
 - Added a RuneFetch settings section for stream install, CIA cache mode, and auto-launch behavior
