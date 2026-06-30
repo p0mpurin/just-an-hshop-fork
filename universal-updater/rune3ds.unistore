@@ -8,7 +8,7 @@
         "sheetURL": "https://raw.githubusercontent.com/p0mpurin/Rune3DS/main/universal-updater/icons/rune3ds.t3x",
         "sheet": "rune3ds.t3x",
         "version": 3,
-        "revision": 1544
+        "revision": 1545
     },
     "storeContent": [
         {
@@ -21,8 +21,8 @@
                 "icon_index": 0,
                 "sheet_index": 0,
                 "license": "gpl-3.0",
-                "last_updated": "2026-06-30 at 13:47 (UTC)",
-                "version": "v1.5.44"
+                "last_updated": "2026-06-30 at 17:30 (UTC)",
+                "version": "v1.5.45"
             },
             "Install Rune3DS.cia": [
                 {

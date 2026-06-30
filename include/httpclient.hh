@@ -42,8 +42,8 @@ namespace http
 	public:
 		static constexpr u64 DefaultTimeout = 10000000000L; /* 10 seconds */
 		/* Large enough to amortize HTTP IPC and AM write overhead while
-		 * retaining responsive cancellation on New 3DS hardware. */
-		static constexpr size_t ChunkMaxSize = 0x100000; /* 1 MiB */
+		 * retaining responsive cancellation on 3DS hardware. */
+		static constexpr size_t ChunkMaxSize = 0x180000; /* 1.5 MiB */
 
 		static Result global_init();
 		static void global_abort();

@@ -241,7 +241,7 @@ class CiaWritePipeline
 {
 public:
 	CiaWritePipeline(Handle& handle) : ciaHandle(handle),
-		slotCount(ctr::mng::is_n3ds() ? 6 : 3)
+		slotCount(ctr::mng::is_n3ds() ? 8 : 3)
 	{
 		LightLock_Init(&this->lock);
 		CondVar_Init(&this->hasData);

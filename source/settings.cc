@@ -1398,7 +1398,7 @@ static void update_settings_ID(SettingsId ID)
 			ui::notice("Old 3DS compatibility mode is active.\n\nDefault-core CIA writer\n1 MiB buffered pipeline\nStable Nintendo HTTP transport\n\nDownload speed is limited by older hardware.");
 			break;
 		}
-			ui::notice("New 3DS enhanced mode is active.\n\nStable Nintendo HTTP transport\n1 MiB download chunks\n6-slot CIA write pipeline\nThrottled progress rendering");
+			ui::notice("New 3DS enhanced mode is active.\n\nStable Nintendo HTTP transport\n1.5 MiB download chunks\n8-slot CIA write pipeline\nThrottled progress rendering");
 		break;
 	}
 }

@@ -1,5 +1,12 @@
 # Rune3DS changelog
 
+## 1.5.45
+
+- Improved normal Rune3DS foreground install throughput on New 3DS / New 2DS
+- Increased foreground install download chunks and New 3DS CIA write queue depth
+- Reduced hot-path HTTP logging during normal downloads
+- Increased the New 3DS HTTPC shared-memory pool with fallback
+
 ## 1.5.44
 
 - Warn before enabling or queuing RuneFetch stream installs
